@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="updating to Visual Studio 2015 RC">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>updating to Visual Studio 2015 RC &middot; Ian&#39;s Blog</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://bigredmachine.github.io/css/theme/journal.css">
+    
+
+    <link rel="stylesheet" href="http://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="http://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://bigredmachine.github.io">Home</a></li>
+					<li><a href="http://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="http://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>updating to Visual Studio 2015 RC</h3>
+				<span class="label label-primary">Mon, May 25, 2015</span> in 
+				
+					
+					<a href="/categories/development">Development</a>
+				 using tags
+				
+					
+					<a href="/tags/development">Development</a>
+				
+					 , 
+					<a href="/tags/visual-studio">Visual Studio</a>
+				
+					 , 
+					<a href="/tags/dotnet">DotNet</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<h4 id="updating-from-vs2015-ctp6-to-rc">Updating from VS2015 CTP6 to RC</h4>
+
+<p>A number of changes have been made to names.</p>
+
+<p>Watch this for further details:</p>
+
+<p><a href="https://www.youtube.com/watch?v=-qt0POsiAF8">Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename</a></p>
+
+<p>Key slides:</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box.PNG" 
+    alt="Renamed tools">
+</picture>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box.PNG" 
+    alt="Renamed folder and packages">
+</picture>
+
+<p>If you install visual studio, the DNVM and DNX will be setup for you.<br />
+To install Visual Studio RC, first uninstall visual studio CTP 6.<br />
+If you aren&rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&rsquo;ll need Powershell V3 for this.</p>
+
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;&amp;{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}&quot;
+</code></pre>
+
+<p>Then to install .NET Execution Environment (DNX) run the following command</p>
+
+<pre><code>dnvm upgrade
+</code></pre>
+
+<p>I got some warnings, to remove the old environmental variable KRE_HOME</p>
+
+<blockquote>
+<p>WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment</p>
+</blockquote>
+
+<p>To see what is installed, and what is the default run.</p>
+
+<pre><code>dnvm list
+</code></pre>
+
+<p>To set the coreclr to be used run</p>
+
+<pre><code>dnvm use 1.0.0-beta4 -x64 -r coreclr
+</code></pre>
+
+<p>Then to run the web server</p>
+
+<pre><code>dnx . web
+</code></pre>
+
+<p>When running &ldquo;dnx &ndash;watch . web&rdquo; from the command line, when any code changes are made, the server will stop, but not restart.<br />
+In order to get the server to restart after a code change something like this is needed.<br />
+When using visual studio this is all handled for you.<br /></p>
+
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;for(;;) { Write-Output \&quot;Starting...\&quot;; dnx --watch . web }&quot;
+</code></pre>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2018 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

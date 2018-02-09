@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email &middot; Ian&#39;s Blog</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://bigredmachine.github.io/css/theme/journal.css">
+    
+
+    <link rel="stylesheet" href="http://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="http://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://bigredmachine.github.io">Home</a></li>
+					<li><a href="http://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="http://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</h3>
+				<span class="label label-primary">Fri, Feb 9, 2018</span> in 
+				
+					
+					<a href="/categories/development">Development</a>
+				 using tags
+				
+					
+					<a href="/tags/development">Development</a>
+				
+					 , 
+					<a href="/tags/azure">Azure</a>
+				
+					 , 
+					<a href="/tags/azure-functions">Azure Functions</a>
+				
+					 , 
+					<a href="/tags/azure-logic-apps">Azure Logic Apps</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<h4 id="fun-with-logic-apps-azure-functions-and-twitter">Fun with logic apps, Azure functions and twitter</h4>
+
+<p>While studying for the Microsoft 70-532 exam,
+I wanted to take a look at Azure functions &amp; Logics apps.</p>
+
+<p>Having gone through this example
+<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email">&ldquo;Create a function that integrates with Azure Logic Apps&rdquo;</a></p>
+
+<p>It left me with some questions on how to improve it. E.g. I don&rsquo;t want to receive an email per tweet.</p>
+
+<p>So after some searching, I came across a new feature called batching
+<a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages">&ldquo;Send, receive, and batch process messages in logic apps&rdquo;</a>
+but even after the batch had been reached,
+each message in the batch would result in an individual email.
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box.PNG" 
+    alt="Logic apps Compose">
+</picture></p>
+
+<p>Then I came across this blog
+<a href="http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/">&ldquo;Azure Logic Apps – Aggregate a value from an array of messages&rdquo;</a></p>
+
+<p>And the Compose feature was what I wanted.
+Composing first the message I want out of each tweet.
+Then combining those messages together, into the format I want to email.</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box.PNG" 
+    alt="Logic apps Compose">
+</picture>
+
+<p>I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
+<a href="https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134">&ldquo;How to Exclude retweets and replies in a search api&rdquo;</a>
+<a href="http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/">&ldquo;How to master twitter search&rdquo;</a></p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box.PNG" 
+    alt="Search Tweets">
+</picture>
+
+<p>And here is the final result, twitter search result of original tweets filtered by language combined into a single email
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box.PNG" 
+    alt="Combined Email">
+</picture></p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2018 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

@@ -1,31 +1,232 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ian&#39;s Blog</title>
+    <title>Ian&#39;s Blog on Ian&#39;s Blog</title>
     <link>http://bigredmachine.github.io/</link>
-    <description>Recent content on Ian&#39;s Blog</description>
+    <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2015 Ian Jones.</copyright>
-    <lastBuildDate>Sun, 08 Mar 2015 11:28:58 +0000</lastBuildDate>
-    <atom:link href="http://bigredmachine.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 20:49:38 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
     
-    <item>
-      <title>setting up Visual Studio 2015 CTP 6</title>
-      <link>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
-      <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
-      <description>
+        
+          <item>
+            <title>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</title>
+            <link>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</link>
+            <pubDate>Fri, 09 Feb 2018 20:49:38 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
+            <description>
 
-&lt;h4 id=&#34;goals:7b9116af332184ed68c6a279192d592f&#34;&gt;Goals&lt;/h4&gt;
+&lt;h4 id=&#34;fun-with-logic-apps-azure-functions-and-twitter&#34;&gt;Fun with logic apps, Azure functions and twitter&lt;/h4&gt;
+
+&lt;p&gt;While studying for the Microsoft 70-532 exam,
+I wanted to take a look at Azure functions &amp;amp; Logics apps.&lt;/p&gt;
+
+&lt;p&gt;Having gone through this example
+&lt;a href=&#34;https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email&#34;&gt;&amp;ldquo;Create a function that integrates with Azure Logic Apps&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It left me with some questions on how to improve it. E.g. I don&amp;rsquo;t want to receive an email per tweet.&lt;/p&gt;
+
+&lt;p&gt;So after some searching, I came across a new feature called batching
+&lt;a href=&#34;https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages&#34;&gt;&amp;ldquo;Send, receive, and batch process messages in logic apps&amp;rdquo;&lt;/a&gt;
+but even after the batch had been reached,
+each message in the batch would result in an individual email.
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Logic apps Compose&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I came across this blog
+&lt;a href=&#34;http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/&#34;&gt;&amp;ldquo;Azure Logic Apps – Aggregate a value from an array of messages&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And the Compose feature was what I wanted.
+Composing first the message I want out of each tweet.
+Then combining those messages together, into the format I want to email.&lt;/p&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Logic apps Compose&#34;&gt;
+&lt;/picture&gt;
+
+&lt;p&gt;I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
+&lt;a href=&#34;https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134&#34;&gt;&amp;ldquo;How to Exclude retweets and replies in a search api&amp;rdquo;&lt;/a&gt;
+&lt;a href=&#34;http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/&#34;&gt;&amp;ldquo;How to master twitter search&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Search Tweets&#34;&gt;
+&lt;/picture&gt;
+
+&lt;p&gt;And here is the final result, twitter search result of original tweets filtered by language combined into a single email
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Combined Email&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>updating to Visual Studio 2015 RC</title>
+            <link>http://bigredmachine.github.io/post/updating-to-vs-rc/</link>
+            <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
+            <description>
+
+&lt;h4 id=&#34;updating-from-vs2015-ctp6-to-rc&#34;&gt;Updating from VS2015 CTP6 to RC&lt;/h4&gt;
+
+&lt;p&gt;A number of changes have been made to names.&lt;/p&gt;
+
+&lt;p&gt;Watch this for further details:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=-qt0POsiAF8&#34;&gt;Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Key slides:&lt;/p&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Renamed tools&#34;&gt;
+&lt;/picture&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Renamed folder and packages&#34;&gt;
+&lt;/picture&gt;
+
+&lt;p&gt;If you install visual studio, the DNVM and DNX will be setup for you.&lt;br /&gt;
+To install Visual Studio RC, first uninstall visual studio CTP 6.&lt;br /&gt;
+If you aren&amp;rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&amp;rsquo;ll need Powershell V3 for this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;&amp;amp;{$Branch=&#39;dev&#39;;iex ((new-object net.webclient).DownloadString(&#39;https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1&#39;))}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then to install .NET Execution Environment (DNX) run the following command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dnvm upgrade
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I got some warnings, to remove the old environmental variable KRE_HOME&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To see what is installed, and what is the default run.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dnvm list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To set the coreclr to be used run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dnvm use 1.0.0-beta4 -x64 -r coreclr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then to run the web server&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dnx . web
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When running &amp;ldquo;dnx &amp;ndash;watch . web&amp;rdquo; from the command line, when any code changes are made, the server will stop, but not restart.&lt;br /&gt;
+In order to get the server to restart after a code change something like this is needed.&lt;br /&gt;
+When using visual studio this is all handled for you.&lt;br /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;for(;;) { Write-Output \&amp;quot;Starting...\&amp;quot;; dnx --watch . web }&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>setting up Visual Studio 2015 CTP 6</title>
+            <link>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
+            <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
+            <description>
+
+&lt;h4 id=&#34;goals&#34;&gt;Goals&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;To setup Visual Studio 2015 to run an asp.net vNext website&lt;/li&gt;
 &lt;li&gt;Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;how-to-do-it-what-i-learnt:7b9116af332184ed68c6a279192d592f&#34;&gt;How to do it/What I learnt&lt;/h4&gt;
+&lt;h4 id=&#34;how-to-do-it-what-i-learnt&#34;&gt;How to do it/What I learnt&lt;/h4&gt;
 
 &lt;p&gt;Reading the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Release Notes&lt;/a&gt;&lt;/p&gt;
 
@@ -86,8 +287,21 @@ First install the K Version Manager(KVM) in Powershell as an administrator.&lt;/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And you should see something like:&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/KVM_Versions.PNG&#34; alt=&#34;KVM list&#34; /&gt;
-&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;KVM list&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
 
 &lt;p&gt;Notice is used the \.k\ folder, earlier version where using \.kre\.
 You may read older documentation that refers to \.kre\.&lt;/p&gt;
@@ -103,39 +317,118 @@ You may read older documentation that refers to \.kre\.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And you should see something like, notice the Active * has now updated:&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/SwitchKActiveVersion.PNG&#34; alt=&#34;KVM list&#34; /&gt;
-&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;KVM list&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
 
 &lt;p&gt;Now you&amp;rsquo;ve got a VM, K runtime setup.&lt;/p&gt;
 
 &lt;p&gt;Open up visual studio and create a new project.&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/VsProjectCreate.PNG&#34; alt=&#34;Visual Studio Create Project&#34; /&gt;
-&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Visual Studio Create Project&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
 
 &lt;p&gt;Select a blank project&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/VsProjectTemplate.PNG&#34; alt=&#34;Select blank project&#34; /&gt;
-&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Select blank project&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
 
 &lt;p&gt;Now have that created, let&amp;rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;app.UseWelcomePage();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://bigredmachine.github.io/images/ConfigureWelcomePage.PNG&#34; alt=&#34;Modify startup.cs&#34; /&gt;
-&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Modify startup.cs&#34;&gt;
+&lt;/picture&gt;
 
 &lt;p&gt;This won&amp;rsquo;t compile at the moment as you don&amp;rsquo;t have a reference to the extension method.&lt;/p&gt;
 
 &lt;p&gt;To do that open project.json, and add a reference to &amp;ldquo;Microsoft.AspNet.Diagnostics&amp;rdquo;: &amp;ldquo;1.0.0-beta3&amp;rdquo;
 I&amp;rsquo;ve also added some references to &amp;ldquo;Microsoft.AspNet.Hosting&amp;rdquo; &amp;amp; &amp;ldquo;Microsoft.AspNet.Server.WebListener&amp;rdquo;, and added the command &amp;ldquo;web&amp;rdquo;, so can launch the site from the command prompt.
-&lt;img src=&#34;http://bigredmachine.github.io/images/ConfigureDependancies.PNG&#34; alt=&#34;Modify project.json&#34; /&gt;
- &lt;br/&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Modify project.json&#34;&gt;
+&lt;/picture&gt;
+&lt;br/&gt;
 Make sure the version of k runtime in the project.json matches what you have installed, e.g. &amp;ldquo;1.0.0-beta3&amp;rdquo;.
 When you save the file, visual studio should automatically restore the packages from NuGet.&lt;/p&gt;
 
 &lt;p&gt;In visual studio you can configure which version of K the application uses
-&lt;img src=&#34;http://bigredmachine.github.io/images/VSConfigureKREversion.PNG&#34; alt=&#34;VS configure KRE version&#34; /&gt;
- &lt;br/&gt;&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;VS configure KRE version&#34;&gt;
+&lt;/picture&gt;&lt;/p&gt;
 
 &lt;p&gt;You should either now be able to launch the site from either Visual Studio or Command prompt.&lt;/p&gt;
 
@@ -146,21 +439,27 @@ When you save the file, visual studio should automatically restore the packages 
 
 &lt;p&gt;Now you can navigate to the site as defined in the project.json configuration&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://bigredmachine.github.io/images/StartupPage.PNG&#34; alt=&#34;Startup Page&#34; /&gt;
-&lt;/p&gt;
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Startup Page&#34;&gt;
+&lt;/picture&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>http://bigredmachine.github.io/page/about/</link>
-      <pubDate>Sun, 08 Mar 2015 11:19:12 +0000</pubDate>
+          </item>
+        
       
-      <guid>http://bigredmachine.github.io/page/about/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m a C# Sitecore Developer.&lt;br /&gt;
-Living in North London, and I&amp;rsquo;m a Spurs Fan.&lt;br /&gt;&lt;/p&gt;
-</description>
-    </item>
+    
+      
     
   </channel>
 </rss>

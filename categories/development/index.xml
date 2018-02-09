@@ -6,9 +6,37 @@
     <description>Recent content in Development on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2015 Ian Jones.</copyright>
-    <lastBuildDate>Sun, 08 Mar 2015 11:28:58 +0000</lastBuildDate>
-    <atom:link href="http://bigredmachine.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 20:49:38 +0000</lastBuildDate>
+    
+	<atom:link href="http://bigredmachine.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</title>
+      <link>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</link>
+      <pubDate>Fri, 09 Feb 2018 20:49:38 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
+      <description>Fun with logic apps, Azure functions and twitter While studying for the Microsoft 70-532 exam, I wanted to take a look at Azure functions &amp;amp; Logics apps.
+Having gone through this example &amp;ldquo;Create a function that integrates with Azure Logic Apps&amp;rdquo;
+It left me with some questions on how to improve it. E.g. I don&amp;rsquo;t want to receive an email per tweet.
+So after some searching, I came across a new feature called batching &amp;ldquo;Send, receive, and batch process messages in logic apps&amp;rdquo; but even after the batch had been reached, each message in the batch would result in an individual email.</description>
+    </item>
+    
+    <item>
+      <title>updating to Visual Studio 2015 RC</title>
+      <link>http://bigredmachine.github.io/post/updating-to-vs-rc/</link>
+      <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
+      <description>Updating from VS2015 CTP6 to RC A number of changes have been made to names.
+Watch this for further details:
+Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename
+Key slides:
+  If you install visual studio, the DNVM and DNX will be setup for you.
+To install Visual Studio RC, first uninstall visual studio CTP 6.
+If you aren&amp;rsquo;t installing visual studio, and want to use the command line to install .</description>
+    </item>
     
     <item>
       <title>setting up Visual Studio 2015 CTP 6</title>
@@ -16,139 +44,8 @@
       <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
-      <description>
-
-&lt;h4 id=&#34;goals:7b9116af332184ed68c6a279192d592f&#34;&gt;Goals&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;To setup Visual Studio 2015 to run an asp.net vNext website&lt;/li&gt;
-&lt;li&gt;Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;how-to-do-it-what-i-learnt:7b9116af332184ed68c6a279192d592f&#34;&gt;How to do it/What I learnt&lt;/h4&gt;
-
-&lt;p&gt;Reading the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Release Notes&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So a VM should be used.
-So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&amp;rsquo;t work on 64 bit PCs.
-So starting again, I downloaded &lt;a href=&#34;https://www.virtualbox.org/&#34;&gt;VirtualBox&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I then &lt;a href=&#34;http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst&#34;&gt;created a Windows 7 VM in VirtualBox&lt;/a&gt;.&lt;br/&gt;
-Important Steps, create it with enough space, e.g. 50GB+. It&amp;rsquo;s surprising how much space need for Windows &amp;amp; Patching, as well as Visual Studio 2015.&lt;br/&gt;
-In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.&lt;/p&gt;
-
-&lt;p&gt;Here is good article if need to &lt;a href=&#34;http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html&#34;&gt;change the space on the Virtual Box VM&lt;/a&gt;, and update windows to use the extra space.&lt;br/&gt;
-The first steps about cloning are optional.&lt;br/&gt;
-The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;VBoxManage modifyhd &amp;quot;VMName.vdi&amp;quot; --resize 50000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &amp;ldquo;Extend Volume..&amp;rdquo;, and allocate the extra space.&lt;/p&gt;
-
-&lt;p&gt;Now you&amp;rsquo;ve got a Windows 7 VM, few important things:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Patch it to include SP1&lt;/li&gt;
-&lt;li&gt;Patch it to include IE10/IE11&lt;/li&gt;
-&lt;li&gt;Just patch it up to the latest version &amp;amp; reboot&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you don&amp;rsquo;t patch it to SP1, then won&amp;rsquo;t be able to install Visual Studio.&lt;br /&gt;
-And if you don&amp;rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&amp;rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this &lt;a href=&#34;http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop&#34;&gt;forum thread&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Summary just patch your VM to the latest version&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Having got a Patched VM, with enough disk space.
-Then install Visual Studio 2015 CTP 6.
-I used the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Visual Studio 2015 Ultimate Web Installer&lt;/a&gt; released on 23rd of February 2015.
-And just installed the default options.&lt;/p&gt;
-
-&lt;p&gt;You&amp;rsquo;ll also want to install the K runtime.&lt;br /&gt;
-First install the K Version Manager(KVM) in Powershell as an administrator.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;iex ((new-object net.webclient).DownloadString(&#39;https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1&#39;))&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As detailed on the &lt;a href=&#34;https://github.com/aspnet/home&#34;&gt;Asp.net Github page&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now KVM is installed, you&amp;rsquo;ll want to get the K runtime.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;kvm upgrade
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Having done that you can see what is installed by calling&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;kvm list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And you should see something like:&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/KVM_Versions.PNG&#34; alt=&#34;KVM list&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Notice is used the \.k\ folder, earlier version where using \.kre\.
-You may read older documentation that refers to \.kre\.&lt;/p&gt;
-
-&lt;p&gt;You may want to look at switching to use the coreclr runtime as the Active version.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;kvm use 1.0.0-beta3 -x64 -r coreclr
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;followed by&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;kvm list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And you should see something like, notice the Active * has now updated:&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/SwitchKActiveVersion.PNG&#34; alt=&#34;KVM list&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Now you&amp;rsquo;ve got a VM, K runtime setup.&lt;/p&gt;
-
-&lt;p&gt;Open up visual studio and create a new project.&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/VsProjectCreate.PNG&#34; alt=&#34;Visual Studio Create Project&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Select a blank project&lt;br /&gt;
-&lt;img src=&#34;http://bigredmachine.github.io/images/VsProjectTemplate.PNG&#34; alt=&#34;Select blank project&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Now have that created, let&amp;rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;app.UseWelcomePage();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://bigredmachine.github.io/images/ConfigureWelcomePage.PNG&#34; alt=&#34;Modify startup.cs&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;This won&amp;rsquo;t compile at the moment as you don&amp;rsquo;t have a reference to the extension method.&lt;/p&gt;
-
-&lt;p&gt;To do that open project.json, and add a reference to &amp;ldquo;Microsoft.AspNet.Diagnostics&amp;rdquo;: &amp;ldquo;1.0.0-beta3&amp;rdquo;
-I&amp;rsquo;ve also added some references to &amp;ldquo;Microsoft.AspNet.Hosting&amp;rdquo; &amp;amp; &amp;ldquo;Microsoft.AspNet.Server.WebListener&amp;rdquo;, and added the command &amp;ldquo;web&amp;rdquo;, so can launch the site from the command prompt.
-&lt;img src=&#34;http://bigredmachine.github.io/images/ConfigureDependancies.PNG&#34; alt=&#34;Modify project.json&#34; /&gt;
- &lt;br/&gt;
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &amp;ldquo;1.0.0-beta3&amp;rdquo;.
-When you save the file, visual studio should automatically restore the packages from NuGet.&lt;/p&gt;
-
-&lt;p&gt;In visual studio you can configure which version of K the application uses
-&lt;img src=&#34;http://bigredmachine.github.io/images/VSConfigureKREversion.PNG&#34; alt=&#34;VS configure KRE version&#34; /&gt;
- &lt;br/&gt;&lt;/p&gt;
-
-&lt;p&gt;You should either now be able to launch the site from either Visual Studio or Command prompt.&lt;/p&gt;
-
-&lt;p&gt;To start the site via command prompt, navigate to the website directory, and run&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;k web
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can navigate to the site as defined in the project.json configuration&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://bigredmachine.github.io/images/StartupPage.PNG&#34; alt=&#34;Startup Page&#34; /&gt;
-&lt;/p&gt;
-</description>
+      <description>Goals  To setup Visual Studio 2015 to run an asp.net vNext website Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.  How to do it/What I learnt Reading the Release Notes
+ NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code.</description>
     </item>
     
   </channel>

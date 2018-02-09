@@ -1,78 +1,625 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.36" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+
+    <meta name="description" content="Ian&#39;s Blog">
     <meta name="author" content="">
+
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <title>Ian&#39;s Blog</title>
 
- 	
-	<link href="/css/journal.css" rel="stylesheet">
+   	
+    
+        <link rel="stylesheet" href="http://bigredmachine.github.io/css/theme/journal.css">
+    
 
- 	
- 	<link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="http://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="http://bigredmachine.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
 </head>
 <body lang="en">
-	<div class="container">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://bigredmachine.github.io">Home</a></li>
+					<li><a href="http://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="http://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        
+        
+            	
 		<div class="row">
-			<div class="navbar navbar-default navbar-inverse" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="http://bigredmachine.github.io/">Ian&#39;s Blog</a> 
-				</div>
-				<div class="navbar-collapse collapse navbar-responsive-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="http://bigredmachine.github.io/">Home</a></li>
-						<li><a href="http://bigredmachine.github.io/page/about/">About</a></li>
-						<li><a href="http://bigredmachine.github.io/post/">Blog</a></li>
-					</ul>
-				</div>
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/logic-app-azure-function-twitter/">Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</a></h3>
+					<span class="label label-primary">Fri Feb 9, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/azure">Azure</a>
+					
+						 , 
+						<a href="/tags/azure-functions">Azure Functions</a>
+					
+						 , 
+						<a href="/tags/azure-logic-apps">Azure Logic Apps</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h4 id="fun-with-logic-apps-azure-functions-and-twitter">Fun with logic apps, Azure functions and twitter</h4>
+
+<p>While studying for the Microsoft 70-532 exam,
+I wanted to take a look at Azure functions &amp; Logics apps.</p>
+
+<p>Having gone through this example
+<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email">&ldquo;Create a function that integrates with Azure Logic Apps&rdquo;</a></p>
+
+<p>It left me with some questions on how to improve it. E.g. I don&rsquo;t want to receive an email per tweet.</p>
+
+<p>So after some searching, I came across a new feature called batching
+<a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages">&ldquo;Send, receive, and batch process messages in logic apps&rdquo;</a>
+but even after the batch had been reached,
+each message in the batch would result in an individual email.
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box.PNG" 
+    alt="Logic apps Compose">
+</picture></p>
+
+<p>Then I came across this blog
+<a href="http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/">&ldquo;Azure Logic Apps – Aggregate a value from an array of messages&rdquo;</a></p>
+
+<p>And the Compose feature was what I wanted.
+Composing first the message I want out of each tweet.
+Then combining those messages together, into the format I want to email.</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box.PNG" 
+    alt="Logic apps Compose">
+</picture>
+
+<p>I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
+<a href="https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134">&ldquo;How to Exclude retweets and replies in a search api&rdquo;</a>
+<a href="http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/">&ldquo;How to master twitter search&rdquo;</a></p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box.PNG" 
+    alt="Search Tweets">
+</picture>
+
+<p>And here is the final result, twitter search result of original tweets filtered by language combined into a single email
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box.PNG" 
+    alt="Combined Email">
+</picture></p>
+
 			</div>
 		</div>
-	</div>
-	<div class="container">
-		<h3>Recent Posts</h3>
-		<ul>
-		
-			<li><a href="http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/">setting up Visual Studio 2015 CTP 6</a>
-				<p>Challenges faced when setting up Visual Studio 2015</p>
-			</li>
-		
-	    </ul>
-<h3>Tags</h3>
-<ul id="all-tags">
-  
-    <li><a href="/tags/development">development</a></li>
-  
-    <li><a href="/tags/dotnet">dotnet</a></li>
-  
-    <li><a href="/tags/visual-studio">visual-studio</a></li>
-  
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/updating-to-vs-rc/">updating to Visual Studio 2015 RC</a></h3>
+					<span class="label label-primary">Mon May 25, 2015</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/visual-studio">Visual Studio</a>
+					
+						 , 
+						<a href="/tags/dotnet">DotNet</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h4 id="updating-from-vs2015-ctp6-to-rc">Updating from VS2015 CTP6 to RC</h4>
+
+<p>A number of changes have been made to names.</p>
+
+<p>Watch this for further details:</p>
+
+<p><a href="https://www.youtube.com/watch?v=-qt0POsiAF8">Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename</a></p>
+
+<p>Key slides:</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box.PNG" 
+    alt="Renamed tools">
+</picture>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box.PNG" 
+    alt="Renamed folder and packages">
+</picture>
+
+<p>If you install visual studio, the DNVM and DNX will be setup for you.<br />
+To install Visual Studio RC, first uninstall visual studio CTP 6.<br />
+If you aren&rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&rsquo;ll need Powershell V3 for this.</p>
+
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;&amp;{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}&quot;
+</code></pre>
+
+<p>Then to install .NET Execution Environment (DNX) run the following command</p>
+
+<pre><code>dnvm upgrade
+</code></pre>
+
+<p>I got some warnings, to remove the old environmental variable KRE_HOME</p>
+
+<blockquote>
+<p>WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment</p>
+</blockquote>
+
+<p>To see what is installed, and what is the default run.</p>
+
+<pre><code>dnvm list
+</code></pre>
+
+<p>To set the coreclr to be used run</p>
+
+<pre><code>dnvm use 1.0.0-beta4 -x64 -r coreclr
+</code></pre>
+
+<p>Then to run the web server</p>
+
+<pre><code>dnx . web
+</code></pre>
+
+<p>When running &ldquo;dnx &ndash;watch . web&rdquo; from the command line, when any code changes are made, the server will stop, but not restart.<br />
+In order to get the server to restart after a code change something like this is needed.<br />
+When using visual studio this is all handled for you.<br /></p>
+
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;for(;;) { Write-Output \&quot;Starting...\&quot;; dnx --watch . web }&quot;
+</code></pre>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/">setting up Visual Studio 2015 CTP 6</a></h3>
+					<span class="label label-primary">Sun Mar 8, 2015</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/visual-studio">Visual Studio</a>
+					
+						 , 
+						<a href="/tags/dotnet">DotNet</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h4 id="goals">Goals</h4>
+
+<ul>
+<li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
+<li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
 </ul>
+
+<h4 id="how-to-do-it-what-i-learnt">How to do it/What I learnt</h4>
+
+<p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
+
+<blockquote>
+<p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
+</blockquote>
+
+<p>So a VM should be used.
+So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&rsquo;t work on 64 bit PCs.
+So starting again, I downloaded <a href="https://www.virtualbox.org/">VirtualBox</a></p>
+
+<p>I then <a href="http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst">created a Windows 7 VM in VirtualBox</a>.<br/>
+Important Steps, create it with enough space, e.g. 50GB+. It&rsquo;s surprising how much space need for Windows &amp; Patching, as well as Visual Studio 2015.<br/>
+In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.</p>
+
+<p>Here is good article if need to <a href="http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html">change the space on the Virtual Box VM</a>, and update windows to use the extra space.<br/>
+The first steps about cloning are optional.<br/>
+The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
+
+<pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
+</code></pre>
+
+<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
+
+<p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
+
+<ul>
+<li>Patch it to include SP1</li>
+<li>Patch it to include IE10/IE11</li>
+<li>Just patch it up to the latest version &amp; reboot</li>
+</ul>
+
+<p>If you don&rsquo;t patch it to SP1, then won&rsquo;t be able to install Visual Studio.<br />
+And if you don&rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this <a href="http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop">forum thread</a><br />
+<strong>Summary just patch your VM to the latest version</strong></p>
+
+<p>Having got a Patched VM, with enough disk space.
+Then install Visual Studio 2015 CTP 6.
+I used the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Visual Studio 2015 Ultimate Web Installer</a> released on 23rd of February 2015.
+And just installed the default options.</p>
+
+<p>You&rsquo;ll also want to install the K runtime.<br />
+First install the K Version Manager(KVM) in Powershell as an administrator.</p>
+
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))&quot;
+</code></pre>
+
+<p>As detailed on the <a href="https://github.com/aspnet/home">Asp.net Github page</a></p>
+
+<p>Now KVM is installed, you&rsquo;ll want to get the K runtime.</p>
+
+<pre><code>kvm upgrade
+</code></pre>
+
+<p>Having done that you can see what is installed by calling</p>
+
+<pre><code>kvm list
+</code></pre>
+
+<p>And you should see something like:<br />
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box.PNG" 
+    alt="KVM list">
+</picture></p>
+
+<p>Notice is used the \.k\ folder, earlier version where using \.kre\.
+You may read older documentation that refers to \.kre\.</p>
+
+<p>You may want to look at switching to use the coreclr runtime as the Active version.</p>
+
+<pre><code>kvm use 1.0.0-beta3 -x64 -r coreclr
+</code></pre>
+
+<p>followed by</p>
+
+<pre><code>kvm list
+</code></pre>
+
+<p>And you should see something like, notice the Active * has now updated:<br />
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box.PNG" 
+    alt="KVM list">
+</picture></p>
+
+<p>Now you&rsquo;ve got a VM, K runtime setup.</p>
+
+<p>Open up visual studio and create a new project.<br />
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box.PNG" 
+    alt="Visual Studio Create Project">
+</picture></p>
+
+<p>Select a blank project<br />
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box.PNG" 
+    alt="Select blank project">
+</picture></p>
+
+<p>Now have that created, let&rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line</p>
+
+<pre><code>app.UseWelcomePage();
+</code></pre>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box.PNG" 
+    alt="Modify startup.cs">
+</picture>
+
+<p>This won&rsquo;t compile at the moment as you don&rsquo;t have a reference to the extension method.</p>
+
+<p>To do that open project.json, and add a reference to &ldquo;Microsoft.AspNet.Diagnostics&rdquo;: &ldquo;1.0.0-beta3&rdquo;
+I&rsquo;ve also added some references to &ldquo;Microsoft.AspNet.Hosting&rdquo; &amp; &ldquo;Microsoft.AspNet.Server.WebListener&rdquo;, and added the command &ldquo;web&rdquo;, so can launch the site from the command prompt.
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box.PNG" 
+    alt="Modify project.json">
+</picture>
+<br/>
+Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;.
+When you save the file, visual studio should automatically restore the packages from NuGet.</p>
+
+<p>In visual studio you can configure which version of K the application uses
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box.PNG" 
+    alt="VS configure KRE version">
+</picture></p>
+
+<p>You should either now be able to launch the site from either Visual Studio or Command prompt.</p>
+
+<p>To start the site via command prompt, navigate to the website directory, and run</p>
+
+<pre><code>k web
+</code></pre>
+
+<p>Now you can navigate to the site as defined in the project.json configuration</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box.PNG" 
+    alt="Startup Page">
+</picture>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
 	</div>
-  <div class="container">
-    <div class="row col-md-12">
-          <footer>
-            <div>
-                <p>
-                    &copy; 2015 Ian Jones.
-                </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    
+
+                </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2018 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                        <a href="http://bigredmachine.github.io/index.xml" target="_blank">
+                        <i class="fa fa-rss-square fa-2x"></i></a>
+                    
+                </div>
             </footer>
         </div>
     </div>
 
     
-    
-    <script src="/js/jquery-min-2.1.1.js"></script>
-    <script src="/js/bootstrap.min-3.1.1.js"></script>
     </body>
 </html>
+

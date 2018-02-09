@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://bigredmachine.github.io/</loc>
-    <lastmod>2015-03-08T11:28:58+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/post/updating-to-vs-rc/</loc>
+    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
   </url>
   
   <url>
@@ -15,6 +20,77 @@
   <url>
     <loc>http://bigredmachine.github.io/page/about/</loc>
     <lastmod>2015-03-08T11:19:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/azure/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/azure-functions/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/azure-logic-apps/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/development/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/development/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/dotnet/</loc>
+    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/page/</loc>
+    <lastmod>2015-03-08T11:19:12+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/post/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/visual-studio/</loc>
+    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>
