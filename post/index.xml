@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Feb 2018 20:49:38 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://bigredmachine.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Speeding up sitecore crawling</title>
+      <link>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</link>
+      <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
+      <description>Recently I was looking at building a sitecore search domain index (See Domain vs God index), which had quite a few calculated fields. Lots of the calculated fields were based off similar information about the parent nodes of the current item. And for each calculated field I was performing the same look ups again and again per field on the item.
+I thought there has got to be a way to improve this, and found a forum post back from 2015 of someone asking the same question, and with a response of someone else who had solved it for one of the projects they were working on.</description>
+    </item>
     
     <item>
       <title>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</title>

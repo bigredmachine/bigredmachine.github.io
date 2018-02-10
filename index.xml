@@ -6,8 +6,212 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Feb 2018 20:49:38 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Feb 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Speeding up sitecore crawling</title>
+            <link>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</link>
+            <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
+            <description>
+
+&lt;p&gt;Recently I was looking at building a sitecore search domain index (&lt;a href=&#34;http://jockstothecore.com/indexing-patterns-in-sitecore/&#34;&gt;See Domain vs God index&lt;/a&gt;), which had quite a few calculated fields.
+Lots of the calculated fields were based off similar information about the parent nodes of the current item.  And for each calculated field I was performing the same look ups again and again per field on the item.&lt;/p&gt;
+
+&lt;p&gt;I thought there has got to be a way to improve this, and found a forum post back from 2015 of someone asking the same question, and with a response of someone else who had solved it for one of the projects they were working on.
+&lt;a href=&#34;https://community.sitecore.net/developers/f/8/t/447&#34;&gt;Indexing multiple fields at same time&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the given answer it seems quite easy to override this method in the DocumentBuilder.&lt;br /&gt;
+However using DotPeek it would appear somewhere since 2015 and Sitecore 8.2 update 6 the method which contains the logic I want to override has been made private, quite possibly when parallel indexing was introduced. As now the code forks in two, and both reference a private method which contains the logic I want to overwrite.&lt;br /&gt;
+And that private method calls another private method. :/&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Private methods&#34;&gt;
+&lt;/picture&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Until Sitecore add in (or add back in) the extensibility points I need,&lt;br /&gt;
+It&amp;rsquo;s Reflection to the rescue.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_650x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_465x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;Reflect all the things&#34;&gt;
+&lt;/picture&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;But reflection is slow, so let&amp;rsquo;s improve that performance by using Delegates (&lt;a href=&#34;https://jeremybytes.blogspot.co.uk/2014/01/improving-reflection-performance-with.html&#34;&gt;Improving Reflection Performance with Delegates&lt;/a&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
+using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.ComputedFields;
+using Sitecore.ContentSearch.Diagnostics;
+using Sitecore.ContentSearch.SolrProvider;
+using Sitecore.Diagnostics;
+
+public class SolrDocumentBuilderCustom : SolrDocumentBuilder
+{
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddFieldDelegate(SolrDocumentBuilder documentBuilder, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; fieldName, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt; fieldValue, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; returnType);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; AddFieldDelegate _addFieldDelegate;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+    public SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : base(indexable, context)
+    {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; solrDocumentBuilderType = &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(SolrDocumentBuilder);
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; addFieldMethod = &lt;span style=&#34;color:#a6e22e&#34;&gt;solrDocumentBuilderType&lt;/span&gt;.GetMethod(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AddField&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;BindingFlags&lt;/span&gt;.Instance | &lt;span style=&#34;color:#a6e22e&#34;&gt;BindingFlags&lt;/span&gt;.NonPublic,
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;,
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[]&lt;/span&gt;
+            {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;),
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;),
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;)
+            },
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;);
+
+        _addFieldDelegate = (AddFieldDelegate)&lt;span style=&#34;color:#a6e22e&#34;&gt;Delegate&lt;/span&gt;.CreateDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(AddFieldDelegate), addFieldMethod);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    }
+
+    public override void AddComputedIndexFields()
+    {
+        if (this.IsParallelComputedFieldsProcessing)
+            this.AddComputedIndexFieldsInParallel();
+        else
+            this.AddComputedIndexFieldsInSequence();
+    }
+
+    protected override void AddComputedIndexFieldsInParallel()
+    {
+        ConcurrentQueue&amp;lt;Exception&amp;gt; exceptions = new ConcurrentQueue&amp;lt;Exception&amp;gt;();
+        this.ParallelForeachProxy.ForEach&amp;lt;IComputedIndexField&amp;gt;((IEnumerable&amp;lt;IComputedIndexField&amp;gt;)this.Options.ComputedIndexFields, this.ParallelOptions, (Action&amp;lt;IComputedIndexField, ParallelLoopState&amp;gt;)((field, parallelLoopState) =&amp;gt; this.AddComputedIndexField(field, parallelLoopState, exceptions)));
+        if (!exceptions.IsEmpty)
+            throw new AggregateException((IEnumerable&amp;lt;Exception&amp;gt;)exceptions);
+    }
+
+    protected override void AddComputedIndexFieldsInSequence()
+    {
+        foreach (IComputedIndexField computedIndexField in this.Options.ComputedIndexFields)
+            this.AddComputedIndexField(computedIndexField, (ParallelLoopState)null, (ConcurrentQueue&amp;lt;Exception&amp;gt;)null);
+    }
+
+    private new void AddComputedIndexField(IComputedIndexField computedIndexField, ParallelLoopState parallelLoopState = null, ConcurrentQueue&amp;lt;Exception&amp;gt; exceptions = null)
+    {
+        Assert.ArgumentNotNull((object)computedIndexField, nameof(computedIndexField));
+        object fieldValue;
+        try
+        {
+            fieldValue = computedIndexField.ComputeFieldValue(this.Indexable);
+        }
+        catch (Exception ex)
+        {
+            CrawlingLog.Log.Warn(string.Format(&amp;quot;Could not compute value for ComputedIndexField: {0} for indexable: {1}&amp;quot;, (object)computedIndexField.FieldName, (object)this.Indexable.UniqueId), ex);
+            if (!this.Settings.StopOnCrawlFieldError())
+                return;
+            if (parallelLoopState != null)
+            {
+                parallelLoopState.Stop();
+                exceptions.Enqueue(ex);
+                return;
+            }
+            throw;
+        }
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (fieldValue &lt;span style=&#34;color:#66d9ef&#34;&gt;is&lt;/span&gt; List&amp;lt;Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;&amp;gt;)
+        {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; fieldValues = fieldValue &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; List&amp;lt;Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;&amp;gt;;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;fieldValues&lt;/span&gt;.Count &amp;lt;= &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+            {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+            }
+
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;foreach&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; field &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; fieldValues)
+            {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;.IsNullOrEmpty(&lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item3) &amp;amp;&amp;amp; !&lt;span style=&#34;color:#a6e22e&#34;&gt;Index&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Schema&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;AllFieldNames&lt;/span&gt;.Contains(&lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item1))
+                {
+                    _addFieldDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item1, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item2, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item3);
+                }
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+                {
+                    AddField(&lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item1, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item2, &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
+                }
+            }
+        }
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+        {&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+            if (!string.IsNullOrEmpty(computedIndexField.ReturnType) &amp;amp;&amp;amp;
+                !this.Index.Schema.AllFieldNames.Contains(computedIndexField.FieldName))
+            {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;                _addFieldDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;computedIndexField&lt;/span&gt;.FieldName, fieldValue, &lt;span style=&#34;color:#a6e22e&#34;&gt;computedIndexField&lt;/span&gt;.ReturnType);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+            }
+            else
+            {
+                this.AddField(computedIndexField.FieldName, fieldValue, true);
+            }
+        }    
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can then (as per the forum post referenced) return a List of Tuple&amp;rsquo;s from you computed index field, which all get added to the index in one go, without having to re-process shared logic for each field (assuming you have any).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;var result = new List&amp;lt;Tuple&amp;lt;string, object, string&amp;gt;&amp;gt;
+        {
+            new Tuple&amp;lt;string, object, string&amp;gt;(&amp;quot;solrfield1&amp;quot;, value1, &amp;quot;stringCollection&amp;quot;),
+            new Tuple&amp;lt;string, object, string&amp;gt;(&amp;quot;solrfield2&amp;quot;, value2, &amp;quot;stringCollection&amp;quot;),
+            new Tuple&amp;lt;string, object, string&amp;gt;(&amp;quot;solrfield3&amp;quot;, value3, &amp;quot;stringCollection&amp;quot;)
+        };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;end-result&#34;&gt;End Result&lt;/h2&gt;
+
+&lt;p&gt;For my particular case with over 10+ calculated fields which could be combined,&lt;br /&gt;
+I got index rebuild time down from &lt;strong&gt;1 hour &amp;amp; 8 mins&lt;/strong&gt; down to &lt;strong&gt;22 mins&lt;/strong&gt; on my local dev machine.&lt;/p&gt;
+
+&lt;p&gt;I then went on further to improve index rebuild times, by restricting which part of the tree the domain index crawls.&lt;/p&gt;
+
+&lt;p&gt;Seems I&amp;rsquo;m not the only one who&amp;rsquo;s indexes can benefit from this, and hopefully either sitecore will add support for this, or make it easier to extend again in the future without nasty reflection.&lt;/p&gt;
+
+&lt;p&gt;Happy Sitecoring!&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
