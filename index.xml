@@ -74,6 +74,8 @@ It&amp;rsquo;s Reflection to the rescue.&lt;/p&gt;
 
 &lt;p&gt;But reflection is slow, so let&amp;rsquo;s improve that performance by using Delegates (&lt;a href=&#34;https://jeremybytes.blogspot.co.uk/2014/01/improving-reflection-performance-with.html&#34;&gt;Improving Reflection Performance with Delegates&lt;/a&gt;)&lt;/p&gt;
 
+&lt;p&gt;Edit - it appears the SolrDocumentBuilder isn&amp;rsquo;t a Singleton, so moved reflection from constructor into a static constructor.&lt;/p&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;
 using System;
 using System.Collections.Concurrent;
@@ -89,11 +91,11 @@ using Sitecore.Diagnostics;
 public class SolrDocumentBuilderCustom : SolrDocumentBuilder
 {
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddFieldDelegate(SolrDocumentBuilder documentBuilder, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; fieldName, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt; fieldValue, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; returnType);
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; AddFieldDelegate _addFieldDelegate;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; AddFieldDelegate _addFieldDelegate;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-    public SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : base(indexable, context)
-    {
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; solrDocumentBuilderType = &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(SolrDocumentBuilder);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; SolrDocumentBuilderCustom()
+	{
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; solrDocumentBuilderType = &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(SolrDocumentBuilder);
         &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; addFieldMethod = &lt;span style=&#34;color:#a6e22e&#34;&gt;solrDocumentBuilderType&lt;/span&gt;.GetMethod(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AddField&amp;#34;&lt;/span&gt;,
             &lt;span style=&#34;color:#a6e22e&#34;&gt;BindingFlags&lt;/span&gt;.Instance | &lt;span style=&#34;color:#a6e22e&#34;&gt;BindingFlags&lt;/span&gt;.NonPublic,
             &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;,
@@ -105,7 +107,11 @@ public class SolrDocumentBuilderCustom : SolrDocumentBuilder
             },
             &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;);
 
-        _addFieldDelegate = (AddFieldDelegate)&lt;span style=&#34;color:#a6e22e&#34;&gt;Delegate&lt;/span&gt;.CreateDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(AddFieldDelegate), addFieldMethod);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        _addFieldDelegate = (AddFieldDelegate)&lt;span style=&#34;color:#a6e22e&#34;&gt;Delegate&lt;/span&gt;.CreateDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(AddFieldDelegate), addFieldMethod);
+	}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+    public SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : base(indexable, context)
+    {
     }
 
     public override void AddComputedIndexFields()

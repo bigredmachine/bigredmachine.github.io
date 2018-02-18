@@ -143,6 +143,8 @@ It&rsquo;s Reflection to the rescue.</p>
 
 <p>But reflection is slow, so let&rsquo;s improve that performance by using Delegates (<a href="https://jeremybytes.blogspot.co.uk/2014/01/improving-reflection-performance-with.html">Improving Reflection Performance with Delegates</a>)</p>
 
+<p>Edit - it appears the SolrDocumentBuilder isn&rsquo;t a Singleton, so moved reflection from constructor into a static constructor.</p>
+
 <pre><code class="language-csharp">
 using System;
 using System.Collections.Concurrent;
@@ -158,11 +160,11 @@ using Sitecore.Diagnostics;
 public class SolrDocumentBuilderCustom : SolrDocumentBuilder
 {
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> AddFieldDelegate(SolrDocumentBuilder documentBuilder, <span style="color:#66d9ef">string</span> fieldName, <span style="color:#66d9ef">object</span> fieldValue, <span style="color:#66d9ef">string</span> returnType);
-	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> AddFieldDelegate _addFieldDelegate;</code></pre></div>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> AddFieldDelegate _addFieldDelegate;</code></pre></div>
 
-    public SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : base(indexable, context)
-    {
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">        <span style="color:#66d9ef">var</span> solrDocumentBuilderType = <span style="color:#66d9ef">typeof</span>(SolrDocumentBuilder);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">	<span style="color:#66d9ef">static</span> SolrDocumentBuilderCustom()
+	{
+        <span style="color:#66d9ef">var</span> solrDocumentBuilderType = <span style="color:#66d9ef">typeof</span>(SolrDocumentBuilder);
         <span style="color:#66d9ef">var</span> addFieldMethod = <span style="color:#a6e22e">solrDocumentBuilderType</span>.GetMethod(<span style="color:#e6db74">&#34;AddField&#34;</span>,
             <span style="color:#a6e22e">BindingFlags</span>.Instance | <span style="color:#a6e22e">BindingFlags</span>.NonPublic,
             <span style="color:#66d9ef">null</span>,
@@ -174,7 +176,11 @@ public class SolrDocumentBuilderCustom : SolrDocumentBuilder
             },
             <span style="color:#66d9ef">null</span>);
 
-        _addFieldDelegate = (AddFieldDelegate)<span style="color:#a6e22e">Delegate</span>.CreateDelegate(<span style="color:#66d9ef">typeof</span>(AddFieldDelegate), addFieldMethod);</code></pre></div>
+        _addFieldDelegate = (AddFieldDelegate)<span style="color:#a6e22e">Delegate</span>.CreateDelegate(<span style="color:#66d9ef">typeof</span>(AddFieldDelegate), addFieldMethod);
+	}</code></pre></div>
+
+    public SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : base(indexable, context)
+    {
     }
 
     public override void AddComputedIndexFields()
