@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</loc>
     <lastmod>2018-02-10T00:00:00+00:00</lastmod>
   </url>
@@ -46,25 +51,31 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/bug/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/crawling/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/categories/development/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/development/</loc>
     <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/development/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -76,13 +87,13 @@
   
   <url>
     <loc>http://bigredmachine.github.io/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/indexing/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,31 +105,37 @@
   
   <url>
     <loc>http://bigredmachine.github.io/post/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/categories/sitecore/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/sitecore/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/sitecore/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/solr/</loc>
-    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/</loc>
     <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/upgrade/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
