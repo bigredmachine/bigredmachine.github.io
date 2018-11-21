@@ -6,8 +6,160 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>What Is Wrong With the Link Database</title>
+            <link>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</link>
+            <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</guid>
+            <description>
+
+&lt;h2 id=&#34;sitecore-fast-queries&#34;&gt;Sitecore (Fast) Queries&lt;/h2&gt;
+
+&lt;p&gt;There&amp;rsquo;s quite a few blog posts on avoiding using (fast) Sitecore queries on Content Delivery.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.rauljimenez.co.uk/not-so-fast/&#34;&gt;https://blog.rauljimenez.co.uk/not-so-fast/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&#34;&gt;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/&#34;&gt;https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&#34;&gt;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Summary Fast always goes to the database, and even a normal Sitecore query can go from being a slow page, to bringing your site to it&amp;rsquo;s knees if that page is hit frequently enough.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve had experience of this on inheriting a solution which would do three sitecore queries on a page load for calendar events, for items within a folder. Normally the page would load within a few seconds, not great but usable. However when a search engine got onto the page, and decided to crawl through the calendar navigation links, which are effectively infinite, the execution time grew and grew.&lt;/p&gt;
+
+&lt;p&gt;Until the page wouldn&amp;rsquo;t load in a couple of mins, .net thread pool limits were reached, and the site was effectively down.&lt;/p&gt;
+
+&lt;p&gt;The quick fix was to prevent these pages from being indexed, as well as indicate not to follow the calendar links forever.&lt;/p&gt;
+
+&lt;p&gt;The longer term fix was to switch to Content Search, using an index to load the content, to speed the page up (as well as keeping the indicators not to follow the infinite links).&lt;/p&gt;
+
+&lt;p&gt;(Of course using Sitecore Query for a few sub items, or getting an item by id is acceptable, but never Fast)&lt;/p&gt;
+
+&lt;h2 id=&#34;link-database&#34;&gt;Link Database&lt;/h2&gt;
+
+&lt;p&gt;So onto the topic of this post, the Link Database certainly has it&amp;rsquo;s place, finding references/referrers of items for one on Content Authoring being it&amp;rsquo;s primary usage.&lt;/p&gt;
+
+&lt;p&gt;There are some considerations before you start adding a dependency to the Links database in your code. (Hint, use Content Search were possible).&lt;/p&gt;
+
+&lt;p&gt;The Links Database, is more of a table which used to reside in the Core database by default until Sitecore 9, and then was moved to the Web database ahead of removing the dependency on the Core database.&lt;/p&gt;
+
+&lt;p&gt;We switched back to using the Core database to store the links again for reason I&amp;rsquo;ll come to shortly.&lt;/p&gt;
+
+&lt;h3 id=&#34;scaling-limitation&#34;&gt;Scaling Limitation?&lt;/h3&gt;
+
+&lt;p&gt;If you work in a Scaled environment though, you may have more than one Web or Core database.
+There can be only one link database(Table) maintained though.
+So in a multi-region scaled environment, you&amp;rsquo;ll be travelling across regions to the database with the maintained link database.&lt;/p&gt;
+
+&lt;p&gt;Now it might be with database replication that this problem gets resolved, and other regions can query a read only copy of a replicated database which contains the Link Database(table).&lt;/p&gt;
+
+&lt;p&gt;However we are avoiding using the Link Database on content delivery so we don&amp;rsquo;t encounter any scalability issues.&lt;/p&gt;
+
+&lt;h3 id=&#34;rebuild-speed&#34;&gt;Rebuild Speed&lt;/h3&gt;
+
+&lt;p&gt;Rebuilding the Link Database occurs in serial (one Databases links after the next get rebuilt in serial) and takes a long time. E.g, 8+ Hours.
+I understand from Sitecore support there are some experimental patches to speed up making the index rebuild faster/rebuild it in parallel, so far haven&amp;rsquo;t got around to trying these, but possibly an avenue worth perusing.&lt;/p&gt;
+
+&lt;h3 id=&#34;deadlocks&#34;&gt;Deadlocks&lt;/h3&gt;
+
+&lt;p&gt;I understand the situation used to be worse before Sitecore 7.1, were selects didn&amp;rsquo;t use the nolock hint,
+but still regularly see deadlocks on this table in production even on Sitecore 9.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SQL Server transaction deadlocks related to the link database could occur when multiple threads were creating and moving items concurrently, for example, when the threads created items that were stored in item buckets. This has been fixed by changing the GetReferrers(Item, ID) method in the SqlLinkDatabase class so that it uses WITH NOLOCK when reading from the Links table. (401393)
+&lt;a href=&#34;https://sdn.sitecore.net/products/sitecore%20v5/sitecore%20cms%207/releasenotes/changelog/release%20history%20sc71.aspx&#34;&gt;7.1 release notes&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+
+&lt;picture&gt;
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/post/what-is-wrong-with-the-link-database/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_650x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/post/what-is-wrong-with-the-link-database/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/post/what-is-wrong-with-the-link-database/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box.PNG&#34; 
+    alt=&#34;Example of Traffic representing a Deadlock&#34;&gt;
+&lt;/picture&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h3 id=&#34;bad-execution-plan&#34;&gt;Bad Execution Plan&lt;/h3&gt;
+
+&lt;p&gt;Sometimes when Sql Server evaluates a query on the Link Database(table), depending on the values being queried, it was deciding to do a TableScan to find an entry.
+This would get saved as the execution plan, and all the queries would go slower/use up more DTU&amp;rsquo;s, until the execution plan was discarded.&lt;/p&gt;
+
+&lt;h3 id=&#34;high-dtu-usage&#34;&gt;High DTU usage&lt;/h3&gt;
+
+&lt;p&gt;We noticed that every publish, there was a DTU spike.
+We even saw some issues on the live site because of these Bad Execution Plan, combined with these High DTU spikes, on other pages trying to query the same database under load.
+So something had to be done, other than the immediate increase the DTU limits on the database server, and throw money at the problem.&lt;/p&gt;
+
+&lt;h3 id=&#34;disable-updating-the-link-database-on-publish&#34;&gt;Disable updating the link database on publish&lt;/h3&gt;
+
+&lt;p&gt;The following setting cut down the DTU spikes we were seeing on every publish, as we don&amp;rsquo;t use the Links Database on Content Delivery, was a quick win for us.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Disables incremental updates to the link database during publishing operations as an experimental optimization to speed up publishing (25% on average).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://community.sitecore.net/technical_blogs/b/latest_technical_reinnovations/posts/enabling-parallel-publishing-with-sitecore-7-2&#34;&gt;Enabling Parallel Publishing and related optimizations&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;setting name=&amp;quot;LinkDatabase.UpdateDuringPublish&amp;quot; value=&amp;quot;false&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fixing-the-bad-execution-plan&#34;&gt;Fixing the Bad Execution Plan&lt;/h3&gt;
+
+&lt;p&gt;It was choosing to do a Table Scan, because unfortunately there was no covering index for the query, because one of the columns is of type &amp;ldquo;ntext&amp;rdquo; which prevents it from being part of the index.&lt;/p&gt;
+
+&lt;p&gt;Sitecore confirmed that according to &lt;a href=&#34;https://docs.microsoft.com/en-us/sql/t-sql/data-types/ntext-text-and-image-transact-sql?view=sql-server-2017&#34;&gt;MS documentation&lt;/a&gt; that ntext will be removed from future versions of Sql Server. So in the future this column type will change.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;IMPORTANT! ntext, text, and image data types will be removed in a future version of SQL Server. Avoid using these data types in new development work, and plan to modify applications that currently use them. Use nvarchar(max), varchar(max), and varbinary(max) instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So we are currently trying out applying the following change to the Links Database(Table)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ALTER TABLE [Links] ALTER COLUMN TargetPath NVARCHAR(MAX) NOT NULL
+GO
+
+CREATE INDEX ndxLinks_SourceItemId_SourceDatabase_ALL ON [Links]
+([SourceItemID], [SourceDatabase])
+INCLUDE ([SourceLanguage], [SourceVersion], [SourceFieldID], [TargetDatabase], [TargetItemID], [TargetLanguage], [TargetVersion], [TargetPath] )
+WITH (ONLINE=ON, SORT_IN_TEMPDB=ON)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And so far doesn&amp;rsquo;t appear to be causing much overhead to writes, is having the desired affect on preventing a bad execution plan and queries are using the new index, and to review if this has any beneficial impact to the deadlocks.&lt;/p&gt;
+
+&lt;p&gt;To update further once released to production/have more feedback.
+Hopefully these changes will come through in a future update of the sitecore product.&lt;/p&gt;
+
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Be careful before taking a dependency on the Links Database, your architecture in the future if you are planning on moving to a scaled active/active multi region setup might not support it.&lt;/p&gt;
+
+&lt;p&gt;If you are using the Links Database on Content Delivery then you won&amp;rsquo;t have this luxury of being able to turn off this setting to not update the Web links database on publish. If you aren&amp;rsquo;t using the Links Database, then maybe turn off this feature to save some DTU&amp;rsquo;s.&lt;/p&gt;
+
+&lt;p&gt;If you are also seeing slow queries of the links database/high DTU&amp;rsquo;s, maybe try out this Sql Schema/Index and test yourself, or wait for this to become part of the sitecore product.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;d recommend using Sitecore Content Search where possible.&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         

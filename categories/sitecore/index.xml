@@ -6,10 +6,21 @@
     <description>Recent content in Sitecore on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://bigredmachine.github.io/categories/sitecore/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What Is Wrong With the Link Database</title>
+      <link>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</guid>
+      <description>Sitecore (Fast) Queries There&amp;rsquo;s quite a few blog posts on avoiding using (fast) Sitecore queries on Content Delivery.
+ https://blog.rauljimenez.co.uk/not-so-fast/ https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/ https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/ http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html  Summary Fast always goes to the database, and even a normal Sitecore query can go from being a slow page, to bringing your site to it&amp;rsquo;s knees if that page is hit frequently enough.
+I&amp;rsquo;ve had experience of this on inheriting a solution which would do three sitecore queries on a page load for calendar events, for items within a folder.</description>
+    </item>
     
     <item>
       <title>Sitecore 9 Index Slow Down - fix</title>
