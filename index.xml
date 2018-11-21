@@ -65,7 +65,7 @@ So in a multi-region scaled environment, you&amp;rsquo;ll be travelling across r
 &lt;h3 id=&#34;rebuild-speed&#34;&gt;Rebuild Speed&lt;/h3&gt;
 
 &lt;p&gt;Rebuilding the Link Database occurs in serial (one Databases links after the next get rebuilt in serial) and takes a long time. E.g, 8+ Hours.
-I understand from Sitecore support there are some experimental patches to speed up making the index rebuild faster/rebuild it in parallel, so far haven&amp;rsquo;t got around to trying these, but possibly an avenue worth perusing.&lt;/p&gt;
+I understand from Sitecore support there are some experimental patches to speed up making the index rebuild faster/rebuild it in parallel, so far haven&amp;rsquo;t got around to trying these, but possibly an avenue worth pursuing.&lt;/p&gt;
 
 &lt;h3 id=&#34;deadlocks&#34;&gt;Deadlocks&lt;/h3&gt;
 
