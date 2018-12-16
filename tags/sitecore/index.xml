@@ -6,10 +6,42 @@
     <description>Recent content in Sitecore on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://bigredmachine.github.io/tags/sitecore/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java goes commercial, what does this mean for Sitecore - Solr?</title>
+      <link>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
+      <description>Oracle to start charging for Java I&amp;rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&amp;rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</description>
+    </item>
+    
+    <item>
+      <title>Why Sticky Session on Sitecore Content Authoring</title>
+      <link>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</guid>
+      <description>Why have to use InProc session state on Sitecore Content Authoring A note on why InProc session state &amp;amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.
+https://kb.sitecore.net/articles/860809
+Bad Practice to use Sticky Sessions A quick intro on why Sticky Sessions are bad.</description>
+    </item>
+    
+    <item>
+      <title>Zero down time for Delivery &amp; Authoring</title>
+      <link>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</guid>
+      <description>Zero down time for Delivery &amp;amp; Authoring A lot of people talk about zero downtime, but normally just in the context of Content Delivery. Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.
+However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.
+https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html
+*Or as near to Zero as possible as the users Session state will expire, as Sitecore requires InProc session state provider on Content Authoring.</description>
+    </item>
     
     <item>
       <title>What Is Wrong With the Link Database</title>

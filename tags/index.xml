@@ -39,11 +39,29 @@
     </item>
     
     <item>
+      <title>Bluegreen</title>
+      <link>http://bigredmachine.github.io/tags/bluegreen/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/bluegreen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Bug</title>
       <link>http://bigredmachine.github.io/tags/bug/</link>
       <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/tags/bug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Contentfreeze</title>
+      <link>http://bigredmachine.github.io/tags/contentfreeze/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/contentfreeze/</guid>
       <description></description>
     </item>
     
@@ -75,6 +93,15 @@
     </item>
     
     <item>
+      <title>Downtime</title>
+      <link>http://bigredmachine.github.io/tags/downtime/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/downtime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Dtu</title>
       <link>http://bigredmachine.github.io/tags/dtu/</link>
       <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
@@ -93,6 +120,24 @@
     </item>
     
     <item>
+      <title>Inproc</title>
+      <link>http://bigredmachine.github.io/tags/inproc/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/inproc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>http://bigredmachine.github.io/tags/java/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Linkdb</title>
       <link>http://bigredmachine.github.io/tags/linkdb/</link>
       <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
@@ -102,9 +147,18 @@
     </item>
     
     <item>
+      <title>Openjdk</title>
+      <link>http://bigredmachine.github.io/tags/openjdk/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/openjdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Sitecore</title>
       <link>http://bigredmachine.github.io/tags/sitecore/</link>
-      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/tags/sitecore/</guid>
       <description></description>
@@ -113,7 +167,7 @@
     <item>
       <title>Solr</title>
       <link>http://bigredmachine.github.io/tags/solr/</link>
-      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/tags/solr/</guid>
       <description></description>
@@ -125,6 +179,15 @@
       <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/tags/speed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stickysession</title>
+      <link>http://bigredmachine.github.io/tags/stickysession/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/stickysession/</guid>
       <description></description>
     </item>
     

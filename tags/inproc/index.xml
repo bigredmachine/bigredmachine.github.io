@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Inproc on Ian&#39;s Blog</title>
+    <link>http://bigredmachine.github.io/tags/inproc/</link>
+    <description>Recent content in Inproc on Ian&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://bigredmachine.github.io/tags/inproc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Why Sticky Session on Sitecore Content Authoring</title>
+      <link>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</guid>
+      <description>Why have to use InProc session state on Sitecore Content Authoring A note on why InProc session state &amp;amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.
+https://kb.sitecore.net/articles/860809
+Bad Practice to use Sticky Sessions A quick intro on why Sticky Sessions are bad.</description>
+    </item>
+    
+  </channel>
+</rss>

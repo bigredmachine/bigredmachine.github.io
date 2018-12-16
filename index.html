@@ -58,6 +58,443 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/">Java goes commercial, what does this mean for Sitecore - Solr?</a></h3>
+					<span class="label label-primary">Sat Dec 15, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/solr">Solr</a>
+					
+						 , 
+						<a href="/tags/java">Java</a>
+					
+						 , 
+						<a href="/tags/openjdk">OpenJDK</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h1 id="oracle-to-start-charging-for-java">Oracle to start charging for Java</h1>
+
+<p>I&rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</p>
+
+<p>I brought this topic up at the Sitecore Dicussion Club<br />
+<a href="http://sitecore.events/">http://sitecore.events/</a></p>
+
+<p>&nbsp;</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/java-comercial-sitecore-solr-future/post/java-comercial-sitecore-solr-future/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/java-comercial-sitecore-solr-future/post/java-comercial-sitecore-solr-future/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box.PNG">
+	
+  <img 
+    src="/post/java-comercial-sitecore-solr-future/post/java-comercial-sitecore-solr-future/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box.PNG" 
+    alt="Java Public Updates">
+</picture>
+
+<p>&nbsp;</p>
+
+<p>When I started to follow this, the policy for the LTS release of Java 11 hadn&rsquo;t been announced, and I was thinking would need to update to Java 11 to continue to get free updates.
+Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&rsquo;t support a version of Solr this high yet <a href="https://kb.sitecore.net/articles/227897">https://kb.sitecore.net/articles/227897</a>, and anyway Java 11 is no not free anyway, so not an option to get free updates that way.</p>
+
+<p>Further reading:</p>
+
+<ul>
+<li><a href="https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event">https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event</a></li>
+<li><a href="https://www.oracle.com/technetwork/java/java-se-support-roadmap.html">https://www.oracle.com/technetwork/java/java-se-support-roadmap.html</a></li>
+</ul>
+
+<h2 id="oracle-java-what-s-the-cost">Oracle Java - what&rsquo;s the cost?</h2>
+
+<p>The cost has come down since I started following this.</p>
+
+<p>Originally the price was:</p>
+
+<p>&nbsp;</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Per CPU</th>
+<th>&nbsp;</th>
+<th>Support</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Java SE Advanced</td>
+<td>&nbsp;</td>
+<td>$5,000</td>
+<td>&nbsp;</td>
+<td>$1,100</td>
+</tr>
+
+<tr>
+<td>Java SE Suite</td>
+<td>&nbsp;</td>
+<td>$15,000</td>
+<td>&nbsp;</td>
+<td>$3,300</td>
+</tr>
+</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p>Which is quite a large up front cost, and continual support cost.</p>
+
+<p>Then it was announced the subscription licence, charging $25 per CPU per month with support. Going down to $12.50 with volume discount (possibly lower with Enterprise agreement), which works out cheapear than the previous licencing.</p>
+
+<ul>
+<li><a href="https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html">https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html</a></li>
+<li><a href="https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/">https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/</a></li>
+</ul>
+
+<h3 id="a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu">A note on mapping an Oracle Processor Licence to an Azure vCPU:</h3>
+
+<p><a href="https://www.oracle.com/assets/cloud-licensing-070579.pdf">https://www.oracle.com/assets/cloud-licensing-070579.pdf</a></p>
+
+<blockquote>
+<p>&ldquo;Microsoft Azure – count two vCPUs as equivalent to one Oracle Processor license if hyperthreading
+is enabled, and one vCPU as equivalent to one Oracle Processor license if hyperthreading
+is not enabled.&rdquo;</p>
+</blockquote>
+
+<p>If you&rsquo;ve got 2 solr servers, and 3 zookeeper servers, all running as Quad Cores, that&rsquo;s 5x4=20 CPU&rsquo;s, which might be up to 20x$25=$500 a month. Or if the hyperthreading detail applies above, might ve $250 a month. And even cheaper if have a load of servers to volume licence. Would require Java licencing to confirm actual price for your particular scenario.</p>
+
+<h2 id="open-jdk">Open JDK</h2>
+
+<p>What the alternative&rsquo;s to paying Oracle for commercial support?</p>
+
+<p>OpenJDK is the alternative.</p>
+
+<p><a href="https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html">https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html</a></p>
+
+<h3 id="is-anyone-using-open-jdk">Is anyone using Open JDK?</h3>
+
+<p>If you look at the docker community, most Docker images which use Java use an Open JDK variant.</p>
+
+<p>(was saying DEPRECATED - This image is officially deprecated in favor of the openjdk image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)<br />
+<a href="https://hub.docker.com/_/java/">https://hub.docker.com/_/java/</a></p>
+
+<p>Shows previously issues/questions on legality of Java on Docker<br />
+<a href="https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/">https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/</a></p>
+
+<p>Explains issues, and update on support now<br />
+<a href="https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker">https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker</a></p>
+
+<p>Flow chart of which OpenJDK to choose for Docker<br />
+<a href="https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238">https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238</a></p>
+
+<p>Update on Oracle Java support for Docker<br />
+<a href="https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers">https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers</a></p>
+
+<p>Official Java Docker images, but appears have to sign up to see them.<br />
+<a href="https://hub.docker.com/_/oracle-serverjre-8">https://hub.docker.com/_/oracle-serverjre-8</a></p>
+
+<h3 id="there-are-many-version-of-open-jdk-but-which-version-should-i-use">There are many version of Open JDK, but which version should I use?</h3>
+
+<p>This posts lists out the different flavours of the Open JDK<br />
+<a href="https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html">https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html</a></p>
+
+<p>Adopt OpenJDK appears to be the main choice, with longer term updates, and actually free.<br />
+<a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a></p>
+
+<p>Red hat are supporting it (and IBM which have now bought redhat)<br />
+<a href="https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/">https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/</a></p>
+
+<p>Amazon are releasing their own version of OpenJDK, which they use internally, but still in public preview, but certainly one to look out for, and not just for use on AWS - can use of AWS which sounds awesome.</p>
+
+<ul>
+<li><a href="https://aws.amazon.com/corretto/">https://aws.amazon.com/corretto/</a></li>
+<li><a href="https://aws.amazon.com/corretto/faqs/#support">https://aws.amazon.com/corretto/faqs/#support</a></li>
+<li><a href="https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/">https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/</a></li>
+</ul>
+
+<p>I noticed on this tweet that the version of Java Azure App Service was running was Azul.<br />
+<a href="https://twitter.com/dancruickshank/status/1072541500058284034">https://twitter.com/dancruickshank/status/1072541500058284034</a></p>
+
+<p>A quick google later I found that was announced in September, that if you are an Azure customer, can use Azul Open JDK for no extra cost. So that&rsquo;s awesome too if you are an Azure customer, but this is just for use on Azure.</p>
+
+<ul>
+<li><a href="https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/">https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/</a></li>
+<li><a href="https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/">https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/</a></li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p>Ultimately you&rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the OpenJDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the OpenJDK you&rsquo;ve chosen.</p>
+
+<p>It would seem if looking to move to Docker &amp; Kubernetes eventually, then embracing the OpenJDK seems to be the standard anyway.
+And even if Oracle engineers aren&rsquo;t going to be supporting the OpenJDK anymore, got a choice of Redhat/IBM, Amazon and Azul (free on Azure) to go for.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/">Why Sticky Session on Sitecore Content Authoring</a></h3>
+					<span class="label label-primary">Sat Dec 15, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/stickysession">StickySession</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/inproc">InProc</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring">Why have to use InProc session state on Sitecore Content Authoring</h2>
+
+<p>A note on why InProc session state &amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.</p>
+
+<p><a href="https://kb.sitecore.net/articles/860809">https://kb.sitecore.net/articles/860809</a></p>
+
+<h2 id="bad-practice-to-use-sticky-sessions">Bad Practice to use Sticky Sessions</h2>
+
+<p>A quick intro on why Sticky Sessions are bad.
+<a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out">https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out</a></p>
+
+<blockquote>
+<p><strong>Avoid instance stickiness.</strong> Stickiness, or session affinity, is when requests from the same client are always routed to the same server. Stickiness limits the application&rsquo;s ability to scale out. For example, traffic from a high-volume user will not be distributed across instances. Causes of stickiness include storing session state in memory, and using machine-specific keys for encryption. Make sure that any instance can handle any request.</p>
+</blockquote>
+
+<p>Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br />
+E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.<br />
+Or if you use sticky sessions via IP address, and lots of people work in the same office, all of that office will be allocated to the same machine.</p>
+
+<p>&nbsp;</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_650x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg" 
+    alt="Sticky Session">
+</picture>
+
+<p>&nbsp;</p>
+
+<h2 id="redis-provider-network-stability">Redis provider network stability</h2>
+
+<p>The Stack Exchange redis session state provider at the time often had network stability issues, particularly on Azure Redis (TLS)
+<a href="https://github.com/StackExchange/StackExchange.Redis/issues/871">https://github.com/StackExchange/StackExchange.Redis/issues/871</a><br />
+Version 2 has since been released, which would be worth testing to see how much this has improved the issue.</p>
+
+<h2 id="too-much-data-being-put-into-session-state">Too much data being put into Session state</h2>
+
+<p>However, another issue which couldn&rsquo;t be solved, was that too much data was being stored in session state.</p>
+
+<ul>
+<li>228534 - Jsnlog entries spam session storage</li>
+<li>228355 - Validation related objects spam session storage</li>
+</ul>
+
+<p>The JsnLog entries can be disabled by changing
+\App_Config\Include\Sitecore.JSNLog.config &lt;jsnlog enabled=&ldquo;false&rdquo;</p>
+
+<p>For validation though, there is no easy work around.
+You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.</p>
+
+<h2 id="asp-net-webforms-legacy">ASP.NET WebForms Legacy</h2>
+
+<p>And this is on top of the Content Editor still using WebForms with ViewState and ControlState needing to be stored to a shared medium, which may as well also be Redis is using a Redis session state provider. (Although a Database is another option if you have spare DTUs, why not be consistent)</p>
+
+<h2 id="redis-is-designed-for-small-objects">Redis is designed for small objects</h2>
+
+<p><a href="https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/">https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/</a></p>
+
+<blockquote>
+<p>Redis Server and StackExchange.Redis are optimized for many small requests rather than fewer large requests.  Splitting your data into smaller chunks may improve things here</p>
+</blockquote>
+
+<p>A large session state, viewstate, control state isn&rsquo;t going to help.</p>
+
+<p>&nbsp;</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box.png">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box.png">
+	
+  <img 
+    src="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box.png" 
+    alt="Redis Logo">
+</picture>
+
+<p>&nbsp;</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Ultimately right now, to have more than once Content Authoring server, you have to use Sticky Sessions and InProc session state.</p>
+
+<p>Looking forward to a future version of Sitecore allowing to get away from Sticky Sessions on Content Authoring, either by reducing the amount of data needed in Session Storage, or getting away from Viewstate &amp; ControlState - perhaps with Sitecore Horizon the new editor built in Angular.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/zero-content-authoring-down-time/">Zero down time for Delivery &amp; Authoring</a></h3>
+					<span class="label label-primary">Sat Dec 15, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/downtime">Downtime</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/bluegreen">BlueGreen</a>
+					
+						 , 
+						<a href="/tags/contentfreeze">ContentFreeze</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h1 id="zero-down-time-for-delivery-authoring">Zero down time for Delivery &amp; Authoring</h1>
+
+<p>A lot of people talk about zero downtime, but normally just in the context of Content Delivery.
+Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.</p>
+
+<p>However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.<br />
+<a href="https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html">https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html</a></p>
+
+<p>*Or as near to Zero as possible as the users Session state will expire, as <a href="http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/">Sitecore requires InProc session state provider on Content Authoring</a>.</p>
+
+<p>&nbsp;</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_650x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg" 
+    alt="Zero downtime">
+</picture>
+
+<p>&nbsp;</p>
+
+<p>I brought up in the sitecore discussion club slack channel that this is an area would like to discuss further, as trying to schedule deployments out of hours isn&rsquo;t great for those who are doing the deployment, and disruptive to the editors who are trying to enter content.<br />
+And was put in touch on Slack with the author.</p>
+
+<p>Also at the last Sitecore Discussion club (<a href="http://sitecore.events/">http://sitecore.events/</a>), the author of this article was there, and presented this idea to the group.</p>
+
+<p>It was interesting to hear that this was created to avoid getting up early to deploy before the authors were in, and that has been used in production, so the idea works.</p>
+
+<p>Although the arhictecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.<br />
+There is no reason this can&rsquo;t be updated to use Azure Message Queue, two independant complete stacks (Content Delivery, Content Authoring, SolrCloud).</p>
+
+<p>At the group we also discussed some of the limitations/ideas</p>
+
+<ul>
+<li>rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&rsquo;t be a fequent occurance, so might be acceptable.</li>
+<li>transformation layer, say a field had been renamed, a layer between deserializing the message, and applying it to sitecore, would allow the message to be intercepted and updated to the new deployments expected format.</li>
+<li>recording content editoring activitiy like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.</li>
+</ul>
+
+<p>It&rsquo;s an idea worth exploring further, more updates as we try this out ourselves.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/">What Is Wrong With the Link Database</a></h3>
 					<span class="label label-primary">Tue Nov 20, 2018</span> in 
 					
