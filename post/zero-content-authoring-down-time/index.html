@@ -121,15 +121,15 @@ And was put in touch on Slack with the author.</p>
 
 <p>It was interesting to hear that this was created to avoid getting up early to deploy before the authors were in, and that has been used in production, so the idea works.</p>
 
-<p>Although the arhictecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.<br />
-There is no reason this can&rsquo;t be updated to use Azure Message Queue, two independant complete stacks (Content Delivery, Content Authoring, SolrCloud).</p>
+<p>Although the architecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.<br />
+There is no reason this can&rsquo;t be updated to use Azure Message Queue, two independent complete stacks (Content Delivery, Content Authoring, SolrCloud).</p>
 
 <p>At the group we also discussed some of the limitations/ideas</p>
 
 <ul>
-<li>rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&rsquo;t be a fequent occurance, so might be acceptable.</li>
+<li>rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&rsquo;t be a frequent occurrence, so might be acceptable.</li>
 <li>transformation layer, say a field had been renamed, a layer between deserializing the message, and applying it to sitecore, would allow the message to be intercepted and updated to the new deployments expected format.</li>
-<li>recording content editoring activitiy like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.</li>
+<li>recording content editoring activity like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.</li>
 </ul>
 
 <p>It&rsquo;s an idea worth exploring further, more updates as we try this out ourselves.</p>

@@ -348,15 +348,15 @@ And was put in touch on Slack with the author.&lt;/p&gt;
 
 &lt;p&gt;It was interesting to hear that this was created to avoid getting up early to deploy before the authors were in, and that has been used in production, so the idea works.&lt;/p&gt;
 
-&lt;p&gt;Although the arhictecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.&lt;br /&gt;
-There is no reason this can&amp;rsquo;t be updated to use Azure Message Queue, two independant complete stacks (Content Delivery, Content Authoring, SolrCloud).&lt;/p&gt;
+&lt;p&gt;Although the architecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.&lt;br /&gt;
+There is no reason this can&amp;rsquo;t be updated to use Azure Message Queue, two independent complete stacks (Content Delivery, Content Authoring, SolrCloud).&lt;/p&gt;
 
 &lt;p&gt;At the group we also discussed some of the limitations/ideas&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&amp;rsquo;t be a fequent occurance, so might be acceptable.&lt;/li&gt;
+&lt;li&gt;rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&amp;rsquo;t be a frequent occurrence, so might be acceptable.&lt;/li&gt;
 &lt;li&gt;transformation layer, say a field had been renamed, a layer between deserializing the message, and applying it to sitecore, would allow the message to be intercepted and updated to the new deployments expected format.&lt;/li&gt;
-&lt;li&gt;recording content editoring activitiy like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.&lt;/li&gt;
+&lt;li&gt;recording content editoring activity like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;It&amp;rsquo;s an idea worth exploring further, more updates as we try this out ourselves.&lt;/p&gt;
