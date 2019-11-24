@@ -197,6 +197,95 @@ Still we can reuse this configuration setting in our pipeline.</p>
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/">Sitecore 9.3 - media library blob storage</a></h3>
+					<span class="label label-primary">Sun Nov 24, 2019</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/media-library">Media Library</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/blob-storage">Blob Storage</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				
+
+<h2 id="sitecore-9-3-media-library-azure-blob-storage">Sitecore 9.3 - Media Library Azure Blob Storage</h2>
+
+<p>Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;ref_src=twsrc%5Etfw">#SitecoreSYM</a> is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming <a href="https://twitter.com/hashtag/Sitecore?src=hash&amp;ref_src=twsrc%5Etfw">#Sitecore</a> 9.3 release. As a gesture of good will -&gt; the deck is now available on <a href="https://t.co/B9DqZ9CLot">https://t.co/B9DqZ9CLot</a> <a href="https://t.co/B8Qy9kzLF0">pic.twitter.com/B8Qy9kzLF0</a></p>&mdash; Pieter Brinkman (@pieterbrink123) <a href="https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw">November 12, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>I also saw him present the at the London Sitecore User Group where he explained this slide deck in some more detail.</p>
+
+<p>Some highlights for me:</p>
+
+<h3 id="slide-12-top-5-core-platform-enhancements">Slide 12 - Top 5 core platform enhancements</h3>
+
+<ul>
+<li>Removing obsolete functionality &ldquo;Lucene Search Provider&rdquo; &amp; &ldquo;Sitecore.Nvelocity&rdquo;</li>
+<li>Experience Editor Improvements</li>
+<li>Performance Improvements &ldquo;Reducing number of calls&rdquo;, &ldquo;Reduce the amount of data saved&rdquo;</li>
+</ul>
+
+<p>I look forward to seeing some benchmarks about the performance improvements, and what areas this covers. When I first read this I had thought this might mean Sql calls, but he explained at the User Group was referring to personalisation/tracking.
+Still he only listed out his top 5, and hopefully the performance improvements extends to other areas.</p>
+
+<h3 id="slide-35-paas-media-library-in-azure-blob-storage">Slide 35 - PaaS - Media Library in Azure Blob Storage</h3>
+
+<p>There is a footnote on Slide 35 &amp; 36</p>
+
+<p>&ldquo;Media Library in Azure Blob Storage: Reduce the cost and increase the performance of storing media in Sitecore&rdquo;</p>
+
+<p>This is only listed for &ldquo;PaaS&rdquo; and the new &ldquo;Managed Cloud&rdquo;.</p>
+
+<p>However I&rsquo;d like to explore using Azure Blob Storage on Azure IaaS.
+Let&rsquo;s see if this is possible when Sitecore 9.3 comes out.</p>
+
+<p>I&rsquo;d also like to find out if the Azure Blob Storage implementation just replaces the backing storage.</p>
+
+<p>Or if it&rsquo;s possible to serve the files direct from Blob Storage, bypassing the Sitecore Media library handler/disk caching on the Content Delivery servers. (Possibly with some other technology/thin API layer to provider resizing functionality)</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Using Azure Blob Storage for the Sitecore Media Library for me is the most exciting development of Sitecore 9.3 that I&rsquo;ve heard about so far, as could significantly reduce the size of the Sql databases.</p>
+
+<h3 id="notes">Notes</h3>
+
+<p>Jammy Kam has customised Sitecore do use Azure Blob Storage for it&rsquo;s Media Library before
+<a href="https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/">https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/</a>
+<a href="https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/">https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/</a></p>
+
+<p>I wonder how similar the Sitecore implementation will be.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/">Java goes commercial, what does this mean for Sitecore - Solr?</a></h3>
 					<span class="label label-primary">Sat Dec 15, 2018</span> in 
 					
@@ -1422,284 +1511,59 @@ When using visual studio this is all handled for you.<br /></p>
 		</div>
 	
         
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/">setting up Visual Studio 2015 CTP 6</a></h3>
-					<span class="label label-primary">Sun Mar 8, 2015</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/visual-studio">Visual Studio</a>
-					
-						 , 
-						<a href="/tags/dotnet">DotNet</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				
-
-<h4 id="goals">Goals</h4>
-
-<ul>
-<li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
-<li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
-</ul>
-
-<h4 id="how-to-do-it-what-i-learnt">How to do it/What I learnt</h4>
-
-<p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
-
-<blockquote>
-<p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
-</blockquote>
-
-<p>So a VM should be used.
-So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&rsquo;t work on 64 bit PCs.
-So starting again, I downloaded <a href="https://www.virtualbox.org/">VirtualBox</a></p>
-
-<p>I then <a href="http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst">created a Windows 7 VM in VirtualBox</a>.<br/>
-Important Steps, create it with enough space, e.g. 50GB+. It&rsquo;s surprising how much space need for Windows &amp; Patching, as well as Visual Studio 2015.<br/>
-In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.</p>
-
-<p>Here is good article if need to <a href="http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html">change the space on the Virtual Box VM</a>, and update windows to use the extra space.<br/>
-The first steps about cloning are optional.<br/>
-The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
-
-<pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
-</code></pre>
-
-<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
-
-<p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
-
-<ul>
-<li>Patch it to include SP1</li>
-<li>Patch it to include IE10/IE11</li>
-<li>Just patch it up to the latest version &amp; reboot</li>
-</ul>
-
-<p>If you don&rsquo;t patch it to SP1, then won&rsquo;t be able to install Visual Studio.<br />
-And if you don&rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this <a href="http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop">forum thread</a><br />
-<strong>Summary just patch your VM to the latest version</strong></p>
-
-<p>Having got a Patched VM, with enough disk space.
-Then install Visual Studio 2015 CTP 6.
-I used the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Visual Studio 2015 Ultimate Web Installer</a> released on 23rd of February 2015.
-And just installed the default options.</p>
-
-<p>You&rsquo;ll also want to install the K runtime.<br />
-First install the K Version Manager(KVM) in Powershell as an administrator.</p>
-
-<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))&quot;
-</code></pre>
-
-<p>As detailed on the <a href="https://github.com/aspnet/home">Asp.net Github page</a></p>
-
-<p>Now KVM is installed, you&rsquo;ll want to get the K runtime.</p>
-
-<pre><code>kvm upgrade
-</code></pre>
-
-<p>Having done that you can see what is installed by calling</p>
-
-<pre><code>kvm list
-</code></pre>
-
-<p>And you should see something like:<br />
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box.PNG" 
-    alt="KVM list">
-</picture></p>
-
-<p>Notice is used the \.k\ folder, earlier version where using \.kre\.
-You may read older documentation that refers to \.kre\.</p>
-
-<p>You may want to look at switching to use the coreclr runtime as the Active version.</p>
-
-<pre><code>kvm use 1.0.0-beta3 -x64 -r coreclr
-</code></pre>
-
-<p>followed by</p>
-
-<pre><code>kvm list
-</code></pre>
-
-<p>And you should see something like, notice the Active * has now updated:<br />
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box.PNG" 
-    alt="KVM list">
-</picture></p>
-
-<p>Now you&rsquo;ve got a VM, K runtime setup.</p>
-
-<p>Open up visual studio and create a new project.<br />
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box.PNG" 
-    alt="Visual Studio Create Project">
-</picture></p>
-
-<p>Select a blank project<br />
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box.PNG" 
-    alt="Select blank project">
-</picture></p>
-
-<p>Now have that created, let&rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line</p>
-
-<pre><code>app.UseWelcomePage();
-</code></pre>
-
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box.PNG" 
-    alt="Modify startup.cs">
-</picture>
-
-<p>This won&rsquo;t compile at the moment as you don&rsquo;t have a reference to the extension method.</p>
-
-<p>To do that open project.json, and add a reference to &ldquo;Microsoft.AspNet.Diagnostics&rdquo;: &ldquo;1.0.0-beta3&rdquo;
-I&rsquo;ve also added some references to &ldquo;Microsoft.AspNet.Hosting&rdquo; &amp; &ldquo;Microsoft.AspNet.Server.WebListener&rdquo;, and added the command &ldquo;web&rdquo;, so can launch the site from the command prompt.
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box.PNG" 
-    alt="Modify project.json">
-</picture>
-<br/>
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;.
-When you save the file, visual studio should automatically restore the packages from NuGet.</p>
-
-<p>In visual studio you can configure which version of K the application uses
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box.PNG" 
-    alt="VS configure KRE version">
-</picture></p>
-
-<p>You should either now be able to launch the site from either Visual Studio or Command prompt.</p>
-
-<p>To start the site via command prompt, navigate to the website directory, and run</p>
-
-<pre><code>k web
-</code></pre>
-
-<p>Now you can navigate to the site as defined in the project.json configuration</p>
-
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box.PNG" 
-    alt="Startup Page">
-</picture>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
 	</div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
                     
+
+<ul class="pagination">
+    
+    <li>
+        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li
+    class="disabled">
+    <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    class="active"><a href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li
+    ><a href="/page/2/">2</a></li>
+    
+    
+    <li
+    >
+    <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li>
+        <a href="/page/2/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
 
                 </div>
             </div>

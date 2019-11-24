@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
@@ -77,6 +82,12 @@
   
   <url>
     <loc>http://bigredmachine.github.io/tags/azuread/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/blob-storage/</loc>
     <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -173,6 +184,12 @@
   <url>
     <loc>http://bigredmachine.github.io/tags/linkdb/</loc>
     <lastmod>2018-11-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/media-library/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

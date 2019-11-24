@@ -126,6 +126,70 @@ Still we can reuse this configuration setting in our pipeline.&lt;/p&gt;
       
         
           <item>
+            <title>Sitecore 9.3 - media library blob storage</title>
+            <link>http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</link>
+            <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</guid>
+            <description>
+
+&lt;h2 id=&#34;sitecore-9-3-media-library-azure-blob-storage&#34;&gt;Sitecore 9.3 - Media Library Azure Blob Storage&lt;/h2&gt;
+
+&lt;p&gt;Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.&lt;/p&gt;
+
+&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#SitecoreSYM&lt;/a&gt; is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming &lt;a href=&#34;https://twitter.com/hashtag/Sitecore?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#Sitecore&lt;/a&gt; 9.3 release. As a gesture of good will -&amp;gt; the deck is now available on &lt;a href=&#34;https://t.co/B9DqZ9CLot&#34;&gt;https://t.co/B9DqZ9CLot&lt;/a&gt; &lt;a href=&#34;https://t.co/B8Qy9kzLF0&#34;&gt;pic.twitter.com/B8Qy9kzLF0&lt;/a&gt;&lt;/p&gt;&amp;mdash; Pieter Brinkman (@pieterbrink123) &lt;a href=&#34;https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw&#34;&gt;November 12, 2019&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;I also saw him present the at the London Sitecore User Group where he explained this slide deck in some more detail.&lt;/p&gt;
+
+&lt;p&gt;Some highlights for me:&lt;/p&gt;
+
+&lt;h3 id=&#34;slide-12-top-5-core-platform-enhancements&#34;&gt;Slide 12 - Top 5 core platform enhancements&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Removing obsolete functionality &amp;ldquo;Lucene Search Provider&amp;rdquo; &amp;amp; &amp;ldquo;Sitecore.Nvelocity&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Experience Editor Improvements&lt;/li&gt;
+&lt;li&gt;Performance Improvements &amp;ldquo;Reducing number of calls&amp;rdquo;, &amp;ldquo;Reduce the amount of data saved&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I look forward to seeing some benchmarks about the performance improvements, and what areas this covers. When I first read this I had thought this might mean Sql calls, but he explained at the User Group was referring to personalisation/tracking.
+Still he only listed out his top 5, and hopefully the performance improvements extends to other areas.&lt;/p&gt;
+
+&lt;h3 id=&#34;slide-35-paas-media-library-in-azure-blob-storage&#34;&gt;Slide 35 - PaaS - Media Library in Azure Blob Storage&lt;/h3&gt;
+
+&lt;p&gt;There is a footnote on Slide 35 &amp;amp; 36&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Media Library in Azure Blob Storage: Reduce the cost and increase the performance of storing media in Sitecore&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;This is only listed for &amp;ldquo;PaaS&amp;rdquo; and the new &amp;ldquo;Managed Cloud&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;However I&amp;rsquo;d like to explore using Azure Blob Storage on Azure IaaS.
+Let&amp;rsquo;s see if this is possible when Sitecore 9.3 comes out.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;d also like to find out if the Azure Blob Storage implementation just replaces the backing storage.&lt;/p&gt;
+
+&lt;p&gt;Or if it&amp;rsquo;s possible to serve the files direct from Blob Storage, bypassing the Sitecore Media library handler/disk caching on the Content Delivery servers. (Possibly with some other technology/thin API layer to provider resizing functionality)&lt;/p&gt;
+
+&lt;h3 id=&#34;summary&#34;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Using Azure Blob Storage for the Sitecore Media Library for me is the most exciting development of Sitecore 9.3 that I&amp;rsquo;ve heard about so far, as could significantly reduce the size of the Sql databases.&lt;/p&gt;
+
+&lt;h3 id=&#34;notes&#34;&gt;Notes&lt;/h3&gt;
+
+&lt;p&gt;Jammy Kam has customised Sitecore do use Azure Blob Storage for it&amp;rsquo;s Media Library before
+&lt;a href=&#34;https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/&#34;&gt;https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/&lt;/a&gt;
+&lt;a href=&#34;https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/&#34;&gt;https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wonder how similar the Sitecore implementation will be.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
             <title>Java goes commercial, what does this mean for Sitecore - Solr?</title>
             <link>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
