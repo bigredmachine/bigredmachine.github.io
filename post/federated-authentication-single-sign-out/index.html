@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Federated Authentication Single Sign Out">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Federated Authentication Single Sign Out &middot; Ian&#39;s Blog</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://bigredmachine.github.io/css/theme/journal.css">
+    
+
+    <link rel="stylesheet" href="http://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="http://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://bigredmachine.github.io">Home</a></li>
+					<li><a href="http://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="http://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Federated Authentication Single Sign Out</h3>
+				<span class="label label-primary">Sun, Nov 24, 2019</span> in 
+				
+					
+					<a href="/categories/development">Development</a>
+				
+					 , 
+					<a href="/categories/sitecore">Sitecore</a>
+				 using tags
+				
+					
+					<a href="/tags/federated-authentication">Federated Authentication</a>
+				
+					 , 
+					<a href="/tags/sitecore">Sitecore</a>
+				
+					 , 
+					<a href="/tags/azuread">AzureAD</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<h2 id="federated-authentication-single-sign-out">Federated Authentication Single Sign Out</h2>
+
+<p>By default when you sign out of Sitecore, you don&rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&rsquo;t challenge you to sign back in again, and lets you into the system.</p>
+
+<p>So have you really signed out, if you haven&rsquo;t signed out of the Federated Authentication provider as well? IMHO - no.</p>
+
+<h2 id="what-s-the-behaviour-of-other-services-using-federated-authentication">What&rsquo;s the behaviour of other services using Federated Authentication?</h2>
+
+<p>If you log out of Microsoft Office 365, it also logs you out of Azure AD.</p>
+
+<p>If you log out of Azure Portal, it also logs you out of Azure AD.</p>
+
+<p>Also note, on the Azure AD sign out page, it also signs you out of Office 365, if you are signing out from another system. (That&rsquo;s going even further, to an even more true single sign out where sign out of every system at once, but the sign out page has to know about all of the systems to sign you out of, beyond the scope of this post)</p>
+
+<p>So can see it&rsquo;s pretty standard behaviour when you sign out of a system, to also sign you out of the Federated Authentication provider as well.</p>
+
+<h2 id="so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore">So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore?</h2>
+
+<p>Pipelines/Processor + Reflector = Win!</p>
+
+<p>&nbsp;</p>
+
+
+<picture>
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/federated-authentication-single-sign-out/post/federated-authentication-single-sign-out/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/federated-authentication-single-sign-out/post/federated-authentication-single-sign-out/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/federated-authentication-single-sign-out/post/federated-authentication-single-sign-out/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg" 
+    alt="Pipelines Everywhere">
+</picture>
+
+<p>&nbsp;</p>
+
+<h3 id="for-the-launchpad-using-speak">For the LaunchPad using Speak</h3>
+
+<p>Starting with the Sitecore Launch pad.</p>
+
+<p>The &ldquo;Log out&rdquo; button has some JS that fires &ldquo;-/speak/v1/business/AccountInformation.js&rdquo;.
+Which does an AJAX POST request to &ldquo;/sitecore/shell/api/sitecore/Authentication/Logout?sc_database=master&rdquo;.
+It then tries to parse the JSON result, and read the &ldquo;Redirect&rdquo; value.
+And then redirects the user client side to the specified url.</p>
+
+<p>Serverside this &ldquo;AuthenticationController&rdquo; can be found in &ldquo;Sitecore.Speak.Client.dll&rdquo; &ldquo;Sitecore.Controllers.AuthenticationController&rdquo; &ldquo;Logout&rdquo; HttpPost method.</p>
+
+<p>This in turn calls &ldquo;Sitecore.Shell.Security().Logout&rdquo; passing in an &ldquo;Action<UrlString>&rdquo;, to capture the RedirectUrl for the JSON result.</p>
+
+<p>&ldquo;Sitecore.Shell.Security().Logout&rdquo; calls a pipeline &ldquo;speak.logout&rdquo;.
+This pipeline takes an argument of type &ldquo;LogoutArgs&rdquo;.
+&ldquo;LogoutArgs&rdquo; has a property &ldquo;RedirectUrl&rdquo; of type &ldquo;UrlString&rdquo;.</p>
+
+<p>&ldquo;RedirectUrl&rdquo; is initialised before the pipeline &ldquo;speak.logout&rdquo; is called with &ldquo;Context.Site.LoginPage&rdquo;.
+And after the pipleline is called, the &ldquo;RedirectUrl&rdquo; value is used to send the client to the specified page.</p>
+
+<h3 id="for-the-content-editor">For the Content Editor</h3>
+
+<p>The content editor on the other hand the &ldquo;Log out&rdquo; button calls onclick &ldquo;scForm.postEvent(this, event, &lsquo;system.logout&rsquo;)&rdquo;.</p>
+
+<p>This triggers the processor &ldquo;logout&rdquo;.
+This also takes the same argument of type &ldquo;LogoutArgs&rdquo;, as the &ldquo;speak.logout&rdquo; pipeline.</p>
+
+<p>If the &ldquo;LogoutArgs&rdquo; &ldquo;RedirectUrl&rdquo; property has not been set, it triggers a server side redirect to the &ldquo;Client.Site.LoginPage&rdquo;.
+See &ldquo;Sitecore.Kernel.dll&rdquo;, &ldquo;Sitecore.Pipelines.Logout.GotoLogin.Process&rdquo; method.</p>
+
+<h3 id="pipeline">Pipeline</h3>
+
+<p>So to override the behaviour of logout going to the Sitecore login page.
+Adding a pipeline to &ldquo;Speak.Logout&rdquo; to set the &ldquo;RedirectUrl&rdquo;.</p>
+
+<p>And adding a processor to &ldquo;logout&rdquo; before the processor &ldquo;Sitecore.Pipelines.Logout.GotoLogin, Sitecore.Kernel&rdquo;, to set the &ldquo;RedirectUrl&rdquo;.</p>
+
+<p>We can control where users are redirected to on logout.</p>
+
+<h3 id="federated-authentication-provider-settings-not-used">Federated Authentication Provider settings not used</h3>
+
+<p>Interestingly when configuring a Federated Authentication provider, you specify on the &ldquo;OpenIdConnectAuthenticationOptions&rdquo; class the &ldquo;PostLogoutRedirectUri&rdquo;, but this isn&rsquo;t used.
+Still we can reuse this configuration setting in our pipeline.</p>
+
+<h3 id="example-settings-to-change-redirecturl-to">Example settings to change RedirectUrl to</h3>
+
+<p>If you are using Azure AD, you can set the &ldquo;RedirectUrl&rdquo; to something like &ldquo;<a href="https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&quot;">https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&quot;</a></p>
+
+<p>So it will log you out of Azure AD, then redirect you back to &ldquo;<a href="https://sitecore.local/sitecore/login&quot;">https://sitecore.local/sitecore/login&quot;</a></p>
+
+<p>Obviously change the &ldquo;post_logout_redirect_uri&rdquo; parameter to match your environment.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>With a few extra pipelines, and with the help of reflector, can achieve single sign out with Sitecore.</p>
+
+<h2 id="additional-notes">Additional Notes</h2>
+
+<p>I&rsquo;ve only tried this with Sitecore 9.0, and not with the new Sitecore Identity Server.</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2018 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

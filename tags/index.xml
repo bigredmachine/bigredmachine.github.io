@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Azuread</title>
+      <link>http://bigredmachine.github.io/tags/azuread/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/azuread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Bluegreen</title>
       <link>http://bigredmachine.github.io/tags/bluegreen/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
@@ -111,6 +120,15 @@
     </item>
     
     <item>
+      <title>Federated Authentication</title>
+      <link>http://bigredmachine.github.io/tags/federated-authentication/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/federated-authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Indexing</title>
       <link>http://bigredmachine.github.io/tags/indexing/</link>
       <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
@@ -158,7 +176,7 @@
     <item>
       <title>Sitecore</title>
       <link>http://bigredmachine.github.io/tags/sitecore/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/tags/sitecore/</guid>
       <description></description>

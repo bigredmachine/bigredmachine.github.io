@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azuread on Ian&#39;s Blog</title>
+    <link>http://bigredmachine.github.io/tags/azuread/</link>
+    <description>Recent content in Azuread on Ian&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://bigredmachine.github.io/tags/azuread/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Federated Authentication Single Sign Out</title>
+      <link>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</guid>
+      <description>Federated Authentication Single Sign Out By default when you sign out of Sitecore, you don&amp;rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&amp;rsquo;t challenge you to sign back in again, and lets you into the system.
+So have you really signed out, if you haven&amp;rsquo;t signed out of the Federated Authentication provider as well?</description>
+    </item>
+    
+  </channel>
+</rss>

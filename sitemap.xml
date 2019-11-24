@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
@@ -71,6 +76,12 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/azuread/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/tags/bluegreen/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -101,7 +112,7 @@
   
   <url>
     <loc>http://bigredmachine.github.io/categories/development/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -130,8 +141,14 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/federated-authentication/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -173,19 +190,19 @@
   
   <url>
     <loc>http://bigredmachine.github.io/post/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/categories/sitecore/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://bigredmachine.github.io/tags/sitecore/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
