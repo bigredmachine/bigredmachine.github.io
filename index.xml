@@ -6,8 +6,232 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Improving the Siteore Solr Content Search Provider</title>
+            <link>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</link>
+            <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</guid>
+            <description>
+
+&lt;h2 id=&#34;improving-the-siteore-solr-content-search-provider&#34;&gt;Improving the Siteore Solr Content Search Provider&lt;/h2&gt;
+
+&lt;p&gt;Back in February this year I gave a presentation at the &lt;a href=&#34;https://www.meetup.com/sug-uk/events/258462625/&#34;&gt;London Sitecore User Group&lt;/a&gt; &amp;ldquo;Improving the Solr Content Search Provider&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;My first talk at a Sitecore User group.&lt;/p&gt;
+
+&lt;p&gt;Although I regularly attend the Sitecore discussion club, and have presented there on several occasions.&lt;/p&gt;
+
+&lt;h2 id=&#34;known-bugs&#34;&gt;Known bugs&lt;/h2&gt;
+
+&lt;p&gt;At the presentation I included a link to a &lt;a href=&#34;https://github.com/bigredmachine/sitecore-solr&#34;&gt;github repository&lt;/a&gt; with a list of known issues and their public reference numbers.&lt;/p&gt;
+
+&lt;p&gt;The list of issues will vary between Sitecore versions, I&amp;rsquo;ve included the list of issues I&amp;rsquo;ve come across between Sitecore 8.2 up to Sitecore 9.0 update 2.&lt;/p&gt;
+
+&lt;p&gt;Including:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Partially rebuilt index going live - 96016 - IIS recycle - switches Alias although indexing job cancelled/incomplete - fixed in Sitecore 9 initial release&lt;/li&gt;
+&lt;li&gt;OptimizeOnRebuildEnabled setting not used - was in bug fix 96016 - introduced in Sitecore 9 initial release&lt;/li&gt;
+&lt;li&gt;Patch for IsSolrAliveAgent to update SolrState and process reinitialisation correctly - 163850.171950&lt;/li&gt;
+&lt;li&gt;Incorrect data being indexed, if have ContentSearch.Indexing.DisableDatabaseCaches setting set to true - 96740.127177.155383&lt;/li&gt;
+&lt;li&gt;If IndexAllFields=false the IncludedFields are indexed as string values - New bug in Sitecore 9 - 252532&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/&#34;&gt;Index rebuild slow down after Sitecore 9 upgrade&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;common-patterns-for-distributed-computing&#34;&gt;Common Patterns for distributed computing&lt;/h2&gt;
+
+&lt;p&gt;The github repostiory also included an example implementation of patterns to address some of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing&#34;&gt;fallacies of distributed computing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Circuit Breaker Pattern
+
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t make every request wait for a timeout exception, use a circuit breaker to fail fast, so can handle load under a degraded scenario&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Not swallowing errors
+
+&lt;ul&gt;
+&lt;li&gt;We want to know the difference between no results, and an error.&lt;/li&gt;
+&lt;li&gt;The circuit breaker can&amp;rsquo;t work if we don&amp;rsquo;t know what&amp;rsquo;s an error.&lt;/li&gt;
+&lt;li&gt;If we don&amp;rsquo;t know the difference then we might cache there are no results, when there are results, but just couldn&amp;rsquo;t retrieve the results.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Shorter timeouts for queries
+
+&lt;ul&gt;
+&lt;li&gt;Again, we want queries to fail fast, and for the circuit breaker to kick in. But we can allow longer for indexing operations to take place, especially as there is no retry mechanism on the crawling/indexing side.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;comparison-of-the-other-options-out-of-the-box&#34;&gt;Comparison of the other options out of the box&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sitecore Query&lt;/li&gt;
+&lt;li&gt;Sitecore Fast Query&lt;/li&gt;
+&lt;li&gt;Links Database&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Related blog posts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&#34;&gt;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&#34;&gt;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/&#34;&gt;What&amp;rsquo;s wrong with the links database&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On reasons not to use each of them, at least on Content Delivery, or when querying over lots of items.&lt;/p&gt;
+
+&lt;h2 id=&#34;a-list-of-other-alternatives&#34;&gt;A list of other alternatives&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lucene
+
+&lt;ul&gt;
+&lt;li&gt;Per server copy to maintain&lt;/li&gt;
+&lt;li&gt;Removed in Sitecore 9.3&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Elastic Search
+
+&lt;ul&gt;
+&lt;li&gt;No Sitecore Search Provider&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Coveo
+
+&lt;ul&gt;
+&lt;li&gt;Not a total replacement, would need Coveo + another search provider, so would need considering after chosen initial search provider.&lt;/li&gt;
+&lt;li&gt;Commercial Cost&lt;/li&gt;
+&lt;li&gt;Supported Sitecore Search Provider&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Algolia
+
+&lt;ul&gt;
+&lt;li&gt;Hosted search&lt;/li&gt;
+&lt;li&gt;No official Sitecore Search Provider, but used in community.&lt;/li&gt;
+&lt;li&gt;Not a total replacement, would need Algolia + another search provider, so would need considering after chosen initial search provider.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Azure Search
+
+&lt;ul&gt;
+&lt;li&gt;At the time there wasn&amp;rsquo;t an offical Sitecore Azure Search provider, there now is.&lt;/li&gt;
+&lt;li&gt;However it has some limitations such as &lt;a href=&#34;https://doc.sitecore.com/developers/92/platform-administration-and-architecture/en/sitecore-azure-search-overview.html&#34;&gt;An Azure Search index can only contain up to 1000 fields.&lt;/a&gt;
+Which could be an issue for the master search index.&lt;/li&gt;
+&lt;li&gt;In this particular benchmark the crawling rate was slower&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/&#34;&gt;https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;But the querying rate was similar, although I do question the cost/limits on querying Azure Search if you&amp;rsquo;ve got a high traffic site. And I&amp;rsquo;ve read some people have had to put a Redis cache in front, to not go over the query limit in Azure Search.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/&#34;&gt;https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;examples-of-customisations&#34;&gt;Examples of Customisations&lt;/h2&gt;
+
+&lt;p&gt;Changing MyItems &amp;amp; Unlock all to use Solr, rather than a Sitecore Query.&lt;/p&gt;
+
+&lt;p&gt;I told you Sitecore.Query was slow, and Memory Intensive.&lt;/p&gt;
+
+&lt;h2 id=&#34;since-giving-this-presentation&#34;&gt;Since giving this presentation&lt;/h2&gt;
+
+&lt;p&gt;Infact since giving this talk, one of the issues that got me to customise the Sitecore Solr Search provider in the first place reared its head again. Sitecore not being able to startup when Solr is down.&lt;/p&gt;
+
+&lt;h2 id=&#34;i-thought-we-d-fixed-that-already-why-can-t-sitecore-startup-when-solr-is-down-anymore&#34;&gt;I thought we&amp;rsquo;d fixed that already, why can&amp;rsquo;t Sitecore startup when Solr is down anymore?&lt;/h2&gt;
+
+&lt;p&gt;Well the number of Sitecore indexes had grown over time.&lt;/p&gt;
+
+&lt;p&gt;On startup each index was doing it&amp;rsquo;s own check to see if Solr was available, and waiting for a timeout/exception. This was happening in series. Depending on the type of error you get, if it&amp;rsquo;s a timeout, this can result in Sitecore taking longer to startup than IIS allows. Causing IIS to recycle the application and try again, in an infinite loop. Oh dear!&lt;/p&gt;
+
+&lt;p&gt;So I&amp;rsquo;ve added to the github repository a new issue &lt;a href=&#34;https://github.com/bigredmachine/sitecore-solr&#34;&gt;314454 - Sitecore doesn&amp;rsquo;t startup when Solr Down.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;simulating-solr-being-down-latency&#34;&gt;Simulating Solr being down/latency&lt;/h2&gt;
+
+&lt;p&gt;You can simulate on your local PC latency to Solr using Fiddler.
+If you change your solr connection string to&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://localhost.:8983/solr;solrCloud=true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice the &amp;ldquo;.&amp;rdquo;, will ensure the traffic goes through Fiddler&lt;/p&gt;
+
+&lt;p&gt;Change your Sitecore IIS Application Pool to run as your local user, as Fiddler automatically picks up traffic running as your local user. (Or you can change the proxy settings)&lt;/p&gt;
+
+&lt;p&gt;Then run Fiddler.&lt;/p&gt;
+
+&lt;p&gt;Under &amp;ldquo;AutoResponder&amp;rdquo; tab, you can add a Rule for requests matching&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http://localhost.8983/solr/.....&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The URL you set could be specific to a particular index, or request, depending on what you want to test.&lt;/p&gt;
+
+&lt;p&gt;Then on the response for that URL you can set&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;*delay:10000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;with how many milliseconds you want to delay the request with.&lt;/p&gt;
+
+&lt;p&gt;Using this technique you can simulate a network timeout,
+rather than a quicker port not listening/service not running error.&lt;/p&gt;
+
+&lt;p&gt;And from this can replicate the issue of Sitecore note being able to start up, if you have enough indexes which all timeout on startup.&lt;/p&gt;
+
+&lt;h2 id=&#34;what-s-in-314454-sitecore-doesn-t-startup-when-solr-down&#34;&gt;What&amp;rsquo;s in 314454 - Sitecore doesn&amp;rsquo;t startup when Solr Down&lt;/h2&gt;
+
+&lt;p&gt;Sitecore doesn&amp;rsquo;t issue patches anymore, so instead you get a hotfix, which include all of the issue fixes for that version of Sitecore you are on.&lt;/p&gt;
+
+&lt;p&gt;For Sitecore 9.0 update 2, this was included in hotfix 323662-1.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If you have enough indexes, the timeout on initialisation from each index run in sequence can result in Sitecore not being starting up in the allowed time.&lt;/li&gt;
+&lt;li&gt;Retry logic for SolrCloud aliases.&lt;/li&gt;
+&lt;li&gt;Retry logic for initialising Indexes&lt;/li&gt;
+&lt;li&gt;Exception handling in IsOnline index check.&lt;/li&gt;
+&lt;li&gt;Initialisation of indexes to not be interupted if Solr is unavailable, to initialise what can and retry later.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And included changes to dlls&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sitecore.ContentSearch.Client.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.Data.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.Linq.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.Linq.Lucene.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.LuceneProvider.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.SolrNetExtension.dll&lt;/li&gt;
+&lt;li&gt;Sitecore.ContentSearch.SolrProvider.dll&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There were so many changes it felt like a mini Sitecore Upgrade.
+And the contract changed, had to rewrite our customisations for them to continue to work.&lt;/p&gt;
+
+&lt;p&gt;This hotfix fixes the slow startup issue, but only checking once if Solr is available, rather than per index.
+So make Sitecore much faster to startup when Solr is down.&lt;/p&gt;
+
+&lt;p&gt;There was also some work to make the initialising of the indexes to work in parallel, to further speed up the time for initialisation.&lt;/p&gt;
+
+&lt;h2 id=&#34;customisations-and-upgrades&#34;&gt;Customisations and Upgrades&lt;/h2&gt;
+
+&lt;p&gt;Each time we upgrade, we have to see if our customisations are still possible.
+Often the extension points/hooks we have used have gone, and we have to find new ones.&lt;/p&gt;
+
+&lt;p&gt;Even on this update to the hotfix which address 314454, we had to do a lot of rework.&lt;/p&gt;
+
+&lt;p&gt;Hopefully in a future version of the product the extensions points we require will be included in the product, and we won&amp;rsquo;t have to get out dotpeek to find a place to override, and use reflection/so many custom classes and overrides to change the behaviour to what we need.&lt;/p&gt;
+
+&lt;h2 id=&#34;update-the-repository-examples&#34;&gt;Update the repository examples&lt;/h2&gt;
+
+&lt;p&gt;As the hotfix isn&amp;rsquo;t publicly available in the nuget feeds, and the contract has changed.&lt;/p&gt;
+
+&lt;p&gt;I can&amp;rsquo;t update the example code to reference the hotfix, and for it to still compile.&lt;/p&gt;
+
+&lt;p&gt;If anyone is interested to see the examples updated to use the hotfix, reach out to me on twitter, and I can see about creating a feature branch.&lt;/p&gt;
+
+&lt;p&gt;Otherwise, I&amp;rsquo;m going to wait for a version of Sitecore which includes these fixes/contract changes, which is available in the nuget feed so I can update the examples and still have it compiling.&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
