@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.36" />
+	<meta name="generator" content="Hugo 0.63.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -58,21 +58,24 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="http://bigredmachine.github.io/post/updating-to-vs-rc/">updating to Visual Studio 2015 RC</a></h3>
-					<span class="label label-primary">Mon May 25, 2015</span> in 
+				<h3><a href="http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/">Sitecore 9.3 - media library blob storage</a></h3>
+					<span class="label label-primary">Sun Nov 24, 2019</span> in 
 					
 						
 						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
 					 using tags 			 
 					
 						
-						<a href="/tags/development">Development</a>
+						<a href="/tags/media-library">Media Library</a>
 					
 						 , 
-						<a href="/tags/visual-studio">Visual Studio</a>
+						<a href="/tags/sitecore">Sitecore</a>
 					
 						 , 
-						<a href="/tags/dotnet">DotNet</a>
+						<a href="/tags/blob-storage">Blob Storage</a>
 					
 				</small>
 			</div>
@@ -80,89 +83,36 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				
+				<h2 id="sitecore-93---media-library-azure-blob-storage-">Sitecore 9.3 - Media Library Azure Blob Storage</h2>
+<p>Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;ref_src=twsrc%5Etfw">#SitecoreSYM</a> is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming <a href="https://twitter.com/hashtag/Sitecore?src=hash&amp;ref_src=twsrc%5Etfw">#Sitecore</a> 9.3 release. As a gesture of good will -&gt; the deck is now available on <a href="https://t.co/B9DqZ9CLot">https://t.co/B9DqZ9CLot</a> <a href="https://t.co/B8Qy9kzLF0">pic.twitter.com/B8Qy9kzLF0</a></p>&mdash; Pieter Brinkman (@pieterbrink123) <a href="https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw">November 12, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<h4 id="updating-from-vs2015-ctp6-to-rc">Updating from VS2015 CTP6 to RC</h4>
-
-<p>A number of changes have been made to names.</p>
-
-<p>Watch this for further details:</p>
-
-<p><a href="https://www.youtube.com/watch?v=-qt0POsiAF8">Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename</a></p>
-
-<p>Key slides:</p>
-
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box.PNG" 
-    alt="Renamed tools">
-</picture>
-
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box.PNG" 
-    alt="Renamed folder and packages">
-</picture>
-
-<p>If you install visual studio, the DNVM and DNX will be setup for you.<br />
-To install Visual Studio RC, first uninstall visual studio CTP 6.<br />
-If you aren&rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&rsquo;ll need Powershell V3 for this.</p>
-
-<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;&amp;{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}&quot;
-</code></pre>
-
-<p>Then to install .NET Execution Environment (DNX) run the following command</p>
-
-<pre><code>dnvm upgrade
-</code></pre>
-
-<p>I got some warnings, to remove the old environmental variable KRE_HOME</p>
-
-<blockquote>
-<p>WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment</p>
-</blockquote>
-
-<p>To see what is installed, and what is the default run.</p>
-
-<pre><code>dnvm list
-</code></pre>
-
-<p>To set the coreclr to be used run</p>
-
-<pre><code>dnvm use 1.0.0-beta4 -x64 -r coreclr
-</code></pre>
-
-<p>Then to run the web server</p>
-
-<pre><code>dnx . web
-</code></pre>
-
-<p>When running &ldquo;dnx &ndash;watch . web&rdquo; from the command line, when any code changes are made, the server will stop, but not restart.<br />
-In order to get the server to restart after a code change something like this is needed.<br />
-When using visual studio this is all handled for you.<br /></p>
-
-<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;for(;;) { Write-Output \&quot;Starting...\&quot;; dnx --watch . web }&quot;
-</code></pre>
+<p>I also saw him present the at the London Sitecore User Group where he explained this slide deck in some more detail.</p>
+<p>Some highlights for me:</p>
+<h3 id="slide-12---top-5-core-platform-enhancements-">Slide 12 - Top 5 core platform enhancements</h3>
+<ul>
+<li>Removing obsolete functionality &ldquo;Lucene Search Provider&rdquo; &amp; &ldquo;Sitecore.Nvelocity&rdquo;</li>
+<li>Experience Editor Improvements</li>
+<li>Performance Improvements &ldquo;Reducing number of calls&rdquo;, &ldquo;Reduce the amount of data saved&rdquo;</li>
+</ul>
+<p>I look forward to seeing some benchmarks about the performance improvements, and what areas this covers. When I first read this I had thought this might mean Sql calls, but he explained at the User Group was referring to personalisation/tracking.
+Still he only listed out his top 5, and hopefully the performance improvements extends to other areas.</p>
+<h3 id="slide-35---paas---media-library-in-azure-blob-storage-">Slide 35 - PaaS - Media Library in Azure Blob Storage</h3>
+<p>There is a footnote on Slide 35 &amp; 36</p>
+<p>&ldquo;Media Library in Azure Blob Storage: Reduce the cost and increase the performance of storing media in Sitecore&rdquo;</p>
+<p>This is only listed for &ldquo;PaaS&rdquo; and the new &ldquo;Managed Cloud&rdquo;.</p>
+<p>However I&rsquo;d like to explore using Azure Blob Storage on Azure IaaS.
+Let&rsquo;s see if this is possible when Sitecore 9.3 comes out.</p>
+<p>I&rsquo;d also like to find out if the Azure Blob Storage implementation just replaces the backing storage.</p>
+<p>Or if it&rsquo;s possible to serve the files direct from Blob Storage, bypassing the Sitecore Media library handler/disk caching on the Content Delivery servers. (Possibly with some other technology/thin API layer to provider resizing functionality)</p>
+<h3 id="summary-">Summary</h3>
+<p>Using Azure Blob Storage for the Sitecore Media Library for me is the most exciting development of Sitecore 9.3 that I&rsquo;ve heard about so far, as could significantly reduce the size of the Sql databases.</p>
+<h3 id="notes-">Notes</h3>
+<p>Jammy Kam has customised Sitecore do use Azure Blob Storage for it&rsquo;s Media Library before
+<a href="https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/">https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/</a>
+<a href="https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/">https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/</a></p>
+<p>I wonder how similar the Sitecore implementation will be.</p>
 
 			</div>
 		</div>
@@ -176,21 +126,27 @@ When using visual studio this is all handled for you.<br /></p>
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/">setting up Visual Studio 2015 CTP 6</a></h3>
-					<span class="label label-primary">Sun Mar 8, 2015</span> in 
+				<h3><a href="http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/">Java goes commercial, what does this mean for Sitecore - Solr?</a></h3>
+					<span class="label label-primary">Sat Dec 15, 2018</span> in 
 					
 						
 						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
 					 using tags 			 
 					
 						
-						<a href="/tags/development">Development</a>
+						<a href="/tags/sitecore">Sitecore</a>
 					
 						 , 
-						<a href="/tags/visual-studio">Visual Studio</a>
+						<a href="/tags/solr">Solr</a>
 					
 						 , 
-						<a href="/tags/dotnet">DotNet</a>
+						<a href="/tags/java">Java</a>
+					
+						 , 
+						<a href="/tags/openjdk">OpenJDK</a>
 					
 				</small>
 			</div>
@@ -198,243 +154,260 @@ When using visual studio this is all handled for you.<br /></p>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				
+				<h1 id="oracle-to-start-charging-for-java-">Oracle to start charging for Java</h1>
+<p>I&rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</p>
+<p>I brought this topic up at the Sitecore Discussion Club<br>
+<a href="http://sitecore.events/">http://sitecore.events/</a></p>
+<p> </p>
 
-<h4 id="goals">Goals</h4>
+<picture>
 
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box_2.PNG" 
+    alt="Java Public Updates">
+</picture>
+<p> </p>
+<p>When I started to follow this, the policy for the LTS release of Java 11 hadn&rsquo;t been announced, and I was thinking would need to update to Java 11 to continue to get free updates.
+Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&rsquo;t support a version of Solr this high yet <a href="https://kb.sitecore.net/articles/227897,">https://kb.sitecore.net/articles/227897,</a> and anyway Java 11 is now not free anyway, so not an option to get free updates that way.</p>
+<p>Further reading:</p>
 <ul>
-<li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
-<li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
+<li><a href="https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event">https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event</a></li>
+<li><a href="https://www.oracle.com/technetwork/java/java-se-support-roadmap.html">https://www.oracle.com/technetwork/java/java-se-support-roadmap.html</a></li>
 </ul>
-
-<h4 id="how-to-do-it-what-i-learnt">How to do it/What I learnt</h4>
-
-<p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
-
+<h2 id="oracle-java---whats-the-cost-">Oracle Java - what&rsquo;s the cost?</h2>
+<p>The cost has come down since I started following this.</p>
+<p>Originally the price was:</p>
+<p> </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Per CPU</th>
+<th> </th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java SE Advanced</td>
+<td> </td>
+<td>$5,000</td>
+<td> </td>
+<td>$1,100</td>
+</tr>
+<tr>
+<td>Java SE Suite</td>
+<td> </td>
+<td>$15,000</td>
+<td> </td>
+<td>$3,300</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Which is quite a large up front cost, and continual support cost.</p>
+<p>Then it was announced the subscription licence, charging $25 per CPU per month with support. Going down to $12.50 with volume discount (possibly lower with Enterprise agreement), which works out cheaper than the previous licencing.</p>
+<ul>
+<li><a href="https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html">https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html</a></li>
+<li><a href="https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/">https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/</a></li>
+</ul>
+<h3 id="a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu-">A note on mapping an Oracle Processor Licence to an Azure vCPU:</h3>
+<p><a href="https://www.oracle.com/assets/cloud-licensing-070579.pdf">https://www.oracle.com/assets/cloud-licensing-070579.pdf</a></p>
 <blockquote>
-<p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
+<p>&ldquo;Microsoft Azure – count two vCPUs as equivalent to one Oracle Processor license if hyperthreading
+is enabled, and one vCPU as equivalent to one Oracle Processor license if hyperthreading
+is not enabled.&rdquo;</p>
 </blockquote>
-
-<p>So a VM should be used.
-So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&rsquo;t work on 64 bit PCs.
-So starting again, I downloaded <a href="https://www.virtualbox.org/">VirtualBox</a></p>
-
-<p>I then <a href="http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst">created a Windows 7 VM in VirtualBox</a>.<br/>
-Important Steps, create it with enough space, e.g. 50GB+. It&rsquo;s surprising how much space need for Windows &amp; Patching, as well as Visual Studio 2015.<br/>
-In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.</p>
-
-<p>Here is good article if need to <a href="http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html">change the space on the Virtual Box VM</a>, and update windows to use the extra space.<br/>
-The first steps about cloning are optional.<br/>
-The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
-
-<pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
-</code></pre>
-
-<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
-
-<p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
-
+<p>If you&rsquo;ve got 2 solr servers, and 3 zookeeper servers, all running as Quad Cores, that&rsquo;s 5x4=20 CPU&rsquo;s, which might be up to 20x$25=$500 a month. Or if the hyperthreading detail applies above, might ve $250 a month. And even cheaper if have a load of servers to volume licence. Would require Java licencing to confirm actual price for your particular scenario.</p>
+<h2 id="open-jdk-">Open JDK</h2>
+<p>What the alternative&rsquo;s to paying Oracle for commercial support?</p>
+<p>Open JDK is the alternative.</p>
+<p><a href="https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html">https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html</a></p>
+<h3 id="is-anyone-using-open-jdk-">Is anyone using Open JDK?</h3>
+<p>If you look at the docker community, most Docker images which use Java use an Open JDK variant.</p>
+<p>(was saying DEPRECATED - This image is officially deprecated in favor of the Open JDK image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)<br>
+<a href="https://hub.docker.com/_/java/">https://hub.docker.com/_/java/</a></p>
+<p>Shows previously issues/questions on legality of Java on Docker<br>
+<a href="https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/">https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/</a></p>
+<p>Explains issues, and update on support now<br>
+<a href="https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker">https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker</a></p>
+<p>Flow chart of which OpenJDK to choose for Docker<br>
+<a href="https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238">https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238</a></p>
+<p>Update on Oracle Java support for Docker<br>
+<a href="https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers">https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers</a></p>
+<p>Official Java Docker images, but appears have to sign up to see them.<br>
+<a href="https://hub.docker.com/_/oracle-serverjre-8">https://hub.docker.com/_/oracle-serverjre-8</a></p>
+<h3 id="there-are-many-version-of-open-jdk-but-which-version-should-i-use-">There are many version of Open JDK, but which version should I use?</h3>
+<p>This posts lists out the different flavours of the Open JDK<br>
+<a href="https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html">https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html</a></p>
+<p>Adopt Open JDK appears to be the main choice, with longer term updates, and actually free.<br>
+<a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a></p>
+<p>Red Hat are supporting it (and IBM which have now bought Red Hat)<br>
+<a href="https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/">https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/</a></p>
+<p>Amazon are releasing their own version of Open JDK, which they use internally, but still in public preview, but certainly one to look out for, and not just for use on AWS - can use off AWS which sounds awesome.</p>
 <ul>
-<li>Patch it to include SP1</li>
-<li>Patch it to include IE10/IE11</li>
-<li>Just patch it up to the latest version &amp; reboot</li>
+<li><a href="https://aws.amazon.com/corretto/">https://aws.amazon.com/corretto/</a></li>
+<li><a href="https://aws.amazon.com/corretto/faqs/#support">https://aws.amazon.com/corretto/faqs/#support</a></li>
+<li><a href="https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/">https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/</a></li>
 </ul>
+<p>I noticed on this tweet that the version of Java Azure App Service was running was Azul.<br>
+<a href="https://twitter.com/dancruickshank/status/1072541500058284034">https://twitter.com/dancruickshank/status/1072541500058284034</a></p>
+<p>A quick google later I found that was announced in September, that if you are an Azure customer, can use Azul Open JDK for no extra cost. So that&rsquo;s awesome too if you are an Azure customer, but this is just for use on Azure.</p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/">https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/</a></li>
+<li><a href="https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/">https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/</a></li>
+</ul>
+<h2 id="summary-">Summary</h2>
+<p>Ultimately you&rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the Open JDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the Open JDK you&rsquo;ve chosen.</p>
+<p>It would seem if looking to move to Docker &amp; Kubernetes eventually, then embracing the Open JDK seems to be the standard anyway.
+And even if Oracle engineers aren&rsquo;t going to be supporting the Open JDK anymore, got a choice of Red Hat/IBM, Amazon and Azul (free on Azure) to go for.</p>
 
-<p>If you don&rsquo;t patch it to SP1, then won&rsquo;t be able to install Visual Studio.<br />
-And if you don&rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this <a href="http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop">forum thread</a><br />
-<strong>Summary just patch your VM to the latest version</strong></p>
-
-<p>Having got a Patched VM, with enough disk space.
-Then install Visual Studio 2015 CTP 6.
-I used the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Visual Studio 2015 Ultimate Web Installer</a> released on 23rd of February 2015.
-And just installed the default options.</p>
-
-<p>You&rsquo;ll also want to install the K runtime.<br />
-First install the K Version Manager(KVM) in Powershell as an administrator.</p>
-
-<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))&quot;
-</code></pre>
-
-<p>As detailed on the <a href="https://github.com/aspnet/home">Asp.net Github page</a></p>
-
-<p>Now KVM is installed, you&rsquo;ll want to get the K runtime.</p>
-
-<pre><code>kvm upgrade
-</code></pre>
-
-<p>Having done that you can see what is installed by calling</p>
-
-<pre><code>kvm list
-</code></pre>
-
-<p>And you should see something like:<br />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/">Why Sticky Session on Sitecore Content Authoring</a></h3>
+					<span class="label label-primary">Sat Dec 15, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/stickysession">StickySession</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/inproc">InProc</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring-">Why have to use InProc session state on Sitecore Content Authoring</h2>
+<p>A note on why InProc session state &amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.</p>
+<p><a href="https://kb.sitecore.net/articles/860809">https://kb.sitecore.net/articles/860809</a></p>
+<h2 id="bad-practice-to-use-sticky-sessions-">Bad Practice to use Sticky Sessions</h2>
+<p>A quick intro on why Sticky Sessions are bad.
+<a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out">https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out</a></p>
+<blockquote>
+<p><strong>Avoid instance stickiness.</strong> Stickiness, or session affinity, is when requests from the same client are always routed to the same server. Stickiness limits the application&rsquo;s ability to scale out. For example, traffic from a high-volume user will not be distributed across instances. Causes of stickiness include storing session state in memory, and using machine-specific keys for encryption. Make sure that any instance can handle any request.</p>
+</blockquote>
+<p>Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br>
+E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.<br>
+Or if you use sticky sessions via IP address, and lots of people work in the same office, all of that office will be allocated to the same machine.</p>
+<p> </p>
 
 <picture>
 
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_650x0_resize_q100_box.PNG">
+
+
+
+
+
 	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box.PNG" 
-    alt="KVM list">
-</picture></p>
 
-<p>Notice is used the \.k\ folder, earlier version where using \.kre\.
-You may read older documentation that refers to \.kre\.</p>
 
-<p>You may want to look at switching to use the coreclr runtime as the Active version.</p>
 
-<pre><code>kvm use 1.0.0-beta3 -x64 -r coreclr
-</code></pre>
 
-<p>followed by</p>
-
-<pre><code>kvm list
-</code></pre>
-
-<p>And you should see something like, notice the Active * has now updated:<br />
-
-<picture>
 
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_650x0_resize_q100_box.PNG">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_555x0_resize_q100_box.jpg">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box.PNG">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box.PNG" 
-    alt="KVM list">
-</picture></p>
-
-<p>Now you&rsquo;ve got a VM, K runtime setup.</p>
-
-<p>Open up visual studio and create a new project.<br />
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box.PNG" 
-    alt="Visual Studio Create Project">
-</picture></p>
-
-<p>Select a blank project<br />
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box.PNG" 
-    alt="Select blank project">
-</picture></p>
-
-<p>Now have that created, let&rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line</p>
-
-<pre><code>app.UseWelcomePage();
-</code></pre>
-
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box.PNG" 
-    alt="Modify startup.cs">
+    src="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg" 
+    alt="Sticky Session">
 </picture>
-
-<p>This won&rsquo;t compile at the moment as you don&rsquo;t have a reference to the extension method.</p>
-
-<p>To do that open project.json, and add a reference to &ldquo;Microsoft.AspNet.Diagnostics&rdquo;: &ldquo;1.0.0-beta3&rdquo;
-I&rsquo;ve also added some references to &ldquo;Microsoft.AspNet.Hosting&rdquo; &amp; &ldquo;Microsoft.AspNet.Server.WebListener&rdquo;, and added the command &ldquo;web&rdquo;, so can launch the site from the command prompt.
+<p> </p>
+<h2 id="redis-provider-network-stability-">Redis provider network stability</h2>
+<p>The Stack Exchange redis session state provider at the time often had network stability issues, particularly on Azure Redis (TLS)
+<a href="https://github.com/StackExchange/StackExchange.Redis/issues/871">https://github.com/StackExchange/StackExchange.Redis/issues/871</a><br>
+Version 2 has since been released, which would be worth testing to see how much this has improved the issue.</p>
+<h2 id="too-much-data-being-put-into-session-state-">Too much data being put into Session state</h2>
+<p>However, another issue which couldn&rsquo;t be solved, was that too much data was being stored in session state.</p>
+<ul>
+<li>228534 - Jsnlog entries spam session storage</li>
+<li>228355 - Validation related objects spam session storage</li>
+</ul>
+<p>The JsnLog entries can be disabled by changing
+\App_Config\Include\Sitecore.JSNLog.config &lt;jsnlog enabled=&quot;false&rdquo;</p>
+<p>For validation though, there is no easy work around.
+You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.</p>
+<h2 id="aspnet-webforms-legacy-">ASP.NET WebForms Legacy</h2>
+<p>And this is on top of the Content Editor still using WebForms with ViewState and ControlState needing to be stored to a shared medium, which may as well also be Redis is using a Redis session state provider. (Although a Database is another option if you have spare DTUs, why not be consistent)</p>
+<h2 id="redis-is-designed-for-small-objects-">Redis is designed for small objects</h2>
+<p><a href="https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/">https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/</a></p>
+<blockquote>
+<p>Redis Server and StackExchange.Redis are optimized for many small requests rather than fewer large requests.  Splitting your data into smaller chunks may improve things here</p>
+</blockquote>
+<p>A large session state, viewstate, control state isn&rsquo;t going to help.</p>
+<p> </p>
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box.PNG">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box_2.png">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box.PNG">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box_2.png">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box.PNG" 
-    alt="Modify project.json">
+    src="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box_2.png" 
+    alt="Redis Logo">
 </picture>
-<br/>
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;.
-When you save the file, visual studio should automatically restore the packages from NuGet.</p>
-
-<p>In visual studio you can configure which version of K the application uses
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box.PNG" 
-    alt="VS configure KRE version">
-</picture></p>
-
-<p>You should either now be able to launch the site from either Visual Studio or Command prompt.</p>
-
-<p>To start the site via command prompt, navigate to the website directory, and run</p>
-
-<pre><code>k web
-</code></pre>
-
-<p>Now you can navigate to the site as defined in the project.json configuration</p>
-
-
-<picture>
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box.PNG" 
-    alt="Startup Page">
-</picture>
+<p> </p>
+<h2 id="summary-">Summary</h2>
+<p>Ultimately right now, to have more than once Content Authoring server, you have to use Sticky Sessions and InProc session state.</p>
+<p>Looking forward to a future version of Sitecore allowing to get away from Sticky Sessions on Content Authoring, either by reducing the amount of data needed in Session Storage, or getting away from Viewstate &amp; ControlState - perhaps with Sitecore Horizon the new editor built in Angular.</p>
 
 			</div>
 		</div>
@@ -454,13 +427,12 @@ When you save the file, visual studio should automatically restore the packages 
 
 <ul class="pagination">
     
-    <li>
-        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -468,36 +440,68 @@ When you save the file, visual studio should automatically restore the packages 
     
     
     
-        
-        
-    
-    
-    <li
-    ><a href="/">1</a></li>
-    
-    
-    
-    
-    
     
         
         
     
     
-    <li
-    class="active"><a href="/page/2/">2</a></li>
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
     
     
-    <li
-    class="disabled">
-    <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/page/2/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
+
 
                 </div>
             </div>
@@ -513,7 +517,7 @@ When you save the file, visual studio should automatically restore the packages 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

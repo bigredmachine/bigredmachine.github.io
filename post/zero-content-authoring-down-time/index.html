@@ -82,56 +82,52 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h1 id="zero-down-time-for-delivery-authoring">Zero down time for Delivery &amp; Authoring</h1>
-
+			<h1 id="zero-down-time-for-delivery--authoring-">Zero down time for Delivery &amp; Authoring</h1>
 <p>A lot of people talk about zero downtime, but normally just in the context of Content Delivery.
 Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.</p>
-
-<p>However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.<br />
+<p>However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.<br>
 <a href="https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html">https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html</a></p>
-
 <p>*Or as near to Zero as possible as the users Session state will expire, as <a href="http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/">Sitecore requires InProc session state provider on Content Authoring</a>.</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 
 <picture>
 
+
+
+
+
+
+	
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_650x0_resize_q100_box.jpg">
+    srcset="/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_620x0_resize_q100_box.jpg">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg">
+    srcset="/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg">
 	
   <img 
-    src="/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg" 
+    src="/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg" 
     alt="Zero downtime">
 </picture>
-
-<p>&nbsp;</p>
-
-<p>I brought up in the sitecore discussion club slack channel that this is an area would like to discuss further, as trying to schedule deployments out of hours isn&rsquo;t great for those who are doing the deployment, and disruptive to the editors who are trying to enter content.<br />
+<p> </p>
+<p>I brought up in the sitecore discussion club slack channel that this is an area would like to discuss further, as trying to schedule deployments out of hours isn&rsquo;t great for those who are doing the deployment, and disruptive to the editors who are trying to enter content.<br>
 And was put in touch on Slack with the author.</p>
-
-<p>Also at the last Sitecore Discussion club (<a href="http://sitecore.events/">http://sitecore.events/</a>), the author of this article was there, and presented this idea to the group.</p>
-
+<p>Also at the last Sitecore Discussion club (<a href="http://sitecore.events/),">http://sitecore.events/),</a> the author of this article was there, and presented this idea to the group.</p>
 <p>It was interesting to hear that this was created to avoid getting up early to deploy before the authors were in, and that has been used in production, so the idea works.</p>
-
-<p>Although the architecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.<br />
+<p>Although the architecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.<br>
 There is no reason this can&rsquo;t be updated to use Azure Message Queue, two independent complete stacks (Content Delivery, Content Authoring, SolrCloud).</p>
-
 <p>At the group we also discussed some of the limitations/ideas</p>
-
 <ul>
 <li>rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&rsquo;t be a frequent occurrence, so might be acceptable.</li>
 <li>transformation layer, say a field had been renamed, a layer between deserializing the message, and applying it to sitecore, would allow the message to be intercepted and updated to the new deployments expected format.</li>
 <li>recording content editoring activity like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.</li>
 </ul>
-
 <p>It&rsquo;s an idea worth exploring further, more updates as we try this out ourselves.</p>
 
 		</div>
@@ -148,7 +144,7 @@ There is no reason this can&rsquo;t be updated to use Azure Message Queue, two i
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

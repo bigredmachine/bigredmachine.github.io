@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MVP on Ian&#39;s Blog</title>
+    <link>http://bigredmachine.github.io/tags/mvp/</link>
+    <description>Recent content in MVP on Ian&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://bigredmachine.github.io/tags/mvp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sitecore MVP 2020 - Technology</title>
+      <link>http://bigredmachine.github.io/post/mvp-2020/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/post/mvp-2020/</guid>
+      <description>Sitecore MVP 2020 - Technology I&amp;rsquo;m thankful to receive my 1st Sitecore MVP award in the Technology category for 2020.
+    I&amp;rsquo;ve been using Sitecore since Sitecore 6 in 2011.
+Keep sharing and trying if didn&amp;rsquo;t make it this year, this is my first year I&amp;rsquo;ve been fortunate enough to be selected for the MVP award after several years of applying. Although it&amp;rsquo;s not enough to just keep on applying, you can&amp;rsquo;t get the award if you don&amp;rsquo;t apply, and you might get some feedback what you need to improve upon.</description>
+    </item>
+    
+  </channel>
+</rss>

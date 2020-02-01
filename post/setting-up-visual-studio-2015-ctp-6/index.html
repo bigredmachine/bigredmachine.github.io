@@ -76,241 +76,280 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h4 id="goals">Goals</h4>
-
+			<h4 id="goals-">Goals</h4>
 <ul>
 <li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
 <li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
 </ul>
-
-<h4 id="how-to-do-it-what-i-learnt">How to do it/What I learnt</h4>
-
+<h4 id="how-to-do-itwhat-i-learnt-">How to do it/What I learnt</h4>
 <p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
-
 <blockquote>
 <p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
 </blockquote>
-
 <p>So a VM should be used.
 So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&rsquo;t work on 64 bit PCs.
 So starting again, I downloaded <a href="https://www.virtualbox.org/">VirtualBox</a></p>
-
 <p>I then <a href="http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst">created a Windows 7 VM in VirtualBox</a>.<br/>
 Important Steps, create it with enough space, e.g. 50GB+. It&rsquo;s surprising how much space need for Windows &amp; Patching, as well as Visual Studio 2015.<br/>
 In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.</p>
-
 <p>Here is good article if need to <a href="http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html">change the space on the Virtual Box VM</a>, and update windows to use the extra space.<br/>
 The first steps about cloning are optional.<br/>
 The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
-
 <pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
 </code></pre>
-
-<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
-
+<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&quot;, and allocate the extra space.</p>
 <p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
-
 <ul>
 <li>Patch it to include SP1</li>
 <li>Patch it to include IE10/IE11</li>
 <li>Just patch it up to the latest version &amp; reboot</li>
 </ul>
-
 <p>If you don&rsquo;t patch it to SP1, then won&rsquo;t be able to install Visual Studio.<br />
 And if you don&rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this <a href="http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop">forum thread</a><br />
 <strong>Summary just patch your VM to the latest version</strong></p>
-
 <p>Having got a Patched VM, with enough disk space.
 Then install Visual Studio 2015 CTP 6.
 I used the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Visual Studio 2015 Ultimate Web Installer</a> released on 23rd of February 2015.
 And just installed the default options.</p>
-
 <p>You&rsquo;ll also want to install the K runtime.<br />
 First install the K Version Manager(KVM) in Powershell as an administrator.</p>
-
 <pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))&quot;
 </code></pre>
-
 <p>As detailed on the <a href="https://github.com/aspnet/home">Asp.net Github page</a></p>
-
 <p>Now KVM is installed, you&rsquo;ll want to get the K runtime.</p>
-
 <pre><code>kvm upgrade
 </code></pre>
-
 <p>Having done that you can see what is installed by calling</p>
-
 <pre><code>kvm list
 </code></pre>
-
 <p>And you should see something like:<br />
 
 <picture>
 
+
+
+
+
+
+	
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG" 
     alt="KVM list">
 </picture></p>
-
 <p>Notice is used the \.k\ folder, earlier version where using \.kre\.
 You may read older documentation that refers to \.kre\.</p>
-
 <p>You may want to look at switching to use the coreclr runtime as the Active version.</p>
-
 <pre><code>kvm use 1.0.0-beta3 -x64 -r coreclr
 </code></pre>
-
 <p>followed by</p>
-
 <pre><code>kvm list
 </code></pre>
-
 <p>And you should see something like, notice the Active * has now updated:<br />
 
 <picture>
 
+
+
+
+
+
+	
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG" 
     alt="KVM list">
 </picture></p>
-
 <p>Now you&rsquo;ve got a VM, K runtime setup.</p>
-
 <p>Open up visual studio and create a new project.<br />
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG" 
     alt="Visual Studio Create Project">
 </picture></p>
-
 <p>Select a blank project<br />
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG" 
     alt="Select blank project">
 </picture></p>
-
 <p>Now have that created, let&rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line</p>
-
 <pre><code>app.UseWelcomePage();
 </code></pre>
 
-
 <picture>
+
+
+
+
+
+
+	
+
+
+	
+
+
+
 
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG" 
     alt="Modify startup.cs">
 </picture>
-
 <p>This won&rsquo;t compile at the moment as you don&rsquo;t have a reference to the extension method.</p>
-
 <p>To do that open project.json, and add a reference to &ldquo;Microsoft.AspNet.Diagnostics&rdquo;: &ldquo;1.0.0-beta3&rdquo;
 I&rsquo;ve also added some references to &ldquo;Microsoft.AspNet.Hosting&rdquo; &amp; &ldquo;Microsoft.AspNet.Server.WebListener&rdquo;, and added the command &ldquo;web&rdquo;, so can launch the site from the command prompt.
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG" 
     alt="Modify project.json">
 </picture>
 <br/>
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;.
+Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;. 
 When you save the file, visual studio should automatically restore the packages from NuGet.</p>
-
 <p>In visual studio you can configure which version of K the application uses
 
 <picture>
 
+
+
+
+
+
+	
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG" 
     alt="VS configure KRE version">
 </picture></p>
-
 <p>You should either now be able to launch the site from either Visual Studio or Command prompt.</p>
-
 <p>To start the site via command prompt, navigate to the website directory, and run</p>
-
 <pre><code>k web
 </code></pre>
-
 <p>Now you can navigate to the site as defined in the project.json configuration</p>
-
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box.PNG">
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box.PNG" 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG" 
     alt="Startup Page">
 </picture>
 
@@ -328,7 +367,7 @@ When you save the file, visual studio should automatically restore the packages 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

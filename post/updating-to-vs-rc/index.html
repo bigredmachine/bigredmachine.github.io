@@ -76,89 +76,84 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h4 id="updating-from-vs2015-ctp6-to-rc">Updating from VS2015 CTP6 to RC</h4>
-
+			<h4 id="updating-from-vs2015-ctp6-to-rc-">Updating from VS2015 CTP6 to RC</h4>
 <p>A number of changes have been made to names.</p>
-
 <p>Watch this for further details:</p>
-
 <p><a href="https://www.youtube.com/watch?v=-qt0POsiAF8">Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename</a></p>
-
 <p>Key slides:</p>
-
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box.PNG">
+    srcset="/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box.PNG">
+    srcset="/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box.PNG" 
+    src="/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box_2.PNG" 
     alt="Renamed tools">
 </picture>
 
-
 <picture>
+
+
+
+
+
+
+
+
+
 
   <source 
     media="(min-width: 650px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box.PNG">
+    srcset="/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box.PNG">
+    srcset="/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box.PNG" 
+    src="/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box_2.PNG" 
     alt="Renamed folder and packages">
 </picture>
-
 <p>If you install visual studio, the DNVM and DNX will be setup for you.<br />
 To install Visual Studio RC, first uninstall visual studio CTP 6.<br />
 If you aren&rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&rsquo;ll need Powershell V3 for this.</p>
-
 <pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;&amp;{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}&quot;
 </code></pre>
-
 <p>Then to install .NET Execution Environment (DNX) run the following command</p>
-
 <pre><code>dnvm upgrade
 </code></pre>
-
 <p>I got some warnings, to remove the old environmental variable KRE_HOME</p>
-
 <blockquote>
 <p>WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment</p>
 </blockquote>
-
 <p>To see what is installed, and what is the default run.</p>
-
 <pre><code>dnvm list
 </code></pre>
-
 <p>To set the coreclr to be used run</p>
-
 <pre><code>dnvm use 1.0.0-beta4 -x64 -r coreclr
 </code></pre>
-
 <p>Then to run the web server</p>
-
 <pre><code>dnx . web
 </code></pre>
-
 <p>When running &ldquo;dnx &ndash;watch . web&rdquo; from the command line, when any code changes are made, the server will stop, but not restart.<br />
 In order to get the server to restart after a code change something like this is needed.<br />
 When using visual studio this is all handled for you.<br /></p>
-
-<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;for(;;) { Write-Output \&quot;Starting...\&quot;; dnx --watch . web }&quot;
-</code></pre>
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;for(;;) { Write-Output \&quot;Starting...\&quot;; dnx --watch . web }&quot;</code></pre>
 
 		</div>
 	</div>
@@ -174,7 +169,7 @@ When using visual studio this is all handled for you.<br /></p>
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

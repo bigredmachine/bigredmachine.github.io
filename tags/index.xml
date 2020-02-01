@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ian&#39;s Blog</title>
@@ -6,10 +6,199 @@
     <description>Recent content in Tags on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Feb 2018 20:49:38 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://bigredmachine.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MVP</title>
+      <link>http://bigredmachine.github.io/tags/mvp/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/mvp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sitecore</title>
+      <link>http://bigredmachine.github.io/tags/sitecore/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/sitecore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Solr</title>
+      <link>http://bigredmachine.github.io/tags/solr/</link>
+      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/solr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AzureAD</title>
+      <link>http://bigredmachine.github.io/tags/azuread/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/azuread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blob Storage</title>
+      <link>http://bigredmachine.github.io/tags/blob-storage/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/blob-storage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Federated Authentication</title>
+      <link>http://bigredmachine.github.io/tags/federated-authentication/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/federated-authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Media Library</title>
+      <link>http://bigredmachine.github.io/tags/media-library/</link>
+      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/media-library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BlueGreen</title>
+      <link>http://bigredmachine.github.io/tags/bluegreen/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/bluegreen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ContentFreeze</title>
+      <link>http://bigredmachine.github.io/tags/contentfreeze/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/contentfreeze/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Downtime</title>
+      <link>http://bigredmachine.github.io/tags/downtime/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/downtime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>InProc</title>
+      <link>http://bigredmachine.github.io/tags/inproc/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/inproc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>http://bigredmachine.github.io/tags/java/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenJDK</title>
+      <link>http://bigredmachine.github.io/tags/openjdk/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/openjdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>StickySession</title>
+      <link>http://bigredmachine.github.io/tags/stickysession/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/stickysession/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DTU</title>
+      <link>http://bigredmachine.github.io/tags/dtu/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/dtu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LinkDB</title>
+      <link>http://bigredmachine.github.io/tags/linkdb/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/linkdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Speed</title>
+      <link>http://bigredmachine.github.io/tags/speed/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/speed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bug</title>
+      <link>http://bigredmachine.github.io/tags/bug/</link>
+      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/bug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crawling</title>
+      <link>http://bigredmachine.github.io/tags/crawling/</link>
+      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/crawling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Indexing</title>
+      <link>http://bigredmachine.github.io/tags/indexing/</link>
+      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/indexing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Upgrade</title>
+      <link>http://bigredmachine.github.io/tags/upgrade/</link>
+      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://bigredmachine.github.io/tags/upgrade/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Azure</title>
@@ -39,60 +228,6 @@
     </item>
     
     <item>
-      <title>Azuread</title>
-      <link>http://bigredmachine.github.io/tags/azuread/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/azuread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Blob Storage</title>
-      <link>http://bigredmachine.github.io/tags/blob-storage/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/blob-storage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bluegreen</title>
-      <link>http://bigredmachine.github.io/tags/bluegreen/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/bluegreen/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bug</title>
-      <link>http://bigredmachine.github.io/tags/bug/</link>
-      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/bug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Contentfreeze</title>
-      <link>http://bigredmachine.github.io/tags/contentfreeze/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/contentfreeze/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Crawling</title>
-      <link>http://bigredmachine.github.io/tags/crawling/</link>
-      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/crawling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Development</title>
       <link>http://bigredmachine.github.io/tags/development/</link>
       <pubDate>Fri, 09 Feb 2018 20:49:38 +0000</pubDate>
@@ -102,137 +237,11 @@
     </item>
     
     <item>
-      <title>Dotnet</title>
+      <title>DotNet</title>
       <link>http://bigredmachine.github.io/tags/dotnet/</link>
       <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/tags/dotnet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Downtime</title>
-      <link>http://bigredmachine.github.io/tags/downtime/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/downtime/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dtu</title>
-      <link>http://bigredmachine.github.io/tags/dtu/</link>
-      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/dtu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Federated Authentication</title>
-      <link>http://bigredmachine.github.io/tags/federated-authentication/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/federated-authentication/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Indexing</title>
-      <link>http://bigredmachine.github.io/tags/indexing/</link>
-      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/indexing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Inproc</title>
-      <link>http://bigredmachine.github.io/tags/inproc/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/inproc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>http://bigredmachine.github.io/tags/java/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linkdb</title>
-      <link>http://bigredmachine.github.io/tags/linkdb/</link>
-      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/linkdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Media Library</title>
-      <link>http://bigredmachine.github.io/tags/media-library/</link>
-      <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/media-library/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Openjdk</title>
-      <link>http://bigredmachine.github.io/tags/openjdk/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/openjdk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sitecore</title>
-      <link>http://bigredmachine.github.io/tags/sitecore/</link>
-      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/sitecore/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Solr</title>
-      <link>http://bigredmachine.github.io/tags/solr/</link>
-      <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/solr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Speed</title>
-      <link>http://bigredmachine.github.io/tags/speed/</link>
-      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/speed/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Stickysession</title>
-      <link>http://bigredmachine.github.io/tags/stickysession/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/stickysession/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Upgrade</title>
-      <link>http://bigredmachine.github.io/tags/upgrade/</link>
-      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://bigredmachine.github.io/tags/upgrade/</guid>
       <description></description>
     </item>
     

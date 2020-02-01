@@ -79,18 +79,12 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h4 id="fun-with-logic-apps-azure-functions-and-twitter">Fun with logic apps, Azure functions and twitter</h4>
-
+			<h4 id="fun-with-logic-apps-azure-functions-and-twitter-">Fun with logic apps, Azure functions and twitter</h4>
 <p>While studying for the Microsoft 70-532 exam,
 I wanted to take a look at Azure functions &amp; Logics apps.</p>
-
 <p>Having gone through this example
 <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email">&ldquo;Create a function that integrates with Azure Logic Apps&rdquo;</a></p>
-
 <p>It left me with some questions on how to improve it. E.g. I don&rsquo;t want to receive an email per tweet.</p>
-
 <p>So after some searching, I came across a new feature called batching
 <a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages">&ldquo;Send, receive, and batch process messages in logic apps&rdquo;</a>
 but even after the batch had been reached,
@@ -98,76 +92,108 @@ each message in the batch would result in an individual email.
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box.PNG" 
+    src="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box_2.PNG" 
     alt="Logic apps Compose">
 </picture></p>
-
 <p>Then I came across this blog
 <a href="http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/">&ldquo;Azure Logic Apps – Aggregate a value from an array of messages&rdquo;</a></p>
-
 <p>And the Compose feature was what I wanted.
 Composing first the message I want out of each tweet.
 Then combining those messages together, into the format I want to email.</p>
 
-
 <picture>
+
+
+
+
+
+
+	
+
+
+
+
 
   <source 
     media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_650x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_583x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box.PNG" 
+    src="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box_2.PNG" 
     alt="Logic apps Compose">
 </picture>
-
 <p>I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
 <a href="https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134">&ldquo;How to Exclude retweets and replies in a search api&rdquo;</a>
 <a href="http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/">&ldquo;How to master twitter search&rdquo;</a></p>
 
-
 <picture>
+
+
+
+
+
+
+
+
+
 
   <source 
     media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box.PNG" 
+    src="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box_2.PNG" 
     alt="Search Tweets">
 </picture>
-
 <p>And here is the final result, twitter search result of original tweets filtered by language combined into a single email
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box.PNG">
+    srcset="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box.PNG" 
+    src="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG" 
     alt="Combined Email">
 </picture></p>
 
@@ -185,7 +211,7 @@ Then combining those messages together, into the format I want to email.</p>
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

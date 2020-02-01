@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ian&#39;s Blog on Ian&#39;s Blog</title>
@@ -6,8 +5,109 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Sitecore MVP 2020 - Technology</title>
+            <link>http://bigredmachine.github.io/post/mvp-2020/</link>
+            <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+            
+            <guid>http://bigredmachine.github.io/post/mvp-2020/</guid>
+            <description>&lt;h2 id=&#34;sitecore-mvp-2020---technology-&#34;&gt;Sitecore MVP 2020 - Technology&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m thankful to receive my 1st Sitecore MVP award in the Technology category for 2020.&lt;/p&gt;
+&lt;a href=&#34;https://mvp.sitecore.com/&#34;&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+	
+		
+	
+	
+		
+	
+	
+
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;MVP&#34;&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;a href=&#34;https://mvp.sitecore.com/&#34;&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+	
+		
+	
+	
+		
+	
+	
+
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;MVP&#34;&gt;
+&lt;/picture&gt;
+&lt;/a&gt;
+&lt;p&gt;I&amp;rsquo;ve been using Sitecore since Sitecore 6 in 2011.&lt;/p&gt;
+&lt;p&gt;Keep sharing and trying if didn&amp;rsquo;t make it this year, this is my first year I&amp;rsquo;ve been fortunate enough to be selected for the MVP award after several years of applying. &lt;br /&gt;
+Although it&amp;rsquo;s not enough to just keep on applying, you can&amp;rsquo;t get the award if you don&amp;rsquo;t apply, and you might get some feedback what you need to improve upon.&lt;/p&gt;
+&lt;p&gt;A lot of my activity with Sitecore might not be publicly visible, and probably explains why I&amp;rsquo;ve not received this award previously.&lt;br /&gt;
+Digging out dotpeek, finding the root cause of an issue, and possibly supplying a fix on occasion to Sitecore support for review (of course would always prefer to use an official hotfix, but to prove have found the problem &amp;amp; working solution I might get there first). &lt;br /&gt;
+Or again using dotpeek finding a way to add in support for a feature that isn&amp;rsquo;t currently supported, and sharing the approach with Sitecore to make it easier to extend in future upgrades, or be integrated into the product in the future.&lt;br /&gt;
+This might not be visible to the community straight away, but hopefully makes the product better in the long run.&lt;/p&gt;
+&lt;p&gt;Now with the new single Hotfix model per version of Sitecore, these identified issues fixes are more likely to get into the product quicker, as well as making upgrades easier.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been trying to share what I&amp;rsquo;m up to, either blogging, asking/answering questions on Stack Exchange, or presenting when I can.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve also been on a train the trainer course on .net core, Docker, K8s and AKS, and delivered this training.&lt;/p&gt;
+&lt;p&gt;As well as attended a course on improving my public speaking skills.&lt;/p&gt;
+&lt;p&gt;All of which has helped me practice my public speaking.&lt;/p&gt;
+&lt;p&gt;Special mentions to &lt;a href=&#34;https://scug.co.uk/&#34;&gt;Sitecore User Group UK&lt;/a&gt; and &lt;a href=&#34;http://sitecore.events/&#34;&gt;Sitecore Discussion Club&lt;/a&gt; for letting me present.&lt;br /&gt;
+And &lt;a href=&#34;https://twitter.com/steviemcgill&#34;&gt;Steve McGill&lt;/a&gt; and &lt;a href=&#34;https://twitter.com/SitecoreMartin&#34;&gt;Martin Miles&lt;/a&gt; for running them.&lt;/p&gt;
+&lt;p&gt;As well as to the Sitecore Support &amp;amp; Product teams for collaborating on tickets, and working on getting the fixes/enhancements into the product.&lt;/p&gt;
+&lt;p&gt;Plus of course the awesome Sitecore community, whether that&amp;rsquo;s Twitter, Sitecore Slack, Blogs, &lt;a href=&#34;https://sitecore.stackexchange.com/&#34;&gt;Sitecore StackExchange&lt;/a&gt;, &lt;a href=&#34;https://scug.co.uk/&#34;&gt;SCUG Meetups&lt;/a&gt; &amp;amp; &lt;a href=&#34;http://sitecore.events/&#34;&gt;Sitecore Discussion Club&lt;/a&gt;, SUGCON, Symposium etc.&lt;/p&gt;
+&lt;p&gt;As well as the awesome team I work with, but as this is my personal blog I&amp;rsquo;ll leave it at that.&lt;/p&gt;
+&lt;p&gt;Thanks for reading my blog, more to follow!&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -17,24 +117,14 @@
             <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</guid>
-            <description>
-
-&lt;h2 id=&#34;improving-the-siteore-solr-content-search-provider&#34;&gt;Improving the Siteore Solr Content Search Provider&lt;/h2&gt;
-
+            <description>&lt;h2 id=&#34;improving-the-siteore-solr-content-search-provider-&#34;&gt;Improving the Siteore Solr Content Search Provider&lt;/h2&gt;
 &lt;p&gt;Back in February this year I gave a presentation at the &lt;a href=&#34;https://www.meetup.com/sug-uk/events/258462625/&#34;&gt;London Sitecore User Group&lt;/a&gt; &amp;ldquo;Improving the Solr Content Search Provider&amp;rdquo;.&lt;/p&gt;
-
 &lt;p&gt;My first talk at a Sitecore User group.&lt;/p&gt;
-
 &lt;p&gt;Although I regularly attend the Sitecore discussion club, and have presented there on several occasions.&lt;/p&gt;
-
-&lt;h2 id=&#34;known-bugs&#34;&gt;Known bugs&lt;/h2&gt;
-
+&lt;h2 id=&#34;known-bugs-&#34;&gt;Known bugs&lt;/h2&gt;
 &lt;p&gt;At the presentation I included a link to a &lt;a href=&#34;https://github.com/bigredmachine/sitecore-solr&#34;&gt;github repository&lt;/a&gt; with a list of known issues and their public reference numbers.&lt;/p&gt;
-
 &lt;p&gt;The list of issues will vary between Sitecore versions, I&amp;rsquo;ve included the list of issues I&amp;rsquo;ve come across between Sitecore 8.2 up to Sitecore 9.0 update 2.&lt;/p&gt;
-
 &lt;p&gt;Including:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Partially rebuilt index going live - 96016 - IIS recycle - switches Alias although indexing job cancelled/incomplete - fixed in Sitecore 9 initial release&lt;/li&gt;
 &lt;li&gt;OptimizeOnRebuildEnabled setting not used - was in bug fix 96016 - introduced in Sitecore 9 initial release&lt;/li&gt;
@@ -43,79 +133,68 @@
 &lt;li&gt;If IndexAllFields=false the IncludedFields are indexed as string values - New bug in Sitecore 9 - 252532&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/&#34;&gt;Index rebuild slow down after Sitecore 9 upgrade&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;common-patterns-for-distributed-computing&#34;&gt;Common Patterns for distributed computing&lt;/h2&gt;
-
+&lt;h2 id=&#34;common-patterns-for-distributed-computing-&#34;&gt;Common Patterns for distributed computing&lt;/h2&gt;
 &lt;p&gt;The github repostiory also included an example implementation of patterns to address some of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing&#34;&gt;fallacies of distributed computing&lt;/a&gt;.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Circuit Breaker Pattern
-
 &lt;ul&gt;
 &lt;li&gt;Don&amp;rsquo;t make every request wait for a timeout exception, use a circuit breaker to fail fast, so can handle load under a degraded scenario&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Not swallowing errors
-
 &lt;ul&gt;
 &lt;li&gt;We want to know the difference between no results, and an error.&lt;/li&gt;
 &lt;li&gt;The circuit breaker can&amp;rsquo;t work if we don&amp;rsquo;t know what&amp;rsquo;s an error.&lt;/li&gt;
 &lt;li&gt;If we don&amp;rsquo;t know the difference then we might cache there are no results, when there are results, but just couldn&amp;rsquo;t retrieve the results.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Shorter timeouts for queries
-
 &lt;ul&gt;
 &lt;li&gt;Again, we want queries to fail fast, and for the circuit breaker to kick in. But we can allow longer for indexing operations to take place, especially as there is no retry mechanism on the crawling/indexing side.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;comparison-of-the-other-options-out-of-the-box&#34;&gt;Comparison of the other options out of the box&lt;/h2&gt;
-
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;comparison-of-the-other-options-out-of-the-box-&#34;&gt;Comparison of the other options out of the box&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Sitecore Query&lt;/li&gt;
 &lt;li&gt;Sitecore Fast Query&lt;/li&gt;
 &lt;li&gt;Links Database&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;Related blog posts:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&#34;&gt;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&#34;&gt;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/&#34;&gt;What&amp;rsquo;s wrong with the links database&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;On reasons not to use each of them, at least on Content Delivery, or when querying over lots of items.&lt;/p&gt;
-
-&lt;h2 id=&#34;a-list-of-other-alternatives&#34;&gt;A list of other alternatives&lt;/h2&gt;
-
+&lt;h2 id=&#34;a-list-of-other-alternatives-&#34;&gt;A list of other alternatives&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Lucene
-
 &lt;ul&gt;
 &lt;li&gt;Per server copy to maintain&lt;/li&gt;
 &lt;li&gt;Removed in Sitecore 9.3&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Elastic Search
-
 &lt;ul&gt;
 &lt;li&gt;No Sitecore Search Provider&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Coveo
-
 &lt;ul&gt;
 &lt;li&gt;Not a total replacement, would need Coveo + another search provider, so would need considering after chosen initial search provider.&lt;/li&gt;
 &lt;li&gt;Commercial Cost&lt;/li&gt;
 &lt;li&gt;Supported Sitecore Search Provider&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Algolia
-
 &lt;ul&gt;
 &lt;li&gt;Hosted search&lt;/li&gt;
 &lt;li&gt;No official Sitecore Search Provider, but used in community.&lt;/li&gt;
 &lt;li&gt;Not a total replacement, would need Algolia + another search provider, so would need considering after chosen initial search provider.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Azure Search
-
 &lt;ul&gt;
 &lt;li&gt;At the time there wasn&amp;rsquo;t an offical Sitecore Azure Search provider, there now is.&lt;/li&gt;
 &lt;li&gt;However it has some limitations such as &lt;a href=&#34;https://doc.sitecore.com/developers/92/platform-administration-and-architecture/en/sitecore-azure-search-overview.html&#34;&gt;An Azure Search index can only contain up to 1000 fields.&lt;/a&gt;
@@ -124,63 +203,37 @@ Which could be an issue for the master search index.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/&#34;&gt;https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;But the querying rate was similar, although I do question the cost/limits on querying Azure Search if you&amp;rsquo;ve got a high traffic site. And I&amp;rsquo;ve read some people have had to put a Redis cache in front, to not go over the query limit in Azure Search.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/&#34;&gt;https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;examples-of-customisations&#34;&gt;Examples of Customisations&lt;/h2&gt;
-
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;examples-of-customisations-&#34;&gt;Examples of Customisations&lt;/h2&gt;
 &lt;p&gt;Changing MyItems &amp;amp; Unlock all to use Solr, rather than a Sitecore Query.&lt;/p&gt;
-
 &lt;p&gt;I told you Sitecore.Query was slow, and Memory Intensive.&lt;/p&gt;
-
-&lt;h2 id=&#34;since-giving-this-presentation&#34;&gt;Since giving this presentation&lt;/h2&gt;
-
+&lt;h2 id=&#34;since-giving-this-presentation-&#34;&gt;Since giving this presentation&lt;/h2&gt;
 &lt;p&gt;Infact since giving this talk, one of the issues that got me to customise the Sitecore Solr Search provider in the first place reared its head again. Sitecore not being able to startup when Solr is down.&lt;/p&gt;
-
-&lt;h2 id=&#34;i-thought-we-d-fixed-that-already-why-can-t-sitecore-startup-when-solr-is-down-anymore&#34;&gt;I thought we&amp;rsquo;d fixed that already, why can&amp;rsquo;t Sitecore startup when Solr is down anymore?&lt;/h2&gt;
-
+&lt;h2 id=&#34;i-thought-wed-fixed-that-already-why-cant-sitecore-startup-when-solr-is-down-anymore-&#34;&gt;I thought we&amp;rsquo;d fixed that already, why can&amp;rsquo;t Sitecore startup when Solr is down anymore?&lt;/h2&gt;
 &lt;p&gt;Well the number of Sitecore indexes had grown over time.&lt;/p&gt;
-
 &lt;p&gt;On startup each index was doing it&amp;rsquo;s own check to see if Solr was available, and waiting for a timeout/exception. This was happening in series. Depending on the type of error you get, if it&amp;rsquo;s a timeout, this can result in Sitecore taking longer to startup than IIS allows. Causing IIS to recycle the application and try again, in an infinite loop. Oh dear!&lt;/p&gt;
-
 &lt;p&gt;So I&amp;rsquo;ve added to the github repository a new issue &lt;a href=&#34;https://github.com/bigredmachine/sitecore-solr&#34;&gt;314454 - Sitecore doesn&amp;rsquo;t startup when Solr Down.&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;simulating-solr-being-down-latency&#34;&gt;Simulating Solr being down/latency&lt;/h2&gt;
-
+&lt;h2 id=&#34;simulating-solr-being-downlatency-&#34;&gt;Simulating Solr being down/latency&lt;/h2&gt;
 &lt;p&gt;You can simulate on your local PC latency to Solr using Fiddler.
 If you change your solr connection string to&lt;/p&gt;
-
 &lt;p&gt;&lt;code&gt;http://localhost.:8983/solr;solrCloud=true&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice the &amp;ldquo;.&amp;rdquo;, will ensure the traffic goes through Fiddler&lt;/p&gt;
-
+&lt;p&gt;Notice the &amp;ldquo;.&amp;quot;, will ensure the traffic goes through Fiddler&lt;/p&gt;
 &lt;p&gt;Change your Sitecore IIS Application Pool to run as your local user, as Fiddler automatically picks up traffic running as your local user. (Or you can change the proxy settings)&lt;/p&gt;
-
 &lt;p&gt;Then run Fiddler.&lt;/p&gt;
-
 &lt;p&gt;Under &amp;ldquo;AutoResponder&amp;rdquo; tab, you can add a Rule for requests matching&lt;/p&gt;
-
 &lt;p&gt;&lt;code&gt;http://localhost.8983/solr/.....&lt;/code&gt;&lt;/p&gt;
-
 &lt;p&gt;The URL you set could be specific to a particular index, or request, depending on what you want to test.&lt;/p&gt;
-
 &lt;p&gt;Then on the response for that URL you can set&lt;/p&gt;
-
 &lt;p&gt;&lt;code&gt;*delay:10000&lt;/code&gt;&lt;/p&gt;
-
 &lt;p&gt;with how many milliseconds you want to delay the request with.&lt;/p&gt;
-
 &lt;p&gt;Using this technique you can simulate a network timeout,
 rather than a quicker port not listening/service not running error.&lt;/p&gt;
-
 &lt;p&gt;And from this can replicate the issue of Sitecore note being able to start up, if you have enough indexes which all timeout on startup.&lt;/p&gt;
-
-&lt;h2 id=&#34;what-s-in-314454-sitecore-doesn-t-startup-when-solr-down&#34;&gt;What&amp;rsquo;s in 314454 - Sitecore doesn&amp;rsquo;t startup when Solr Down&lt;/h2&gt;
-
+&lt;h2 id=&#34;whats-in-314454---sitecore-doesnt-startup-when-solr-down-&#34;&gt;What&amp;rsquo;s in 314454 - Sitecore doesn&amp;rsquo;t startup when Solr Down&lt;/h2&gt;
 &lt;p&gt;Sitecore doesn&amp;rsquo;t issue patches anymore, so instead you get a hotfix, which include all of the issue fixes for that version of Sitecore you are on.&lt;/p&gt;
-
 &lt;p&gt;For Sitecore 9.0 update 2, this was included in hotfix 323662-1.&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;If you have enough indexes, the timeout on initialisation from each index run in sequence can result in Sitecore not being starting up in the allowed time.&lt;/li&gt;
 &lt;li&gt;Retry logic for SolrCloud aliases.&lt;/li&gt;
@@ -188,9 +241,7 @@ rather than a quicker port not listening/service not running error.&lt;/p&gt;
 &lt;li&gt;Exception handling in IsOnline index check.&lt;/li&gt;
 &lt;li&gt;Initialisation of indexes to not be interupted if Solr is unavailable, to initialise what can and retry later.&lt;/li&gt;
 &lt;/ol&gt;
-
 &lt;p&gt;And included changes to dlls&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Sitecore.ContentSearch.Client.dll&lt;/li&gt;
 &lt;li&gt;Sitecore.ContentSearch.Data.dll&lt;/li&gt;
@@ -201,32 +252,20 @@ rather than a quicker port not listening/service not running error.&lt;/p&gt;
 &lt;li&gt;Sitecore.ContentSearch.SolrNetExtension.dll&lt;/li&gt;
 &lt;li&gt;Sitecore.ContentSearch.SolrProvider.dll&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;There were so many changes it felt like a mini Sitecore Upgrade.
 And the contract changed, had to rewrite our customisations for them to continue to work.&lt;/p&gt;
-
 &lt;p&gt;This hotfix fixes the slow startup issue, but only checking once if Solr is available, rather than per index.
 So make Sitecore much faster to startup when Solr is down.&lt;/p&gt;
-
 &lt;p&gt;There was also some work to make the initialising of the indexes to work in parallel, to further speed up the time for initialisation.&lt;/p&gt;
-
-&lt;h2 id=&#34;customisations-and-upgrades&#34;&gt;Customisations and Upgrades&lt;/h2&gt;
-
+&lt;h2 id=&#34;customisations-and-upgrades-&#34;&gt;Customisations and Upgrades&lt;/h2&gt;
 &lt;p&gt;Each time we upgrade, we have to see if our customisations are still possible.
 Often the extension points/hooks we have used have gone, and we have to find new ones.&lt;/p&gt;
-
 &lt;p&gt;Even on this update to the hotfix which address 314454, we had to do a lot of rework.&lt;/p&gt;
-
 &lt;p&gt;Hopefully in a future version of the product the extensions points we require will be included in the product, and we won&amp;rsquo;t have to get out dotpeek to find a place to override, and use reflection/so many custom classes and overrides to change the behaviour to what we need.&lt;/p&gt;
-
-&lt;h2 id=&#34;update-the-repository-examples&#34;&gt;Update the repository examples&lt;/h2&gt;
-
+&lt;h2 id=&#34;update-the-repository-examples-&#34;&gt;Update the repository examples&lt;/h2&gt;
 &lt;p&gt;As the hotfix isn&amp;rsquo;t publicly available in the nuget feeds, and the contract has changed.&lt;/p&gt;
-
 &lt;p&gt;I can&amp;rsquo;t update the example code to reference the hotfix, and for it to still compile.&lt;/p&gt;
-
 &lt;p&gt;If anyone is interested to see the examples updated to use the hotfix, reach out to me on twitter, and I can see about creating a feature branch.&lt;/p&gt;
-
 &lt;p&gt;Otherwise, I&amp;rsquo;m going to wait for a version of Sitecore which includes these fixes/contract changes, which is available in the nuget feed so I can update the examples and still have it compiling.&lt;/p&gt;
 </description>
           </item>
@@ -241,106 +280,76 @@ Often the extension points/hooks we have used have gone, and we have to find new
             <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</guid>
-            <description>
-
-&lt;h2 id=&#34;federated-authentication-single-sign-out&#34;&gt;Federated Authentication Single Sign Out&lt;/h2&gt;
-
+            <description>&lt;h2 id=&#34;federated-authentication-single-sign-out-&#34;&gt;Federated Authentication Single Sign Out&lt;/h2&gt;
 &lt;p&gt;By default when you sign out of Sitecore, you don&amp;rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&amp;rsquo;t challenge you to sign back in again, and lets you into the system.&lt;/p&gt;
-
 &lt;p&gt;So have you really signed out, if you haven&amp;rsquo;t signed out of the Federated Authentication provider as well? IMHO - no.&lt;/p&gt;
-
-&lt;h2 id=&#34;what-s-the-behaviour-of-other-services-using-federated-authentication&#34;&gt;What&amp;rsquo;s the behaviour of other services using Federated Authentication?&lt;/h2&gt;
-
+&lt;h2 id=&#34;whats-the-behaviour-of-other-services-using-federated-authentication-&#34;&gt;What&amp;rsquo;s the behaviour of other services using Federated Authentication?&lt;/h2&gt;
 &lt;p&gt;If you log out of Microsoft Office 365, it also logs you out of Azure AD.&lt;/p&gt;
-
 &lt;p&gt;If you log out of Azure Portal, it also logs you out of Azure AD.&lt;/p&gt;
-
 &lt;p&gt;Also note, on the Azure AD sign out page, it also signs you out of Office 365, if you are signing out from another system. (That&amp;rsquo;s going even further, to an even more true single sign out where sign out of every system at once, but the sign out page has to know about all of the systems to sign you out of, beyond the scope of this post)&lt;/p&gt;
-
 &lt;p&gt;So can see it&amp;rsquo;s pretty standard behaviour when you sign out of a system, to also sign you out of the Federated Authentication provider as well.&lt;/p&gt;
-
-&lt;h2 id=&#34;so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore&#34;&gt;So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore?&lt;/h2&gt;
-
+&lt;h2 id=&#34;so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore--&#34;&gt;So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore? &lt;/h2&gt;
 &lt;p&gt;Pipelines/Processor + Reflector = Win!&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/post/federated-authentication-single-sign-out/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/post/federated-authentication-single-sign-out/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/post/federated-authentication-single-sign-out/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Pipelines Everywhere&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;h3 id=&#34;for-the-launchpad-using-speak&#34;&gt;For the LaunchPad using Speak&lt;/h3&gt;
-
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&#34;for-the-launchpad-using-speak-&#34;&gt;For the LaunchPad using Speak&lt;/h3&gt;
 &lt;p&gt;Starting with the Sitecore Launch pad.&lt;/p&gt;
-
 &lt;p&gt;The &amp;ldquo;Log out&amp;rdquo; button has some JS that fires &amp;ldquo;-/speak/v1/business/AccountInformation.js&amp;rdquo;.
 Which does an AJAX POST request to &amp;ldquo;/sitecore/shell/api/sitecore/Authentication/Logout?sc_database=master&amp;rdquo;.
 It then tries to parse the JSON result, and read the &amp;ldquo;Redirect&amp;rdquo; value.
 And then redirects the user client side to the specified url.&lt;/p&gt;
-
 &lt;p&gt;Serverside this &amp;ldquo;AuthenticationController&amp;rdquo; can be found in &amp;ldquo;Sitecore.Speak.Client.dll&amp;rdquo; &amp;ldquo;Sitecore.Controllers.AuthenticationController&amp;rdquo; &amp;ldquo;Logout&amp;rdquo; HttpPost method.&lt;/p&gt;
-
 &lt;p&gt;This in turn calls &amp;ldquo;Sitecore.Shell.Security().Logout&amp;rdquo; passing in an &amp;ldquo;Action&lt;UrlString&gt;&amp;rdquo;, to capture the RedirectUrl for the JSON result.&lt;/p&gt;
-
 &lt;p&gt;&amp;ldquo;Sitecore.Shell.Security().Logout&amp;rdquo; calls a pipeline &amp;ldquo;speak.logout&amp;rdquo;.
 This pipeline takes an argument of type &amp;ldquo;LogoutArgs&amp;rdquo;.
 &amp;ldquo;LogoutArgs&amp;rdquo; has a property &amp;ldquo;RedirectUrl&amp;rdquo; of type &amp;ldquo;UrlString&amp;rdquo;.&lt;/p&gt;
-
 &lt;p&gt;&amp;ldquo;RedirectUrl&amp;rdquo; is initialised before the pipeline &amp;ldquo;speak.logout&amp;rdquo; is called with &amp;ldquo;Context.Site.LoginPage&amp;rdquo;.
 And after the pipleline is called, the &amp;ldquo;RedirectUrl&amp;rdquo; value is used to send the client to the specified page.&lt;/p&gt;
-
-&lt;h3 id=&#34;for-the-content-editor&#34;&gt;For the Content Editor&lt;/h3&gt;
-
-&lt;p&gt;The content editor on the other hand the &amp;ldquo;Log out&amp;rdquo; button calls onclick &amp;ldquo;scForm.postEvent(this, event, &amp;lsquo;system.logout&amp;rsquo;)&amp;rdquo;.&lt;/p&gt;
-
+&lt;h3 id=&#34;for-the-content-editor-&#34;&gt;For the Content Editor&lt;/h3&gt;
+&lt;p&gt;The content editor on the other hand the &amp;ldquo;Log out&amp;rdquo; button calls onclick &amp;ldquo;scForm.postEvent(this, event, &amp;lsquo;system.logout&amp;rsquo;)&amp;quot;.&lt;/p&gt;
 &lt;p&gt;This triggers the processor &amp;ldquo;logout&amp;rdquo;.
 This also takes the same argument of type &amp;ldquo;LogoutArgs&amp;rdquo;, as the &amp;ldquo;speak.logout&amp;rdquo; pipeline.&lt;/p&gt;
-
 &lt;p&gt;If the &amp;ldquo;LogoutArgs&amp;rdquo; &amp;ldquo;RedirectUrl&amp;rdquo; property has not been set, it triggers a server side redirect to the &amp;ldquo;Client.Site.LoginPage&amp;rdquo;.
 See &amp;ldquo;Sitecore.Kernel.dll&amp;rdquo;, &amp;ldquo;Sitecore.Pipelines.Logout.GotoLogin.Process&amp;rdquo; method.&lt;/p&gt;
-
-&lt;h3 id=&#34;pipeline&#34;&gt;Pipeline&lt;/h3&gt;
-
+&lt;h3 id=&#34;pipeline-&#34;&gt;Pipeline&lt;/h3&gt;
 &lt;p&gt;So to override the behaviour of logout going to the Sitecore login page.
 Adding a pipeline to &amp;ldquo;Speak.Logout&amp;rdquo; to set the &amp;ldquo;RedirectUrl&amp;rdquo;.&lt;/p&gt;
-
 &lt;p&gt;And adding a processor to &amp;ldquo;logout&amp;rdquo; before the processor &amp;ldquo;Sitecore.Pipelines.Logout.GotoLogin, Sitecore.Kernel&amp;rdquo;, to set the &amp;ldquo;RedirectUrl&amp;rdquo;.&lt;/p&gt;
-
 &lt;p&gt;We can control where users are redirected to on logout.&lt;/p&gt;
-
-&lt;h3 id=&#34;federated-authentication-provider-settings-not-used&#34;&gt;Federated Authentication Provider settings not used&lt;/h3&gt;
-
+&lt;h3 id=&#34;federated-authentication-provider-settings-not-used-&#34;&gt;Federated Authentication Provider settings not used&lt;/h3&gt;
 &lt;p&gt;Interestingly when configuring a Federated Authentication provider, you specify on the &amp;ldquo;OpenIdConnectAuthenticationOptions&amp;rdquo; class the &amp;ldquo;PostLogoutRedirectUri&amp;rdquo;, but this isn&amp;rsquo;t used.
 Still we can reuse this configuration setting in our pipeline.&lt;/p&gt;
-
-&lt;h3 id=&#34;example-settings-to-change-redirecturl-to&#34;&gt;Example settings to change RedirectUrl to&lt;/h3&gt;
-
-&lt;p&gt;If you are using Azure AD, you can set the &amp;ldquo;RedirectUrl&amp;rdquo; to something like &amp;ldquo;&lt;a href=&#34;https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&amp;quot;&#34;&gt;https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&amp;quot;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;So it will log you out of Azure AD, then redirect you back to &amp;ldquo;&lt;a href=&#34;https://sitecore.local/sitecore/login&amp;quot;&#34;&gt;https://sitecore.local/sitecore/login&amp;quot;&lt;/a&gt;&lt;/p&gt;
-
+&lt;h3 id=&#34;example-settings-to-change-redirecturl-to-&#34;&gt;Example settings to change RedirectUrl to&lt;/h3&gt;
+&lt;p&gt;If you are using Azure AD, you can set the &amp;ldquo;RedirectUrl&amp;rdquo; to something like &amp;ldquo;&lt;a href=&#34;https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin%22&#34;&gt;https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&amp;quot;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So it will log you out of Azure AD, then redirect you back to &amp;ldquo;&lt;a href=&#34;https://sitecore.local/sitecore/login%22&#34;&gt;https://sitecore.local/sitecore/login&amp;quot;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Obviously change the &amp;ldquo;post_logout_redirect_uri&amp;rdquo; parameter to match your environment.&lt;/p&gt;
-
-&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
-
+&lt;h2 id=&#34;summary-&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;With a few extra pipelines, and with the help of reflector, can achieve single sign out with Sitecore.&lt;/p&gt;
-
-&lt;h2 id=&#34;additional-notes&#34;&gt;Additional Notes&lt;/h2&gt;
-
+&lt;h2 id=&#34;additional-notes-&#34;&gt;Additional Notes&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;ve only tried this with Sitecore 9.0, and not with the new Sitecore Identity Server.&lt;/p&gt;
 </description>
           </item>
@@ -355,56 +364,35 @@ Still we can reuse this configuration setting in our pipeline.&lt;/p&gt;
             <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</guid>
-            <description>
-
-&lt;h2 id=&#34;sitecore-9-3-media-library-azure-blob-storage&#34;&gt;Sitecore 9.3 - Media Library Azure Blob Storage&lt;/h2&gt;
-
+            <description>&lt;h2 id=&#34;sitecore-93---media-library-azure-blob-storage-&#34;&gt;Sitecore 9.3 - Media Library Azure Blob Storage&lt;/h2&gt;
 &lt;p&gt;Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.&lt;/p&gt;
-
 &lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#SitecoreSYM&lt;/a&gt; is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming &lt;a href=&#34;https://twitter.com/hashtag/Sitecore?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#Sitecore&lt;/a&gt; 9.3 release. As a gesture of good will -&amp;gt; the deck is now available on &lt;a href=&#34;https://t.co/B9DqZ9CLot&#34;&gt;https://t.co/B9DqZ9CLot&lt;/a&gt; &lt;a href=&#34;https://t.co/B8Qy9kzLF0&#34;&gt;pic.twitter.com/B8Qy9kzLF0&lt;/a&gt;&lt;/p&gt;&amp;mdash; Pieter Brinkman (@pieterbrink123) &lt;a href=&#34;https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw&#34;&gt;November 12, 2019&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
 
-
 &lt;p&gt;I also saw him present the at the London Sitecore User Group where he explained this slide deck in some more detail.&lt;/p&gt;
-
 &lt;p&gt;Some highlights for me:&lt;/p&gt;
-
-&lt;h3 id=&#34;slide-12-top-5-core-platform-enhancements&#34;&gt;Slide 12 - Top 5 core platform enhancements&lt;/h3&gt;
-
+&lt;h3 id=&#34;slide-12---top-5-core-platform-enhancements-&#34;&gt;Slide 12 - Top 5 core platform enhancements&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Removing obsolete functionality &amp;ldquo;Lucene Search Provider&amp;rdquo; &amp;amp; &amp;ldquo;Sitecore.Nvelocity&amp;rdquo;&lt;/li&gt;
 &lt;li&gt;Experience Editor Improvements&lt;/li&gt;
 &lt;li&gt;Performance Improvements &amp;ldquo;Reducing number of calls&amp;rdquo;, &amp;ldquo;Reduce the amount of data saved&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;I look forward to seeing some benchmarks about the performance improvements, and what areas this covers. When I first read this I had thought this might mean Sql calls, but he explained at the User Group was referring to personalisation/tracking.
 Still he only listed out his top 5, and hopefully the performance improvements extends to other areas.&lt;/p&gt;
-
-&lt;h3 id=&#34;slide-35-paas-media-library-in-azure-blob-storage&#34;&gt;Slide 35 - PaaS - Media Library in Azure Blob Storage&lt;/h3&gt;
-
+&lt;h3 id=&#34;slide-35---paas---media-library-in-azure-blob-storage-&#34;&gt;Slide 35 - PaaS - Media Library in Azure Blob Storage&lt;/h3&gt;
 &lt;p&gt;There is a footnote on Slide 35 &amp;amp; 36&lt;/p&gt;
-
 &lt;p&gt;&amp;ldquo;Media Library in Azure Blob Storage: Reduce the cost and increase the performance of storing media in Sitecore&amp;rdquo;&lt;/p&gt;
-
 &lt;p&gt;This is only listed for &amp;ldquo;PaaS&amp;rdquo; and the new &amp;ldquo;Managed Cloud&amp;rdquo;.&lt;/p&gt;
-
 &lt;p&gt;However I&amp;rsquo;d like to explore using Azure Blob Storage on Azure IaaS.
 Let&amp;rsquo;s see if this is possible when Sitecore 9.3 comes out.&lt;/p&gt;
-
 &lt;p&gt;I&amp;rsquo;d also like to find out if the Azure Blob Storage implementation just replaces the backing storage.&lt;/p&gt;
-
 &lt;p&gt;Or if it&amp;rsquo;s possible to serve the files direct from Blob Storage, bypassing the Sitecore Media library handler/disk caching on the Content Delivery servers. (Possibly with some other technology/thin API layer to provider resizing functionality)&lt;/p&gt;
-
-&lt;h3 id=&#34;summary&#34;&gt;Summary&lt;/h3&gt;
-
+&lt;h3 id=&#34;summary-&#34;&gt;Summary&lt;/h3&gt;
 &lt;p&gt;Using Azure Blob Storage for the Sitecore Media Library for me is the most exciting development of Sitecore 9.3 that I&amp;rsquo;ve heard about so far, as could significantly reduce the size of the Sql databases.&lt;/p&gt;
-
-&lt;h3 id=&#34;notes&#34;&gt;Notes&lt;/h3&gt;
-
+&lt;h3 id=&#34;notes-&#34;&gt;Notes&lt;/h3&gt;
 &lt;p&gt;Jammy Kam has customised Sitecore do use Azure Blob Storage for it&amp;rsquo;s Media Library before
 &lt;a href=&#34;https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/&#34;&gt;https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/&lt;/a&gt;
 &lt;a href=&#34;https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/&#34;&gt;https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;I wonder how similar the Sitecore implementation will be.&lt;/p&gt;
 </description>
           </item>
@@ -419,169 +407,129 @@ Let&amp;rsquo;s see if this is possible when Sitecore 9.3 comes out.&lt;/p&gt;
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
-            <description>
-
-&lt;h1 id=&#34;oracle-to-start-charging-for-java&#34;&gt;Oracle to start charging for Java&lt;/h1&gt;
-
+            <description>&lt;h1 id=&#34;oracle-to-start-charging-for-java-&#34;&gt;Oracle to start charging for Java&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&amp;rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.&lt;/p&gt;
-
-&lt;p&gt;I brought this topic up at the Sitecore Discussion Club&lt;br /&gt;
+&lt;p&gt;I brought this topic up at the Sitecore Discussion Club&lt;br&gt;
 &lt;a href=&#34;http://sitecore.events/&#34;&gt;http://sitecore.events/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/post/java-comercial-sitecore-solr-future/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/post/java-comercial-sitecore-solr-future/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/post/java-comercial-sitecore-solr-future/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Java Public Updates&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 &lt;p&gt;When I started to follow this, the policy for the LTS release of Java 11 hadn&amp;rsquo;t been announced, and I was thinking would need to update to Java 11 to continue to get free updates.
-Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&amp;rsquo;t support a version of Solr this high yet &lt;a href=&#34;https://kb.sitecore.net/articles/227897&#34;&gt;https://kb.sitecore.net/articles/227897&lt;/a&gt;, and anyway Java 11 is now not free anyway, so not an option to get free updates that way.&lt;/p&gt;
-
+Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&amp;rsquo;t support a version of Solr this high yet &lt;a href=&#34;https://kb.sitecore.net/articles/227897,&#34;&gt;https://kb.sitecore.net/articles/227897,&lt;/a&gt; and anyway Java 11 is now not free anyway, so not an option to get free updates that way.&lt;/p&gt;
 &lt;p&gt;Further reading:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event&#34;&gt;https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.oracle.com/technetwork/java/java-se-support-roadmap.html&#34;&gt;https://www.oracle.com/technetwork/java/java-se-support-roadmap.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;oracle-java-what-s-the-cost&#34;&gt;Oracle Java - what&amp;rsquo;s the cost?&lt;/h2&gt;
-
+&lt;h2 id=&#34;oracle-java---whats-the-cost-&#34;&gt;Oracle Java - what&amp;rsquo;s the cost?&lt;/h2&gt;
 &lt;p&gt;The cost has come down since I started following this.&lt;/p&gt;
-
 &lt;p&gt;Originally the price was:&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;th&gt;&lt;/th&gt;
 &lt;th&gt;Per CPU&lt;/th&gt;
-&lt;th&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th&gt; &lt;/th&gt;
 &lt;th&gt;Support&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Java SE Advanced&lt;/td&gt;
-&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
 &lt;td&gt;$5,000&lt;/td&gt;
-&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
 &lt;td&gt;$1,100&lt;/td&gt;
 &lt;/tr&gt;
-
 &lt;tr&gt;
 &lt;td&gt;Java SE Suite&lt;/td&gt;
-&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
 &lt;td&gt;$15,000&lt;/td&gt;
-&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
 &lt;td&gt;$3,300&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 &lt;p&gt;Which is quite a large up front cost, and continual support cost.&lt;/p&gt;
-
 &lt;p&gt;Then it was announced the subscription licence, charging $25 per CPU per month with support. Going down to $12.50 with volume discount (possibly lower with Enterprise agreement), which works out cheaper than the previous licencing.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html&#34;&gt;https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/&#34;&gt;https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu&#34;&gt;A note on mapping an Oracle Processor Licence to an Azure vCPU:&lt;/h3&gt;
-
+&lt;h3 id=&#34;a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu-&#34;&gt;A note on mapping an Oracle Processor Licence to an Azure vCPU:&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.oracle.com/assets/cloud-licensing-070579.pdf&#34;&gt;https://www.oracle.com/assets/cloud-licensing-070579.pdf&lt;/a&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;Microsoft Azure – count two vCPUs as equivalent to one Oracle Processor license if hyperthreading
 is enabled, and one vCPU as equivalent to one Oracle Processor license if hyperthreading
 is not enabled.&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;If you&amp;rsquo;ve got 2 solr servers, and 3 zookeeper servers, all running as Quad Cores, that&amp;rsquo;s 5x4=20 CPU&amp;rsquo;s, which might be up to 20x$25=$500 a month. Or if the hyperthreading detail applies above, might ve $250 a month. And even cheaper if have a load of servers to volume licence. Would require Java licencing to confirm actual price for your particular scenario.&lt;/p&gt;
-
-&lt;h2 id=&#34;open-jdk&#34;&gt;Open JDK&lt;/h2&gt;
-
+&lt;h2 id=&#34;open-jdk-&#34;&gt;Open JDK&lt;/h2&gt;
 &lt;p&gt;What the alternative&amp;rsquo;s to paying Oracle for commercial support?&lt;/p&gt;
-
 &lt;p&gt;Open JDK is the alternative.&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html&#34;&gt;https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;is-anyone-using-open-jdk&#34;&gt;Is anyone using Open JDK?&lt;/h3&gt;
-
+&lt;h3 id=&#34;is-anyone-using-open-jdk-&#34;&gt;Is anyone using Open JDK?&lt;/h3&gt;
 &lt;p&gt;If you look at the docker community, most Docker images which use Java use an Open JDK variant.&lt;/p&gt;
-
-&lt;p&gt;(was saying DEPRECATED - This image is officially deprecated in favor of the Open JDK image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)&lt;br /&gt;
+&lt;p&gt;(was saying DEPRECATED - This image is officially deprecated in favor of the Open JDK image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)&lt;br&gt;
 &lt;a href=&#34;https://hub.docker.com/_/java/&#34;&gt;https://hub.docker.com/_/java/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Shows previously issues/questions on legality of Java on Docker&lt;br /&gt;
+&lt;p&gt;Shows previously issues/questions on legality of Java on Docker&lt;br&gt;
 &lt;a href=&#34;https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/&#34;&gt;https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Explains issues, and update on support now&lt;br /&gt;
+&lt;p&gt;Explains issues, and update on support now&lt;br&gt;
 &lt;a href=&#34;https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker&#34;&gt;https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Flow chart of which OpenJDK to choose for Docker&lt;br /&gt;
+&lt;p&gt;Flow chart of which OpenJDK to choose for Docker&lt;br&gt;
 &lt;a href=&#34;https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238&#34;&gt;https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Update on Oracle Java support for Docker&lt;br /&gt;
+&lt;p&gt;Update on Oracle Java support for Docker&lt;br&gt;
 &lt;a href=&#34;https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers&#34;&gt;https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Official Java Docker images, but appears have to sign up to see them.&lt;br /&gt;
+&lt;p&gt;Official Java Docker images, but appears have to sign up to see them.&lt;br&gt;
 &lt;a href=&#34;https://hub.docker.com/_/oracle-serverjre-8&#34;&gt;https://hub.docker.com/_/oracle-serverjre-8&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;there-are-many-version-of-open-jdk-but-which-version-should-i-use&#34;&gt;There are many version of Open JDK, but which version should I use?&lt;/h3&gt;
-
-&lt;p&gt;This posts lists out the different flavours of the Open JDK&lt;br /&gt;
+&lt;h3 id=&#34;there-are-many-version-of-open-jdk-but-which-version-should-i-use-&#34;&gt;There are many version of Open JDK, but which version should I use?&lt;/h3&gt;
+&lt;p&gt;This posts lists out the different flavours of the Open JDK&lt;br&gt;
 &lt;a href=&#34;https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html&#34;&gt;https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Adopt Open JDK appears to be the main choice, with longer term updates, and actually free.&lt;br /&gt;
+&lt;p&gt;Adopt Open JDK appears to be the main choice, with longer term updates, and actually free.&lt;br&gt;
 &lt;a href=&#34;https://adoptopenjdk.net/&#34;&gt;https://adoptopenjdk.net/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Red Hat are supporting it (and IBM which have now bought Red Hat)&lt;br /&gt;
+&lt;p&gt;Red Hat are supporting it (and IBM which have now bought Red Hat)&lt;br&gt;
 &lt;a href=&#34;https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/&#34;&gt;https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Amazon are releasing their own version of Open JDK, which they use internally, but still in public preview, but certainly one to look out for, and not just for use on AWS - can use off AWS which sounds awesome.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://aws.amazon.com/corretto/&#34;&gt;https://aws.amazon.com/corretto/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://aws.amazon.com/corretto/faqs/#support&#34;&gt;https://aws.amazon.com/corretto/faqs/#support&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/&#34;&gt;https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;I noticed on this tweet that the version of Java Azure App Service was running was Azul.&lt;br /&gt;
+&lt;p&gt;I noticed on this tweet that the version of Java Azure App Service was running was Azul.&lt;br&gt;
 &lt;a href=&#34;https://twitter.com/dancruickshank/status/1072541500058284034&#34;&gt;https://twitter.com/dancruickshank/status/1072541500058284034&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;A quick google later I found that was announced in September, that if you are an Azure customer, can use Azul Open JDK for no extra cost. So that&amp;rsquo;s awesome too if you are an Azure customer, but this is just for use on Azure.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/&#34;&gt;https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/&#34;&gt;https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
-
+&lt;h2 id=&#34;summary-&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;Ultimately you&amp;rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the Open JDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the Open JDK you&amp;rsquo;ve chosen.&lt;/p&gt;
-
 &lt;p&gt;It would seem if looking to move to Docker &amp;amp; Kubernetes eventually, then embracing the Open JDK seems to be the standard anyway.
 And even if Oracle engineers aren&amp;rsquo;t going to be supporting the Open JDK anymore, got a choice of Red Hat/IBM, Amazon and Azul (free on Azure) to go for.&lt;/p&gt;
 </description>
@@ -597,106 +545,96 @@ And even if Oracle engineers aren&amp;rsquo;t going to be supporting the Open JD
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</guid>
-            <description>
-
-&lt;h2 id=&#34;why-have-to-use-inproc-session-state-on-sitecore-content-authoring&#34;&gt;Why have to use InProc session state on Sitecore Content Authoring&lt;/h2&gt;
-
+            <description>&lt;h2 id=&#34;why-have-to-use-inproc-session-state-on-sitecore-content-authoring-&#34;&gt;Why have to use InProc session state on Sitecore Content Authoring&lt;/h2&gt;
 &lt;p&gt;A note on why InProc session state &amp;amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://kb.sitecore.net/articles/860809&#34;&gt;https://kb.sitecore.net/articles/860809&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;bad-practice-to-use-sticky-sessions&#34;&gt;Bad Practice to use Sticky Sessions&lt;/h2&gt;
-
+&lt;h2 id=&#34;bad-practice-to-use-sticky-sessions-&#34;&gt;Bad Practice to use Sticky Sessions&lt;/h2&gt;
 &lt;p&gt;A quick intro on why Sticky Sessions are bad.
 &lt;a href=&#34;https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out&#34;&gt;https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out&lt;/a&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Avoid instance stickiness.&lt;/strong&gt; Stickiness, or session affinity, is when requests from the same client are always routed to the same server. Stickiness limits the application&amp;rsquo;s ability to scale out. For example, traffic from a high-volume user will not be distributed across instances. Causes of stickiness include storing session state in memory, and using machine-specific keys for encryption. Make sure that any instance can handle any request.&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.&lt;br /&gt;
-E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.&lt;br /&gt;
+&lt;p&gt;Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.&lt;br&gt;
+E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.&lt;br&gt;
 Or if you use sticky sessions via IP address, and lots of people work in the same office, all of that office will be allocated to the same machine.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_650x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_555x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Sticky Session&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;h2 id=&#34;redis-provider-network-stability&#34;&gt;Redis provider network stability&lt;/h2&gt;
-
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;redis-provider-network-stability-&#34;&gt;Redis provider network stability&lt;/h2&gt;
 &lt;p&gt;The Stack Exchange redis session state provider at the time often had network stability issues, particularly on Azure Redis (TLS)
-&lt;a href=&#34;https://github.com/StackExchange/StackExchange.Redis/issues/871&#34;&gt;https://github.com/StackExchange/StackExchange.Redis/issues/871&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;https://github.com/StackExchange/StackExchange.Redis/issues/871&#34;&gt;https://github.com/StackExchange/StackExchange.Redis/issues/871&lt;/a&gt;&lt;br&gt;
 Version 2 has since been released, which would be worth testing to see how much this has improved the issue.&lt;/p&gt;
-
-&lt;h2 id=&#34;too-much-data-being-put-into-session-state&#34;&gt;Too much data being put into Session state&lt;/h2&gt;
-
+&lt;h2 id=&#34;too-much-data-being-put-into-session-state-&#34;&gt;Too much data being put into Session state&lt;/h2&gt;
 &lt;p&gt;However, another issue which couldn&amp;rsquo;t be solved, was that too much data was being stored in session state.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;228534 - Jsnlog entries spam session storage&lt;/li&gt;
 &lt;li&gt;228355 - Validation related objects spam session storage&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;The JsnLog entries can be disabled by changing
-\App_Config\Include\Sitecore.JSNLog.config &amp;lt;jsnlog enabled=&amp;ldquo;false&amp;rdquo;&lt;/p&gt;
-
+\App_Config\Include\Sitecore.JSNLog.config &amp;lt;jsnlog enabled=&amp;quot;false&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;For validation though, there is no easy work around.
 You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.&lt;/p&gt;
-
-&lt;h2 id=&#34;asp-net-webforms-legacy&#34;&gt;ASP.NET WebForms Legacy&lt;/h2&gt;
-
+&lt;h2 id=&#34;aspnet-webforms-legacy-&#34;&gt;ASP.NET WebForms Legacy&lt;/h2&gt;
 &lt;p&gt;And this is on top of the Content Editor still using WebForms with ViewState and ControlState needing to be stored to a shared medium, which may as well also be Redis is using a Redis session state provider. (Although a Database is another option if you have spare DTUs, why not be consistent)&lt;/p&gt;
-
-&lt;h2 id=&#34;redis-is-designed-for-small-objects&#34;&gt;Redis is designed for small objects&lt;/h2&gt;
-
+&lt;h2 id=&#34;redis-is-designed-for-small-objects-&#34;&gt;Redis is designed for small objects&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/&#34;&gt;https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/&lt;/a&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Redis Server and StackExchange.Redis are optimized for many small requests rather than fewer large requests.  Splitting your data into smaller chunks may improve things here&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;A large session state, viewstate, control state isn&amp;rsquo;t going to help.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box.png&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box_2.png&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box.png&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box_2.png&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box.png&#34; 
+    src=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box_2.png&#34; 
     alt=&#34;Redis Logo&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
-
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;summary-&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;Ultimately right now, to have more than once Content Authoring server, you have to use Sticky Sessions and InProc session state.&lt;/p&gt;
-
 &lt;p&gt;Looking forward to a future version of Sitecore allowing to get away from Sticky Sessions on Content Authoring, either by reducing the amount of data needed in Session Storage, or getting away from Viewstate &amp;amp; ControlState - perhaps with Sitecore Horizon the new editor built in Angular.&lt;/p&gt;
 </description>
           </item>
@@ -711,56 +649,52 @@ You can disable the validation bar - so no new validation messages are loaded wi
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</guid>
-            <description>
-
-&lt;h1 id=&#34;zero-down-time-for-delivery-authoring&#34;&gt;Zero down time for Delivery &amp;amp; Authoring&lt;/h1&gt;
-
+            <description>&lt;h1 id=&#34;zero-down-time-for-delivery--authoring-&#34;&gt;Zero down time for Delivery &amp;amp; Authoring&lt;/h1&gt;
 &lt;p&gt;A lot of people talk about zero downtime, but normally just in the context of Content Delivery.
 Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.&lt;/p&gt;
-
-&lt;p&gt;However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.&lt;br /&gt;
+&lt;p&gt;However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.&lt;br&gt;
 &lt;a href=&#34;https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html&#34;&gt;https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;*Or as near to Zero as possible as the users Session state will expire, as &lt;a href=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/&#34;&gt;Sitecore requires InProc session state provider on Content Authoring&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_650x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_620x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/post/zero-content-authoring-down-time/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Zero downtime&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;I brought up in the sitecore discussion club slack channel that this is an area would like to discuss further, as trying to schedule deployments out of hours isn&amp;rsquo;t great for those who are doing the deployment, and disruptive to the editors who are trying to enter content.&lt;br /&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;I brought up in the sitecore discussion club slack channel that this is an area would like to discuss further, as trying to schedule deployments out of hours isn&amp;rsquo;t great for those who are doing the deployment, and disruptive to the editors who are trying to enter content.&lt;br&gt;
 And was put in touch on Slack with the author.&lt;/p&gt;
-
-&lt;p&gt;Also at the last Sitecore Discussion club (&lt;a href=&#34;http://sitecore.events/&#34;&gt;http://sitecore.events/&lt;/a&gt;), the author of this article was there, and presented this idea to the group.&lt;/p&gt;
-
+&lt;p&gt;Also at the last Sitecore Discussion club (&lt;a href=&#34;http://sitecore.events/),&#34;&gt;http://sitecore.events/),&lt;/a&gt; the author of this article was there, and presented this idea to the group.&lt;/p&gt;
 &lt;p&gt;It was interesting to hear that this was created to avoid getting up early to deploy before the authors were in, and that has been used in production, so the idea works.&lt;/p&gt;
-
-&lt;p&gt;Although the architecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.&lt;br /&gt;
+&lt;p&gt;Although the architecture in the original post was for two websites running on a single machine, and using Lucene indexes, and MSMQ.&lt;br&gt;
 There is no reason this can&amp;rsquo;t be updated to use Azure Message Queue, two independent complete stacks (Content Delivery, Content Authoring, SolrCloud).&lt;/p&gt;
-
 &lt;p&gt;At the group we also discussed some of the limitations/ideas&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;rollbacks, as it stands would want to be confident before switching over, as no way without data loss to roll back. Unless add a similar queue going in reverse. Although hopefully with enough testing rollbacks shouldn&amp;rsquo;t be a frequent occurrence, so might be acceptable.&lt;/li&gt;
 &lt;li&gt;transformation layer, say a field had been renamed, a layer between deserializing the message, and applying it to sitecore, would allow the message to be intercepted and updated to the new deployments expected format.&lt;/li&gt;
 &lt;li&gt;recording content editoring activity like this, could provide a way to record/replay content authoring activities to simulate authoring load in a test environment.&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;It&amp;rsquo;s an idea worth exploring further, more updates as we try this out ourselves.&lt;/p&gt;
 </description>
           </item>
@@ -775,122 +709,91 @@ There is no reason this can&amp;rsquo;t be updated to use Azure Message Queue, t
             <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</guid>
-            <description>
-
-&lt;h2 id=&#34;sitecore-fast-queries&#34;&gt;Sitecore (Fast) Queries&lt;/h2&gt;
-
+            <description>&lt;h2 id=&#34;sitecore-fast-queries-&#34;&gt;Sitecore (Fast) Queries&lt;/h2&gt;
 &lt;p&gt;There&amp;rsquo;s quite a few blog posts on avoiding using (fast) Sitecore queries on Content Delivery.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.rauljimenez.co.uk/not-so-fast/&#34;&gt;https://blog.rauljimenez.co.uk/not-so-fast/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&#34;&gt;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/&#34;&gt;https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&#34;&gt;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;Summary Fast always goes to the database, and even a normal Sitecore query can go from being a slow page, to bringing your site to it&amp;rsquo;s knees if that page is hit frequently enough.&lt;/p&gt;
-
 &lt;p&gt;I&amp;rsquo;ve had experience of this on inheriting a solution which would do three sitecore queries on a page load for calendar events, for items within a folder. Normally the page would load within a few seconds, not great but usable. However when a search engine got onto the page, and decided to crawl through the calendar navigation links, which are effectively infinite, the execution time grew and grew.&lt;/p&gt;
-
 &lt;p&gt;Until the page wouldn&amp;rsquo;t load in a couple of mins, .net thread pool limits were reached, and the site was effectively down.&lt;/p&gt;
-
 &lt;p&gt;The quick fix was to prevent these pages from being indexed, as well as indicate not to follow the calendar links forever.&lt;/p&gt;
-
 &lt;p&gt;The longer term fix was to switch to Content Search, using an index to load the content, to speed the page up (as well as keeping the indicators not to follow the infinite links).&lt;/p&gt;
-
 &lt;p&gt;(Of course using Sitecore Query for a few sub items, or getting an item by id is acceptable, but never Fast)&lt;/p&gt;
-
-&lt;h2 id=&#34;link-database&#34;&gt;Link Database&lt;/h2&gt;
-
+&lt;h2 id=&#34;link-database-&#34;&gt;Link Database&lt;/h2&gt;
 &lt;p&gt;So onto the topic of this post, the Link Database certainly has it&amp;rsquo;s place, finding references/referrers of items for one on Content Authoring being it&amp;rsquo;s primary usage.&lt;/p&gt;
-
 &lt;p&gt;There are some considerations before you start adding a dependency to the Links database in your code. (Hint, use Content Search were possible).&lt;/p&gt;
-
 &lt;p&gt;The Links Database, is more of a table which used to reside in the Core database by default until Sitecore 9, and then was moved to the Web database ahead of removing the dependency on the Core database.&lt;/p&gt;
-
 &lt;p&gt;We switched back to using the Core database to store the links again for reason I&amp;rsquo;ll come to shortly.&lt;/p&gt;
-
-&lt;h3 id=&#34;scaling-limitation&#34;&gt;Scaling Limitation?&lt;/h3&gt;
-
+&lt;h3 id=&#34;scaling-limitation-&#34;&gt;Scaling Limitation?&lt;/h3&gt;
 &lt;p&gt;If you work in a Scaled environment though, you may have more than one Web or Core database.
 There can be only one link database(Table) maintained though.
 So in a multi-region scaled environment, you&amp;rsquo;ll be travelling across regions to the database with the maintained link database.&lt;/p&gt;
-
 &lt;p&gt;Now it might be with database replication that this problem gets resolved, and other regions can query a read only copy of a replicated database which contains the Link Database(table).&lt;/p&gt;
-
 &lt;p&gt;However we are avoiding using the Link Database on content delivery so we don&amp;rsquo;t encounter any scalability issues.&lt;/p&gt;
-
-&lt;h3 id=&#34;rebuild-speed&#34;&gt;Rebuild Speed&lt;/h3&gt;
-
+&lt;h3 id=&#34;rebuild-speed-&#34;&gt;Rebuild Speed&lt;/h3&gt;
 &lt;p&gt;Rebuilding the Link Database occurs in serial (one Databases links after the next get rebuilt in serial) and takes a long time. E.g, 8+ Hours.
 I understand from Sitecore support there are some experimental patches to speed up making the index rebuild faster/rebuild it in parallel, so far haven&amp;rsquo;t got around to trying these, but possibly an avenue worth pursuing.&lt;/p&gt;
-
-&lt;h3 id=&#34;deadlocks&#34;&gt;Deadlocks&lt;/h3&gt;
-
+&lt;h3 id=&#34;deadlocks-&#34;&gt;Deadlocks&lt;/h3&gt;
 &lt;p&gt;I understand the situation used to be worse before Sitecore 7.1, were selects didn&amp;rsquo;t use the nolock hint,
 but still regularly see deadlocks on this table in production even on Sitecore 9.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;SQL Server transaction deadlocks related to the link database could occur when multiple threads were creating and moving items concurrently, for example, when the threads created items that were stored in item buckets. This has been fixed by changing the GetReferrers(Item, ID) method in the SqlLinkDatabase class so that it uses WITH NOLOCK when reading from the Links table. (401393)
 &lt;a href=&#34;https://sdn.sitecore.net/products/sitecore%20v5/sitecore%20cms%207/releasenotes/changelog/release%20history%20sc71.aspx&#34;&gt;7.1 release notes&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/post/what-is-wrong-with-the-link-database/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_489x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/post/what-is-wrong-with-the-link-database/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/post/what-is-wrong-with-the-link-database/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Example of Traffic representing a Deadlock&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;h3 id=&#34;bad-execution-plan&#34;&gt;Bad Execution Plan&lt;/h3&gt;
-
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&#34;bad-execution-plan-&#34;&gt;Bad Execution Plan&lt;/h3&gt;
 &lt;p&gt;Sometimes when Sql Server evaluates a query on the Link Database(table), depending on the values being queried, it was deciding to do a TableScan to find an entry.
 This would get saved as the execution plan, and all the queries would go slower/use up more DTU&amp;rsquo;s, until the execution plan was discarded.&lt;/p&gt;
-
-&lt;h3 id=&#34;high-dtu-usage&#34;&gt;High DTU usage&lt;/h3&gt;
-
+&lt;h3 id=&#34;high-dtu-usage-&#34;&gt;High DTU usage&lt;/h3&gt;
 &lt;p&gt;We noticed that every publish, there was a DTU spike.
 We even saw some issues on the live site because of these Bad Execution Plan, combined with these High DTU spikes, on other pages trying to query the same database under load.
 So something had to be done, other than the immediate increase the DTU limits on the database server, and throw money at the problem.&lt;/p&gt;
-
-&lt;h3 id=&#34;disable-updating-the-link-database-on-publish&#34;&gt;Disable updating the link database on publish&lt;/h3&gt;
-
+&lt;h3 id=&#34;disable-updating-the-link-database-on-publish-&#34;&gt;Disable updating the link database on publish&lt;/h3&gt;
 &lt;p&gt;The following setting cut down the DTU spikes we were seeing on every publish, as we don&amp;rsquo;t use the Links Database on Content Delivery, was a quick win for us.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Disables incremental updates to the link database during publishing operations as an experimental optimization to speed up publishing (25% on average).&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://community.sitecore.net/technical_blogs/b/latest_technical_reinnovations/posts/enabling-parallel-publishing-with-sitecore-7-2&#34;&gt;Enabling Parallel Publishing and related optimizations&lt;/a&gt;&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;&amp;lt;setting name=&amp;quot;LinkDatabase.UpdateDuringPublish&amp;quot; value=&amp;quot;false&amp;quot;/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fixing-the-bad-execution-plan&#34;&gt;Fixing the Bad Execution Plan&lt;/h3&gt;
-
+&lt;h3 id=&#34;fixing-the-bad-execution-plan-&#34;&gt;Fixing the Bad Execution Plan&lt;/h3&gt;
 &lt;p&gt;It was choosing to do a Table Scan, because unfortunately there was no covering index for the query, because one of the columns is of type &amp;ldquo;ntext&amp;rdquo; which prevents it from being part of the index.&lt;/p&gt;
-
 &lt;p&gt;Sitecore confirmed that according to &lt;a href=&#34;https://docs.microsoft.com/en-us/sql/t-sql/data-types/ntext-text-and-image-transact-sql?view=sql-server-2017&#34;&gt;MS documentation&lt;/a&gt; that ntext will be removed from future versions of Sql Server. So in the future this column type will change.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;IMPORTANT! ntext, text, and image data types will be removed in a future version of SQL Server. Avoid using these data types in new development work, and plan to modify applications that currently use them. Use nvarchar(max), varchar(max), and varbinary(max) instead.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;So we are currently trying out applying the following change to the Links Database(Table)&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;ALTER TABLE [Links] ALTER COLUMN TargetPath NVARCHAR(MAX) NOT NULL
 GO
 
@@ -899,20 +802,13 @@ CREATE INDEX ndxLinks_SourceItemId_SourceDatabase_ALL ON [Links]
 INCLUDE ([SourceLanguage], [SourceVersion], [SourceFieldID], [TargetDatabase], [TargetItemID], [TargetLanguage], [TargetVersion], [TargetPath] )
 WITH (ONLINE=ON, SORT_IN_TEMPDB=ON)
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;And so far doesn&amp;rsquo;t appear to be causing much overhead to writes, is having the desired affect on preventing a bad execution plan and queries are using the new index, and to review if this has any beneficial impact to the deadlocks.&lt;/p&gt;
-
 &lt;p&gt;To update further once released to production/have more feedback.
 Hopefully these changes will come through in a future update of the sitecore product.&lt;/p&gt;
-
-&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
-
+&lt;h2 id=&#34;summary-&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;Be careful before taking a dependency on the Links Database, your architecture in the future if you are planning on moving to a scaled active/active multi region setup might not support it.&lt;/p&gt;
-
 &lt;p&gt;If you are using the Links Database on Content Delivery then you won&amp;rsquo;t have this luxury of being able to turn off this setting to not update the Web links database on publish. If you aren&amp;rsquo;t using the Links Database, then maybe turn off this feature to save some DTU&amp;rsquo;s.&lt;/p&gt;
-
 &lt;p&gt;If you are also seeing slow queries of the links database/high DTU&amp;rsquo;s, maybe try out this Sql Schema/Index and test yourself, or wait for this to become part of the sitecore product.&lt;/p&gt;
-
 &lt;p&gt;I&amp;rsquo;d recommend using Sitecore Content Search where possible.&lt;/p&gt;
 </description>
           </item>
@@ -928,83 +824,83 @@ Hopefully these changes will come through in a future update of the sitecore pro
             
             <guid>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</guid>
             <description>&lt;p&gt;Following an upgrade to Sitecore 9.0 update 2, from Sitecore 8.2 update 6, spotted that index rebuilds of the default indexes Core, Web &amp;amp; Master were taking much longer than they were before.&lt;/p&gt;
-
-&lt;p&gt;Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt; million items in each of the web and master databases.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt;Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~1/4 million items in each of the web and master databases.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_650x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_500x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;6&amp;#43; hours for a rebuilt. Ain&amp;#39;t nobody got time for that&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 &lt;p&gt;This was using the same SolrCloud infrastructure which had been upgraded ahead of the Sitecore 9 upgrade, same size VMs for sitecore indexing server, same index batch sizes &amp;amp; threads.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;setting name=&amp;quot;ContentSearch.ParallelIndexing.MaxThreadLimit value=&amp;quot;15&amp;quot; /&amp;gt;
-&amp;lt;setting name=&amp;quot;ContentSearch.ParallelIndexing.BatchSize&amp;quot; value=&amp;quot;1500&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Looking at the logs could see they were flooded with messages.&lt;/p&gt;
-
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;setting&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ContentSearch.ParallelIndexing.MaxThreadLimit value=&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;setting&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ContentSearch.ParallelIndexing.BatchSize&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1500&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Looking at the logs could see they were flooded with messages.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;XXXX XX:XX:XX WARN More than one template field matches. Index Name : sitecore_master_index Field Name : XXXXXXXXX&lt;/code&gt;&lt;/p&gt;
-
 &lt;p&gt;Initial discussions with Sitecore Support were to apply some patches to filter out the messages being written to the log files. &lt;a href=&#34;https://github.com/SitecoreSupport/Sitecore.Support.195567&#34;&gt;bug #195567&lt;/a&gt;&lt;br/&gt;
 However this felt more like treating the symptoms rather than the cause.&lt;/p&gt;
-
 &lt;p&gt;With performance still only being slightly improved, using reflection and overrides, tried to patch the behaviour  in &lt;em&gt;SolrFieldNameTranslator&lt;/em&gt; to not need to write theses warnings to the log files in the first place. Unfortunately the code had lots of private non virtual methods, and implemented an internal interface, which proved quite tricky to override, without requiring IL modification, so really was something for Sitecore to fix.&lt;br/&gt;
 But even after all this, still around 4+ hours to rebuild the index on a good day.&lt;/p&gt;
-
 &lt;p&gt;I observed an individual rebuild of the Core index was quite fast on it&amp;rsquo;s own, ~5 mins.
 But Sitecore Support confirmed that the algorithm used, would use resource stealing, to make the jobs finish about the same time each other (Slow job would steal resource from faster job).&lt;br /&gt;
 And confirmed in Sitecore 8.2 update 6 all indexes were taking a similar time when run in parallel.&lt;br /&gt;
 &lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskscheduler?view=netframework-4.7.2#work-stealing&#34;&gt;Work Stealing in Task Scheduler&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&#34;https://blogs.msdn.microsoft.com/jennifer/2009/06/26/work-stealing-in-net-4-0/&#34;&gt;Blog on Work Stealing&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Resources on the servers, and DTU usage on the database were minimal. So didn&amp;rsquo;t appear to be maxing out.&lt;/p&gt;
-
 &lt;p&gt;So what was the issue, some locking, or job scheduling changed in Sitecore 9?&lt;/p&gt;
-
 &lt;p&gt;Well to find the answer some performance traces were required, from a test environment where could replicate this issue.&lt;br /&gt;
 After enough performance traces were performed, Sitecore support observed that there were lots of idle threads doing nothing.&lt;br /&gt;
 Which was odd on a server with 16 cores, and 15 threads allocated for indexing.&lt;br/&gt;
 Sitecore support were then able to find the bug, The bug is specific to the strategy &lt;em&gt;OnPublishEndAsynchronousSingleInstanceStrategy&lt;/em&gt; which was being used by the web index.&lt;br/&gt;
 This strategy overrides &lt;em&gt;Run()&lt;/em&gt; method and initialises &lt;em&gt;LimitedConcurrencyLevelTaskSchedulerForIndexing&lt;/em&gt; singleton with the incorrect &lt;em&gt;MaxThreadLimit&lt;/em&gt; value.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;On Publish End Asynchronous Single Instance Strategy&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 &lt;p&gt;This code appears to be the same in previous versions, likely we were using &lt;em&gt;onPublishEndAsync&lt;/em&gt; rather than &lt;em&gt;onPublishEndAsyncSingleInstance&lt;/em&gt; before the upgrade.&lt;/p&gt;
-
 &lt;p&gt;Ask for bug fix #285903 from Sitecore support if you are affected by this, so your config settings don&amp;rsquo;t get overwritten.&lt;/p&gt;
 </description>
           </item>
@@ -1019,89 +915,96 @@ This strategy overrides &lt;em&gt;Run()&lt;/em&gt; method and initialises &lt;em
             <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
-            <description>
-
-&lt;p&gt;Recently I was looking at building a sitecore search domain index (&lt;a href=&#34;http://jockstothecore.com/indexing-patterns-in-sitecore/&#34;&gt;See Domain vs God index&lt;/a&gt;), which had quite a few calculated fields.
+            <description>&lt;p&gt;Recently I was looking at building a sitecore search domain index (&lt;a href=&#34;http://jockstothecore.com/indexing-patterns-in-sitecore/&#34;&gt;See Domain vs God index&lt;/a&gt;), which had quite a few calculated fields. 
 Lots of the calculated fields were based off similar information about the parent nodes of the current item.  And for each calculated field I was performing the same look ups again and again per field on the item.&lt;/p&gt;
-
 &lt;p&gt;I thought there has got to be a way to improve this, and found a forum post back from 2015 of someone asking the same question, and with a response of someone else who had solved it for one of the projects they were working on.
 &lt;a href=&#34;https://community.sitecore.net/developers/f/8/t/447&#34;&gt;Indexing multiple fields at same time&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In the given answer it seems quite easy to override this method in the DocumentBuilder.&lt;br /&gt;
-However using DotPeek it would appear somewhere since 2015 and Sitecore 8.2 update 6 the method which contains the logic I want to override has been made private, quite possibly when parallel indexing was introduced. As now the code forks in two, and both reference a private method which contains the logic I want to overwrite.&lt;br /&gt;
+&lt;p&gt;In the given answer it seems quite easy to override this method in the DocumentBuilder.&lt;br&gt;
+However using DotPeek it would appear somewhere since 2015 and Sitecore 8.2 update 6 the method which contains the logic I want to override has been made private, quite possibly when parallel indexing was introduced. As now the code forks in two, and both reference a private method which contains the logic I want to overwrite.&lt;br&gt;
 And that private method calls another private method. :/&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Private methods&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Until Sitecore add in (or add back in) the extensibility points I need,&lt;br /&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Until Sitecore add in (or add back in) the extensibility points I need,&lt;br&gt;
 It&amp;rsquo;s Reflection to the rescue.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_650x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_500x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/post/speeding-up-sitecore-crawling/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Reflect all the things&#34;&gt;
 &lt;/picture&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
+&lt;p&gt; &lt;/p&gt;
 &lt;p&gt;But reflection is slow, so let&amp;rsquo;s improve that performance by using Delegates (&lt;a href=&#34;https://jeremybytes.blogspot.co.uk/2014/01/improving-reflection-performance-with.html&#34;&gt;Improving Reflection Performance with Delegates&lt;/a&gt;)&lt;/p&gt;
-
 &lt;p&gt;Edit - it appears the SolrDocumentBuilder isn&amp;rsquo;t a Singleton, so moved reflection from constructor into a static constructor.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Collections.Concurrent;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Collections.Generic;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Reflection;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Threading.Tasks;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; Sitecore.ContentSearch;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; Sitecore.ContentSearch.ComputedFields;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; Sitecore.ContentSearch.Diagnostics;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; Sitecore.ContentSearch.SolrProvider;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; Sitecore.Diagnostics;
 
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.ComputedFields;
-using Sitecore.ContentSearch.Diagnostics;
-using Sitecore.ContentSearch.SolrProvider;
-using Sitecore.Diagnostics;
-
-public class SolrDocumentBuilderCustom : SolrDocumentBuilder
+&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SolrDocumentBuilderCustom&lt;/span&gt; : SolrDocumentBuilder
 {
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;delegate&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddFieldDelegate(SolrDocumentBuilder documentBuilder, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; fieldName, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt; fieldValue, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; returnType);
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; AddFieldDelegate _addFieldDelegate;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; AddFieldDelegate _addFieldDelegate;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; SolrDocumentBuilderCustom()
 	{
         &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; solrDocumentBuilderType = &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(SolrDocumentBuilder);
-        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; addFieldMethod = &lt;span style=&#34;color:#a6e22e&#34;&gt;solrDocumentBuilderType&lt;/span&gt;.GetMethod(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AddField&amp;#34;&lt;/span&gt;,
-            &lt;span style=&#34;color:#a6e22e&#34;&gt;BindingFlags&lt;/span&gt;.Instance | &lt;span style=&#34;color:#a6e22e&#34;&gt;BindingFlags&lt;/span&gt;.NonPublic,
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; addFieldMethod = solrDocumentBuilderType.GetMethod(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AddField&amp;#34;&lt;/span&gt;,
+            BindingFlags.Instance | BindingFlags.NonPublic,
             &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;,
-            &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[]&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt;[]
             {
                 &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;),
                 &lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;),
@@ -1109,112 +1012,106 @@ public class SolrDocumentBuilderCustom : SolrDocumentBuilder
             },
             &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;);
 
-        _addFieldDelegate = (AddFieldDelegate)&lt;span style=&#34;color:#a6e22e&#34;&gt;Delegate&lt;/span&gt;.CreateDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(AddFieldDelegate), addFieldMethod);
-	}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        _addFieldDelegate = (AddFieldDelegate)Delegate.CreateDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt;(AddFieldDelegate), addFieldMethod);
+	}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-    public SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : base(indexable, context)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : &lt;span style=&#34;color:#66d9ef&#34;&gt;base&lt;/span&gt;(indexable, context)
     {
     }
 
-    public override void AddComputedIndexFields()
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;override&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddComputedIndexFields()
     {
-        if (this.IsParallelComputedFieldsProcessing)
-            this.AddComputedIndexFieldsInParallel();
-        else
-            this.AddComputedIndexFieldsInSequence();
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.IsParallelComputedFieldsProcessing)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.AddComputedIndexFieldsInParallel();
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.AddComputedIndexFieldsInSequence();
     }
 
-    protected override void AddComputedIndexFieldsInParallel()
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;override&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddComputedIndexFieldsInParallel()
     {
-        ConcurrentQueue&amp;lt;Exception&amp;gt; exceptions = new ConcurrentQueue&amp;lt;Exception&amp;gt;();
-        this.ParallelForeachProxy.ForEach&amp;lt;IComputedIndexField&amp;gt;((IEnumerable&amp;lt;IComputedIndexField&amp;gt;)this.Options.ComputedIndexFields, this.ParallelOptions, (Action&amp;lt;IComputedIndexField, ParallelLoopState&amp;gt;)((field, parallelLoopState) =&amp;gt; this.AddComputedIndexField(field, parallelLoopState, exceptions)));
-        if (!exceptions.IsEmpty)
-            throw new AggregateException((IEnumerable&amp;lt;Exception&amp;gt;)exceptions);
+        ConcurrentQueue&amp;lt;Exception&amp;gt; exceptions = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; ConcurrentQueue&amp;lt;Exception&amp;gt;();
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.ParallelForeachProxy.ForEach&amp;lt;IComputedIndexField&amp;gt;((IEnumerable&amp;lt;IComputedIndexField&amp;gt;)&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.Options.ComputedIndexFields, &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.ParallelOptions, (Action&amp;lt;IComputedIndexField, ParallelLoopState&amp;gt;)((field, parallelLoopState) =&amp;gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.AddComputedIndexField(field, parallelLoopState, exceptions)));
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!exceptions.IsEmpty)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; AggregateException((IEnumerable&amp;lt;Exception&amp;gt;)exceptions);
     }
 
-    protected override void AddComputedIndexFieldsInSequence()
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;override&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddComputedIndexFieldsInSequence()
     {
-        foreach (IComputedIndexField computedIndexField in this.Options.ComputedIndexFields)
-            this.AddComputedIndexField(computedIndexField, (ParallelLoopState)null, (ConcurrentQueue&amp;lt;Exception&amp;gt;)null);
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;foreach&lt;/span&gt; (IComputedIndexField computedIndexField &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.Options.ComputedIndexFields)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.AddComputedIndexField(computedIndexField, (ParallelLoopState)&lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, (ConcurrentQueue&amp;lt;Exception&amp;gt;)&lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;);
     }
 
-    private new void AddComputedIndexField(IComputedIndexField computedIndexField, ParallelLoopState parallelLoopState = null, ConcurrentQueue&amp;lt;Exception&amp;gt; exceptions = null)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; AddComputedIndexField(IComputedIndexField computedIndexField, ParallelLoopState parallelLoopState = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, ConcurrentQueue&amp;lt;Exception&amp;gt; exceptions = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;)
     {
-        Assert.ArgumentNotNull((object)computedIndexField, nameof(computedIndexField));
-        object fieldValue;
-        try
+        Assert.ArgumentNotNull((&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;)computedIndexField, nameof(computedIndexField));
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt; fieldValue;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
         {
-            fieldValue = computedIndexField.ComputeFieldValue(this.Indexable);
+            fieldValue = computedIndexField.ComputeFieldValue(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.Indexable);
         }
-        catch (Exception ex)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; (Exception ex)
         {
-            CrawlingLog.Log.Warn(string.Format(&amp;quot;Could not compute value for ComputedIndexField: {0} for indexable: {1}&amp;quot;, (object)computedIndexField.FieldName, (object)this.Indexable.UniqueId), ex);
-            if (!this.Settings.StopOnCrawlFieldError())
-                return;
-            if (parallelLoopState != null)
+            CrawlingLog.Log.Warn(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;.Format(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Could not compute value for ComputedIndexField: {0} for indexable: {1}&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;)computedIndexField.FieldName, (&lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;)&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.Indexable.UniqueId), ex);
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.Settings.StopOnCrawlFieldError())
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (parallelLoopState != &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;)
             {
                 parallelLoopState.Stop();
                 exceptions.Enqueue(ex);
-                return;
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
             }
-            throw;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt;;
         }
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (fieldValue &lt;span style=&#34;color:#66d9ef&#34;&gt;is&lt;/span&gt; List&amp;lt;Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;&amp;gt;)
         {
             &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; fieldValues = fieldValue &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; List&amp;lt;Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;&amp;gt;;
-            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;fieldValues&lt;/span&gt;.Count &amp;lt;= &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (fieldValues.Count &amp;lt;= &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
             {
                 &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
             }
 
             &lt;span style=&#34;color:#66d9ef&#34;&gt;foreach&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; field &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; fieldValues)
             {
-                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;.IsNullOrEmpty(&lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item3) &amp;amp;&amp;amp; !&lt;span style=&#34;color:#a6e22e&#34;&gt;Index&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Schema&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;AllFieldNames&lt;/span&gt;.Contains(&lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item1))
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;.IsNullOrEmpty(field.Item3) &amp;amp;&amp;amp; !Index.Schema.AllFieldNames.Contains(field.Item1))
                 {
-                    _addFieldDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item1, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item2, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item3);
+                    _addFieldDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, field.Item1, field.Item2, field.Item3);
                 }
                 &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
                 {
-                    AddField(&lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item1, &lt;span style=&#34;color:#a6e22e&#34;&gt;field&lt;/span&gt;.Item2, &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
+                    AddField(field.Item1, field.Item2, &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
                 }
             }
         }
         &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
-        {&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-            if (!string.IsNullOrEmpty(computedIndexField.ReturnType) &amp;amp;&amp;amp;
-                !this.Index.Schema.AllFieldNames.Contains(computedIndexField.FieldName))
+        {
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;.IsNullOrEmpty(computedIndexField.ReturnType) &amp;amp;&amp;amp;
+                !&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.Index.Schema.AllFieldNames.Contains(computedIndexField.FieldName))
             {
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;                _addFieldDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;computedIndexField&lt;/span&gt;.FieldName, fieldValue, &lt;span style=&#34;color:#a6e22e&#34;&gt;computedIndexField&lt;/span&gt;.ReturnType);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;                _addFieldDelegate(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;, computedIndexField.FieldName, fieldValue, computedIndexField.ReturnType);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
             }
-            else
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
             {
-                this.AddField(computedIndexField.FieldName, fieldValue, true);
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.AddField(computedIndexField.FieldName, fieldValue, &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
             }
         }    
     }
 }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can then (as per the forum post referenced) return a List of Tuple&amp;rsquo;s from you computed index field, which all get added to the index in one go, without having to re-process shared logic for each field (assuming you have any).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;var result = new List&amp;lt;Tuple&amp;lt;string, object, string&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can then (as per the forum post referenced) return a List of Tuple&amp;rsquo;s from you computed index field, which all get added to the index in one go, without having to re-process shared logic for each field (assuming you have any).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; result = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; List&amp;lt;Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;&amp;gt;
         {
-            new Tuple&amp;lt;string, object, string&amp;gt;(&amp;quot;solrfield1&amp;quot;, value1, &amp;quot;stringCollection&amp;quot;),
-            new Tuple&amp;lt;string, object, string&amp;gt;(&amp;quot;solrfield2&amp;quot;, value2, &amp;quot;stringCollection&amp;quot;),
-            new Tuple&amp;lt;string, object, string&amp;gt;(&amp;quot;solrfield3&amp;quot;, value3, &amp;quot;stringCollection&amp;quot;)
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;solrfield1&amp;#34;&lt;/span&gt;, value1, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stringCollection&amp;#34;&lt;/span&gt;),
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;solrfield2&amp;#34;&lt;/span&gt;, value2, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stringCollection&amp;#34;&lt;/span&gt;),
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Tuple&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;object&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;solrfield3&amp;#34;&lt;/span&gt;, value3, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stringCollection&amp;#34;&lt;/span&gt;)
         };
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;end-result&#34;&gt;End Result&lt;/h2&gt;
-
-&lt;p&gt;For my particular case with over 10+ calculated fields which could be combined,&lt;br /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;end-result-&#34;&gt;End Result&lt;/h2&gt;
+&lt;p&gt;For my particular case with over 10+ calculated fields which could be combined,&lt;br&gt;
 I got index rebuild time down from &lt;strong&gt;1 hour &amp;amp; 8 mins&lt;/strong&gt; down to &lt;strong&gt;22 mins&lt;/strong&gt; on my local dev machine.&lt;/p&gt;
-
 &lt;p&gt;I then went on further to improve index rebuild times, by restricting which part of the tree the domain index crawls.&lt;/p&gt;
-
 &lt;p&gt;Seems I&amp;rsquo;m not the only one who&amp;rsquo;s indexes can benefit from this, and hopefully either sitecore will add support for this, or make it easier to extend again in the future without nasty reflection.&lt;/p&gt;
-
 &lt;p&gt;Happy Sitecoring!&lt;/p&gt;
 </description>
           </item>
@@ -1229,18 +1126,12 @@ I got index rebuild time down from &lt;strong&gt;1 hour &amp;amp; 8 mins&lt;/str
             <pubDate>Fri, 09 Feb 2018 20:49:38 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
-            <description>
-
-&lt;h4 id=&#34;fun-with-logic-apps-azure-functions-and-twitter&#34;&gt;Fun with logic apps, Azure functions and twitter&lt;/h4&gt;
-
+            <description>&lt;h4 id=&#34;fun-with-logic-apps-azure-functions-and-twitter-&#34;&gt;Fun with logic apps, Azure functions and twitter&lt;/h4&gt;
 &lt;p&gt;While studying for the Microsoft 70-532 exam,
 I wanted to take a look at Azure functions &amp;amp; Logics apps.&lt;/p&gt;
-
 &lt;p&gt;Having gone through this example
 &lt;a href=&#34;https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email&#34;&gt;&amp;ldquo;Create a function that integrates with Azure Logic Apps&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;It left me with some questions on how to improve it. E.g. I don&amp;rsquo;t want to receive an email per tweet.&lt;/p&gt;
-
 &lt;p&gt;So after some searching, I came across a new feature called batching
 &lt;a href=&#34;https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages&#34;&gt;&amp;ldquo;Send, receive, and batch process messages in logic apps&amp;rdquo;&lt;/a&gt;
 but even after the batch had been reached,
@@ -1248,76 +1139,108 @@ each message in the batch would result in an individual email.
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Logic apps Compose&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-
 &lt;p&gt;Then I came across this blog
 &lt;a href=&#34;http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/&#34;&gt;&amp;ldquo;Azure Logic Apps – Aggregate a value from an array of messages&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;And the Compose feature was what I wanted.
 Composing first the message I want out of each tweet.
 Then combining those messages together, into the format I want to email.&lt;/p&gt;
 
-
 &lt;picture&gt;
+
+
+
+
+
+
+	
+
+
+
+
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_583x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Logic apps Compose&#34;&gt;
 &lt;/picture&gt;
-
 &lt;p&gt;I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
 &lt;a href=&#34;https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134&#34;&gt;&amp;ldquo;How to Exclude retweets and replies in a search api&amp;rdquo;&lt;/a&gt;
 &lt;a href=&#34;http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/&#34;&gt;&amp;ldquo;How to master twitter search&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
 
-
 &lt;picture&gt;
+
+
+
+
+
+
+
+
+
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Search Tweets&#34;&gt;
 &lt;/picture&gt;
-
 &lt;p&gt;And here is the final result, twitter search result of original tweets filtered by language combined into a single email
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/post/logic-app-azure-function-twitter/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Combined Email&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 </description>
@@ -1333,89 +1256,84 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
             <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
-            <description>
-
-&lt;h4 id=&#34;updating-from-vs2015-ctp6-to-rc&#34;&gt;Updating from VS2015 CTP6 to RC&lt;/h4&gt;
-
+            <description>&lt;h4 id=&#34;updating-from-vs2015-ctp6-to-rc-&#34;&gt;Updating from VS2015 CTP6 to RC&lt;/h4&gt;
 &lt;p&gt;A number of changes have been made to names.&lt;/p&gt;
-
 &lt;p&gt;Watch this for further details:&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=-qt0POsiAF8&#34;&gt;Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Key slides:&lt;/p&gt;
-
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Renamed tools&#34;&gt;
 &lt;/picture&gt;
 
-
 &lt;picture&gt;
+
+
+
+
+
+
+
+
+
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/post/updating-to-vs-rc/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Renamed folder and packages&#34;&gt;
 &lt;/picture&gt;
-
 &lt;p&gt;If you install visual studio, the DNVM and DNX will be setup for you.&lt;br /&gt;
 To install Visual Studio RC, first uninstall visual studio CTP 6.&lt;br /&gt;
 If you aren&amp;rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&amp;rsquo;ll need Powershell V3 for this.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;&amp;amp;{$Branch=&#39;dev&#39;;iex ((new-object net.webclient).DownloadString(&#39;https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1&#39;))}&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Then to install .NET Execution Environment (DNX) run the following command&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;dnvm upgrade
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;I got some warnings, to remove the old environmental variable KRE_HOME&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;To see what is installed, and what is the default run.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;dnvm list
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;To set the coreclr to be used run&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;dnvm use 1.0.0-beta4 -x64 -r coreclr
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Then to run the web server&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;dnx . web
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;When running &amp;ldquo;dnx &amp;ndash;watch . web&amp;rdquo; from the command line, when any code changes are made, the server will stop, but not restart.&lt;br /&gt;
 In order to get the server to restart after a code change something like this is needed.&lt;br /&gt;
 When using visual studio this is all handled for you.&lt;br /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;for(;;) { Write-Output \&amp;quot;Starting...\&amp;quot;; dnx --watch . web }&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;for(;;) { Write-Output \&amp;quot;Starting...\&amp;quot;; dnx --watch . web }&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         
@@ -1429,241 +1347,280 @@ When using visual studio this is all handled for you.&lt;br /&gt;&lt;/p&gt;
             <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
             
             <guid>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
-            <description>
-
-&lt;h4 id=&#34;goals&#34;&gt;Goals&lt;/h4&gt;
-
+            <description>&lt;h4 id=&#34;goals-&#34;&gt;Goals&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;To setup Visual Studio 2015 to run an asp.net vNext website&lt;/li&gt;
 &lt;li&gt;Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h4 id=&#34;how-to-do-it-what-i-learnt&#34;&gt;How to do it/What I learnt&lt;/h4&gt;
-
+&lt;h4 id=&#34;how-to-do-itwhat-i-learnt-&#34;&gt;How to do it/What I learnt&lt;/h4&gt;
 &lt;p&gt;Reading the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Release Notes&lt;/a&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;So a VM should be used.
 So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&amp;rsquo;t work on 64 bit PCs.
 So starting again, I downloaded &lt;a href=&#34;https://www.virtualbox.org/&#34;&gt;VirtualBox&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;I then &lt;a href=&#34;http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst&#34;&gt;created a Windows 7 VM in VirtualBox&lt;/a&gt;.&lt;br/&gt;
 Important Steps, create it with enough space, e.g. 50GB+. It&amp;rsquo;s surprising how much space need for Windows &amp;amp; Patching, as well as Visual Studio 2015.&lt;br/&gt;
 In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.&lt;/p&gt;
-
 &lt;p&gt;Here is good article if need to &lt;a href=&#34;http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html&#34;&gt;change the space on the Virtual Box VM&lt;/a&gt;, and update windows to use the extra space.&lt;br/&gt;
 The first steps about cloning are optional.&lt;br/&gt;
 The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;VBoxManage modifyhd &amp;quot;VMName.vdi&amp;quot; --resize 50000
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &amp;ldquo;Extend Volume..&amp;rdquo;, and allocate the extra space.&lt;/p&gt;
-
+&lt;p&gt;And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &amp;ldquo;Extend Volume..&amp;quot;, and allocate the extra space.&lt;/p&gt;
 &lt;p&gt;Now you&amp;rsquo;ve got a Windows 7 VM, few important things:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Patch it to include SP1&lt;/li&gt;
 &lt;li&gt;Patch it to include IE10/IE11&lt;/li&gt;
 &lt;li&gt;Just patch it up to the latest version &amp;amp; reboot&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;If you don&amp;rsquo;t patch it to SP1, then won&amp;rsquo;t be able to install Visual Studio.&lt;br /&gt;
 And if you don&amp;rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&amp;rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this &lt;a href=&#34;http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop&#34;&gt;forum thread&lt;/a&gt;&lt;br /&gt;
 &lt;strong&gt;Summary just patch your VM to the latest version&lt;/strong&gt;&lt;/p&gt;
-
 &lt;p&gt;Having got a Patched VM, with enough disk space.
 Then install Visual Studio 2015 CTP 6.
 I used the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Visual Studio 2015 Ultimate Web Installer&lt;/a&gt; released on 23rd of February 2015.
 And just installed the default options.&lt;/p&gt;
-
 &lt;p&gt;You&amp;rsquo;ll also want to install the K runtime.&lt;br /&gt;
 First install the K Version Manager(KVM) in Powershell as an administrator.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;iex ((new-object net.webclient).DownloadString(&#39;https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1&#39;))&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;As detailed on the &lt;a href=&#34;https://github.com/aspnet/home&#34;&gt;Asp.net Github page&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Now KVM is installed, you&amp;rsquo;ll want to get the K runtime.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;kvm upgrade
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Having done that you can see what is installed by calling&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;kvm list
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;And you should see something like:&lt;br /&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;KVM list&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-
 &lt;p&gt;Notice is used the \.k\ folder, earlier version where using \.kre\.
 You may read older documentation that refers to \.kre\.&lt;/p&gt;
-
 &lt;p&gt;You may want to look at switching to use the coreclr runtime as the Active version.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;kvm use 1.0.0-beta3 -x64 -r coreclr
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;followed by&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;kvm list
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;And you should see something like, notice the Active * has now updated:&lt;br /&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;KVM list&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-
 &lt;p&gt;Now you&amp;rsquo;ve got a VM, K runtime setup.&lt;/p&gt;
-
 &lt;p&gt;Open up visual studio and create a new project.&lt;br /&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Visual Studio Create Project&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-
 &lt;p&gt;Select a blank project&lt;br /&gt;
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Select blank project&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-
 &lt;p&gt;Now have that created, let&amp;rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;app.UseWelcomePage();
 &lt;/code&gt;&lt;/pre&gt;
 
-
 &lt;picture&gt;
+
+
+
+
+
+
+	
+
+
+	
+
+
+
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Modify startup.cs&#34;&gt;
 &lt;/picture&gt;
-
 &lt;p&gt;This won&amp;rsquo;t compile at the moment as you don&amp;rsquo;t have a reference to the extension method.&lt;/p&gt;
-
 &lt;p&gt;To do that open project.json, and add a reference to &amp;ldquo;Microsoft.AspNet.Diagnostics&amp;rdquo;: &amp;ldquo;1.0.0-beta3&amp;rdquo;
 I&amp;rsquo;ve also added some references to &amp;ldquo;Microsoft.AspNet.Hosting&amp;rdquo; &amp;amp; &amp;ldquo;Microsoft.AspNet.Server.WebListener&amp;rdquo;, and added the command &amp;ldquo;web&amp;rdquo;, so can launch the site from the command prompt.
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Modify project.json&#34;&gt;
 &lt;/picture&gt;
 &lt;br/&gt;
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &amp;ldquo;1.0.0-beta3&amp;rdquo;.
+Make sure the version of k runtime in the project.json matches what you have installed, e.g. &amp;ldquo;1.0.0-beta3&amp;rdquo;. 
 When you save the file, visual studio should automatically restore the packages from NuGet.&lt;/p&gt;
-
 &lt;p&gt;In visual studio you can configure which version of K the application uses
 
 &lt;picture&gt;
 
+
+
+
+
+
+	
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;VS configure KRE version&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-
 &lt;p&gt;You should either now be able to launch the site from either Visual Studio or Command prompt.&lt;/p&gt;
-
 &lt;p&gt;To start the site via command prompt, navigate to the website directory, and run&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;k web
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Now you can navigate to the site as defined in the project.json configuration&lt;/p&gt;
-
 
 &lt;picture&gt;
 
+
+
+
+
+
+
+
+
+
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box.PNG&#34;&gt;
+    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/post/setting-up-visual-studio-2015-ctp-6/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box.PNG&#34; 
+    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Startup Page&#34;&gt;
 &lt;/picture&gt;
 </description>

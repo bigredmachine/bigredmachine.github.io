@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Indexing on Ian&#39;s Blog</title>
@@ -18,7 +18,7 @@
       
       <guid>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</guid>
       <description>Following an upgrade to Sitecore 9.0 update 2, from Sitecore 8.2 update 6, spotted that index rebuilds of the default indexes Core, Web &amp;amp; Master were taking much longer than they were before.
-Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~1&amp;frasl;4 million items in each of the web and master databases.</description>
+Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~1/4 million items in each of the web and master databases.</description>
     </item>
     
     <item>

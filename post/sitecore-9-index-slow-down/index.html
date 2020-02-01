@@ -89,83 +89,83 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>Following an upgrade to Sitecore 9.0 update 2, from Sitecore 8.2 update 6, spotted that index rebuilds of the default indexes Core, Web &amp; Master were taking much longer than they were before.</p>
-
-<p>Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~<sup>1</sup>&frasl;<sub>4</sub> million items in each of the web and master databases.</p>
-
-<p>&nbsp;</p>
-
+<p>Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~1/4 million items in each of the web and master databases.</p>
+<p> </p>
 
 <picture>
 
+
+
+
+
+
+	
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_650x0_resize_q100_box.jpg">
+    srcset="/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_500x0_resize_q100_box.jpg">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_465x0_resize_q100_box.jpg">
+    srcset="/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_465x0_resize_q100_box.jpg">
 	
   <img 
-    src="/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_300x0_resize_q100_box.jpg" 
+    src="/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_300x0_resize_q100_box.jpg" 
     alt="6&#43; hours for a rebuilt. Ain&#39;t nobody got time for that">
 </picture>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>This was using the same SolrCloud infrastructure which had been upgraded ahead of the Sitecore 9 upgrade, same size VMs for sitecore indexing server, same index batch sizes &amp; threads.</p>
-
-<pre><code class="language-xml">&lt;setting name=&quot;ContentSearch.ParallelIndexing.MaxThreadLimit value=&quot;15&quot; /&gt;
-&lt;setting name=&quot;ContentSearch.ParallelIndexing.BatchSize&quot; value=&quot;1500&quot; /&gt;
-</code></pre>
-
-<p>Looking at the logs could see they were flooded with messages.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;setting</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ContentSearch.ParallelIndexing.MaxThreadLimit value=&#34;</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#960050;background-color:#1e0010">5</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;setting</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ContentSearch.ParallelIndexing.BatchSize&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;1500&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Looking at the logs could see they were flooded with messages.</p>
 <p><code>XXXX XX:XX:XX WARN More than one template field matches. Index Name : sitecore_master_index Field Name : XXXXXXXXX</code></p>
-
 <p>Initial discussions with Sitecore Support were to apply some patches to filter out the messages being written to the log files. <a href="https://github.com/SitecoreSupport/Sitecore.Support.195567">bug #195567</a><br/>
 However this felt more like treating the symptoms rather than the cause.</p>
-
 <p>With performance still only being slightly improved, using reflection and overrides, tried to patch the behaviour  in <em>SolrFieldNameTranslator</em> to not need to write theses warnings to the log files in the first place. Unfortunately the code had lots of private non virtual methods, and implemented an internal interface, which proved quite tricky to override, without requiring IL modification, so really was something for Sitecore to fix.<br/>
 But even after all this, still around 4+ hours to rebuild the index on a good day.</p>
-
 <p>I observed an individual rebuild of the Core index was quite fast on it&rsquo;s own, ~5 mins.
 But Sitecore Support confirmed that the algorithm used, would use resource stealing, to make the jobs finish about the same time each other (Slow job would steal resource from faster job).<br />
 And confirmed in Sitecore 8.2 update 6 all indexes were taking a similar time when run in parallel.<br />
 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskscheduler?view=netframework-4.7.2#work-stealing">Work Stealing in Task Scheduler</a><br />
 <a href="https://blogs.msdn.microsoft.com/jennifer/2009/06/26/work-stealing-in-net-4-0/">Blog on Work Stealing</a></p>
-
 <p>Resources on the servers, and DTU usage on the database were minimal. So didn&rsquo;t appear to be maxing out.</p>
-
 <p>So what was the issue, some locking, or job scheduling changed in Sitecore 9?</p>
-
 <p>Well to find the answer some performance traces were required, from a test environment where could replicate this issue.<br />
 After enough performance traces were performed, Sitecore support observed that there were lots of idle threads doing nothing.<br />
 Which was odd on a server with 16 cores, and 15 threads allocated for indexing.<br/>
 Sitecore support were then able to find the bug, The bug is specific to the strategy <em>OnPublishEndAsynchronousSingleInstanceStrategy</em> which was being used by the web index.<br/>
 This strategy overrides <em>Run()</em> method and initialises <em>LimitedConcurrencyLevelTaskSchedulerForIndexing</em> singleton with the incorrect <em>MaxThreadLimit</em> value.</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_650x0_resize_q100_box.PNG">
+    srcset="/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_650x0_resize_q100_box_2.PNG">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_465x0_resize_q100_box.PNG">
+    srcset="/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_465x0_resize_q100_box_2.PNG">
 	
   <img 
-    src="/post/sitecore-9-index-slow-down/post/sitecore-9-index-slow-down/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_300x0_resize_q100_box.PNG" 
+    src="/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_300x0_resize_q100_box_2.PNG" 
     alt="On Publish End Asynchronous Single Instance Strategy">
 </picture>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>This code appears to be the same in previous versions, likely we were using <em>onPublishEndAsync</em> rather than <em>onPublishEndAsyncSingleInstance</em> before the upgrade.</p>
-
 <p>Ask for bug fix #285903 from Sitecore support if you are affected by this, so your config settings don&rsquo;t get overwritten.</p>
 
 		</div>
@@ -182,7 +182,7 @@ This strategy overrides <em>Run()</em> method and initialises <em>LimitedConcurr
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

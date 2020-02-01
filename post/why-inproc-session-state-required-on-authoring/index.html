@@ -79,106 +79,96 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring">Why have to use InProc session state on Sitecore Content Authoring</h2>
-
+			<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring-">Why have to use InProc session state on Sitecore Content Authoring</h2>
 <p>A note on why InProc session state &amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.</p>
-
 <p><a href="https://kb.sitecore.net/articles/860809">https://kb.sitecore.net/articles/860809</a></p>
-
-<h2 id="bad-practice-to-use-sticky-sessions">Bad Practice to use Sticky Sessions</h2>
-
+<h2 id="bad-practice-to-use-sticky-sessions-">Bad Practice to use Sticky Sessions</h2>
 <p>A quick intro on why Sticky Sessions are bad.
 <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out">https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out</a></p>
-
 <blockquote>
 <p><strong>Avoid instance stickiness.</strong> Stickiness, or session affinity, is when requests from the same client are always routed to the same server. Stickiness limits the application&rsquo;s ability to scale out. For example, traffic from a high-volume user will not be distributed across instances. Causes of stickiness include storing session state in memory, and using machine-specific keys for encryption. Make sure that any instance can handle any request.</p>
 </blockquote>
-
-<p>Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br />
-E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.<br />
+<p>Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br>
+E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.<br>
 Or if you use sticky sessions via IP address, and lots of people work in the same office, all of that office will be allocated to the same machine.</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 
 <picture>
 
+
+
+
+
+
+	
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_650x0_resize_q100_box.jpg">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_555x0_resize_q100_box.jpg">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg">
 	
   <img 
-    src="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg" 
+    src="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg" 
     alt="Sticky Session">
 </picture>
-
-<p>&nbsp;</p>
-
-<h2 id="redis-provider-network-stability">Redis provider network stability</h2>
-
+<p> </p>
+<h2 id="redis-provider-network-stability-">Redis provider network stability</h2>
 <p>The Stack Exchange redis session state provider at the time often had network stability issues, particularly on Azure Redis (TLS)
-<a href="https://github.com/StackExchange/StackExchange.Redis/issues/871">https://github.com/StackExchange/StackExchange.Redis/issues/871</a><br />
+<a href="https://github.com/StackExchange/StackExchange.Redis/issues/871">https://github.com/StackExchange/StackExchange.Redis/issues/871</a><br>
 Version 2 has since been released, which would be worth testing to see how much this has improved the issue.</p>
-
-<h2 id="too-much-data-being-put-into-session-state">Too much data being put into Session state</h2>
-
+<h2 id="too-much-data-being-put-into-session-state-">Too much data being put into Session state</h2>
 <p>However, another issue which couldn&rsquo;t be solved, was that too much data was being stored in session state.</p>
-
 <ul>
 <li>228534 - Jsnlog entries spam session storage</li>
 <li>228355 - Validation related objects spam session storage</li>
 </ul>
-
 <p>The JsnLog entries can be disabled by changing
-\App_Config\Include\Sitecore.JSNLog.config &lt;jsnlog enabled=&ldquo;false&rdquo;</p>
-
+\App_Config\Include\Sitecore.JSNLog.config &lt;jsnlog enabled=&quot;false&rdquo;</p>
 <p>For validation though, there is no easy work around.
 You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.</p>
-
-<h2 id="asp-net-webforms-legacy">ASP.NET WebForms Legacy</h2>
-
+<h2 id="aspnet-webforms-legacy-">ASP.NET WebForms Legacy</h2>
 <p>And this is on top of the Content Editor still using WebForms with ViewState and ControlState needing to be stored to a shared medium, which may as well also be Redis is using a Redis session state provider. (Although a Database is another option if you have spare DTUs, why not be consistent)</p>
-
-<h2 id="redis-is-designed-for-small-objects">Redis is designed for small objects</h2>
-
+<h2 id="redis-is-designed-for-small-objects-">Redis is designed for small objects</h2>
 <p><a href="https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/">https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/</a></p>
-
 <blockquote>
 <p>Redis Server and StackExchange.Redis are optimized for many small requests rather than fewer large requests.  Splitting your data into smaller chunks may improve things here</p>
 </blockquote>
-
 <p>A large session state, viewstate, control state isn&rsquo;t going to help.</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 
 <picture>
 
+
+
+
+
+
+
+
+
+
   <source 
     media="(min-width: 650px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box.png">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box_2.png">
 	
   <source 
     media="(min-width: 465px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box.png">
+    srcset="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box_2.png">
 	
   <img 
-    src="/post/why-inproc-session-state-required-on-authoring/post/why-inproc-session-state-required-on-authoring/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box.png" 
+    src="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box_2.png" 
     alt="Redis Logo">
 </picture>
-
-<p>&nbsp;</p>
-
-<h2 id="summary">Summary</h2>
-
+<p> </p>
+<h2 id="summary-">Summary</h2>
 <p>Ultimately right now, to have more than once Content Authoring server, you have to use Sticky Sessions and InProc session state.</p>
-
 <p>Looking forward to a future version of Sitecore allowing to get away from Sticky Sessions on Content Authoring, either by reducing the amount of data needed in Session Storage, or getting away from Viewstate &amp; ControlState - perhaps with Sitecore Horizon the new editor built in Angular.</p>
 
 		</div>
@@ -195,7 +185,7 @@ You can disable the validation bar - so no new validation messages are loaded wi
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2018 Ian Jones.
+                        &copy; 2015-2020 Ian Jones.
                     </p>
                 </div>
 

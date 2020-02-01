@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Ian&#39;s Blog</title>
@@ -17,8 +17,10 @@
       <pubDate>Sun, 08 Mar 2015 11:19:12 +0000</pubDate>
       
       <guid>http://bigredmachine.github.io/page/about/</guid>
-      <description>I&amp;rsquo;m a C# Sitecore Developer.
-Living in North London, and I&amp;rsquo;m a Spurs Fan.</description>
+      <description>I&amp;rsquo;m a Software Engineer.
+ C# since .net 1.1 Sitecore since Sitecore 6, and MVP 2020 in Technology Category SolrCloud Docker Azure (70-532 certificatiion) K8s/AKS  Living in North London, and I&amp;rsquo;m a Spurs Fan.
+Loves Trances Music, Anjunabeats 🙌
+   </description>
     </item>
     
   </channel>

@@ -1,6 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/development/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/mvp/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/post/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/categories/sitecore/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/sitecore/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/post/mvp-2020/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</loc>
@@ -8,7 +53,32 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/solr/</loc>
+    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/azuread/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/blob-storage/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/federated-authentication/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</loc>
+    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/media-library/</loc>
     <lastmod>2019-11-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -18,7 +88,42 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/bluegreen/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/contentfreeze/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/downtime/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/inproc/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/java/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/openjdk/</loc>
+    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/stickysession/</loc>
     <lastmod>2018-12-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -33,12 +138,47 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/dtu/</loc>
+    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/linkdb/</loc>
+    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/speed/</loc>
+    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</loc>
     <lastmod>2018-11-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/bug/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/crawling/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/indexing/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</loc>
+    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/upgrade/</loc>
     <lastmod>2018-10-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,12 +188,42 @@
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/azure/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/azure-functions/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/azure-logic-apps/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/development/</loc>
+    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</loc>
     <lastmod>2018-02-09T20:49:38+00:00</lastmod>
   </url>
   
   <url>
+    <loc>http://bigredmachine.github.io/tags/dotnet/</loc>
+    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://bigredmachine.github.io/post/updating-to-vs-rc/</loc>
+    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bigredmachine.github.io/tags/visual-studio/</loc>
     <lastmod>2015-05-25T16:18:02+00:00</lastmod>
   </url>
   
@@ -68,200 +238,8 @@
   </url>
   
   <url>
-    <loc>http://bigredmachine.github.io/tags/azure/</loc>
-    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/azure-functions/</loc>
-    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/azure-logic-apps/</loc>
-    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/azuread/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/blob-storage/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/bluegreen/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/bug/</loc>
-    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/contentfreeze/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/crawling/</loc>
-    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/categories/development/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/development/</loc>
-    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/dotnet/</loc>
-    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/downtime/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/dtu/</loc>
-    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/federated-authentication/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/indexing/</loc>
-    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/inproc/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/java/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/linkdb/</loc>
-    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/media-library/</loc>
-    <lastmod>2019-11-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/openjdk/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://bigredmachine.github.io/page/</loc>
     <lastmod>2015-03-08T11:19:12+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/post/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/categories/sitecore/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/sitecore/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/solr/</loc>
-    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/speed/</loc>
-    <lastmod>2018-11-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/stickysession/</loc>
-    <lastmod>2018-12-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/</loc>
-    <lastmod>2018-02-09T20:49:38+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/upgrade/</loc>
-    <lastmod>2018-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://bigredmachine.github.io/tags/visual-studio/</loc>
-    <lastmod>2015-05-25T16:18:02+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>
