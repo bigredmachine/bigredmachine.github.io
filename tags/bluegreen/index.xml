@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BlueGreen on Ian&#39;s Blog</title>
-    <link>http://bigredmachine.github.io/tags/bluegreen/</link>
+    <link>https://bigredmachine.github.io/tags/bluegreen/</link>
     <description>Recent content in BlueGreen on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://bigredmachine.github.io/tags/bluegreen/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bigredmachine.github.io/tags/bluegreen/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Zero down time for Delivery &amp; Authoring</title>
-      <link>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</link>
+      <link>https://bigredmachine.github.io/post/zero-content-authoring-down-time/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</guid>
+      <guid>https://bigredmachine.github.io/post/zero-content-authoring-down-time/</guid>
       <description>Zero down time for Delivery &amp;amp; Authoring A lot of people talk about zero downtime, but normally just in the context of Content Delivery. Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.
 However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.
 https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html

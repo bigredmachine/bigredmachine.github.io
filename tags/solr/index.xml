@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Solr on Ian&#39;s Blog</title>
-    <link>http://bigredmachine.github.io/tags/solr/</link>
+    <link>https://bigredmachine.github.io/tags/solr/</link>
     <description>Recent content in Solr on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://bigredmachine.github.io/tags/solr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bigredmachine.github.io/tags/solr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Improving the Siteore Solr Content Search Provider</title>
-      <link>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</link>
+      <link>https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</link>
       <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</guid>
+      <guid>https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</guid>
       <description>Improving the Siteore Solr Content Search Provider Back in February this year I gave a presentation at the London Sitecore User Group &amp;ldquo;Improving the Solr Content Search Provider&amp;rdquo;.
 My first talk at a Sitecore User group.
 Although I regularly attend the Sitecore discussion club, and have presented there on several occasions.
@@ -25,29 +25,29 @@ Known bugs At the presentation I included a link to a github repository with a l
     
     <item>
       <title>Java goes commercial, what does this mean for Sitecore - Solr?</title>
-      <link>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
+      <link>https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
+      <guid>https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
       <description>Oracle to start charging for Java I&amp;rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&amp;rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</description>
     </item>
     
     <item>
       <title>Sitecore 9 Index Slow Down - fix</title>
-      <link>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</link>
+      <link>https://bigredmachine.github.io/post/sitecore-9-index-slow-down/</link>
       <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</guid>
+      <guid>https://bigredmachine.github.io/post/sitecore-9-index-slow-down/</guid>
       <description>Following an upgrade to Sitecore 9.0 update 2, from Sitecore 8.2 update 6, spotted that index rebuilds of the default indexes Core, Web &amp;amp; Master were taking much longer than they were before.
 Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~1/4 million items in each of the web and master databases.</description>
     </item>
     
     <item>
       <title>Speeding up sitecore crawling</title>
-      <link>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</link>
+      <link>https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
+      <guid>https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
       <description>Recently I was looking at building a sitecore search domain index (See Domain vs God index), which had quite a few calculated fields. Lots of the calculated fields were based off similar information about the parent nodes of the current item. And for each calculated field I was performing the same look ups again and again per field on the item.
 I thought there has got to be a way to improve this, and found a forum post back from 2015 of someone asking the same question, and with a response of someone else who had solved it for one of the projects they were working on.</description>
     </item>

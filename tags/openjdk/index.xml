@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OpenJDK on Ian&#39;s Blog</title>
-    <link>http://bigredmachine.github.io/tags/openjdk/</link>
+    <link>https://bigredmachine.github.io/tags/openjdk/</link>
     <description>Recent content in OpenJDK on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://bigredmachine.github.io/tags/openjdk/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bigredmachine.github.io/tags/openjdk/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Java goes commercial, what does this mean for Sitecore - Solr?</title>
-      <link>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
+      <link>https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
+      <guid>https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
       <description>Oracle to start charging for Java I&amp;rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&amp;rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</description>
     </item>
     

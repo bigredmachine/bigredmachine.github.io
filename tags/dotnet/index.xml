@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DotNet on Ian&#39;s Blog</title>
-    <link>http://bigredmachine.github.io/tags/dotnet/</link>
+    <link>https://bigredmachine.github.io/tags/dotnet/</link>
     <description>Recent content in DotNet on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 25 May 2015 16:18:02 +0000</lastBuildDate>
     
-	<atom:link href="http://bigredmachine.github.io/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bigredmachine.github.io/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>updating to Visual Studio 2015 RC</title>
-      <link>http://bigredmachine.github.io/post/updating-to-vs-rc/</link>
+      <link>https://bigredmachine.github.io/post/updating-to-vs-rc/</link>
       <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
+      <guid>https://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
       <description>Updating from VS2015 CTP6 to RC A number of changes have been made to names.
 Watch this for further details:
 Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename
@@ -28,10 +28,10 @@ If you aren&amp;rsquo;t installing visual studio, and want to use the command li
     
     <item>
       <title>setting up Visual Studio 2015 CTP 6</title>
-      <link>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
+      <link>https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
       <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
+      <guid>https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
       <description>Goals  To setup Visual Studio 2015 to run an asp.net vNext website Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.  How to do it/What I learnt Reading the Release Notes
  NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code.</description>
     </item>

@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ian&#39;s Blog on Ian&#39;s Blog</title>
-    <link>http://bigredmachine.github.io/</link>
+    <link>https://bigredmachine.github.io/</link>
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,10 +12,10 @@
         
           <item>
             <title>Sitecore MVP 2020 - Technology</title>
-            <link>http://bigredmachine.github.io/post/mvp-2020/</link>
+            <link>https://bigredmachine.github.io/post/mvp-2020/</link>
             <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/mvp-2020/</guid>
+            <guid>https://bigredmachine.github.io/post/mvp-2020/</guid>
             <description>&lt;h2 id=&#34;sitecore-mvp-2020---technology-&#34;&gt;Sitecore MVP 2020 - Technology&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m thankful to receive my 1st Sitecore MVP award in the Technology category for 2020.&lt;/p&gt;
 &lt;a href=&#34;https://mvp.sitecore.com/&#34;&gt;
@@ -41,14 +41,14 @@
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;MVP&#34;&gt;
 &lt;/picture&gt;
 &lt;/a&gt;
@@ -75,14 +75,14 @@
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;MVP&#34;&gt;
 &lt;/picture&gt;
 &lt;/a&gt;
@@ -113,10 +113,10 @@ And &lt;a href=&#34;https://twitter.com/steviemcgill&#34;&gt;Steve McGill&lt;/a&
         
           <item>
             <title>Improving the Siteore Solr Content Search Provider</title>
-            <link>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</link>
+            <link>https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</link>
             <pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</guid>
+            <guid>https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</guid>
             <description>&lt;h2 id=&#34;improving-the-siteore-solr-content-search-provider-&#34;&gt;Improving the Siteore Solr Content Search Provider&lt;/h2&gt;
 &lt;p&gt;Back in February this year I gave a presentation at the &lt;a href=&#34;https://www.meetup.com/sug-uk/events/258462625/&#34;&gt;London Sitecore User Group&lt;/a&gt; &amp;ldquo;Improving the Solr Content Search Provider&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;My first talk at a Sitecore User group.&lt;/p&gt;
@@ -131,7 +131,7 @@ And &lt;a href=&#34;https://twitter.com/steviemcgill&#34;&gt;Steve McGill&lt;/a&
 &lt;li&gt;Patch for IsSolrAliveAgent to update SolrState and process reinitialisation correctly - 163850.171950&lt;/li&gt;
 &lt;li&gt;Incorrect data being indexed, if have ContentSearch.Indexing.DisableDatabaseCaches setting set to true - 96740.127177.155383&lt;/li&gt;
 &lt;li&gt;If IndexAllFields=false the IncludedFields are indexed as string values - New bug in Sitecore 9 - 252532&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/&#34;&gt;Index rebuild slow down after Sitecore 9 upgrade&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/&#34;&gt;Index rebuild slow down after Sitecore 9 upgrade&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;common-patterns-for-distributed-computing-&#34;&gt;Common Patterns for distributed computing&lt;/h2&gt;
 &lt;p&gt;The github repostiory also included an example implementation of patterns to address some of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing&#34;&gt;fallacies of distributed computing&lt;/a&gt;.&lt;/p&gt;
@@ -164,7 +164,7 @@ And &lt;a href=&#34;https://twitter.com/steviemcgill&#34;&gt;Steve McGill&lt;/a&
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&#34;&gt;http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&#34;&gt;https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/&#34;&gt;What&amp;rsquo;s wrong with the links database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/&#34;&gt;What&amp;rsquo;s wrong with the links database&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;On reasons not to use each of them, at least on Content Delivery, or when querying over lots of items.&lt;/p&gt;
 &lt;h2 id=&#34;a-list-of-other-alternatives-&#34;&gt;A list of other alternatives&lt;/h2&gt;
@@ -276,10 +276,10 @@ Often the extension points/hooks we have used have gone, and we have to find new
         
           <item>
             <title>Federated Authentication Single Sign Out</title>
-            <link>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</link>
+            <link>https://bigredmachine.github.io/post/federated-authentication-single-sign-out/</link>
             <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/federated-authentication-single-sign-out/</guid>
+            <guid>https://bigredmachine.github.io/post/federated-authentication-single-sign-out/</guid>
             <description>&lt;h2 id=&#34;federated-authentication-single-sign-out-&#34;&gt;Federated Authentication Single Sign Out&lt;/h2&gt;
 &lt;p&gt;By default when you sign out of Sitecore, you don&amp;rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&amp;rsquo;t challenge you to sign back in again, and lets you into the system.&lt;/p&gt;
 &lt;p&gt;So have you really signed out, if you haven&amp;rsquo;t signed out of the Federated Authentication provider as well? IMHO - no.&lt;/p&gt;
@@ -305,14 +305,14 @@ Often the extension points/hooks we have used have gone, and we have to find new
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Pipelines Everywhere&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -360,10 +360,10 @@ Still we can reuse this configuration setting in our pipeline.&lt;/p&gt;
         
           <item>
             <title>Sitecore 9.3 - media library blob storage</title>
-            <link>http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</link>
+            <link>https://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</link>
             <pubDate>Sun, 24 Nov 2019 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</guid>
+            <guid>https://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/</guid>
             <description>&lt;h2 id=&#34;sitecore-93---media-library-azure-blob-storage-&#34;&gt;Sitecore 9.3 - Media Library Azure Blob Storage&lt;/h2&gt;
 &lt;p&gt;Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.&lt;/p&gt;
 &lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#SitecoreSYM&lt;/a&gt; is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming &lt;a href=&#34;https://twitter.com/hashtag/Sitecore?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#Sitecore&lt;/a&gt; 9.3 release. As a gesture of good will -&amp;gt; the deck is now available on &lt;a href=&#34;https://t.co/B9DqZ9CLot&#34;&gt;https://t.co/B9DqZ9CLot&lt;/a&gt; &lt;a href=&#34;https://t.co/B8Qy9kzLF0&#34;&gt;pic.twitter.com/B8Qy9kzLF0&lt;/a&gt;&lt;/p&gt;&amp;mdash; Pieter Brinkman (@pieterbrink123) &lt;a href=&#34;https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw&#34;&gt;November 12, 2019&lt;/a&gt;&lt;/blockquote&gt;
@@ -403,10 +403,10 @@ Let&amp;rsquo;s see if this is possible when Sitecore 9.3 comes out.&lt;/p&gt;
         
           <item>
             <title>Java goes commercial, what does this mean for Sitecore - Solr?</title>
-            <link>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
+            <link>https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</link>
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
+            <guid>https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/</guid>
             <description>&lt;h1 id=&#34;oracle-to-start-charging-for-java-&#34;&gt;Oracle to start charging for Java&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&amp;rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.&lt;/p&gt;
 &lt;p&gt;I brought this topic up at the Sitecore Discussion Club&lt;br&gt;
@@ -426,14 +426,14 @@ Let&amp;rsquo;s see if this is possible when Sitecore 9.3 comes out.&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Java Public Updates&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -541,10 +541,10 @@ And even if Oracle engineers aren&amp;rsquo;t going to be supporting the Open JD
         
           <item>
             <title>Why Sticky Session on Sitecore Content Authoring</title>
-            <link>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</link>
+            <link>https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</link>
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</guid>
+            <guid>https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/</guid>
             <description>&lt;h2 id=&#34;why-have-to-use-inproc-session-state-on-sitecore-content-authoring-&#34;&gt;Why have to use InProc session state on Sitecore Content Authoring&lt;/h2&gt;
 &lt;p&gt;A note on why InProc session state &amp;amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://kb.sitecore.net/articles/860809&#34;&gt;https://kb.sitecore.net/articles/860809&lt;/a&gt;&lt;/p&gt;
@@ -574,14 +574,14 @@ Or if you use sticky sessions via IP address, and lots of people work in the sam
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_555x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_555x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Sticky Session&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -622,14 +622,14 @@ You can disable the validation bar - so no new validation messages are loaded wi
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box_2.png&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box_2.png&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box_2.png&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box_2.png&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box_2.png&#34; 
+    src=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box_2.png&#34; 
     alt=&#34;Redis Logo&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -645,16 +645,16 @@ You can disable the validation bar - so no new validation messages are loaded wi
         
           <item>
             <title>Zero down time for Delivery &amp; Authoring</title>
-            <link>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</link>
+            <link>https://bigredmachine.github.io/post/zero-content-authoring-down-time/</link>
             <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/zero-content-authoring-down-time/</guid>
+            <guid>https://bigredmachine.github.io/post/zero-content-authoring-down-time/</guid>
             <description>&lt;h1 id=&#34;zero-down-time-for-delivery--authoring-&#34;&gt;Zero down time for Delivery &amp;amp; Authoring&lt;/h1&gt;
 &lt;p&gt;A lot of people talk about zero downtime, but normally just in the context of Content Delivery.
 Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.&lt;/p&gt;
 &lt;p&gt;However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.&lt;br&gt;
 &lt;a href=&#34;https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html&#34;&gt;https://sitecorepocs.blogspot.com/2016/06/sitecore-zero-downtime-deployments.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*Or as near to Zero as possible as the users Session state will expire, as &lt;a href=&#34;http://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/&#34;&gt;Sitecore requires InProc session state provider on Content Authoring&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;*Or as near to Zero as possible as the users Session state will expire, as &lt;a href=&#34;https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/&#34;&gt;Sitecore requires InProc session state provider on Content Authoring&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 
 &lt;picture&gt;
@@ -672,14 +672,14 @@ Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manag
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_620x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_620x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/zero-content-authoring-down-time/images/ZeroDowntime_hu5960b8f6c43aa7ce5a6af27e75b094da_71660_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Zero downtime&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -705,10 +705,10 @@ There is no reason this can&amp;rsquo;t be updated to use Azure Message Queue, t
         
           <item>
             <title>What Is Wrong With the Link Database</title>
-            <link>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</link>
+            <link>https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</link>
             <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</guid>
+            <guid>https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/</guid>
             <description>&lt;h2 id=&#34;sitecore-fast-queries-&#34;&gt;Sitecore (Fast) Queries&lt;/h2&gt;
 &lt;p&gt;There&amp;rsquo;s quite a few blog posts on avoiding using (fast) Sitecore queries on Content Delivery.&lt;/p&gt;
 &lt;ul&gt;
@@ -761,14 +761,14 @@ but still regularly see deadlocks on this table in production even on Sitecore 9
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_489x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_489x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Example of Traffic representing a Deadlock&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -819,10 +819,10 @@ Hopefully these changes will come through in a future update of the sitecore pro
         
           <item>
             <title>Sitecore 9 Index Slow Down - fix</title>
-            <link>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</link>
+            <link>https://bigredmachine.github.io/post/sitecore-9-index-slow-down/</link>
             <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/sitecore-9-index-slow-down/</guid>
+            <guid>https://bigredmachine.github.io/post/sitecore-9-index-slow-down/</guid>
             <description>&lt;p&gt;Following an upgrade to Sitecore 9.0 update 2, from Sitecore 8.2 update 6, spotted that index rebuilds of the default indexes Core, Web &amp;amp; Master were taking much longer than they were before.&lt;/p&gt;
 &lt;p&gt;Talking to rebuild these 3 index in parallel under 50 mins in Sitecore 8.2, now taking over 6 hours in Sitecore 9 (sometime 20 hours+), for ~1/4 million items in each of the web and master databases.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -842,14 +842,14 @@ Hopefully these changes will come through in a future update of the sitecore pro
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_500x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_500x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/SlowRebuild_hua8c0a8663f33ac159b9835ccdbe8bcda_40515_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;6&amp;#43; hours for a rebuilt. Ain&amp;#39;t nobody got time for that&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -889,14 +889,14 @@ This strategy overrides &lt;em&gt;Run()&lt;/em&gt; method and initialises &lt;em
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-9-index-slow-down/images/OnPublishEndAsynchronousSingleInstanceStrategy_hu9a13d3c6e6ed5e41974b1fda27bc3304_55878_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;On Publish End Asynchronous Single Instance Strategy&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -911,10 +911,10 @@ This strategy overrides &lt;em&gt;Run()&lt;/em&gt; method and initialises &lt;em
         
           <item>
             <title>Speeding up sitecore crawling</title>
-            <link>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</link>
+            <link>https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</link>
             <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
+            <guid>https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/</guid>
             <description>&lt;p&gt;Recently I was looking at building a sitecore search domain index (&lt;a href=&#34;http://jockstothecore.com/indexing-patterns-in-sitecore/&#34;&gt;See Domain vs God index&lt;/a&gt;), which had quite a few calculated fields. 
 Lots of the calculated fields were based off similar information about the parent nodes of the current item.  And for each calculated field I was performing the same look ups again and again per field on the item.&lt;/p&gt;
 &lt;p&gt;I thought there has got to be a way to improve this, and found a forum post back from 2015 of someone asking the same question, and with a response of someone else who had solved it for one of the projects they were working on.
@@ -937,14 +937,14 @@ And that private method calls another private method. :/&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Private methods&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -967,14 +967,14 @@ It&amp;rsquo;s Reflection to the rescue.&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_500x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_500x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_465x0_resize_q100_box.jpg&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_465x0_resize_q100_box.jpg&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_300x0_resize_q100_box.jpg&#34; 
+    src=&#34;https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_300x0_resize_q100_box.jpg&#34; 
     alt=&#34;Reflect all the things&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
@@ -1122,10 +1122,10 @@ I got index rebuild time down from &lt;strong&gt;1 hour &amp;amp; 8 mins&lt;/str
         
           <item>
             <title>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</title>
-            <link>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</link>
+            <link>https://bigredmachine.github.io/post/logic-app-azure-function-twitter/</link>
             <pubDate>Fri, 09 Feb 2018 20:49:38 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
+            <guid>https://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
             <description>&lt;h4 id=&#34;fun-with-logic-apps-azure-functions-and-twitter-&#34;&gt;Fun with logic apps, Azure functions and twitter&lt;/h4&gt;
 &lt;p&gt;While studying for the Microsoft 70-532 exam,
 I wanted to take a look at Azure functions &amp;amp; Logics apps.&lt;/p&gt;
@@ -1150,14 +1150,14 @@ each message in the batch would result in an individual email.
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Logic apps Compose&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Then I came across this blog
@@ -1181,14 +1181,14 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_583x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_583x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Logic apps Compose&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt;I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
@@ -1208,14 +1208,14 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Search Tweets&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt;And here is the final result, twitter search result of original tweets filtered by language combined into a single email
@@ -1233,14 +1233,14 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Combined Email&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 </description>
@@ -1252,10 +1252,10 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
         
           <item>
             <title>updating to Visual Studio 2015 RC</title>
-            <link>http://bigredmachine.github.io/post/updating-to-vs-rc/</link>
+            <link>https://bigredmachine.github.io/post/updating-to-vs-rc/</link>
             <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
+            <guid>https://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
             <description>&lt;h4 id=&#34;updating-from-vs2015-ctp6-to-rc-&#34;&gt;Updating from VS2015 CTP6 to RC&lt;/h4&gt;
 &lt;p&gt;A number of changes have been made to names.&lt;/p&gt;
 &lt;p&gt;Watch this for further details:&lt;/p&gt;
@@ -1275,14 +1275,14 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Renamed tools&#34;&gt;
 &lt;/picture&gt;
 
@@ -1299,14 +1299,14 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Renamed folder and packages&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt;If you install visual studio, the DNVM and DNX will be setup for you.&lt;br /&gt;
@@ -1343,10 +1343,10 @@ When using visual studio this is all handled for you.&lt;br /&gt;&lt;/p&gt;
         
           <item>
             <title>setting up Visual Studio 2015 CTP 6</title>
-            <link>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
+            <link>https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
             <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
             
-            <guid>http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
+            <guid>https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
             <description>&lt;h4 id=&#34;goals-&#34;&gt;Goals&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;To setup Visual Studio 2015 to run an asp.net vNext website&lt;/li&gt;
@@ -1410,14 +1410,14 @@ First install the K Version Manager(KVM) in Powershell as an administrator.&lt;/
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;KVM list&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Notice is used the \.k\ folder, earlier version where using \.kre\.
@@ -1445,14 +1445,14 @@ You may read older documentation that refers to \.kre\.&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;KVM list&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Now you&amp;rsquo;ve got a VM, K runtime setup.&lt;/p&gt;
@@ -1471,14 +1471,14 @@ You may read older documentation that refers to \.kre\.&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Visual Studio Create Project&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Select a blank project&lt;br /&gt;
@@ -1496,14 +1496,14 @@ You may read older documentation that refers to \.kre\.&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Select blank project&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;Now have that created, let&amp;rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line&lt;/p&gt;
@@ -1527,14 +1527,14 @@ You may read older documentation that refers to \.kre\.&lt;/p&gt;
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Modify startup.cs&#34;&gt;
 &lt;/picture&gt;
 &lt;p&gt;This won&amp;rsquo;t compile at the moment as you don&amp;rsquo;t have a reference to the extension method.&lt;/p&gt;
@@ -1554,14 +1554,14 @@ I&amp;rsquo;ve also added some references to &amp;ldquo;Microsoft.AspNet.Hosting
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Modify project.json&#34;&gt;
 &lt;/picture&gt;
 &lt;br/&gt;
@@ -1584,14 +1584,14 @@ When you save the file, visual studio should automatically restore the packages 
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;VS configure KRE version&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
 &lt;p&gt;You should either now be able to launch the site from either Visual Studio or Command prompt.&lt;/p&gt;
@@ -1613,14 +1613,14 @@ When you save the file, visual studio should automatically restore the packages 
 
   &lt;source 
     media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;source 
     media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG&#34;&gt;
+    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG&#34;&gt;
 	
   &lt;img 
-    src=&#34;http://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG&#34; 
+    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Startup Page&#34;&gt;
 &lt;/picture&gt;
 </description>

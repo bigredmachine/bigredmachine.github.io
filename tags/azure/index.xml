@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure on Ian&#39;s Blog</title>
-    <link>http://bigredmachine.github.io/tags/azure/</link>
+    <link>https://bigredmachine.github.io/tags/azure/</link>
     <description>Recent content in Azure on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 Feb 2018 20:49:38 +0000</lastBuildDate>
     
-	<atom:link href="http://bigredmachine.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bigredmachine.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</title>
-      <link>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</link>
+      <link>https://bigredmachine.github.io/post/logic-app-azure-function-twitter/</link>
       <pubDate>Fri, 09 Feb 2018 20:49:38 +0000</pubDate>
       
-      <guid>http://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
+      <guid>https://bigredmachine.github.io/post/logic-app-azure-function-twitter/</guid>
       <description>Fun with logic apps, Azure functions and twitter While studying for the Microsoft 70-532 exam, I wanted to take a look at Azure functions &amp;amp; Logics apps.
 Having gone through this example &amp;ldquo;Create a function that integrates with Azure Logic Apps&amp;rdquo;
 It left me with some questions on how to improve it. E.g. I don&amp;rsquo;t want to receive an email per tweet.
