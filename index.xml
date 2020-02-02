@@ -5,8 +5,143 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Precompiled Razor Views</title>
+            <link>https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/</link>
+            <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+            
+            <guid>https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/</guid>
+            <description>&lt;h2 id=&#34;precompiled-razor-views---sitecore-9---issue-192470-amp-119596-&#34;&gt;Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp;amp; 119596&lt;/h2&gt;
+&lt;p&gt;There are already some posts on this topic of using Precompiled Razor Views, so I won&amp;rsquo;t duplicate that content.&lt;/p&gt;
+&lt;p&gt;Kam&amp;rsquo;s blog - &lt;a href=&#34;https://kamsar.net/index.php/2016/09/Precompiled-Views-with-Sitecore-8-2/&#34;&gt;Precompiled Views supported by Sitecore since Sitecore 8.2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Jeremy&amp;rsquo;s blog - &lt;a href=&#34;https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/&#34;&gt;possible side affect of Precompiled Views&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Chris&amp;rsquo;s blog - &lt;a href=&#34;https://chrisperks.co/2018/03/22/hundreds-of-renderings-your-first-page-load-could-be-sloooow/&#34;&gt;Slow compilation when using MVC areas/Helix folder structure&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Matt&amp;rsquo;s blog - &lt;a href=&#34;https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/&#34;&gt;ensuring your razor view paths are unique&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And probably others, but these one&amp;rsquo;s stood out to me, and relevant for this post.&lt;/p&gt;
+&lt;p&gt;Read these articles first, I&amp;rsquo;ll wait.&lt;/p&gt;
+&lt;h2 id=&#34;quick-summary-&#34;&gt;Quick summary&lt;/h2&gt;
+&lt;p&gt;So you&amp;rsquo;ve read the above articles,
+here&amp;rsquo;s a quick recap:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;we know Precompiled Razor Views are supported by Sitecore since Sitecore 8.2.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We want to measure/benchmark before and after applying this performance fix, how else would you know it&amp;rsquo;s had the desired effect. And watch out for this Disk IO calls, which seem to be occurring even if have the Sitecore setting disabled &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; which seems counterintuitive.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If you are following a MVC areas/Helix style structure with multiple folders for your views, it looks like using precompiled razor view is going to be really beneficial in your case.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure you are using unique MVC area/Helix folder names &amp;amp; unique razor file paths across projects to avoid issues, just like you would if they were physical files in one project.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ok---ive-read-the-above-articles-what-more-are-you-writing-about-&#34;&gt;Ok - I&amp;rsquo;ve read the above articles, what more are you writing about?&lt;/h2&gt;
+&lt;p&gt;Well first I want to draw attention to &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; setting.&lt;/p&gt;
+&lt;p&gt;Check in your Sitecore setup what this value is set to.&lt;/p&gt;
+&lt;p&gt;If for example you have received a Sitecore Support patch/hotfix with a new .cshtml file&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;E.g. Issue 214239 for &amp;ldquo;\sitecore\shell\client\Business Components Library\version 2\Layouts\Renderings\ListsAndGrids\Grid.cshtml&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Which includes a config patch which changes &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; to true to load the .cshtml file with the fix, rather than the precompiled view in the assembly.&lt;/p&gt;
+&lt;p&gt;Those disk IO calls which seem to occur either way (more on that later), are defiantly going to occur if you tell it to.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This also explains the guidance you might see where the .cshtml file last modified data must be more recent than the .dll file, otherwise it wouldn&amp;rsquo;t be loaded.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So possibly a Sitecore Support patch to a .cshtml file might undo some of the performance gains we are trying to achieve. As with everything measure.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t have &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; set to true, can skip this next section, and skip to the hotfix, otherwise read on.&lt;/p&gt;
+&lt;h2 id=&#34;i-want-a-support-fix-and-performance-settings-&#34;&gt;I want a support fix and performance settings&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Disclaimer, I&amp;rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe if you are only worried about the Sitecore MVC .cshtml hotfix for Content Authoring, and only want the compilation benefit on Content Delivery so could change this setting &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; to true just for Authoring?&lt;/p&gt;
+&lt;p&gt;However, if you want to have the compilation benefit on Content Authoring as well as the MVC .cshtml fix. One possible way could be to create a new project named &amp;ldquo;ZZZZZ&amp;hellip;&amp;rdquo; with Razor compilation enabled and place the fixed .cshtml file in that project with the matching path of the file you want to override from Sitecore.&lt;/p&gt;
+&lt;p&gt;And add to the pre-compilation configuration a reference to this new assembly.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;configuration&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;m&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;l&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;n&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;p&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;a&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;c&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;h&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;h&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;p&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;w&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;w&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;w&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;c&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;o&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;n&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;m&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;l&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;c&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;o&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;n&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;g&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;sitecore&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;mvc&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;precompilation&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;assemblies&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;assemblyIdentity&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ZZZZZ......AssemblyName&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/assemblies&amp;gt;&lt;/span&gt;
+            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/precompilation&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/mvc&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/sitecore&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;why-call-the-project-zzzzz-&#34;&gt;Why call the project ZZZZZ&amp;hellip;.&lt;/h3&gt;
+&lt;p&gt;We are going to turn the bug from Matt&amp;rsquo;s blog - &lt;a href=&#34;https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/&#34;&gt;ensuring your razor view paths are unique&lt;/a&gt;
+into a solution.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;The problem becomes apparent when two assemblies have the same generated virtual view path, &lt;strong&gt;the assembly that comes alphabetically last wins out&lt;/strong&gt; and overwrites the value corresponding to the virtual path key string in the _views dictionary.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We are going to deliberately overwrite the Sitecore Pre-compiled view, with the fixed Pre-compiled view, but naming the assembly with the fixed .cshtml file with a name Alphabetically after the original Sitecore Assembly.&lt;/p&gt;
+&lt;p&gt;If this is a good solution without drawback, perhaps support could do this, to save us the time of doing it ourselves?&lt;/p&gt;
+&lt;p&gt;Or actually Sitecore could re-issue the original .dll with the fixed Razor view, so don&amp;rsquo;t need to overwrite it.&lt;/p&gt;
+&lt;p&gt;And now with the new Hotfix only model, they probably would do this.&lt;/p&gt;
+&lt;p&gt;Still this might be relevant for an existing patch you have, prior to the new Hotfix model.&lt;/p&gt;
+&lt;h3 id=&#34;best-of-both-&#34;&gt;Best of both&lt;/h3&gt;
+&lt;p&gt;With this technique, can leave &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; set to false, and override a Sitecore precompiled view.&lt;/p&gt;
+&lt;p&gt;More testing required to verify this works without drawback.&lt;/p&gt;
+&lt;h2 id=&#34;great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix-&#34;&gt;Great so I&amp;rsquo;ve definitely got &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; set to false, what&amp;rsquo;s this Hotfix&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Disclaimer, I&amp;rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Going back to Jeremy&amp;rsquo;s blog &lt;a href=&#34;https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/&#34;&gt;possible side affect of Precompiled Views&lt;/a&gt;. If look at the comments section, can see I enquired about if this was still an issue in Sitecore 9, and had a little more success from Sitecore Support who confirmed this was a bug in Sitecore and not the RazorGenerator project.&lt;/p&gt;
+&lt;p&gt;Looking at the contents of Sitecore.Support.192470.dll, can see it removes the first MVC view engine from the list, I asked Sitecore Support why and got this answer:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The setting UsePhysicalViewsIfNewer works as expected for all precompiled views except the ones that come from a couple of SPEAK dlls (Sitecore.Speak.Web.dll and Sitecore.Speak.Components.Web.dll).
+The UsePhysicalViewsIfNewer setting value is used to initialize PrecompiledViewAssembly objects which will be a part of the RazorGenerator.Mvc.CompositePrecompiledMvcEngine. Sitecore initializes an instance of Sitecore.Mvc.SitecoreRazorViewEngine derived from the CompositePrecompiledMvcEngine. And further the instantiated engine is encapsulated in the Sitecore.Mvc.InstrumentendViewEngine type.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So far so good.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The problem is that there is an extra PrecompiledMvcEngine instance that comes from SPEAK. This particular engine instance ignores the UsePhysicalViewsIfNewer setting. The engine instance gets placed at the very first position of the ViewEngines.Engines list. And the issue happens when this &amp;ldquo;incorrect&amp;rdquo; engine is taken via a FirstOrDefault LINQ func by Sitecore MVC.
+Please also notice that with the current architecture the only possible way to fix this is to remove the engine from the list.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This would seem to explain the issue Jeremy was having.&lt;/p&gt;
+&lt;p&gt;However I&amp;rsquo;ve yet to benchmark this solution, to see if solves the disk IO issue, but got a logical explanation from Sitecore Support.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not sure if this is still an issue or fixed in later version of Sitecore after Sitecore 9. But a quick scan through the recent version release notes I can&amp;rsquo;t see either of the public reference numbers 192470 or 119596.&lt;/p&gt;
+&lt;h2 id=&#34;summary-&#34;&gt;Summary&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Disclaimer, I&amp;rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you are experiencing issues with Compiled Razor views and disk activity even with &amp;ldquo;UsePhysicalViewsIfNewer&amp;rdquo; set to false, perhaps check if this fix is applicable for the version of Sitecore you are on, and measure if it has the desired impact.&lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+	
+
+
+	
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_430x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_430x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;Measure Everything&#34;&gt;
+&lt;/picture&gt;
+</description>
+          </item>
+        
+      
     
       
         

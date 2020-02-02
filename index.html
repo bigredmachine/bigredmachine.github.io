@@ -58,6 +58,169 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/">Precompiled Razor Views</a></h3>
+					<span class="label label-primary">Sun Feb 2, 2020</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/performance">Performance</a>
+					
+						 , 
+						<a href="/tags/asp.net-mvc">ASP.NET MVC</a>
+					
+						 , 
+						<a href="/tags/razor">Razor</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="precompiled-razor-views---sitecore-9---issue-192470-amp-119596-">Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp; 119596</h2>
+<p>There are already some posts on this topic of using Precompiled Razor Views, so I won&rsquo;t duplicate that content.</p>
+<p>Kam&rsquo;s blog - <a href="https://kamsar.net/index.php/2016/09/Precompiled-Views-with-Sitecore-8-2/">Precompiled Views supported by Sitecore since Sitecore 8.2</a></p>
+<p>Jeremy&rsquo;s blog - <a href="https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/">possible side affect of Precompiled Views</a></p>
+<p>Chris&rsquo;s blog - <a href="https://chrisperks.co/2018/03/22/hundreds-of-renderings-your-first-page-load-could-be-sloooow/">Slow compilation when using MVC areas/Helix folder structure</a></p>
+<p>Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a></p>
+<p>And probably others, but these one&rsquo;s stood out to me, and relevant for this post.</p>
+<p>Read these articles first, I&rsquo;ll wait.</p>
+<h2 id="quick-summary-">Quick summary</h2>
+<p>So you&rsquo;ve read the above articles,
+here&rsquo;s a quick recap:</p>
+<ul>
+<li>
+<p>we know Precompiled Razor Views are supported by Sitecore since Sitecore 8.2.</p>
+</li>
+<li>
+<p>We want to measure/benchmark before and after applying this performance fix, how else would you know it&rsquo;s had the desired effect. And watch out for this Disk IO calls, which seem to be occurring even if have the Sitecore setting disabled &ldquo;UsePhysicalViewsIfNewer&rdquo; which seems counterintuitive.</p>
+</li>
+<li>
+<p>If you are following a MVC areas/Helix style structure with multiple folders for your views, it looks like using precompiled razor view is going to be really beneficial in your case.</p>
+</li>
+<li>
+<p>Ensure you are using unique MVC area/Helix folder names &amp; unique razor file paths across projects to avoid issues, just like you would if they were physical files in one project.</p>
+</li>
+</ul>
+<h2 id="ok---ive-read-the-above-articles-what-more-are-you-writing-about-">Ok - I&rsquo;ve read the above articles, what more are you writing about?</h2>
+<p>Well first I want to draw attention to &ldquo;UsePhysicalViewsIfNewer&rdquo; setting.</p>
+<p>Check in your Sitecore setup what this value is set to.</p>
+<p>If for example you have received a Sitecore Support patch/hotfix with a new .cshtml file</p>
+<blockquote>
+<p>E.g. Issue 214239 for &ldquo;\sitecore\shell\client\Business Components Library\version 2\Layouts\Renderings\ListsAndGrids\Grid.cshtml&rdquo;</p>
+</blockquote>
+<p>Which includes a config patch which changes &ldquo;UsePhysicalViewsIfNewer&rdquo; to true to load the .cshtml file with the fix, rather than the precompiled view in the assembly.</p>
+<p>Those disk IO calls which seem to occur either way (more on that later), are defiantly going to occur if you tell it to.</p>
+<blockquote>
+<p>This also explains the guidance you might see where the .cshtml file last modified data must be more recent than the .dll file, otherwise it wouldn&rsquo;t be loaded.</p>
+</blockquote>
+<p>So possibly a Sitecore Support patch to a .cshtml file might undo some of the performance gains we are trying to achieve. As with everything measure.</p>
+<p>If you don&rsquo;t have &ldquo;UsePhysicalViewsIfNewer&rdquo; set to true, can skip this next section, and skip to the hotfix, otherwise read on.</p>
+<h2 id="i-want-a-support-fix-and-performance-settings-">I want a support fix and performance settings</h2>
+<blockquote>
+<p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
+</blockquote>
+<p>Maybe if you are only worried about the Sitecore MVC .cshtml hotfix for Content Authoring, and only want the compilation benefit on Content Delivery so could change this setting &ldquo;UsePhysicalViewsIfNewer&rdquo; to true just for Authoring?</p>
+<p>However, if you want to have the compilation benefit on Content Authoring as well as the MVC .cshtml fix. One possible way could be to create a new project named &ldquo;ZZZZZ&hellip;&rdquo; with Razor compilation enabled and place the fixed .cshtml file in that project with the matching path of the file you want to override from Sitecore.</p>
+<p>And add to the pre-compilation configuration a reference to this new assembly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">f</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;sitecore</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;mvc</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;precompilation</span><span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;assemblies</span><span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;assemblyIdentity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ZZZZZ......AssemblyName&#34;</span> <span style="color:#f92672">/&gt;</span>
+                <span style="color:#f92672">&lt;/assemblies&gt;</span>
+            <span style="color:#f92672">&lt;/precompilation&gt;</span>
+        <span style="color:#f92672">&lt;/mvc&gt;</span>
+    <span style="color:#f92672">&lt;/sitecore&gt;</span>
+<span style="color:#f92672">&lt;/configuration&gt;</span>
+</code></pre></div><h3 id="why-call-the-project-zzzzz-">Why call the project ZZZZZ&hellip;.</h3>
+<p>We are going to turn the bug from Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a>
+into a solution.</p>
+<blockquote>
+<p>&ldquo;The problem becomes apparent when two assemblies have the same generated virtual view path, <strong>the assembly that comes alphabetically last wins out</strong> and overwrites the value corresponding to the virtual path key string in the _views dictionary.&rdquo;</p>
+</blockquote>
+<p>We are going to deliberately overwrite the Sitecore Pre-compiled view, with the fixed Pre-compiled view, but naming the assembly with the fixed .cshtml file with a name Alphabetically after the original Sitecore Assembly.</p>
+<p>If this is a good solution without drawback, perhaps support could do this, to save us the time of doing it ourselves?</p>
+<p>Or actually Sitecore could re-issue the original .dll with the fixed Razor view, so don&rsquo;t need to overwrite it.</p>
+<p>And now with the new Hotfix only model, they probably would do this.</p>
+<p>Still this might be relevant for an existing patch you have, prior to the new Hotfix model.</p>
+<h3 id="best-of-both-">Best of both</h3>
+<p>With this technique, can leave &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, and override a Sitecore precompiled view.</p>
+<p>More testing required to verify this works without drawback.</p>
+<h2 id="great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix-">Great so I&rsquo;ve definitely got &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, what&rsquo;s this Hotfix</h2>
+<blockquote>
+<p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
+</blockquote>
+<p>Going back to Jeremy&rsquo;s blog <a href="https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/">possible side affect of Precompiled Views</a>. If look at the comments section, can see I enquired about if this was still an issue in Sitecore 9, and had a little more success from Sitecore Support who confirmed this was a bug in Sitecore and not the RazorGenerator project.</p>
+<p>Looking at the contents of Sitecore.Support.192470.dll, can see it removes the first MVC view engine from the list, I asked Sitecore Support why and got this answer:</p>
+<blockquote>
+<p>The setting UsePhysicalViewsIfNewer works as expected for all precompiled views except the ones that come from a couple of SPEAK dlls (Sitecore.Speak.Web.dll and Sitecore.Speak.Components.Web.dll).
+The UsePhysicalViewsIfNewer setting value is used to initialize PrecompiledViewAssembly objects which will be a part of the RazorGenerator.Mvc.CompositePrecompiledMvcEngine. Sitecore initializes an instance of Sitecore.Mvc.SitecoreRazorViewEngine derived from the CompositePrecompiledMvcEngine. And further the instantiated engine is encapsulated in the Sitecore.Mvc.InstrumentendViewEngine type.</p>
+</blockquote>
+<p>So far so good.</p>
+<blockquote>
+<p>The problem is that there is an extra PrecompiledMvcEngine instance that comes from SPEAK. This particular engine instance ignores the UsePhysicalViewsIfNewer setting. The engine instance gets placed at the very first position of the ViewEngines.Engines list. And the issue happens when this &ldquo;incorrect&rdquo; engine is taken via a FirstOrDefault LINQ func by Sitecore MVC.
+Please also notice that with the current architecture the only possible way to fix this is to remove the engine from the list.</p>
+</blockquote>
+<p>This would seem to explain the issue Jeremy was having.</p>
+<p>However I&rsquo;ve yet to benchmark this solution, to see if solves the disk IO issue, but got a logical explanation from Sitecore Support.</p>
+<p>I&rsquo;m not sure if this is still an issue or fixed in later version of Sitecore after Sitecore 9. But a quick scan through the recent version release notes I can&rsquo;t see either of the public reference numbers 192470 or 119596.</p>
+<h2 id="summary-">Summary</h2>
+<blockquote>
+<p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
+</blockquote>
+<p>If you are experiencing issues with Compiled Razor views and disk activity even with &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, perhaps check if this fix is applicable for the version of Sitecore you are on, and measure if it has the desired impact.</p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+	
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_430x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_430x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_300x0_resize_q100_box.jpg" 
+    alt="Measure Everything">
+</picture>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/mvp-2020/">Sitecore MVP 2020 - Technology</a></h3>
 					<span class="label label-primary">Sat Feb 1, 2020</span> in 
 					
@@ -353,115 +516,6 @@ Often the extension points/hooks we have used have gone, and we have to find new
 <p>I can&rsquo;t update the example code to reference the hotfix, and for it to still compile.</p>
 <p>If anyone is interested to see the examples updated to use the hotfix, reach out to me on twitter, and I can see about creating a feature branch.</p>
 <p>Otherwise, I&rsquo;m going to wait for a version of Sitecore which includes these fixes/contract changes, which is available in the nuget feed so I can update the examples and still have it compiling.</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/federated-authentication-single-sign-out/">Federated Authentication Single Sign Out</a></h3>
-					<span class="label label-primary">Sun Nov 24, 2019</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/federated-authentication">Federated Authentication</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					
-						 , 
-						<a href="/tags/azuread">AzureAD</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h2 id="federated-authentication-single-sign-out-">Federated Authentication Single Sign Out</h2>
-<p>By default when you sign out of Sitecore, you don&rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&rsquo;t challenge you to sign back in again, and lets you into the system.</p>
-<p>So have you really signed out, if you haven&rsquo;t signed out of the Federated Authentication provider as well? IMHO - no.</p>
-<h2 id="whats-the-behaviour-of-other-services-using-federated-authentication-">What&rsquo;s the behaviour of other services using Federated Authentication?</h2>
-<p>If you log out of Microsoft Office 365, it also logs you out of Azure AD.</p>
-<p>If you log out of Azure Portal, it also logs you out of Azure AD.</p>
-<p>Also note, on the Azure AD sign out page, it also signs you out of Office 365, if you are signing out from another system. (That&rsquo;s going even further, to an even more true single sign out where sign out of every system at once, but the sign out page has to know about all of the systems to sign you out of, beyond the scope of this post)</p>
-<p>So can see it&rsquo;s pretty standard behaviour when you sign out of a system, to also sign you out of the Federated Authentication provider as well.</p>
-<h2 id="so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore--">So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore? </h2>
-<p>Pipelines/Processor + Reflector = Win!</p>
-<p> </p>
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg">
-	
-  <img 
-    src="/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg" 
-    alt="Pipelines Everywhere">
-</picture>
-<p> </p>
-<h3 id="for-the-launchpad-using-speak-">For the LaunchPad using Speak</h3>
-<p>Starting with the Sitecore Launch pad.</p>
-<p>The &ldquo;Log out&rdquo; button has some JS that fires &ldquo;-/speak/v1/business/AccountInformation.js&rdquo;.
-Which does an AJAX POST request to &ldquo;/sitecore/shell/api/sitecore/Authentication/Logout?sc_database=master&rdquo;.
-It then tries to parse the JSON result, and read the &ldquo;Redirect&rdquo; value.
-And then redirects the user client side to the specified url.</p>
-<p>Serverside this &ldquo;AuthenticationController&rdquo; can be found in &ldquo;Sitecore.Speak.Client.dll&rdquo; &ldquo;Sitecore.Controllers.AuthenticationController&rdquo; &ldquo;Logout&rdquo; HttpPost method.</p>
-<p>This in turn calls &ldquo;Sitecore.Shell.Security().Logout&rdquo; passing in an &ldquo;Action<UrlString>&rdquo;, to capture the RedirectUrl for the JSON result.</p>
-<p>&ldquo;Sitecore.Shell.Security().Logout&rdquo; calls a pipeline &ldquo;speak.logout&rdquo;.
-This pipeline takes an argument of type &ldquo;LogoutArgs&rdquo;.
-&ldquo;LogoutArgs&rdquo; has a property &ldquo;RedirectUrl&rdquo; of type &ldquo;UrlString&rdquo;.</p>
-<p>&ldquo;RedirectUrl&rdquo; is initialised before the pipeline &ldquo;speak.logout&rdquo; is called with &ldquo;Context.Site.LoginPage&rdquo;.
-And after the pipleline is called, the &ldquo;RedirectUrl&rdquo; value is used to send the client to the specified page.</p>
-<h3 id="for-the-content-editor-">For the Content Editor</h3>
-<p>The content editor on the other hand the &ldquo;Log out&rdquo; button calls onclick &ldquo;scForm.postEvent(this, event, &lsquo;system.logout&rsquo;)&quot;.</p>
-<p>This triggers the processor &ldquo;logout&rdquo;.
-This also takes the same argument of type &ldquo;LogoutArgs&rdquo;, as the &ldquo;speak.logout&rdquo; pipeline.</p>
-<p>If the &ldquo;LogoutArgs&rdquo; &ldquo;RedirectUrl&rdquo; property has not been set, it triggers a server side redirect to the &ldquo;Client.Site.LoginPage&rdquo;.
-See &ldquo;Sitecore.Kernel.dll&rdquo;, &ldquo;Sitecore.Pipelines.Logout.GotoLogin.Process&rdquo; method.</p>
-<h3 id="pipeline-">Pipeline</h3>
-<p>So to override the behaviour of logout going to the Sitecore login page.
-Adding a pipeline to &ldquo;Speak.Logout&rdquo; to set the &ldquo;RedirectUrl&rdquo;.</p>
-<p>And adding a processor to &ldquo;logout&rdquo; before the processor &ldquo;Sitecore.Pipelines.Logout.GotoLogin, Sitecore.Kernel&rdquo;, to set the &ldquo;RedirectUrl&rdquo;.</p>
-<p>We can control where users are redirected to on logout.</p>
-<h3 id="federated-authentication-provider-settings-not-used-">Federated Authentication Provider settings not used</h3>
-<p>Interestingly when configuring a Federated Authentication provider, you specify on the &ldquo;OpenIdConnectAuthenticationOptions&rdquo; class the &ldquo;PostLogoutRedirectUri&rdquo;, but this isn&rsquo;t used.
-Still we can reuse this configuration setting in our pipeline.</p>
-<h3 id="example-settings-to-change-redirecturl-to-">Example settings to change RedirectUrl to</h3>
-<p>If you are using Azure AD, you can set the &ldquo;RedirectUrl&rdquo; to something like &ldquo;<a href="https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin%22">https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&quot;</a></p>
-<p>So it will log you out of Azure AD, then redirect you back to &ldquo;<a href="https://sitecore.local/sitecore/login%22">https://sitecore.local/sitecore/login&quot;</a></p>
-<p>Obviously change the &ldquo;post_logout_redirect_uri&rdquo; parameter to match your environment.</p>
-<h2 id="summary-">Summary</h2>
-<p>With a few extra pipelines, and with the help of reflector, can achieve single sign out with Sitecore.</p>
-<h2 id="additional-notes-">Additional Notes</h2>
-<p>I&rsquo;ve only tried this with Sitecore 9.0, and not with the new Sitecore Identity Server.</p>
 
 			</div>
 		</div>

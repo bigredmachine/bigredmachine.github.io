@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ASP.NET MVC on Ian&#39;s Blog</title>
+    <link>https://bigredmachine.github.io/tags/asp.net-mvc/</link>
+    <description>Recent content in ASP.NET MVC on Ian&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://bigredmachine.github.io/tags/asp.net-mvc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Precompiled Razor Views</title>
+      <link>https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/</guid>
+      <description>Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp;amp; 119596 There are already some posts on this topic of using Precompiled Razor Views, so I won&amp;rsquo;t duplicate that content.
+Kam&amp;rsquo;s blog - Precompiled Views supported by Sitecore since Sitecore 8.2
+Jeremy&amp;rsquo;s blog - possible side affect of Precompiled Views
+Chris&amp;rsquo;s blog - Slow compilation when using MVC areas/Helix folder structure
+Matt&amp;rsquo;s blog - ensuring your razor view paths are unique</description>
+    </item>
+    
+  </channel>
+</rss>

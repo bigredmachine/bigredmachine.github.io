@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://bigredmachine.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ASP.NET MVC</title>
+      <link>https://bigredmachine.github.io/tags/asp.net-mvc/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/tags/asp.net-mvc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>https://bigredmachine.github.io/tags/performance/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Razor</title>
+      <link>https://bigredmachine.github.io/tags/razor/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/tags/razor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sitecore</title>
+      <link>https://bigredmachine.github.io/tags/sitecore/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/tags/sitecore/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>MVP</title>
@@ -17,15 +53,6 @@
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://bigredmachine.github.io/tags/mvp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sitecore</title>
-      <link>https://bigredmachine.github.io/tags/sitecore/</link>
-      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://bigredmachine.github.io/tags/sitecore/</guid>
       <description></description>
     </item>
     

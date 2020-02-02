@@ -58,6 +58,115 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/federated-authentication-single-sign-out/">Federated Authentication Single Sign Out</a></h3>
+					<span class="label label-primary">Sun Nov 24, 2019</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/federated-authentication">Federated Authentication</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/azuread">AzureAD</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="federated-authentication-single-sign-out-">Federated Authentication Single Sign Out</h2>
+<p>By default when you sign out of Sitecore, you don&rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&rsquo;t challenge you to sign back in again, and lets you into the system.</p>
+<p>So have you really signed out, if you haven&rsquo;t signed out of the Federated Authentication provider as well? IMHO - no.</p>
+<h2 id="whats-the-behaviour-of-other-services-using-federated-authentication-">What&rsquo;s the behaviour of other services using Federated Authentication?</h2>
+<p>If you log out of Microsoft Office 365, it also logs you out of Azure AD.</p>
+<p>If you log out of Azure Portal, it also logs you out of Azure AD.</p>
+<p>Also note, on the Azure AD sign out page, it also signs you out of Office 365, if you are signing out from another system. (That&rsquo;s going even further, to an even more true single sign out where sign out of every system at once, but the sign out page has to know about all of the systems to sign you out of, beyond the scope of this post)</p>
+<p>So can see it&rsquo;s pretty standard behaviour when you sign out of a system, to also sign you out of the Federated Authentication provider as well.</p>
+<h2 id="so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore--">So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore? </h2>
+<p>Pipelines/Processor + Reflector = Win!</p>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_650x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/federated-authentication-single-sign-out/images/pipelines_hu736a386aecced7e0b41b74d134483cb0_84525_300x0_resize_q100_box.jpg" 
+    alt="Pipelines Everywhere">
+</picture>
+<p> </p>
+<h3 id="for-the-launchpad-using-speak-">For the LaunchPad using Speak</h3>
+<p>Starting with the Sitecore Launch pad.</p>
+<p>The &ldquo;Log out&rdquo; button has some JS that fires &ldquo;-/speak/v1/business/AccountInformation.js&rdquo;.
+Which does an AJAX POST request to &ldquo;/sitecore/shell/api/sitecore/Authentication/Logout?sc_database=master&rdquo;.
+It then tries to parse the JSON result, and read the &ldquo;Redirect&rdquo; value.
+And then redirects the user client side to the specified url.</p>
+<p>Serverside this &ldquo;AuthenticationController&rdquo; can be found in &ldquo;Sitecore.Speak.Client.dll&rdquo; &ldquo;Sitecore.Controllers.AuthenticationController&rdquo; &ldquo;Logout&rdquo; HttpPost method.</p>
+<p>This in turn calls &ldquo;Sitecore.Shell.Security().Logout&rdquo; passing in an &ldquo;Action<UrlString>&rdquo;, to capture the RedirectUrl for the JSON result.</p>
+<p>&ldquo;Sitecore.Shell.Security().Logout&rdquo; calls a pipeline &ldquo;speak.logout&rdquo;.
+This pipeline takes an argument of type &ldquo;LogoutArgs&rdquo;.
+&ldquo;LogoutArgs&rdquo; has a property &ldquo;RedirectUrl&rdquo; of type &ldquo;UrlString&rdquo;.</p>
+<p>&ldquo;RedirectUrl&rdquo; is initialised before the pipeline &ldquo;speak.logout&rdquo; is called with &ldquo;Context.Site.LoginPage&rdquo;.
+And after the pipleline is called, the &ldquo;RedirectUrl&rdquo; value is used to send the client to the specified page.</p>
+<h3 id="for-the-content-editor-">For the Content Editor</h3>
+<p>The content editor on the other hand the &ldquo;Log out&rdquo; button calls onclick &ldquo;scForm.postEvent(this, event, &lsquo;system.logout&rsquo;)&quot;.</p>
+<p>This triggers the processor &ldquo;logout&rdquo;.
+This also takes the same argument of type &ldquo;LogoutArgs&rdquo;, as the &ldquo;speak.logout&rdquo; pipeline.</p>
+<p>If the &ldquo;LogoutArgs&rdquo; &ldquo;RedirectUrl&rdquo; property has not been set, it triggers a server side redirect to the &ldquo;Client.Site.LoginPage&rdquo;.
+See &ldquo;Sitecore.Kernel.dll&rdquo;, &ldquo;Sitecore.Pipelines.Logout.GotoLogin.Process&rdquo; method.</p>
+<h3 id="pipeline-">Pipeline</h3>
+<p>So to override the behaviour of logout going to the Sitecore login page.
+Adding a pipeline to &ldquo;Speak.Logout&rdquo; to set the &ldquo;RedirectUrl&rdquo;.</p>
+<p>And adding a processor to &ldquo;logout&rdquo; before the processor &ldquo;Sitecore.Pipelines.Logout.GotoLogin, Sitecore.Kernel&rdquo;, to set the &ldquo;RedirectUrl&rdquo;.</p>
+<p>We can control where users are redirected to on logout.</p>
+<h3 id="federated-authentication-provider-settings-not-used-">Federated Authentication Provider settings not used</h3>
+<p>Interestingly when configuring a Federated Authentication provider, you specify on the &ldquo;OpenIdConnectAuthenticationOptions&rdquo; class the &ldquo;PostLogoutRedirectUri&rdquo;, but this isn&rsquo;t used.
+Still we can reuse this configuration setting in our pipeline.</p>
+<h3 id="example-settings-to-change-redirecturl-to-">Example settings to change RedirectUrl to</h3>
+<p>If you are using Azure AD, you can set the &ldquo;RedirectUrl&rdquo; to something like &ldquo;<a href="https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin%22">https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&quot;</a></p>
+<p>So it will log you out of Azure AD, then redirect you back to &ldquo;<a href="https://sitecore.local/sitecore/login%22">https://sitecore.local/sitecore/login&quot;</a></p>
+<p>Obviously change the &ldquo;post_logout_redirect_uri&rdquo; parameter to match your environment.</p>
+<h2 id="summary-">Summary</h2>
+<p>With a few extra pipelines, and with the help of reflector, can achieve single sign out with Sitecore.</p>
+<h2 id="additional-notes-">Additional Notes</h2>
+<p>I&rsquo;ve only tried this with Sitecore 9.0, and not with the new Sitecore Identity Server.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/sitecore-9-dot-3-media-library-blob-storage/">Sitecore 9.3 - media library blob storage</a></h3>
 					<span class="label label-primary">Sun Nov 24, 2019</span> in 
 					
@@ -279,135 +388,6 @@ is not enabled.&rdquo;</p>
 <p>Ultimately you&rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the Open JDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the Open JDK you&rsquo;ve chosen.</p>
 <p>It would seem if looking to move to Docker &amp; Kubernetes eventually, then embracing the Open JDK seems to be the standard anyway.
 And even if Oracle engineers aren&rsquo;t going to be supporting the Open JDK anymore, got a choice of Red Hat/IBM, Amazon and Azul (free on Azure) to go for.</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/">Why Sticky Session on Sitecore Content Authoring</a></h3>
-					<span class="label label-primary">Sat Dec 15, 2018</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/stickysession">StickySession</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					
-						 , 
-						<a href="/tags/inproc">InProc</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring-">Why have to use InProc session state on Sitecore Content Authoring</h2>
-<p>A note on why InProc session state &amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.</p>
-<p><a href="https://kb.sitecore.net/articles/860809">https://kb.sitecore.net/articles/860809</a></p>
-<h2 id="bad-practice-to-use-sticky-sessions-">Bad Practice to use Sticky Sessions</h2>
-<p>A quick intro on why Sticky Sessions are bad.
-<a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out">https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out</a></p>
-<blockquote>
-<p><strong>Avoid instance stickiness.</strong> Stickiness, or session affinity, is when requests from the same client are always routed to the same server. Stickiness limits the application&rsquo;s ability to scale out. For example, traffic from a high-volume user will not be distributed across instances. Causes of stickiness include storing session state in memory, and using machine-specific keys for encryption. Make sure that any instance can handle any request.</p>
-</blockquote>
-<p>Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br>
-E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.<br>
-Or if you use sticky sessions via IP address, and lots of people work in the same office, all of that office will be allocated to the same machine.</p>
-<p> </p>
-
-<picture>
-
-
-
-
-
-
-	
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_555x0_resize_q100_box.jpg">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_465x0_resize_q100_box.jpg">
-	
-  <img 
-    src="/post/why-inproc-session-state-required-on-authoring/images/StickySession_hu1a8cbcf2fcff461c8fe4faeddc6ff7cd_33289_300x0_resize_q100_box.jpg" 
-    alt="Sticky Session">
-</picture>
-<p> </p>
-<h2 id="redis-provider-network-stability-">Redis provider network stability</h2>
-<p>The Stack Exchange redis session state provider at the time often had network stability issues, particularly on Azure Redis (TLS)
-<a href="https://github.com/StackExchange/StackExchange.Redis/issues/871">https://github.com/StackExchange/StackExchange.Redis/issues/871</a><br>
-Version 2 has since been released, which would be worth testing to see how much this has improved the issue.</p>
-<h2 id="too-much-data-being-put-into-session-state-">Too much data being put into Session state</h2>
-<p>However, another issue which couldn&rsquo;t be solved, was that too much data was being stored in session state.</p>
-<ul>
-<li>228534 - Jsnlog entries spam session storage</li>
-<li>228355 - Validation related objects spam session storage</li>
-</ul>
-<p>The JsnLog entries can be disabled by changing
-\App_Config\Include\Sitecore.JSNLog.config &lt;jsnlog enabled=&quot;false&rdquo;</p>
-<p>For validation though, there is no easy work around.
-You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.</p>
-<h2 id="aspnet-webforms-legacy-">ASP.NET WebForms Legacy</h2>
-<p>And this is on top of the Content Editor still using WebForms with ViewState and ControlState needing to be stored to a shared medium, which may as well also be Redis is using a Redis session state provider. (Although a Database is another option if you have spare DTUs, why not be consistent)</p>
-<h2 id="redis-is-designed-for-small-objects-">Redis is designed for small objects</h2>
-<p><a href="https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/">https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/</a></p>
-<blockquote>
-<p>Redis Server and StackExchange.Redis are optimized for many small requests rather than fewer large requests.  Splitting your data into smaller chunks may improve things here</p>
-</blockquote>
-<p>A large session state, viewstate, control state isn&rsquo;t going to help.</p>
-<p> </p>
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_650x0_resize_q100_box_2.png">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_465x0_resize_q100_box_2.png">
-	
-  <img 
-    src="/post/why-inproc-session-state-required-on-authoring/images/redis_hud3ea2632016010968840a8502efa6b50_22530_300x0_resize_q100_box_2.png" 
-    alt="Redis Logo">
-</picture>
-<p> </p>
-<h2 id="summary-">Summary</h2>
-<p>Ultimately right now, to have more than once Content Authoring server, you have to use Sticky Sessions and InProc session state.</p>
-<p>Looking forward to a future version of Sitecore allowing to get away from Sticky Sessions on Content Authoring, either by reducing the amount of data needed in Session Storage, or getting away from Viewstate &amp; ControlState - perhaps with Sitecore Horizon the new editor built in Angular.</p>
 
 			</div>
 		</div>
