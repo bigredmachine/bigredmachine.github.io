@@ -110,7 +110,7 @@ Item gets added to the publish queue with value 17:59:59.000ms&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;override&lt;/span&gt; List&amp;lt;PublishQueueEntry&amp;gt;GetPublishQueueEntries(DateTime &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;, DateTime to, CallContext context)
 {
     &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;.AddSecond(-&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;.AddTicks(-(dateTime.Ticks % TimeSpan.TicksPerSecond));
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;.AddTicks(-(&lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;.Ticks % TimeSpan.TicksPerSecond));
     &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;base&lt;/span&gt;.GetPublishQueueEntries(&lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;, to, context);
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So the new query would pick up even this more extreme edge case, with the query
