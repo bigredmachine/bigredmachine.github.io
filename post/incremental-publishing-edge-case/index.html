@@ -118,7 +118,7 @@ But it&rsquo;s <a href="https://blog.rauljimenez.co.uk/sitecore-publishing-tips/
     src="/post/incremental-publishing-edge-case/images/DatetimeRounding_hudedd1ac0b6b650abbd8018f2506def47_25522_300x0_resize_q100_box_2.PNG" 
     alt="Datetime Rounding">
 </picture>
-<p>Due to these differences, say a publishing job was started with value From 14:00:00.017545Z, it would be rounded to 14:00:00.003, and would miss an item added at 14:00:00.000.</p>
+<p>Due to these differences, say a publishing job was started with value From 14:00:00.017545Z, it would be rounded to 14:00:00.003ms, and would miss an item added at 14:00:00.000ms.</p>
 <p>These millisecond round issues could cause an issue with an item not getting published, however that&rsquo;s very small window for the issue to occur.</p>
 <h2 id="what-happens-when-you-save-an-item">What happens when you save an item?</h2>
 <p>When you save an item, the items statistics get updated with the timestamp from C#/.NET in memory before getting persisted to the Database.</p>
@@ -136,7 +136,7 @@ But it&rsquo;s <a href="https://blog.rauljimenez.co.uk/sitecore-publishing-tips/
 and added to the publish queue</p>
 <p>And I have an incremental publish kick off at 18:00, and picks up from the last publish 17:00:00.103-18:00:00.103 as a slight delay in starting.
 This doesn&rsquo;t pick up the item which hasn&rsquo;t been created yet at 18:00:00.9881779.</p>
-<p>And the future publish operation won&rsquo;t pick it up either as will look for items between 18:00:00.103-19:00:00.103, when it&rsquo;s value will be saved as 18:00:00.000.</p>
+<p>And the future publish operation won&rsquo;t pick it up either as will look for items between 18:00:00.103-19:00:00.103, when it&rsquo;s value will be saved as 18:00:00.000ms.</p>
 <h2 id="work-around">Work around</h2>
 <p>A work around would be to fix the query to include records affected by this precision/latency issue, at the expense of reprocessing some items more than once.</p>
 <p>To do this can customise <code>GetPublishQueueEntries</code> method on the <code>SqlDataProvider</code></p>
@@ -158,13 +158,13 @@ This doesn&rsquo;t pick up the item which hasn&rsquo;t been created yet at 18:00
 <span style="color:#f92672">&lt;/configuration&gt;</span>
 </code></pre></div><h2 id="worst-case">Worst Case</h2>
 <p>Item statistics get updated at 17:59.59.999ms in C#</p>
-<p>Item gets saved as 17:59.59 but some latency before added to the database so doesn&rsquo;t get added until after 18:00:00.103ms
-Item gets added to the publish queue with value 17:59:59.000</p>
+<p>Item gets saved as 17:59.59.000ms but some latency before added to the database so doesn&rsquo;t get added until after 18:00:00.103ms
+Item gets added to the publish queue with value 17:59:59.000ms</p>
 <p>Publish Window by default queries for
 <code>18:00:00.103-19:00:00.103</code></p>
 <p>with the 1 second fix would query for
 <code>17:59:59.103-19:00:00.103</code></p>
-<p>Both of these would still miss the item at 14:59.000.</p>
+<p>Both of these would still miss the item at 17:59.000ms.</p>
 <h2 id="improved-work-around">Improved Work Around</h2>
 <p>To round the start time query down to 0 milliseconds, and 0 ticks, can add the following line <a href="https://stackoverflow.com/questions/1004698/how-to-truncate-milliseconds-off-of-a-net-datetime">Credit Stack Overflow</a>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> List&lt;PublishQueueEntry&gt;GetPublishQueueEntries(DateTime <span style="color:#66d9ef">from</span>, DateTime to, CallContext context)

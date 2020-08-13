@@ -58,7 +58,7 @@ But it&amp;rsquo;s &lt;a href=&#34;https://blog.rauljimenez.co.uk/sitecore-publi
     src=&#34;https://bigredmachine.github.io/post/incremental-publishing-edge-case/images/DatetimeRounding_hudedd1ac0b6b650abbd8018f2506def47_25522_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Datetime Rounding&#34;&gt;
 &lt;/picture&gt;
-&lt;p&gt;Due to these differences, say a publishing job was started with value From 14:00:00.017545Z, it would be rounded to 14:00:00.003, and would miss an item added at 14:00:00.000.&lt;/p&gt;
+&lt;p&gt;Due to these differences, say a publishing job was started with value From 14:00:00.017545Z, it would be rounded to 14:00:00.003ms, and would miss an item added at 14:00:00.000ms.&lt;/p&gt;
 &lt;p&gt;These millisecond round issues could cause an issue with an item not getting published, however that&amp;rsquo;s very small window for the issue to occur.&lt;/p&gt;
 &lt;h2 id=&#34;what-happens-when-you-save-an-item&#34;&gt;What happens when you save an item?&lt;/h2&gt;
 &lt;p&gt;When you save an item, the items statistics get updated with the timestamp from C#/.NET in memory before getting persisted to the Database.&lt;/p&gt;
@@ -76,7 +76,7 @@ But it&amp;rsquo;s &lt;a href=&#34;https://blog.rauljimenez.co.uk/sitecore-publi
 and added to the publish queue&lt;/p&gt;
 &lt;p&gt;And I have an incremental publish kick off at 18:00, and picks up from the last publish 17:00:00.103-18:00:00.103 as a slight delay in starting.
 This doesn&amp;rsquo;t pick up the item which hasn&amp;rsquo;t been created yet at 18:00:00.9881779.&lt;/p&gt;
-&lt;p&gt;And the future publish operation won&amp;rsquo;t pick it up either as will look for items between 18:00:00.103-19:00:00.103, when it&amp;rsquo;s value will be saved as 18:00:00.000.&lt;/p&gt;
+&lt;p&gt;And the future publish operation won&amp;rsquo;t pick it up either as will look for items between 18:00:00.103-19:00:00.103, when it&amp;rsquo;s value will be saved as 18:00:00.000ms.&lt;/p&gt;
 &lt;h2 id=&#34;work-around&#34;&gt;Work around&lt;/h2&gt;
 &lt;p&gt;A work around would be to fix the query to include records affected by this precision/latency issue, at the expense of reprocessing some items more than once.&lt;/p&gt;
 &lt;p&gt;To do this can customise &lt;code&gt;GetPublishQueueEntries&lt;/code&gt; method on the &lt;code&gt;SqlDataProvider&lt;/code&gt;&lt;/p&gt;
@@ -98,13 +98,13 @@ This doesn&amp;rsquo;t pick up the item which hasn&amp;rsquo;t been created yet 
 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;worst-case&#34;&gt;Worst Case&lt;/h2&gt;
 &lt;p&gt;Item statistics get updated at 17:59.59.999ms in C#&lt;/p&gt;
-&lt;p&gt;Item gets saved as 17:59.59 but some latency before added to the database so doesn&amp;rsquo;t get added until after 18:00:00.103ms
-Item gets added to the publish queue with value 17:59:59.000&lt;/p&gt;
+&lt;p&gt;Item gets saved as 17:59.59.000ms but some latency before added to the database so doesn&amp;rsquo;t get added until after 18:00:00.103ms
+Item gets added to the publish queue with value 17:59:59.000ms&lt;/p&gt;
 &lt;p&gt;Publish Window by default queries for
 &lt;code&gt;18:00:00.103-19:00:00.103&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;with the 1 second fix would query for
 &lt;code&gt;17:59:59.103-19:00:00.103&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Both of these would still miss the item at 14:59.000.&lt;/p&gt;
+&lt;p&gt;Both of these would still miss the item at 17:59.000ms.&lt;/p&gt;
 &lt;h2 id=&#34;improved-work-around&#34;&gt;Improved Work Around&lt;/h2&gt;
 &lt;p&gt;To round the start time query down to 0 milliseconds, and 0 ticks, can add the following line &lt;a href=&#34;https://stackoverflow.com/questions/1004698/how-to-truncate-milliseconds-off-of-a-net-datetime&#34;&gt;Credit Stack Overflow&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;override&lt;/span&gt; List&amp;lt;PublishQueueEntry&amp;gt;GetPublishQueueEntries(DateTime &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt;, DateTime to, CallContext context)
