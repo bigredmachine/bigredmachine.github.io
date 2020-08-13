@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.74.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -58,6 +58,162 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/incremental-publishing-edge-case/">Sitecore Incremental Publishing Edge Case</a></h3>
+					<span class="label label-primary">Thu Aug 13, 2020</span> in 
+					
+						
+						<a href="/tags/publishing">Publishing</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/publishing">Publishing</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="what-kind-of-publishing-is-this-post-about">What kind of publishing is this post about?</h2>
+<p>This post is about Incremental Publishing using the out of the box publishing mechanism, not the new Sitecore Publishing Service. There <a href="https://mikael.com/2019/07/learnings-from-a-year-of-implementing-sitecore-publishing-service/">maybe reasons why you can&rsquo;t use SPS just yet</a> for your project.</p>
+<p>Again if you are using a Smart or Full site publish this article won&rsquo;t apply.
+But it&rsquo;s <a href="https://blog.rauljimenez.co.uk/sitecore-publishing-tips/">recommended to setup a scheduled incremental publish</a>.</p>
+<p>This post relates to Sitecore 9.3, not reviewed if applicable for Sitecore 10 yet.</p>
+<p>Great, so I know this is about Sitecore OOTB Incremental Publishing, and why it&rsquo;s recommended to use this if SPS isn&rsquo;t a good fit, tell me more about this edge case.</p>
+<h2 id="edge-case">Edge Case</h2>
+<p>Disclaimer, this is an Incremental Publishing Edge Case issue where an item which should be published never gets published, most of the time you probably wouldn&rsquo;t see this issue occur, and if you did spot something wasn&rsquo;t published as it should, you&rsquo;d just smart publish/republish the unpublished items &amp; possibly their children to fix the issue.</p>
+<p>You might possibly be thinking this could be a user error, something might not have been pushed through workflow, or not created until very recently (Always good to explore for technical issues before jumping to conclusions).</p>
+<p>However if you have ruled out any user issues, and reviewed the logs and confirmed that the item should have been picked up in an Incremental Publish, you need to start looking for the Ghost in the Machine.</p>
+<h2 id="ghost-in-the-machine">Ghost in the Machine</h2>
+<p><img src="/post/incremental-publishing-edge-case/images/ghost.gif" alt="Ghost"></p>
+<p>Working closely with Sitecore Support and with enough diagnostics data from the rare occurrences when this issue would rear it&rsquo;s head, it was spotted that these items which wouldn&rsquo;t get picked up by any incremental publish were saved around the time of the scheduled publishes.</p>
+<p>Let&rsquo;s explore what&rsquo;s going on, and why an item saved very near an incremental publish operation on a rare occurrence might not get picked up.</p>
+<h2 id="sql-column-specifications--rounding">Sql Column Specifications &amp; Rounding</h2>
+<p>The &ldquo;Properties&rdquo; table stores the Last Publish date as a &ldquo;String&rdquo; including the ticks.</p>
+<p>The &ldquo;PublishQueue&rdquo; table &ldquo;Date&rdquo; column stores the date in a <a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetime-transact-sql?view=sql-server-ver15#rounding-of-datetime-fractional-second-precision">Sql &ldquo;Datetime&rdquo; column which isn&rsquo;t as precise</a> and results in rounding.</p>
+<p>As does the &ldquo;Item&rdquo; table &ldquo;Created&rdquo; and &ldquo;Updated&rdquo; columns which both use the same Sql &ldquo;datetime&rdquo; column, with the same rounding issue.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/incremental-publishing-edge-case/images/DatetimeRounding_hudedd1ac0b6b650abbd8018f2506def47_25522_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/incremental-publishing-edge-case/images/DatetimeRounding_hudedd1ac0b6b650abbd8018f2506def47_25522_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/incremental-publishing-edge-case/images/DatetimeRounding_hudedd1ac0b6b650abbd8018f2506def47_25522_300x0_resize_q100_box_2.PNG" 
+    alt="Datetime Rounding">
+</picture>
+<p>Due to these differences, say a publishing job was started with value From 14:00:00.017545Z, it would be rounded to 14:00:00.003, and would miss an item added at 14:00:00.000.</p>
+<p>These millisecond round issues could cause an issue with an item not getting published, however that&rsquo;s very small window for the issue to occur.</p>
+<h2 id="what-happens-when-you-save-an-item">What happens when you save an item?</h2>
+<p>When you save an item, the items statistics get updated with the timestamp from C#/.NET in memory before getting persisted to the Database.</p>
+<p>So the latency to get the record with the timestamp into the database could certainly be an issue/factor.</p>
+<p>The datetime value used defaults to not storing the ticks/milliseconds on the item, and just defaults to <code>datetime.ToString(&quot;yyyyMMddTHHmmss&quot;)</code></p>
+<p>Truncating any milliseconds or ticks.
+(See <code>ItemStatistics.UpdateRevision</code>, <code>DateUtil.IsoNow</code>, <code>DateUtil.ToIsoDate</code>)</p>
+<p>So that could certainly be an issue, if saving an item towards the end of the Second (with a high millisecond value).</p>
+<p>On save items are added to the <code>publishqueue</code>, with the date field values Updated, PublishDate, UnpublishDate, ValidFrom, ValidTo.
+(See <code>DefaultPublishManager.DataEngine_SavedItem</code>, <code>DefaultPublishManager.AddToPublishQueue</code>, <code>DefaultPublishManager.GetActionDateFields</code>)</p>
+<p>So that truncated second value gets copied across to the <code>publishqueue</code> table.</p>
+<h2 id="example-of-an-edge-case">Example of an Edge Case</h2>
+<p>If I save an item at <code>2020-08-13T18:00:00.9881779+00:00</code></p>
+<p>It will get saved as being created/modified at <code>2020-08-13T18:00:00.000</code>,
+and added to the publish queue</p>
+<p>And I have an incremental publish kick off at 18:00, and picks up from the last publish 17:00:00.103-18:00:00.103 as a slight delay in starting.
+This doesn&rsquo;t pick up the item which hasn&rsquo;t been created yet at 18:00:00.9881779.</p>
+<p>And the future publish operation won&rsquo;t pick it up either as will look for items between 18:00:00.103-19:00:00.103, when it&rsquo;s value will be saved as 18:00:00.000.</p>
+<h2 id="work-around">Work around</h2>
+<p>A work around would be to fix the query to include records affected by this precision/latency issue, at the expense of reprocessing some items more than once.</p>
+<p>To do this can customise <code>GetPublishQueueEntries</code> method on the <code>SqlDataProvider</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> List&lt;PublishQueueEntry&gt;GetPublishQueueEntries(DateTime <span style="color:#66d9ef">from</span>, DateTime to, CallContext context)
+{
+    <span style="color:#66d9ef">from</span> = <span style="color:#66d9ef">from</span>.AddSecond(-<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">base</span>.GetPublishQueueEntries(<span style="color:#66d9ef">from</span>, to, context);
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#a6e22e">xmlns:patch=</span><span style="color:#e6db74">&#34;http://www.sitecore.net/xmlconfig/&#34;</span> <span style="color:#a6e22e">xmlns:set=</span><span style="color:#e6db74">&#34;http://www.sitecore.net/xmlconfig/set/&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;sitecore&gt;</span>
+...
+<span style="color:#f92672">&lt;dataProviders&gt;</span>
+<span style="color:#f92672">&lt;main&gt;</span>
+<span style="color:#f92672">&lt;patch:attribute</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;YourNamespace.CustomSqlServerDataProvider, YourAssembly&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/main&gt;</span>
+<span style="color:#f92672">&lt;/dataProviders&gt;</span>
+...
+<span style="color:#f92672">&lt;/sitecore&gt;</span>
+<span style="color:#f92672">&lt;/configuration&gt;</span>
+</code></pre></div><h2 id="worst-case">Worst Case</h2>
+<p>Item statistics get updated at 17:59.59.999ms in C#</p>
+<p>Item gets saved as 17:59.59 but some latency before added to the database so doesn&rsquo;t get added until after 18:00:00.103ms
+Item gets added to the publish queue with value 17:59:59.000</p>
+<p>Publish Window by default queries for
+<code>18:00:00.103-19:00:00.103</code></p>
+<p>with the 1 second fix would query for
+<code>17:59:59.103-19:00:00.103</code></p>
+<p>Both of these would still miss the item at 14:59.000.</p>
+<h2 id="improved-work-around">Improved Work Around</h2>
+<p>To round the start time query down to 0 milliseconds, and 0 ticks, can add the following line <a href="https://stackoverflow.com/questions/1004698/how-to-truncate-milliseconds-off-of-a-net-datetime">Credit Stack Overflow</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> List&lt;PublishQueueEntry&gt;GetPublishQueueEntries(DateTime <span style="color:#66d9ef">from</span>, DateTime to, CallContext context)
+{
+    <span style="color:#66d9ef">from</span> = <span style="color:#66d9ef">from</span>.AddSecond(-<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">from</span> = <span style="color:#66d9ef">from</span>.AddTicks(-(dateTime.Ticks % TimeSpan.TicksPerSecond));
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">base</span>.GetPublishQueueEntries(<span style="color:#66d9ef">from</span>, to, context);
+}
+</code></pre></div><p>So the new query would pick up even this more extreme edge case, with the query
+<code>17:59:59.000-19:00:00.103</code>.</p>
+<h2 id="summary">Summary</h2>
+<p>TL;DR; OOTB if you save an item at the same time an incremental publish kicks off, depending on the exact timing there is an edge case that it may never get published.</p>
+<p>With a small work around in code you can ensure items saved around the time of a scheduled publish get picked up by the next incremental publish. At the expense of reprocessing some items/events.
+However this workaround isn&rsquo;t in the form of an official hotfix, and would require extensive testing. No guarantees. Only consider this if are experiencing the issues described, and of course speak with Sitecore Support first.</p>
+<h2 id="do-i-need-this">Do I need this?</h2>
+<p>Well firstly you have to be using incremental publishing and scheduled publishing.
+And secondly unless you&rsquo;ve spotted items not getting published, have enough editor activity that keep on encountering this issue on rare occasions, you probably don&rsquo;t need it.</p>
+<p>However if you are using incremental and scheduled publishing, and have spotted odd issues with items not getting published, and can&rsquo;t explain them due to user error. This might help explain the Ghost in the machine and a work around. But don&rsquo;t apply this fix if you don&rsquo;t need it.</p>
+<p>And if you do implement this fix you&rsquo;ll have to test this customisation, as not an official hotfix, and no guarantees. Just a suggestion that this could help if suffering from this particular issue.
+And if was implemented incorrectly could lead big problems, e.g. re-processing of events.
+So you&rsquo;ve been warned.</p>
+<h2 id="longer-term">Longer term</h2>
+<p>Longer term I&rsquo;m sure SPS will further improve, and will be able to be used by more customers. At which point Smart Publishing becomes fast enough, we don&rsquo;t need the old incremental publishing.</p>
+<p>If there was to be a fix for incremental publishing, the window could be reduced by calculating and storing a last modified time at Sql Server level with millisecond/timestamp precision, rather than using C# and truncating down to the second level with the latency to insert it into the database.
+As well as using the DateTime2 column format rather than DateTime with it&rsquo;s millisecond rounding precision issues.
+However, this is quite a schema change for an edge case, so the work around will suffice for those that are affected.</p>
+<h2 id="sitecore-bug-tracking-reference">Sitecore Bug Tracking Reference</h2>
+<p>Sitecore Bug Tracking Reference #397573.</p>
+<h2 id="final-disclaimer">Final Disclaimer</h2>
+<p>Don&rsquo;t use this work around unless you are experiencing the issues described, and even then perform your own testing, no guarantees.</p>
+<p>These code samples haven&rsquo;t been tested, and just give the gist of the fix required.</p>
+<p>Work with Sitecore Support to confirm you are experiencing the issue described, as this customisation has a cost to it, and could have negative implications to your solution even if implemented correctly, and even more negative implication if incorrectly implemented.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/">Precompiled Razor Views</a></h3>
 					<span class="label label-primary">Sun Feb 2, 2020</span> in 
 					
@@ -86,7 +242,7 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h2 id="precompiled-razor-views---sitecore-9---issue-192470-amp-119596-">Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp; 119596</h2>
+				<h2 id="precompiled-razor-views---sitecore-9---issue-192470-amp-119596">Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp; 119596</h2>
 <p>There are already some posts on this topic of using Precompiled Razor Views, so I won&rsquo;t duplicate that content.</p>
 <p>Kam&rsquo;s blog - <a href="https://kamsar.net/index.php/2016/09/Precompiled-Views-with-Sitecore-8-2/">Precompiled Views supported by Sitecore since Sitecore 8.2</a></p>
 <p>Jeremy&rsquo;s blog - <a href="https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/">possible side affect of Precompiled Views</a></p>
@@ -94,7 +250,7 @@
 <p>Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a></p>
 <p>And probably others, but these one&rsquo;s stood out to me, and relevant for this post.</p>
 <p>Read these articles first, I&rsquo;ll wait.</p>
-<h2 id="quick-summary-">Quick summary</h2>
+<h2 id="quick-summary">Quick summary</h2>
 <p>So you&rsquo;ve read the above articles,
 here&rsquo;s a quick recap:</p>
 <ul>
@@ -111,7 +267,7 @@ here&rsquo;s a quick recap:</p>
 <p>Ensure you are using unique MVC area/Helix folder names &amp; unique razor file paths across projects to avoid issues, just like you would if they were physical files in one project.</p>
 </li>
 </ul>
-<h2 id="ok---ive-read-the-above-articles-what-more-are-you-writing-about-">Ok - I&rsquo;ve read the above articles, what more are you writing about?</h2>
+<h2 id="ok---ive-read-the-above-articles-what-more-are-you-writing-about">Ok - I&rsquo;ve read the above articles, what more are you writing about?</h2>
 <p>Well first I want to draw attention to &ldquo;UsePhysicalViewsIfNewer&rdquo; setting.</p>
 <p>Check in your Sitecore setup what this value is set to.</p>
 <p>If for example you have received a Sitecore Support patch/hotfix with a new .cshtml file</p>
@@ -125,25 +281,25 @@ here&rsquo;s a quick recap:</p>
 </blockquote>
 <p>So possibly a Sitecore Support patch to a .cshtml file might undo some of the performance gains we are trying to achieve. As with everything measure.</p>
 <p>If you don&rsquo;t have &ldquo;UsePhysicalViewsIfNewer&rdquo; set to true, can skip this next section, and skip to the hotfix, otherwise read on.</p>
-<h2 id="i-want-a-support-fix-and-performance-settings-">I want a support fix and performance settings</h2>
+<h2 id="i-want-a-support-fix-and-performance-settings">I want a support fix and performance settings</h2>
 <blockquote>
 <p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
 </blockquote>
 <p>Maybe if you are only worried about the Sitecore MVC .cshtml hotfix for Content Authoring, and only want the compilation benefit on Content Delivery so could change this setting &ldquo;UsePhysicalViewsIfNewer&rdquo; to true just for Authoring?</p>
 <p>However, if you want to have the compilation benefit on Content Authoring as well as the MVC .cshtml fix. One possible way could be to create a new project named &ldquo;ZZZZZ&hellip;&rdquo; with Razor compilation enabled and place the fixed .cshtml file in that project with the matching path of the file you want to override from Sitecore.</p>
 <p>And add to the pre-compilation configuration a reference to this new assembly.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">f</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;sitecore</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;mvc</span><span style="color:#f92672">&gt;</span>
-            <span style="color:#f92672">&lt;precompilation</span><span style="color:#f92672">&gt;</span>
-                <span style="color:#f92672">&lt;assemblies</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#960050;background-color:#1e0010">xmlns:patch&#34;http://www.sitecore.net/xmlconfig/&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;sitecore&gt;</span>
+        <span style="color:#f92672">&lt;mvc&gt;</span>
+            <span style="color:#f92672">&lt;precompilation&gt;</span>
+                <span style="color:#f92672">&lt;assemblies&gt;</span>
                     <span style="color:#f92672">&lt;assemblyIdentity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ZZZZZ......AssemblyName&#34;</span> <span style="color:#f92672">/&gt;</span>
                 <span style="color:#f92672">&lt;/assemblies&gt;</span>
             <span style="color:#f92672">&lt;/precompilation&gt;</span>
         <span style="color:#f92672">&lt;/mvc&gt;</span>
     <span style="color:#f92672">&lt;/sitecore&gt;</span>
 <span style="color:#f92672">&lt;/configuration&gt;</span>
-</code></pre></div><h3 id="why-call-the-project-zzzzz-">Why call the project ZZZZZ&hellip;.</h3>
+</code></pre></div><h3 id="why-call-the-project-zzzzz">Why call the project ZZZZZ&hellip;.</h3>
 <p>We are going to turn the bug from Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a>
 into a solution.</p>
 <blockquote>
@@ -154,10 +310,10 @@ into a solution.</p>
 <p>Or actually Sitecore could re-issue the original .dll with the fixed Razor view, so don&rsquo;t need to overwrite it.</p>
 <p>And now with the new Hotfix only model, they probably would do this.</p>
 <p>Still this might be relevant for an existing patch you have, prior to the new Hotfix model.</p>
-<h3 id="best-of-both-">Best of both</h3>
+<h3 id="best-of-both">Best of both</h3>
 <p>With this technique, can leave &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, and override a Sitecore precompiled view.</p>
 <p>More testing required to verify this works without drawback.</p>
-<h2 id="great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix-">Great so I&rsquo;ve definitely got &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, what&rsquo;s this Hotfix</h2>
+<h2 id="great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix">Great so I&rsquo;ve definitely got &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, what&rsquo;s this Hotfix</h2>
 <blockquote>
 <p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
 </blockquote>
@@ -175,7 +331,7 @@ Please also notice that with the current architecture the only possible way to f
 <p>This would seem to explain the issue Jeremy was having.</p>
 <p>However I&rsquo;ve yet to benchmark this solution, to see if solves the disk IO issue, but got a logical explanation from Sitecore Support.</p>
 <p>I&rsquo;m not sure if this is still an issue or fixed in later version of Sitecore after Sitecore 9. But a quick scan through the recent version release notes I can&rsquo;t see either of the public reference numbers 192470 or 119596.</p>
-<h2 id="summary-">Summary</h2>
+<h2 id="summary">Summary</h2>
 <blockquote>
 <p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
 </blockquote>
@@ -243,7 +399,7 @@ Please also notice that with the current architecture the only possible way to f
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h2 id="sitecore-mvp-2020---technology-">Sitecore MVP 2020 - Technology</h2>
+				<h2 id="sitecore-mvp-2020---technology">Sitecore MVP 2020 - Technology</h2>
 <p>I&rsquo;m thankful to receive my 1st Sitecore MVP award in the Technology category for 2020.</p>
 <a href="https://mvp.sitecore.com/">
 
@@ -341,273 +497,40 @@ And <a href="https://twitter.com/steviemcgill">Steve McGill</a> and <a href="htt
 		</div>
 	
         
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/">Improving the Siteore Solr Content Search Provider</a></h3>
-					<span class="label label-primary">Tue Nov 26, 2019</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/solr">Solr</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h2 id="improving-the-siteore-solr-content-search-provider-">Improving the Siteore Solr Content Search Provider</h2>
-<p>Back in February this year I gave a presentation at the <a href="https://www.meetup.com/sug-uk/events/258462625/">London Sitecore User Group</a> &ldquo;Improving the Solr Content Search Provider&rdquo;.</p>
-<p>My first talk at a Sitecore User group.</p>
-<p>Although I regularly attend the Sitecore discussion club, and have presented there on several occasions.</p>
-<h2 id="known-bugs-">Known bugs</h2>
-<p>At the presentation I included a link to a <a href="https://github.com/bigredmachine/sitecore-solr">github repository</a> with a list of known issues and their public reference numbers.</p>
-<p>The list of issues will vary between Sitecore versions, I&rsquo;ve included the list of issues I&rsquo;ve come across between Sitecore 8.2 up to Sitecore 9.0 update 2.</p>
-<p>Including:</p>
-<ul>
-<li>Partially rebuilt index going live - 96016 - IIS recycle - switches Alias although indexing job cancelled/incomplete - fixed in Sitecore 9 initial release</li>
-<li>OptimizeOnRebuildEnabled setting not used - was in bug fix 96016 - introduced in Sitecore 9 initial release</li>
-<li>Patch for IsSolrAliveAgent to update SolrState and process reinitialisation correctly - 163850.171950</li>
-<li>Incorrect data being indexed, if have ContentSearch.Indexing.DisableDatabaseCaches setting set to true - 96740.127177.155383</li>
-<li>If IndexAllFields=false the IncludedFields are indexed as string values - New bug in Sitecore 9 - 252532</li>
-<li><a href="https://bigredmachine.github.io/post/sitecore-9-index-slow-down/">Index rebuild slow down after Sitecore 9 upgrade</a>.</li>
-</ul>
-<h2 id="common-patterns-for-distributed-computing-">Common Patterns for distributed computing</h2>
-<p>The github repostiory also included an example implementation of patterns to address some of the <a href="https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing">fallacies of distributed computing</a>.</p>
-<ul>
-<li>Circuit Breaker Pattern
-<ul>
-<li>Don&rsquo;t make every request wait for a timeout exception, use a circuit breaker to fail fast, so can handle load under a degraded scenario</li>
-</ul>
-</li>
-<li>Not swallowing errors
-<ul>
-<li>We want to know the difference between no results, and an error.</li>
-<li>The circuit breaker can&rsquo;t work if we don&rsquo;t know what&rsquo;s an error.</li>
-<li>If we don&rsquo;t know the difference then we might cache there are no results, when there are results, but just couldn&rsquo;t retrieve the results.</li>
-</ul>
-</li>
-<li>Shorter timeouts for queries
-<ul>
-<li>Again, we want queries to fail fast, and for the circuit breaker to kick in. But we can allow longer for indexing operations to take place, especially as there is no retry mechanism on the crawling/indexing side.</li>
-</ul>
-</li>
-</ul>
-<h2 id="comparison-of-the-other-options-out-of-the-box-">Comparison of the other options out of the box</h2>
-<ul>
-<li>Sitecore Query</li>
-<li>Sitecore Fast Query</li>
-<li>Links Database</li>
-</ul>
-<p>Related blog posts:</p>
-<ul>
-<li><a href="http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html">http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html</a></li>
-<li><a href="https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/">https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/</a></li>
-<li><a href="https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/">What&rsquo;s wrong with the links database</a></li>
-</ul>
-<p>On reasons not to use each of them, at least on Content Delivery, or when querying over lots of items.</p>
-<h2 id="a-list-of-other-alternatives-">A list of other alternatives</h2>
-<ul>
-<li>Lucene
-<ul>
-<li>Per server copy to maintain</li>
-<li>Removed in Sitecore 9.3</li>
-</ul>
-</li>
-<li>Elastic Search
-<ul>
-<li>No Sitecore Search Provider</li>
-</ul>
-</li>
-<li>Coveo
-<ul>
-<li>Not a total replacement, would need Coveo + another search provider, so would need considering after chosen initial search provider.</li>
-<li>Commercial Cost</li>
-<li>Supported Sitecore Search Provider</li>
-</ul>
-</li>
-<li>Algolia
-<ul>
-<li>Hosted search</li>
-<li>No official Sitecore Search Provider, but used in community.</li>
-<li>Not a total replacement, would need Algolia + another search provider, so would need considering after chosen initial search provider.</li>
-</ul>
-</li>
-<li>Azure Search
-<ul>
-<li>At the time there wasn&rsquo;t an offical Sitecore Azure Search provider, there now is.</li>
-<li>However it has some limitations such as <a href="https://doc.sitecore.com/developers/92/platform-administration-and-architecture/en/sitecore-azure-search-overview.html">An Azure Search index can only contain up to 1000 fields.</a>
-Which could be an issue for the master search index.</li>
-<li>In this particular benchmark the crawling rate was slower</li>
-<li><a href="https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/">https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/</a></li>
-<li>But the querying rate was similar, although I do question the cost/limits on querying Azure Search if you&rsquo;ve got a high traffic site. And I&rsquo;ve read some people have had to put a Redis cache in front, to not go over the query limit in Azure Search.</li>
-<li><a href="https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/">https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="examples-of-customisations-">Examples of Customisations</h2>
-<p>Changing MyItems &amp; Unlock all to use Solr, rather than a Sitecore Query.</p>
-<p>I told you Sitecore.Query was slow, and Memory Intensive.</p>
-<h2 id="since-giving-this-presentation-">Since giving this presentation</h2>
-<p>Infact since giving this talk, one of the issues that got me to customise the Sitecore Solr Search provider in the first place reared its head again. Sitecore not being able to startup when Solr is down.</p>
-<h2 id="i-thought-wed-fixed-that-already-why-cant-sitecore-startup-when-solr-is-down-anymore-">I thought we&rsquo;d fixed that already, why can&rsquo;t Sitecore startup when Solr is down anymore?</h2>
-<p>Well the number of Sitecore indexes had grown over time.</p>
-<p>On startup each index was doing it&rsquo;s own check to see if Solr was available, and waiting for a timeout/exception. This was happening in series. Depending on the type of error you get, if it&rsquo;s a timeout, this can result in Sitecore taking longer to startup than IIS allows. Causing IIS to recycle the application and try again, in an infinite loop. Oh dear!</p>
-<p>So I&rsquo;ve added to the github repository a new issue <a href="https://github.com/bigredmachine/sitecore-solr">314454 - Sitecore doesn&rsquo;t startup when Solr Down.</a></p>
-<h2 id="simulating-solr-being-downlatency-">Simulating Solr being down/latency</h2>
-<p>You can simulate on your local PC latency to Solr using Fiddler.
-If you change your solr connection string to</p>
-<p><code>http://localhost.:8983/solr;solrCloud=true</code></p>
-<p>Notice the &ldquo;.&quot;, will ensure the traffic goes through Fiddler</p>
-<p>Change your Sitecore IIS Application Pool to run as your local user, as Fiddler automatically picks up traffic running as your local user. (Or you can change the proxy settings)</p>
-<p>Then run Fiddler.</p>
-<p>Under &ldquo;AutoResponder&rdquo; tab, you can add a Rule for requests matching</p>
-<p><code>http://localhost.8983/solr/.....</code></p>
-<p>The URL you set could be specific to a particular index, or request, depending on what you want to test.</p>
-<p>Then on the response for that URL you can set</p>
-<p><code>*delay:10000</code></p>
-<p>with how many milliseconds you want to delay the request with.</p>
-<p>Using this technique you can simulate a network timeout,
-rather than a quicker port not listening/service not running error.</p>
-<p>And from this can replicate the issue of Sitecore note being able to start up, if you have enough indexes which all timeout on startup.</p>
-<h2 id="whats-in-314454---sitecore-doesnt-startup-when-solr-down-">What&rsquo;s in 314454 - Sitecore doesn&rsquo;t startup when Solr Down</h2>
-<p>Sitecore doesn&rsquo;t issue patches anymore, so instead you get a hotfix, which include all of the issue fixes for that version of Sitecore you are on.</p>
-<p>For Sitecore 9.0 update 2, this was included in hotfix 323662-1.</p>
-<ol>
-<li>If you have enough indexes, the timeout on initialisation from each index run in sequence can result in Sitecore not being starting up in the allowed time.</li>
-<li>Retry logic for SolrCloud aliases.</li>
-<li>Retry logic for initialising Indexes</li>
-<li>Exception handling in IsOnline index check.</li>
-<li>Initialisation of indexes to not be interupted if Solr is unavailable, to initialise what can and retry later.</li>
-</ol>
-<p>And included changes to dlls</p>
-<ul>
-<li>Sitecore.ContentSearch.Client.dll</li>
-<li>Sitecore.ContentSearch.Data.dll</li>
-<li>Sitecore.ContentSearch.dll</li>
-<li>Sitecore.ContentSearch.Linq.dll</li>
-<li>Sitecore.ContentSearch.Linq.Lucene.dll</li>
-<li>Sitecore.ContentSearch.LuceneProvider.dll</li>
-<li>Sitecore.ContentSearch.SolrNetExtension.dll</li>
-<li>Sitecore.ContentSearch.SolrProvider.dll</li>
-</ul>
-<p>There were so many changes it felt like a mini Sitecore Upgrade.
-And the contract changed, had to rewrite our customisations for them to continue to work.</p>
-<p>This hotfix fixes the slow startup issue, but only checking once if Solr is available, rather than per index.
-So make Sitecore much faster to startup when Solr is down.</p>
-<p>There was also some work to make the initialising of the indexes to work in parallel, to further speed up the time for initialisation.</p>
-<h2 id="customisations-and-upgrades-">Customisations and Upgrades</h2>
-<p>Each time we upgrade, we have to see if our customisations are still possible.
-Often the extension points/hooks we have used have gone, and we have to find new ones.</p>
-<p>Even on this update to the hotfix which address 314454, we had to do a lot of rework.</p>
-<p>Hopefully in a future version of the product the extensions points we require will be included in the product, and we won&rsquo;t have to get out dotpeek to find a place to override, and use reflection/so many custom classes and overrides to change the behaviour to what we need.</p>
-<h2 id="update-the-repository-examples-">Update the repository examples</h2>
-<p>As the hotfix isn&rsquo;t publicly available in the nuget feeds, and the contract has changed.</p>
-<p>I can&rsquo;t update the example code to reference the hotfix, and for it to still compile.</p>
-<p>If anyone is interested to see the examples updated to use the hotfix, reach out to me on twitter, and I can see about creating a feature branch.</p>
-<p>Otherwise, I&rsquo;m going to wait for a version of Sitecore which includes these fixes/contract changes, which is available in the nuget feed so I can update the examples and still have it compiling.</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
 	</div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
                     
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item disabled">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item disabled">
     <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

@@ -6,10 +6,21 @@
     <description>Recent content in Sitecore on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://bigredmachine.github.io/categories/sitecore/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sitecore Incremental Publishing Edge Case</title>
+      <link>https://bigredmachine.github.io/post/incremental-publishing-edge-case/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/post/incremental-publishing-edge-case/</guid>
+      <description>What kind of publishing is this post about? This post is about Incremental Publishing using the out of the box publishing mechanism, not the new Sitecore Publishing Service. There maybe reasons why you can&amp;rsquo;t use SPS just yet for your project.
+Again if you are using a Smart or Full site publish this article won&amp;rsquo;t apply. But it&amp;rsquo;s recommended to setup a scheduled incremental publish.
+This post relates to Sitecore 9.</description>
+    </item>
     
     <item>
       <title>Precompiled Razor Views</title>

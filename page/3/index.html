@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.74.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -58,6 +58,172 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/">Java goes commercial, what does this mean for Sitecore - Solr?</a></h3>
+					<span class="label label-primary">Sat Dec 15, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/solr">Solr</a>
+					
+						 , 
+						<a href="/tags/java">Java</a>
+					
+						 , 
+						<a href="/tags/openjdk">OpenJDK</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h1 id="oracle-to-start-charging-for-java">Oracle to start charging for Java</h1>
+<p>I&rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</p>
+<p>I brought this topic up at the Sitecore Discussion Club<br>
+<a href="http://sitecore.events/">http://sitecore.events/</a></p>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box_2.PNG" 
+    alt="Java Public Updates">
+</picture>
+<p> </p>
+<p>When I started to follow this, the policy for the LTS release of Java 11 hadn&rsquo;t been announced, and I was thinking would need to update to Java 11 to continue to get free updates.
+Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&rsquo;t support a version of Solr this high yet <a href="https://kb.sitecore.net/articles/227897,">https://kb.sitecore.net/articles/227897,</a> and anyway Java 11 is now not free anyway, so not an option to get free updates that way.</p>
+<p>Further reading:</p>
+<ul>
+<li><a href="https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event">https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event</a></li>
+<li><a href="https://www.oracle.com/technetwork/java/java-se-support-roadmap.html">https://www.oracle.com/technetwork/java/java-se-support-roadmap.html</a></li>
+</ul>
+<h2 id="oracle-java---whats-the-cost">Oracle Java - what&rsquo;s the cost?</h2>
+<p>The cost has come down since I started following this.</p>
+<p>Originally the price was:</p>
+<p> </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Per CPU</th>
+<th> </th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java SE Advanced</td>
+<td> </td>
+<td>$5,000</td>
+<td> </td>
+<td>$1,100</td>
+</tr>
+<tr>
+<td>Java SE Suite</td>
+<td> </td>
+<td>$15,000</td>
+<td> </td>
+<td>$3,300</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Which is quite a large up front cost, and continual support cost.</p>
+<p>Then it was announced the subscription licence, charging $25 per CPU per month with support. Going down to $12.50 with volume discount (possibly lower with Enterprise agreement), which works out cheaper than the previous licencing.</p>
+<ul>
+<li><a href="https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html">https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html</a></li>
+<li><a href="https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/">https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/</a></li>
+</ul>
+<h3 id="a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu">A note on mapping an Oracle Processor Licence to an Azure vCPU:</h3>
+<p><a href="https://www.oracle.com/assets/cloud-licensing-070579.pdf">https://www.oracle.com/assets/cloud-licensing-070579.pdf</a></p>
+<blockquote>
+<p>&ldquo;Microsoft Azure – count two vCPUs as equivalent to one Oracle Processor license if hyperthreading
+is enabled, and one vCPU as equivalent to one Oracle Processor license if hyperthreading
+is not enabled.&rdquo;</p>
+</blockquote>
+<p>If you&rsquo;ve got 2 solr servers, and 3 zookeeper servers, all running as Quad Cores, that&rsquo;s 5x4=20 CPU&rsquo;s, which might be up to 20x$25=$500 a month. Or if the hyperthreading detail applies above, might ve $250 a month. And even cheaper if have a load of servers to volume licence. Would require Java licencing to confirm actual price for your particular scenario.</p>
+<h2 id="open-jdk">Open JDK</h2>
+<p>What the alternative&rsquo;s to paying Oracle for commercial support?</p>
+<p>Open JDK is the alternative.</p>
+<p><a href="https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html">https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html</a></p>
+<h3 id="is-anyone-using-open-jdk">Is anyone using Open JDK?</h3>
+<p>If you look at the docker community, most Docker images which use Java use an Open JDK variant.</p>
+<p>(was saying DEPRECATED - This image is officially deprecated in favor of the Open JDK image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)<br>
+<a href="https://hub.docker.com/_/java/">https://hub.docker.com/_/java/</a></p>
+<p>Shows previously issues/questions on legality of Java on Docker<br>
+<a href="https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/">https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/</a></p>
+<p>Explains issues, and update on support now<br>
+<a href="https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker">https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker</a></p>
+<p>Flow chart of which OpenJDK to choose for Docker<br>
+<a href="https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238">https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238</a></p>
+<p>Update on Oracle Java support for Docker<br>
+<a href="https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers">https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers</a></p>
+<p>Official Java Docker images, but appears have to sign up to see them.<br>
+<a href="https://hub.docker.com/_/oracle-serverjre-8">https://hub.docker.com/_/oracle-serverjre-8</a></p>
+<h3 id="there-are-many-version-of-open-jdk-but-which-version-should-i-use">There are many version of Open JDK, but which version should I use?</h3>
+<p>This posts lists out the different flavours of the Open JDK<br>
+<a href="https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html">https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html</a></p>
+<p>Adopt Open JDK appears to be the main choice, with longer term updates, and actually free.<br>
+<a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a></p>
+<p>Red Hat are supporting it (and IBM which have now bought Red Hat)<br>
+<a href="https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/">https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/</a></p>
+<p>Amazon are releasing their own version of Open JDK, which they use internally, but still in public preview, but certainly one to look out for, and not just for use on AWS - can use off AWS which sounds awesome.</p>
+<ul>
+<li><a href="https://aws.amazon.com/corretto/">https://aws.amazon.com/corretto/</a></li>
+<li><a href="https://aws.amazon.com/corretto/faqs/#support">https://aws.amazon.com/corretto/faqs/#support</a></li>
+<li><a href="https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/">https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/</a></li>
+</ul>
+<p>I noticed on this tweet that the version of Java Azure App Service was running was Azul.<br>
+<a href="https://twitter.com/dancruickshank/status/1072541500058284034">https://twitter.com/dancruickshank/status/1072541500058284034</a></p>
+<p>A quick google later I found that was announced in September, that if you are an Azure customer, can use Azul Open JDK for no extra cost. So that&rsquo;s awesome too if you are an Azure customer, but this is just for use on Azure.</p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/">https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/</a></li>
+<li><a href="https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/">https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/</a></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>Ultimately you&rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the Open JDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the Open JDK you&rsquo;ve chosen.</p>
+<p>It would seem if looking to move to Docker &amp; Kubernetes eventually, then embracing the Open JDK seems to be the standard anyway.
+And even if Oracle engineers aren&rsquo;t going to be supporting the Open JDK anymore, got a choice of Red Hat/IBM, Amazon and Azul (free on Azure) to go for.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/why-inproc-session-state-required-on-authoring/">Why Sticky Session on Sitecore Content Authoring</a></h3>
 					<span class="label label-primary">Sat Dec 15, 2018</span> in 
 					
@@ -83,16 +249,16 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring-">Why have to use InProc session state on Sitecore Content Authoring</h2>
+				<h2 id="why-have-to-use-inproc-session-state-on-sitecore-content-authoring">Why have to use InProc session state on Sitecore Content Authoring</h2>
 <p>A note on why InProc session state &amp; sticky sessions must be used for Sitecore Content Authoring. The official Sitecore documentation was mentioning that Content Authoring could use a shared session state provider, but after testing, and being in contact with Sitecore support this documentation was update to reflect reality at the moment.</p>
 <p><a href="https://kb.sitecore.net/articles/860809">https://kb.sitecore.net/articles/860809</a></p>
-<h2 id="bad-practice-to-use-sticky-sessions-">Bad Practice to use Sticky Sessions</h2>
+<h2 id="bad-practice-to-use-sticky-sessions">Bad Practice to use Sticky Sessions</h2>
 <p>A quick intro on why Sticky Sessions are bad.
 <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out">https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out</a></p>
 <blockquote>
 <p><strong>Avoid instance stickiness.</strong> Stickiness, or session affinity, is when requests from the same client are always routed to the same server. Stickiness limits the application&rsquo;s ability to scale out. For example, traffic from a high-volume user will not be distributed across instances. Causes of stickiness include storing session state in memory, and using machine-specific keys for encryption. Make sure that any instance can handle any request.</p>
 </blockquote>
-<p>Depending on your routing mechanism, you may also find that your disribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br>
+<p>Depending on your routing mechanism, you may also find that your distribution of load across your servers is uneven. With one server being overworked, and other servers being underutilised.<br>
 E.g. if you reboot a server, everyone is going to lose their session, and fail over to another server. Then when the server comes back up, new sessions to be routed to the under utilised server, but those previous sessions have been stacked onto another machine.<br>
 Or if you use sticky sessions via IP address, and lots of people work in the same office, all of that office will be allocated to the same machine.</p>
 <p> </p>
@@ -123,11 +289,11 @@ Or if you use sticky sessions via IP address, and lots of people work in the sam
     alt="Sticky Session">
 </picture>
 <p> </p>
-<h2 id="redis-provider-network-stability-">Redis provider network stability</h2>
+<h2 id="redis-provider-network-stability">Redis provider network stability</h2>
 <p>The Stack Exchange redis session state provider at the time often had network stability issues, particularly on Azure Redis (TLS)
 <a href="https://github.com/StackExchange/StackExchange.Redis/issues/871">https://github.com/StackExchange/StackExchange.Redis/issues/871</a><br>
 Version 2 has since been released, which would be worth testing to see how much this has improved the issue.</p>
-<h2 id="too-much-data-being-put-into-session-state-">Too much data being put into Session state</h2>
+<h2 id="too-much-data-being-put-into-session-state">Too much data being put into Session state</h2>
 <p>However, another issue which couldn&rsquo;t be solved, was that too much data was being stored in session state.</p>
 <ul>
 <li>228534 - Jsnlog entries spam session storage</li>
@@ -137,9 +303,9 @@ Version 2 has since been released, which would be worth testing to see how much 
 \App_Config\Include\Sitecore.JSNLog.config &lt;jsnlog enabled=&quot;false&rdquo;</p>
 <p>For validation though, there is no easy work around.
 You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.</p>
-<h2 id="aspnet-webforms-legacy-">ASP.NET WebForms Legacy</h2>
+<h2 id="aspnet-webforms-legacy">ASP.NET WebForms Legacy</h2>
 <p>And this is on top of the Content Editor still using WebForms with ViewState and ControlState needing to be stored to a shared medium, which may as well also be Redis is using a Redis session state provider. (Although a Database is another option if you have spare DTUs, why not be consistent)</p>
-<h2 id="redis-is-designed-for-small-objects-">Redis is designed for small objects</h2>
+<h2 id="redis-is-designed-for-small-objects">Redis is designed for small objects</h2>
 <p><a href="https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/">https://azure.microsoft.com/en-gb/blog/investigating-timeout-exceptions-in-stackexchange-redis-for-azure-redis-cache/</a></p>
 <blockquote>
 <p>Redis Server and StackExchange.Redis are optimized for many small requests rather than fewer large requests.  Splitting your data into smaller chunks may improve things here</p>
@@ -171,7 +337,7 @@ You can disable the validation bar - so no new validation messages are loaded wi
     alt="Redis Logo">
 </picture>
 <p> </p>
-<h2 id="summary-">Summary</h2>
+<h2 id="summary">Summary</h2>
 <p>Ultimately right now, to have more than once Content Authoring server, you have to use Sticky Sessions and InProc session state.</p>
 <p>Looking forward to a future version of Sitecore allowing to get away from Sticky Sessions on Content Authoring, either by reducing the amount of data needed in Session Storage, or getting away from Viewstate &amp; ControlState - perhaps with Sitecore Horizon the new editor built in Angular.</p>
 
@@ -215,7 +381,7 @@ You can disable the validation bar - so no new validation messages are loaded wi
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h1 id="zero-down-time-for-delivery--authoring-">Zero down time for Delivery &amp; Authoring</h1>
+				<h1 id="zero-down-time-for-delivery--authoring">Zero down time for Delivery &amp; Authoring</h1>
 <p>A lot of people talk about zero downtime, but normally just in the context of Content Delivery.
 Either with Azure PAAS websites and swapping slots, or using Azure Traffic Manager to switch over to a different load balancer/set of VMs.</p>
 <p>However one of my colleagues found this article, to achieve Zero* downtime for Content Authoring.<br>
@@ -272,230 +438,40 @@ There is no reason this can&rsquo;t be updated to use Azure Message Queue, two i
 		</div>
 	
         
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/">What Is Wrong With the Link Database</a></h3>
-					<span class="label label-primary">Tue Nov 20, 2018</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/linkdb">LinkDB</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					
-						 , 
-						<a href="/tags/speed">Speed</a>
-					
-						 , 
-						<a href="/tags/dtu">DTU</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h2 id="sitecore-fast-queries-">Sitecore (Fast) Queries</h2>
-<p>There&rsquo;s quite a few blog posts on avoiding using (fast) Sitecore queries on Content Delivery.</p>
-<ul>
-<li><a href="https://blog.rauljimenez.co.uk/not-so-fast/">https://blog.rauljimenez.co.uk/not-so-fast/</a></li>
-<li><a href="https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/">https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/</a></li>
-<li><a href="https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/">https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/</a></li>
-<li><a href="http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html">http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html</a></li>
-</ul>
-<p>Summary Fast always goes to the database, and even a normal Sitecore query can go from being a slow page, to bringing your site to it&rsquo;s knees if that page is hit frequently enough.</p>
-<p>I&rsquo;ve had experience of this on inheriting a solution which would do three sitecore queries on a page load for calendar events, for items within a folder. Normally the page would load within a few seconds, not great but usable. However when a search engine got onto the page, and decided to crawl through the calendar navigation links, which are effectively infinite, the execution time grew and grew.</p>
-<p>Until the page wouldn&rsquo;t load in a couple of mins, .net thread pool limits were reached, and the site was effectively down.</p>
-<p>The quick fix was to prevent these pages from being indexed, as well as indicate not to follow the calendar links forever.</p>
-<p>The longer term fix was to switch to Content Search, using an index to load the content, to speed the page up (as well as keeping the indicators not to follow the infinite links).</p>
-<p>(Of course using Sitecore Query for a few sub items, or getting an item by id is acceptable, but never Fast)</p>
-<h2 id="link-database-">Link Database</h2>
-<p>So onto the topic of this post, the Link Database certainly has it&rsquo;s place, finding references/referrers of items for one on Content Authoring being it&rsquo;s primary usage.</p>
-<p>There are some considerations before you start adding a dependency to the Links database in your code. (Hint, use Content Search were possible).</p>
-<p>The Links Database, is more of a table which used to reside in the Core database by default until Sitecore 9, and then was moved to the Web database ahead of removing the dependency on the Core database.</p>
-<p>We switched back to using the Core database to store the links again for reason I&rsquo;ll come to shortly.</p>
-<h3 id="scaling-limitation-">Scaling Limitation?</h3>
-<p>If you work in a Scaled environment though, you may have more than one Web or Core database.
-There can be only one link database(Table) maintained though.
-So in a multi-region scaled environment, you&rsquo;ll be travelling across regions to the database with the maintained link database.</p>
-<p>Now it might be with database replication that this problem gets resolved, and other regions can query a read only copy of a replicated database which contains the Link Database(table).</p>
-<p>However we are avoiding using the Link Database on content delivery so we don&rsquo;t encounter any scalability issues.</p>
-<h3 id="rebuild-speed-">Rebuild Speed</h3>
-<p>Rebuilding the Link Database occurs in serial (one Databases links after the next get rebuilt in serial) and takes a long time. E.g, 8+ Hours.
-I understand from Sitecore support there are some experimental patches to speed up making the index rebuild faster/rebuild it in parallel, so far haven&rsquo;t got around to trying these, but possibly an avenue worth pursuing.</p>
-<h3 id="deadlocks-">Deadlocks</h3>
-<p>I understand the situation used to be worse before Sitecore 7.1, were selects didn&rsquo;t use the nolock hint,
-but still regularly see deadlocks on this table in production even on Sitecore 9.</p>
-<blockquote>
-<p>SQL Server transaction deadlocks related to the link database could occur when multiple threads were creating and moving items concurrently, for example, when the threads created items that were stored in item buckets. This has been fixed by changing the GetReferrers(Item, ID) method in the SqlLinkDatabase class so that it uses WITH NOLOCK when reading from the Links table. (401393)
-<a href="https://sdn.sitecore.net/products/sitecore%20v5/sitecore%20cms%207/releasenotes/changelog/release%20history%20sc71.aspx">7.1 release notes</a></p>
-</blockquote>
-<p> </p>
-
-<picture>
-
-
-
-
-
-
-	
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_489x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box_2.PNG" 
-    alt="Example of Traffic representing a Deadlock">
-</picture>
-<p> </p>
-<h3 id="bad-execution-plan-">Bad Execution Plan</h3>
-<p>Sometimes when Sql Server evaluates a query on the Link Database(table), depending on the values being queried, it was deciding to do a TableScan to find an entry.
-This would get saved as the execution plan, and all the queries would go slower/use up more DTU&rsquo;s, until the execution plan was discarded.</p>
-<h3 id="high-dtu-usage-">High DTU usage</h3>
-<p>We noticed that every publish, there was a DTU spike.
-We even saw some issues on the live site because of these Bad Execution Plan, combined with these High DTU spikes, on other pages trying to query the same database under load.
-So something had to be done, other than the immediate increase the DTU limits on the database server, and throw money at the problem.</p>
-<h3 id="disable-updating-the-link-database-on-publish-">Disable updating the link database on publish</h3>
-<p>The following setting cut down the DTU spikes we were seeing on every publish, as we don&rsquo;t use the Links Database on Content Delivery, was a quick win for us.</p>
-<blockquote>
-<p>Disables incremental updates to the link database during publishing operations as an experimental optimization to speed up publishing (25% on average).</p>
-</blockquote>
-<p><a href="https://community.sitecore.net/technical_blogs/b/latest_technical_reinnovations/posts/enabling-parallel-publishing-with-sitecore-7-2">Enabling Parallel Publishing and related optimizations</a></p>
-<pre><code>&lt;setting name=&quot;LinkDatabase.UpdateDuringPublish&quot; value=&quot;false&quot;/&gt;
-</code></pre>
-<h3 id="fixing-the-bad-execution-plan-">Fixing the Bad Execution Plan</h3>
-<p>It was choosing to do a Table Scan, because unfortunately there was no covering index for the query, because one of the columns is of type &ldquo;ntext&rdquo; which prevents it from being part of the index.</p>
-<p>Sitecore confirmed that according to <a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/ntext-text-and-image-transact-sql?view=sql-server-2017">MS documentation</a> that ntext will be removed from future versions of Sql Server. So in the future this column type will change.</p>
-<blockquote>
-<p>IMPORTANT! ntext, text, and image data types will be removed in a future version of SQL Server. Avoid using these data types in new development work, and plan to modify applications that currently use them. Use nvarchar(max), varchar(max), and varbinary(max) instead.</p>
-</blockquote>
-<p>So we are currently trying out applying the following change to the Links Database(Table)</p>
-<pre><code>ALTER TABLE [Links] ALTER COLUMN TargetPath NVARCHAR(MAX) NOT NULL
-GO
-
-CREATE INDEX ndxLinks_SourceItemId_SourceDatabase_ALL ON [Links]
-([SourceItemID], [SourceDatabase])
-INCLUDE ([SourceLanguage], [SourceVersion], [SourceFieldID], [TargetDatabase], [TargetItemID], [TargetLanguage], [TargetVersion], [TargetPath] )
-WITH (ONLINE=ON, SORT_IN_TEMPDB=ON)
-</code></pre>
-<p>And so far doesn&rsquo;t appear to be causing much overhead to writes, is having the desired affect on preventing a bad execution plan and queries are using the new index, and to review if this has any beneficial impact to the deadlocks.</p>
-<p>To update further once released to production/have more feedback.
-Hopefully these changes will come through in a future update of the sitecore product.</p>
-<h2 id="summary-">Summary</h2>
-<p>Be careful before taking a dependency on the Links Database, your architecture in the future if you are planning on moving to a scaled active/active multi region setup might not support it.</p>
-<p>If you are using the Links Database on Content Delivery then you won&rsquo;t have this luxury of being able to turn off this setting to not update the Web links database on publish. If you aren&rsquo;t using the Links Database, then maybe turn off this feature to save some DTU&rsquo;s.</p>
-<p>If you are also seeing slow queries of the links database/high DTU&rsquo;s, maybe try out this Sql Schema/Index and test yourself, or wait for this to become part of the sitecore product.</p>
-<p>I&rsquo;d recommend using Sitecore Content Search where possible.</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
 	</div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
                     
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item">
     <a href="/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

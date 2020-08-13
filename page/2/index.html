@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.74.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -58,6 +58,191 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/">Improving the Siteore Solr Content Search Provider</a></h3>
+					<span class="label label-primary">Tue Nov 26, 2019</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/solr">Solr</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="improving-the-siteore-solr-content-search-provider">Improving the Siteore Solr Content Search Provider</h2>
+<p>Back in February this year I gave a presentation at the <a href="https://www.meetup.com/sug-uk/events/258462625/">London Sitecore User Group</a> &ldquo;Improving the Solr Content Search Provider&rdquo;.</p>
+<p>My first talk at a Sitecore User group.</p>
+<p>Although I regularly attend the Sitecore discussion club, and have presented there on several occasions.</p>
+<h2 id="known-bugs">Known bugs</h2>
+<p>At the presentation I included a link to a <a href="https://github.com/bigredmachine/sitecore-solr">github repository</a> with a list of known issues and their public reference numbers.</p>
+<p>The list of issues will vary between Sitecore versions, I&rsquo;ve included the list of issues I&rsquo;ve come across between Sitecore 8.2 up to Sitecore 9.0 update 2.</p>
+<p>Including:</p>
+<ul>
+<li>Partially rebuilt index going live - 96016 - IIS recycle - switches Alias although indexing job cancelled/incomplete - fixed in Sitecore 9 initial release</li>
+<li>OptimizeOnRebuildEnabled setting not used - was in bug fix 96016 - introduced in Sitecore 9 initial release</li>
+<li>Patch for IsSolrAliveAgent to update SolrState and process reinitialisation correctly - 163850.171950</li>
+<li>Incorrect data being indexed, if have ContentSearch.Indexing.DisableDatabaseCaches setting set to true - 96740.127177.155383</li>
+<li>If IndexAllFields=false the IncludedFields are indexed as string values - New bug in Sitecore 9 - 252532</li>
+<li><a href="https://bigredmachine.github.io/post/sitecore-9-index-slow-down/">Index rebuild slow down after Sitecore 9 upgrade</a>.</li>
+</ul>
+<h2 id="common-patterns-for-distributed-computing">Common Patterns for distributed computing</h2>
+<p>The github repostiory also included an example implementation of patterns to address some of the <a href="https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing">fallacies of distributed computing</a>.</p>
+<ul>
+<li>Circuit Breaker Pattern
+<ul>
+<li>Don&rsquo;t make every request wait for a timeout exception, use a circuit breaker to fail fast, so can handle load under a degraded scenario</li>
+</ul>
+</li>
+<li>Not swallowing errors
+<ul>
+<li>We want to know the difference between no results, and an error.</li>
+<li>The circuit breaker can&rsquo;t work if we don&rsquo;t know what&rsquo;s an error.</li>
+<li>If we don&rsquo;t know the difference then we might cache there are no results, when there are results, but just couldn&rsquo;t retrieve the results.</li>
+</ul>
+</li>
+<li>Shorter timeouts for queries
+<ul>
+<li>Again, we want queries to fail fast, and for the circuit breaker to kick in. But we can allow longer for indexing operations to take place, especially as there is no retry mechanism on the crawling/indexing side.</li>
+</ul>
+</li>
+</ul>
+<h2 id="comparison-of-the-other-options-out-of-the-box">Comparison of the other options out of the box</h2>
+<ul>
+<li>Sitecore Query</li>
+<li>Sitecore Fast Query</li>
+<li>Links Database</li>
+</ul>
+<p>Related blog posts:</p>
+<ul>
+<li><a href="http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html">http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html</a></li>
+<li><a href="https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/">https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/</a></li>
+<li><a href="https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/">What&rsquo;s wrong with the links database</a></li>
+</ul>
+<p>On reasons not to use each of them, at least on Content Delivery, or when querying over lots of items.</p>
+<h2 id="a-list-of-other-alternatives">A list of other alternatives</h2>
+<ul>
+<li>Lucene
+<ul>
+<li>Per server copy to maintain</li>
+<li>Removed in Sitecore 9.3</li>
+</ul>
+</li>
+<li>Elastic Search
+<ul>
+<li>No Sitecore Search Provider</li>
+</ul>
+</li>
+<li>Coveo
+<ul>
+<li>Not a total replacement, would need Coveo + another search provider, so would need considering after chosen initial search provider.</li>
+<li>Commercial Cost</li>
+<li>Supported Sitecore Search Provider</li>
+</ul>
+</li>
+<li>Algolia
+<ul>
+<li>Hosted search</li>
+<li>No official Sitecore Search Provider, but used in community.</li>
+<li>Not a total replacement, would need Algolia + another search provider, so would need considering after chosen initial search provider.</li>
+</ul>
+</li>
+<li>Azure Search
+<ul>
+<li>At the time there wasn&rsquo;t an offical Sitecore Azure Search provider, there now is.</li>
+<li>However it has some limitations such as <a href="https://doc.sitecore.com/developers/92/platform-administration-and-architecture/en/sitecore-azure-search-overview.html">An Azure Search index can only contain up to 1000 fields.</a>
+Which could be an issue for the master search index.</li>
+<li>In this particular benchmark the crawling rate was slower</li>
+<li><a href="https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/">https://grantkillian.wordpress.com/2017/03/09/azure-search-compared-to-solr-for-sitecore-paas-chapter-1-ingestion/</a></li>
+<li>But the querying rate was similar, although I do question the cost/limits on querying Azure Search if you&rsquo;ve got a high traffic site. And I&rsquo;ve read some people have had to put a Redis cache in front, to not go over the query limit in Azure Search.</li>
+<li><a href="https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/">https://grantkillian.wordpress.com/2017/03/20/azure-search-compared-to-solr-for-sitecore-paas-chapter-2-querying/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="examples-of-customisations">Examples of Customisations</h2>
+<p>Changing MyItems &amp; Unlock all to use Solr, rather than a Sitecore Query.</p>
+<p>I told you Sitecore.Query was slow, and Memory Intensive.</p>
+<h2 id="since-giving-this-presentation">Since giving this presentation</h2>
+<p>Infact since giving this talk, one of the issues that got me to customise the Sitecore Solr Search provider in the first place reared its head again. Sitecore not being able to startup when Solr is down.</p>
+<h2 id="i-thought-wed-fixed-that-already-why-cant-sitecore-startup-when-solr-is-down-anymore">I thought we&rsquo;d fixed that already, why can&rsquo;t Sitecore startup when Solr is down anymore?</h2>
+<p>Well the number of Sitecore indexes had grown over time.</p>
+<p>On startup each index was doing it&rsquo;s own check to see if Solr was available, and waiting for a timeout/exception. This was happening in series. Depending on the type of error you get, if it&rsquo;s a timeout, this can result in Sitecore taking longer to startup than IIS allows. Causing IIS to recycle the application and try again, in an infinite loop. Oh dear!</p>
+<p>So I&rsquo;ve added to the github repository a new issue <a href="https://github.com/bigredmachine/sitecore-solr">314454 - Sitecore doesn&rsquo;t startup when Solr Down.</a></p>
+<h2 id="simulating-solr-being-downlatency">Simulating Solr being down/latency</h2>
+<p>You can simulate on your local PC latency to Solr using Fiddler.
+If you change your solr connection string to</p>
+<p><code>http://localhost.:8983/solr;solrCloud=true</code></p>
+<p>Notice the &ldquo;.&rdquo;, will ensure the traffic goes through Fiddler</p>
+<p>Change your Sitecore IIS Application Pool to run as your local user, as Fiddler automatically picks up traffic running as your local user. (Or you can change the proxy settings)</p>
+<p>Then run Fiddler.</p>
+<p>Under &ldquo;AutoResponder&rdquo; tab, you can add a Rule for requests matching</p>
+<p><code>http://localhost.8983/solr/.....</code></p>
+<p>The URL you set could be specific to a particular index, or request, depending on what you want to test.</p>
+<p>Then on the response for that URL you can set</p>
+<p><code>*delay:10000</code></p>
+<p>with how many milliseconds you want to delay the request with.</p>
+<p>Using this technique you can simulate a network timeout,
+rather than a quicker port not listening/service not running error.</p>
+<p>And from this can replicate the issue of Sitecore note being able to start up, if you have enough indexes which all timeout on startup.</p>
+<h2 id="whats-in-314454---sitecore-doesnt-startup-when-solr-down">What&rsquo;s in 314454 - Sitecore doesn&rsquo;t startup when Solr Down</h2>
+<p>Sitecore doesn&rsquo;t issue patches anymore, so instead you get a hotfix, which include all of the issue fixes for that version of Sitecore you are on.</p>
+<p>For Sitecore 9.0 update 2, this was included in hotfix 323662-1.</p>
+<ol>
+<li>If you have enough indexes, the timeout on initialisation from each index run in sequence can result in Sitecore not being starting up in the allowed time.</li>
+<li>Retry logic for SolrCloud aliases.</li>
+<li>Retry logic for initialising Indexes</li>
+<li>Exception handling in IsOnline index check.</li>
+<li>Initialisation of indexes to not be interupted if Solr is unavailable, to initialise what can and retry later.</li>
+</ol>
+<p>And included changes to dlls</p>
+<ul>
+<li>Sitecore.ContentSearch.Client.dll</li>
+<li>Sitecore.ContentSearch.Data.dll</li>
+<li>Sitecore.ContentSearch.dll</li>
+<li>Sitecore.ContentSearch.Linq.dll</li>
+<li>Sitecore.ContentSearch.Linq.Lucene.dll</li>
+<li>Sitecore.ContentSearch.LuceneProvider.dll</li>
+<li>Sitecore.ContentSearch.SolrNetExtension.dll</li>
+<li>Sitecore.ContentSearch.SolrProvider.dll</li>
+</ul>
+<p>There were so many changes it felt like a mini Sitecore Upgrade.
+And the contract changed, had to rewrite our customisations for them to continue to work.</p>
+<p>This hotfix fixes the slow startup issue, but only checking once if Solr is available, rather than per index.
+So make Sitecore much faster to startup when Solr is down.</p>
+<p>There was also some work to make the initialising of the indexes to work in parallel, to further speed up the time for initialisation.</p>
+<h2 id="customisations-and-upgrades">Customisations and Upgrades</h2>
+<p>Each time we upgrade, we have to see if our customisations are still possible.
+Often the extension points/hooks we have used have gone, and we have to find new ones.</p>
+<p>Even on this update to the hotfix which address 314454, we had to do a lot of rework.</p>
+<p>Hopefully in a future version of the product the extensions points we require will be included in the product, and we won&rsquo;t have to get out dotpeek to find a place to override, and use reflection/so many custom classes and overrides to change the behaviour to what we need.</p>
+<h2 id="update-the-repository-examples">Update the repository examples</h2>
+<p>As the hotfix isn&rsquo;t publicly available in the nuget feeds, and the contract has changed.</p>
+<p>I can&rsquo;t update the example code to reference the hotfix, and for it to still compile.</p>
+<p>If anyone is interested to see the examples updated to use the hotfix, reach out to me on twitter, and I can see about creating a feature branch.</p>
+<p>Otherwise, I&rsquo;m going to wait for a version of Sitecore which includes these fixes/contract changes, which is available in the nuget feed so I can update the examples and still have it compiling.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/federated-authentication-single-sign-out/">Federated Authentication Single Sign Out</a></h3>
 					<span class="label label-primary">Sun Nov 24, 2019</span> in 
 					
@@ -83,15 +268,15 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h2 id="federated-authentication-single-sign-out-">Federated Authentication Single Sign Out</h2>
+				<h2 id="federated-authentication-single-sign-out">Federated Authentication Single Sign Out</h2>
 <p>By default when you sign out of Sitecore, you don&rsquo;t get signed out of your Federated Authentication Provider (Tested against Sitecore 9.0). So if after you sign out, you try to sign in again, your Federated Authentication Provider still recognises you and doesn&rsquo;t challenge you to sign back in again, and lets you into the system.</p>
 <p>So have you really signed out, if you haven&rsquo;t signed out of the Federated Authentication provider as well? IMHO - no.</p>
-<h2 id="whats-the-behaviour-of-other-services-using-federated-authentication-">What&rsquo;s the behaviour of other services using Federated Authentication?</h2>
+<h2 id="whats-the-behaviour-of-other-services-using-federated-authentication">What&rsquo;s the behaviour of other services using Federated Authentication?</h2>
 <p>If you log out of Microsoft Office 365, it also logs you out of Azure AD.</p>
 <p>If you log out of Azure Portal, it also logs you out of Azure AD.</p>
 <p>Also note, on the Azure AD sign out page, it also signs you out of Office 365, if you are signing out from another system. (That&rsquo;s going even further, to an even more true single sign out where sign out of every system at once, but the sign out page has to know about all of the systems to sign you out of, beyond the scope of this post)</p>
 <p>So can see it&rsquo;s pretty standard behaviour when you sign out of a system, to also sign you out of the Federated Authentication provider as well.</p>
-<h2 id="so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore--">So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore? </h2>
+<h2 id="so-how-do-you-configure-sitecore-to-sign-out-of-a-federated-authentication-provider-as-well-as-sitecore">So how do you configure Sitecore to sign out of a Federated Authentication provider as well as Sitecore? </h2>
 <p>Pipelines/Processor + Reflector = Win!</p>
 <p> </p>
 
@@ -119,7 +304,7 @@
     alt="Pipelines Everywhere">
 </picture>
 <p> </p>
-<h3 id="for-the-launchpad-using-speak-">For the LaunchPad using Speak</h3>
+<h3 id="for-the-launchpad-using-speak">For the LaunchPad using Speak</h3>
 <p>Starting with the Sitecore Launch pad.</p>
 <p>The &ldquo;Log out&rdquo; button has some JS that fires &ldquo;-/speak/v1/business/AccountInformation.js&rdquo;.
 Which does an AJAX POST request to &ldquo;/sitecore/shell/api/sitecore/Authentication/Logout?sc_database=master&rdquo;.
@@ -132,27 +317,27 @@ This pipeline takes an argument of type &ldquo;LogoutArgs&rdquo;.
 &ldquo;LogoutArgs&rdquo; has a property &ldquo;RedirectUrl&rdquo; of type &ldquo;UrlString&rdquo;.</p>
 <p>&ldquo;RedirectUrl&rdquo; is initialised before the pipeline &ldquo;speak.logout&rdquo; is called with &ldquo;Context.Site.LoginPage&rdquo;.
 And after the pipleline is called, the &ldquo;RedirectUrl&rdquo; value is used to send the client to the specified page.</p>
-<h3 id="for-the-content-editor-">For the Content Editor</h3>
-<p>The content editor on the other hand the &ldquo;Log out&rdquo; button calls onclick &ldquo;scForm.postEvent(this, event, &lsquo;system.logout&rsquo;)&quot;.</p>
+<h3 id="for-the-content-editor">For the Content Editor</h3>
+<p>The content editor on the other hand the &ldquo;Log out&rdquo; button calls onclick &ldquo;scForm.postEvent(this, event, &lsquo;system.logout&rsquo;)&rdquo;.</p>
 <p>This triggers the processor &ldquo;logout&rdquo;.
 This also takes the same argument of type &ldquo;LogoutArgs&rdquo;, as the &ldquo;speak.logout&rdquo; pipeline.</p>
 <p>If the &ldquo;LogoutArgs&rdquo; &ldquo;RedirectUrl&rdquo; property has not been set, it triggers a server side redirect to the &ldquo;Client.Site.LoginPage&rdquo;.
 See &ldquo;Sitecore.Kernel.dll&rdquo;, &ldquo;Sitecore.Pipelines.Logout.GotoLogin.Process&rdquo; method.</p>
-<h3 id="pipeline-">Pipeline</h3>
+<h3 id="pipeline">Pipeline</h3>
 <p>So to override the behaviour of logout going to the Sitecore login page.
 Adding a pipeline to &ldquo;Speak.Logout&rdquo; to set the &ldquo;RedirectUrl&rdquo;.</p>
 <p>And adding a processor to &ldquo;logout&rdquo; before the processor &ldquo;Sitecore.Pipelines.Logout.GotoLogin, Sitecore.Kernel&rdquo;, to set the &ldquo;RedirectUrl&rdquo;.</p>
 <p>We can control where users are redirected to on logout.</p>
-<h3 id="federated-authentication-provider-settings-not-used-">Federated Authentication Provider settings not used</h3>
+<h3 id="federated-authentication-provider-settings-not-used">Federated Authentication Provider settings not used</h3>
 <p>Interestingly when configuring a Federated Authentication provider, you specify on the &ldquo;OpenIdConnectAuthenticationOptions&rdquo; class the &ldquo;PostLogoutRedirectUri&rdquo;, but this isn&rsquo;t used.
 Still we can reuse this configuration setting in our pipeline.</p>
-<h3 id="example-settings-to-change-redirecturl-to-">Example settings to change RedirectUrl to</h3>
+<h3 id="example-settings-to-change-redirecturl-to">Example settings to change RedirectUrl to</h3>
 <p>If you are using Azure AD, you can set the &ldquo;RedirectUrl&rdquo; to something like &ldquo;<a href="https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin%22">https://login.microsoft.com/common/oauth2/logout?post_logout_redirect_uri=https%3A%2F%2fsitecore.local%2Fsitecore%2Flogin&quot;</a></p>
 <p>So it will log you out of Azure AD, then redirect you back to &ldquo;<a href="https://sitecore.local/sitecore/login%22">https://sitecore.local/sitecore/login&quot;</a></p>
 <p>Obviously change the &ldquo;post_logout_redirect_uri&rdquo; parameter to match your environment.</p>
-<h2 id="summary-">Summary</h2>
+<h2 id="summary">Summary</h2>
 <p>With a few extra pipelines, and with the help of reflector, can achieve single sign out with Sitecore.</p>
-<h2 id="additional-notes-">Additional Notes</h2>
+<h2 id="additional-notes">Additional Notes</h2>
 <p>I&rsquo;ve only tried this with Sitecore 9.0, and not with the new Sitecore Identity Server.</p>
 
 			</div>
@@ -192,14 +377,14 @@ Still we can reuse this configuration setting in our pipeline.</p>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h2 id="sitecore-93---media-library-azure-blob-storage-">Sitecore 9.3 - Media Library Azure Blob Storage</h2>
+				<h2 id="sitecore-93---media-library-azure-blob-storage">Sitecore 9.3 - Media Library Azure Blob Storage</h2>
 <p>Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;ref_src=twsrc%5Etfw">#SitecoreSYM</a> is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming <a href="https://twitter.com/hashtag/Sitecore?src=hash&amp;ref_src=twsrc%5Etfw">#Sitecore</a> 9.3 release. As a gesture of good will -&gt; the deck is now available on <a href="https://t.co/B9DqZ9CLot">https://t.co/B9DqZ9CLot</a> <a href="https://t.co/B8Qy9kzLF0">pic.twitter.com/B8Qy9kzLF0</a></p>&mdash; Pieter Brinkman (@pieterbrink123) <a href="https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw">November 12, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>I also saw him present the at the London Sitecore User Group where he explained this slide deck in some more detail.</p>
 <p>Some highlights for me:</p>
-<h3 id="slide-12---top-5-core-platform-enhancements-">Slide 12 - Top 5 core platform enhancements</h3>
+<h3 id="slide-12---top-5-core-platform-enhancements">Slide 12 - Top 5 core platform enhancements</h3>
 <ul>
 <li>Removing obsolete functionality &ldquo;Lucene Search Provider&rdquo; &amp; &ldquo;Sitecore.Nvelocity&rdquo;</li>
 <li>Experience Editor Improvements</li>
@@ -207,7 +392,7 @@ Still we can reuse this configuration setting in our pipeline.</p>
 </ul>
 <p>I look forward to seeing some benchmarks about the performance improvements, and what areas this covers. When I first read this I had thought this might mean Sql calls, but he explained at the User Group was referring to personalisation/tracking.
 Still he only listed out his top 5, and hopefully the performance improvements extends to other areas.</p>
-<h3 id="slide-35---paas---media-library-in-azure-blob-storage-">Slide 35 - PaaS - Media Library in Azure Blob Storage</h3>
+<h3 id="slide-35---paas---media-library-in-azure-blob-storage">Slide 35 - PaaS - Media Library in Azure Blob Storage</h3>
 <p>There is a footnote on Slide 35 &amp; 36</p>
 <p>&ldquo;Media Library in Azure Blob Storage: Reduce the cost and increase the performance of storing media in Sitecore&rdquo;</p>
 <p>This is only listed for &ldquo;PaaS&rdquo; and the new &ldquo;Managed Cloud&rdquo;.</p>
@@ -215,179 +400,13 @@ Still he only listed out his top 5, and hopefully the performance improvements e
 Let&rsquo;s see if this is possible when Sitecore 9.3 comes out.</p>
 <p>I&rsquo;d also like to find out if the Azure Blob Storage implementation just replaces the backing storage.</p>
 <p>Or if it&rsquo;s possible to serve the files direct from Blob Storage, bypassing the Sitecore Media library handler/disk caching on the Content Delivery servers. (Possibly with some other technology/thin API layer to provider resizing functionality)</p>
-<h3 id="summary-">Summary</h3>
+<h3 id="summary">Summary</h3>
 <p>Using Azure Blob Storage for the Sitecore Media Library for me is the most exciting development of Sitecore 9.3 that I&rsquo;ve heard about so far, as could significantly reduce the size of the Sql databases.</p>
-<h3 id="notes-">Notes</h3>
+<h3 id="notes">Notes</h3>
 <p>Jammy Kam has customised Sitecore do use Azure Blob Storage for it&rsquo;s Media Library before
 <a href="https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/">https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/</a>
 <a href="https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/">https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/</a></p>
 <p>I wonder how similar the Sitecore implementation will be.</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/java-comercial-sitecore-solr-future/">Java goes commercial, what does this mean for Sitecore - Solr?</a></h3>
-					<span class="label label-primary">Sat Dec 15, 2018</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/sitecore">Sitecore</a>
-					
-						 , 
-						<a href="/tags/solr">Solr</a>
-					
-						 , 
-						<a href="/tags/java">Java</a>
-					
-						 , 
-						<a href="/tags/openjdk">OpenJDK</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h1 id="oracle-to-start-charging-for-java-">Oracle to start charging for Java</h1>
-<p>I&rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</p>
-<p>I brought this topic up at the Sitecore Discussion Club<br>
-<a href="http://sitecore.events/">http://sitecore.events/</a></p>
-<p> </p>
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/java-comercial-sitecore-solr-future/images/JavaPublicUpdates_huea38cc4076a499c2d07c53f82223e548_19941_300x0_resize_q100_box_2.PNG" 
-    alt="Java Public Updates">
-</picture>
-<p> </p>
-<p>When I started to follow this, the policy for the LTS release of Java 11 hadn&rsquo;t been announced, and I was thinking would need to update to Java 11 to continue to get free updates.
-Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&rsquo;t support a version of Solr this high yet <a href="https://kb.sitecore.net/articles/227897,">https://kb.sitecore.net/articles/227897,</a> and anyway Java 11 is now not free anyway, so not an option to get free updates that way.</p>
-<p>Further reading:</p>
-<ul>
-<li><a href="https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event">https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event</a></li>
-<li><a href="https://www.oracle.com/technetwork/java/java-se-support-roadmap.html">https://www.oracle.com/technetwork/java/java-se-support-roadmap.html</a></li>
-</ul>
-<h2 id="oracle-java---whats-the-cost-">Oracle Java - what&rsquo;s the cost?</h2>
-<p>The cost has come down since I started following this.</p>
-<p>Originally the price was:</p>
-<p> </p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th>Per CPU</th>
-<th> </th>
-<th>Support</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Java SE Advanced</td>
-<td> </td>
-<td>$5,000</td>
-<td> </td>
-<td>$1,100</td>
-</tr>
-<tr>
-<td>Java SE Suite</td>
-<td> </td>
-<td>$15,000</td>
-<td> </td>
-<td>$3,300</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<p>Which is quite a large up front cost, and continual support cost.</p>
-<p>Then it was announced the subscription licence, charging $25 per CPU per month with support. Going down to $12.50 with volume discount (possibly lower with Enterprise agreement), which works out cheaper than the previous licencing.</p>
-<ul>
-<li><a href="https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html">https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html</a></li>
-<li><a href="https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/">https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/</a></li>
-</ul>
-<h3 id="a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu-">A note on mapping an Oracle Processor Licence to an Azure vCPU:</h3>
-<p><a href="https://www.oracle.com/assets/cloud-licensing-070579.pdf">https://www.oracle.com/assets/cloud-licensing-070579.pdf</a></p>
-<blockquote>
-<p>&ldquo;Microsoft Azure – count two vCPUs as equivalent to one Oracle Processor license if hyperthreading
-is enabled, and one vCPU as equivalent to one Oracle Processor license if hyperthreading
-is not enabled.&rdquo;</p>
-</blockquote>
-<p>If you&rsquo;ve got 2 solr servers, and 3 zookeeper servers, all running as Quad Cores, that&rsquo;s 5x4=20 CPU&rsquo;s, which might be up to 20x$25=$500 a month. Or if the hyperthreading detail applies above, might ve $250 a month. And even cheaper if have a load of servers to volume licence. Would require Java licencing to confirm actual price for your particular scenario.</p>
-<h2 id="open-jdk-">Open JDK</h2>
-<p>What the alternative&rsquo;s to paying Oracle for commercial support?</p>
-<p>Open JDK is the alternative.</p>
-<p><a href="https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html">https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html</a></p>
-<h3 id="is-anyone-using-open-jdk-">Is anyone using Open JDK?</h3>
-<p>If you look at the docker community, most Docker images which use Java use an Open JDK variant.</p>
-<p>(was saying DEPRECATED - This image is officially deprecated in favor of the Open JDK image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)<br>
-<a href="https://hub.docker.com/_/java/">https://hub.docker.com/_/java/</a></p>
-<p>Shows previously issues/questions on legality of Java on Docker<br>
-<a href="https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/">https://blog.takipi.com/running-java-on-docker-youre-breaking-the-law/</a></p>
-<p>Explains issues, and update on support now<br>
-<a href="https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker">https://devops.stackexchange.com/questions/433/is-there-no-oracle-jdk-for-docker</a></p>
-<p>Flow chart of which OpenJDK to choose for Docker<br>
-<a href="https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238">https://medium.com/@hudsonmendes/docker-spring-boot-choosing-the-base-image-for-java-8-9-microservices-on-linux-and-windows-c459ec0c238</a></p>
-<p>Update on Oracle Java support for Docker<br>
-<a href="https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers">https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers</a></p>
-<p>Official Java Docker images, but appears have to sign up to see them.<br>
-<a href="https://hub.docker.com/_/oracle-serverjre-8">https://hub.docker.com/_/oracle-serverjre-8</a></p>
-<h3 id="there-are-many-version-of-open-jdk-but-which-version-should-i-use-">There are many version of Open JDK, but which version should I use?</h3>
-<p>This posts lists out the different flavours of the Open JDK<br>
-<a href="https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html">https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html</a></p>
-<p>Adopt Open JDK appears to be the main choice, with longer term updates, and actually free.<br>
-<a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a></p>
-<p>Red Hat are supporting it (and IBM which have now bought Red Hat)<br>
-<a href="https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/">https://developers.redhat.com/blog/2018/09/24/the-future-of-java-and-openjdk-updates-without-oracle-support/</a></p>
-<p>Amazon are releasing their own version of Open JDK, which they use internally, but still in public preview, but certainly one to look out for, and not just for use on AWS - can use off AWS which sounds awesome.</p>
-<ul>
-<li><a href="https://aws.amazon.com/corretto/">https://aws.amazon.com/corretto/</a></li>
-<li><a href="https://aws.amazon.com/corretto/faqs/#support">https://aws.amazon.com/corretto/faqs/#support</a></li>
-<li><a href="https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/">https://aws.amazon.com/blogs/opensource/amazon-corretto-no-cost-distribution-openjdk-long-term-support/</a></li>
-</ul>
-<p>I noticed on this tweet that the version of Java Azure App Service was running was Azul.<br>
-<a href="https://twitter.com/dancruickshank/status/1072541500058284034">https://twitter.com/dancruickshank/status/1072541500058284034</a></p>
-<p>A quick google later I found that was announced in September, that if you are an Azure customer, can use Azul Open JDK for no extra cost. So that&rsquo;s awesome too if you are an Azure customer, but this is just for use on Azure.</p>
-<ul>
-<li><a href="https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/">https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/</a></li>
-<li><a href="https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/">https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/</a></li>
-</ul>
-<h2 id="summary-">Summary</h2>
-<p>Ultimately you&rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the Open JDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the Open JDK you&rsquo;ve chosen.</p>
-<p>It would seem if looking to move to Docker &amp; Kubernetes eventually, then embracing the Open JDK seems to be the standard anyway.
-And even if Oracle engineers aren&rsquo;t going to be supporting the Open JDK anymore, got a choice of Red Hat/IBM, Amazon and Azul (free on Azure) to go for.</p>
 
 			</div>
 		</div>
@@ -404,82 +423,34 @@ And even if Oracle engineers aren&rsquo;t going to be supporting the Open JDK an
             <div class="col-md-12">
                 <div class="text-center">
                     
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item">
     <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

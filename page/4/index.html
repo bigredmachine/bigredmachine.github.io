@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.74.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,148 @@
 
     <div class="container">
         
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/what-is-wrong-with-the-link-database/">What Is Wrong With the Link Database</a></h3>
+					<span class="label label-primary">Tue Nov 20, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/linkdb">LinkDB</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/speed">Speed</a>
+					
+						 , 
+						<a href="/tags/dtu">DTU</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="sitecore-fast-queries">Sitecore (Fast) Queries</h2>
+<p>There&rsquo;s quite a few blog posts on avoiding using (fast) Sitecore queries on Content Delivery.</p>
+<ul>
+<li><a href="https://blog.rauljimenez.co.uk/not-so-fast/">https://blog.rauljimenez.co.uk/not-so-fast/</a></li>
+<li><a href="https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/">https://intothecloud.blog/2018/10/21/It-s-time-to-put-fast-query-to-rest/</a></li>
+<li><a href="https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/">https://blog.coates.dk/2014/11/19/sitecore-fast-query-syntax-can-kill-your-sql-server-or-website/</a></li>
+<li><a href="http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html">http://intothecore.cassidy.dk/2016/05/sitecore-decennial-series-2-dont.html</a></li>
+</ul>
+<p>Summary Fast always goes to the database, and even a normal Sitecore query can go from being a slow page, to bringing your site to it&rsquo;s knees if that page is hit frequently enough.</p>
+<p>I&rsquo;ve had experience of this on inheriting a solution which would do three sitecore queries on a page load for calendar events, for items within a folder. Normally the page would load within a few seconds, not great but usable. However when a search engine got onto the page, and decided to crawl through the calendar navigation links, which are effectively infinite, the execution time grew and grew.</p>
+<p>Until the page wouldn&rsquo;t load in a couple of mins, .net thread pool limits were reached, and the site was effectively down.</p>
+<p>The quick fix was to prevent these pages from being indexed, as well as indicate not to follow the calendar links forever.</p>
+<p>The longer term fix was to switch to Content Search, using an index to load the content, to speed the page up (as well as keeping the indicators not to follow the infinite links).</p>
+<p>(Of course using Sitecore Query for a few sub items, or getting an item by id is acceptable, but never Fast)</p>
+<h2 id="link-database">Link Database</h2>
+<p>So onto the topic of this post, the Link Database certainly has it&rsquo;s place, finding references/referrers of items for one on Content Authoring being it&rsquo;s primary usage.</p>
+<p>There are some considerations before you start adding a dependency to the Links database in your code. (Hint, use Content Search were possible).</p>
+<p>The Links Database, is more of a table which used to reside in the Core database by default until Sitecore 9, and then was moved to the Web database ahead of removing the dependency on the Core database.</p>
+<p>We switched back to using the Core database to store the links again for reason I&rsquo;ll come to shortly.</p>
+<h3 id="scaling-limitation">Scaling Limitation?</h3>
+<p>If you work in a Scaled environment though, you may have more than one Web or Core database.
+There can be only one link database(Table) maintained though.
+So in a multi-region scaled environment, you&rsquo;ll be travelling across regions to the database with the maintained link database.</p>
+<p>Now it might be with database replication that this problem gets resolved, and other regions can query a read only copy of a replicated database which contains the Link Database(table).</p>
+<p>However we are avoiding using the Link Database on content delivery so we don&rsquo;t encounter any scalability issues.</p>
+<h3 id="rebuild-speed">Rebuild Speed</h3>
+<p>Rebuilding the Link Database occurs in serial (one Databases links after the next get rebuilt in serial) and takes a long time. E.g, 8+ Hours.
+I understand from Sitecore support there are some experimental patches to speed up making the index rebuild faster/rebuild it in parallel, so far haven&rsquo;t got around to trying these, but possibly an avenue worth pursuing.</p>
+<h3 id="deadlocks">Deadlocks</h3>
+<p>I understand the situation used to be worse before Sitecore 7.1, were selects didn&rsquo;t use the nolock hint,
+but still regularly see deadlocks on this table in production even on Sitecore 9.</p>
+<blockquote>
+<p>SQL Server transaction deadlocks related to the link database could occur when multiple threads were creating and moving items concurrently, for example, when the threads created items that were stored in item buckets. This has been fixed by changing the GetReferrers(Item, ID) method in the SqlLinkDatabase class so that it uses WITH NOLOCK when reading from the Links table. (401393)
+<a href="https://sdn.sitecore.net/products/sitecore%20v5/sitecore%20cms%207/releasenotes/changelog/release%20history%20sc71.aspx">7.1 release notes</a></p>
+</blockquote>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_489x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/what-is-wrong-with-the-link-database/images/Deadlock_hu47164c28591ad5252a0d39d02945795a_500011_300x0_resize_q100_box_2.PNG" 
+    alt="Example of Traffic representing a Deadlock">
+</picture>
+<p> </p>
+<h3 id="bad-execution-plan">Bad Execution Plan</h3>
+<p>Sometimes when Sql Server evaluates a query on the Link Database(table), depending on the values being queried, it was deciding to do a TableScan to find an entry.
+This would get saved as the execution plan, and all the queries would go slower/use up more DTU&rsquo;s, until the execution plan was discarded.</p>
+<h3 id="high-dtu-usage">High DTU usage</h3>
+<p>We noticed that every publish, there was a DTU spike.
+We even saw some issues on the live site because of these Bad Execution Plan, combined with these High DTU spikes, on other pages trying to query the same database under load.
+So something had to be done, other than the immediate increase the DTU limits on the database server, and throw money at the problem.</p>
+<h3 id="disable-updating-the-link-database-on-publish">Disable updating the link database on publish</h3>
+<p>The following setting cut down the DTU spikes we were seeing on every publish, as we don&rsquo;t use the Links Database on Content Delivery, was a quick win for us.</p>
+<blockquote>
+<p>Disables incremental updates to the link database during publishing operations as an experimental optimization to speed up publishing (25% on average).</p>
+</blockquote>
+<p><a href="https://community.sitecore.net/technical_blogs/b/latest_technical_reinnovations/posts/enabling-parallel-publishing-with-sitecore-7-2">Enabling Parallel Publishing and related optimizations</a></p>
+<pre><code>&lt;setting name=&quot;LinkDatabase.UpdateDuringPublish&quot; value=&quot;false&quot;/&gt;
+</code></pre>
+<h3 id="fixing-the-bad-execution-plan">Fixing the Bad Execution Plan</h3>
+<p>It was choosing to do a Table Scan, because unfortunately there was no covering index for the query, because one of the columns is of type &ldquo;ntext&rdquo; which prevents it from being part of the index.</p>
+<p>Sitecore confirmed that according to <a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/ntext-text-and-image-transact-sql?view=sql-server-2017">MS documentation</a> that ntext will be removed from future versions of Sql Server. So in the future this column type will change.</p>
+<blockquote>
+<p>IMPORTANT! ntext, text, and image data types will be removed in a future version of SQL Server. Avoid using these data types in new development work, and plan to modify applications that currently use them. Use nvarchar(max), varchar(max), and varbinary(max) instead.</p>
+</blockquote>
+<p>So we are currently trying out applying the following change to the Links Database(Table)</p>
+<pre><code>ALTER TABLE [Links] ALTER COLUMN TargetPath NVARCHAR(MAX) NOT NULL
+GO
+
+CREATE INDEX ndxLinks_SourceItemId_SourceDatabase_ALL ON [Links]
+([SourceItemID], [SourceDatabase])
+INCLUDE ([SourceLanguage], [SourceVersion], [SourceFieldID], [TargetDatabase], [TargetItemID], [TargetLanguage], [TargetVersion], [TargetPath] )
+WITH (ONLINE=ON, SORT_IN_TEMPDB=ON)
+</code></pre>
+<p>And so far doesn&rsquo;t appear to be causing much overhead to writes, is having the desired affect on preventing a bad execution plan and queries are using the new index, and to review if this has any beneficial impact to the deadlocks.</p>
+<p>To update further once released to production/have more feedback.
+Hopefully these changes will come through in a future update of the sitecore product.</p>
+<h2 id="summary">Summary</h2>
+<p>Be careful before taking a dependency on the Links Database, your architecture in the future if you are planning on moving to a scaled active/active multi region setup might not support it.</p>
+<p>If you are using the Links Database on Content Delivery then you won&rsquo;t have this luxury of being able to turn off this setting to not update the Web links database on publish. If you aren&rsquo;t using the Links Database, then maybe turn off this feature to save some DTU&rsquo;s.</p>
+<p>If you are also seeing slow queries of the links database/high DTU&rsquo;s, maybe try out this Sql Schema/Index and test yourself, or wait for this to become part of the sitecore product.</p>
+<p>I&rsquo;d recommend using Sitecore Content Search where possible.</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
         
             	
 		<div class="row">
@@ -123,7 +265,7 @@
 </picture>
 <p> </p>
 <p>This was using the same SolrCloud infrastructure which had been upgraded ahead of the Sitecore 9 upgrade, same size VMs for sitecore indexing server, same index batch sizes &amp; threads.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;setting</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ContentSearch.ParallelIndexing.MaxThreadLimit value=&#34;</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#960050;background-color:#1e0010">5</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#f92672">/&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;setting</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ContentSearch.ParallelIndexing.MaxThreadLimit value=&#34;</span><span style="color:#960050;background-color:#1e0010">15&#34;</span> <span style="color:#f92672">/&gt;</span>
 <span style="color:#f92672">&lt;setting</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ContentSearch.ParallelIndexing.BatchSize&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;1500&#34;</span> <span style="color:#f92672">/&gt;</span>
 </code></pre></div><p>Looking at the logs could see they were flooded with messages.</p>
 <p><code>XXXX XX:XX:XX WARN More than one template field matches. Index Name : sitecore_master_index Field Name : XXXXXXXXX</code></p>
@@ -404,167 +546,12 @@ It&rsquo;s Reflection to the rescue.</p>
             <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield2&#34;</span>, value2, <span style="color:#e6db74">&#34;stringCollection&#34;</span>),
             <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield3&#34;</span>, value3, <span style="color:#e6db74">&#34;stringCollection&#34;</span>)
         };
-</code></pre></div><h2 id="end-result-">End Result</h2>
+</code></pre></div><h2 id="end-result">End Result</h2>
 <p>For my particular case with over 10+ calculated fields which could be combined,<br>
 I got index rebuild time down from <strong>1 hour &amp; 8 mins</strong> down to <strong>22 mins</strong> on my local dev machine.</p>
 <p>I then went on further to improve index rebuild times, by restricting which part of the tree the domain index crawls.</p>
 <p>Seems I&rsquo;m not the only one who&rsquo;s indexes can benefit from this, and hopefully either sitecore will add support for this, or make it easier to extend again in the future without nasty reflection.</p>
 <p>Happy Sitecoring!</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/logic-app-azure-function-twitter/">Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</a></h3>
-					<span class="label label-primary">Fri Feb 9, 2018</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/azure">Azure</a>
-					
-						 , 
-						<a href="/tags/azure-functions">Azure Functions</a>
-					
-						 , 
-						<a href="/tags/azure-logic-apps">Azure Logic Apps</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h4 id="fun-with-logic-apps-azure-functions-and-twitter-">Fun with logic apps, Azure functions and twitter</h4>
-<p>While studying for the Microsoft 70-532 exam,
-I wanted to take a look at Azure functions &amp; Logics apps.</p>
-<p>Having gone through this example
-<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email">&ldquo;Create a function that integrates with Azure Logic Apps&rdquo;</a></p>
-<p>It left me with some questions on how to improve it. E.g. I don&rsquo;t want to receive an email per tweet.</p>
-<p>So after some searching, I came across a new feature called batching
-<a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages">&ldquo;Send, receive, and batch process messages in logic apps&rdquo;</a>
-but even after the batch had been reached,
-each message in the batch would result in an individual email.
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box_2.PNG" 
-    alt="Logic apps Compose">
-</picture></p>
-<p>Then I came across this blog
-<a href="http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/">&ldquo;Azure Logic Apps – Aggregate a value from an array of messages&rdquo;</a></p>
-<p>And the Compose feature was what I wanted.
-Composing first the message I want out of each tweet.
-Then combining those messages together, into the format I want to email.</p>
-
-<picture>
-
-
-
-
-
-
-	
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_583x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box_2.PNG" 
-    alt="Logic apps Compose">
-</picture>
-<p>I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
-<a href="https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134">&ldquo;How to Exclude retweets and replies in a search api&rdquo;</a>
-<a href="http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/">&ldquo;How to master twitter search&rdquo;</a></p>
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box_2.PNG" 
-    alt="Search Tweets">
-</picture>
-<p>And here is the final result, twitter search result of original tweets filtered by language combined into a single email
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG" 
-    alt="Combined Email">
-</picture></p>
 
 			</div>
 		</div>
@@ -581,82 +568,34 @@ Then combining those messages together, into the format I want to email.</p>
             <div class="col-md-12">
                 <div class="text-center">
                     
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item">
     <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

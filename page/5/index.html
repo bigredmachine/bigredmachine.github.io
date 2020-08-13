@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.74.3" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -58,6 +58,161 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/logic-app-azure-function-twitter/">Logic App, Azure Function, Get Tweets Sentiment and Aggregate into an email</a></h3>
+					<span class="label label-primary">Fri Feb 9, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/azure">Azure</a>
+					
+						 , 
+						<a href="/tags/azure-functions">Azure Functions</a>
+					
+						 , 
+						<a href="/tags/azure-logic-apps">Azure Logic Apps</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h4 id="fun-with-logic-apps-azure-functions-and-twitter">Fun with logic apps, Azure functions and twitter</h4>
+<p>While studying for the Microsoft 70-532 exam,
+I wanted to take a look at Azure functions &amp; Logics apps.</p>
+<p>Having gone through this example
+<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-twitter-email">&ldquo;Create a function that integrates with Azure Logic Apps&rdquo;</a></p>
+<p>It left me with some questions on how to improve it. E.g. I don&rsquo;t want to receive an email per tweet.</p>
+<p>So after some searching, I came across a new feature called batching
+<a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-batch-process-send-receive-messages">&ldquo;Send, receive, and batch process messages in logic apps&rdquo;</a>
+but even after the batch had been reached,
+each message in the batch would result in an individual email.
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/images/batch_foreach_email_hu6c91b4ee33202a2153ae8e173ab1b9dd_79702_300x0_resize_q100_box_2.PNG" 
+    alt="Logic apps Compose">
+</picture></p>
+<p>Then I came across this blog
+<a href="http://www.fortuvis.com/blog/azure-logic-apps-aggregate-an-array-of-messages-into-a-single-message/">&ldquo;Azure Logic Apps – Aggregate a value from an array of messages&rdquo;</a></p>
+<p>And the Compose feature was what I wanted.
+Composing first the message I want out of each tweet.
+Then combining those messages together, into the format I want to email.</p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_583x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/images/Compose_hu655fd6c1f8e5e0b9d2e85df444d29929_32159_300x0_resize_q100_box_2.PNG" 
+    alt="Logic apps Compose">
+</picture>
+<p>I also wanted to make some improvements, to not get retweets, and filter tweets to the right language
+<a href="https://stackoverflow.com/questions/27941940/how-to-exclude-retweets-and-replies-in-a-search-api/29129134#29129134">&ldquo;How to Exclude retweets and replies in a search api&rdquo;</a>
+<a href="http://thesocialchic.com/2013/04/26/how-to-master-twitter-search/">&ldquo;How to master twitter search&rdquo;</a></p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/images/SearchTweets_hu6589f3a1df9249ba3158c4cdda43ff46_8510_300x0_resize_q100_box_2.PNG" 
+    alt="Search Tweets">
+</picture>
+<p>And here is the final result, twitter search result of original tweets filtered by language combined into a single email
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG" 
+    alt="Combined Email">
+</picture></p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/updating-to-vs-rc/">updating to Visual Studio 2015 RC</a></h3>
 					<span class="label label-primary">Mon May 25, 2015</span> in 
 					
@@ -80,7 +235,7 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h4 id="updating-from-vs2015-ctp6-to-rc-">Updating from VS2015 CTP6 to RC</h4>
+				<h4 id="updating-from-vs2015-ctp6-to-rc">Updating from VS2015 CTP6 to RC</h4>
 <p>A number of changes have been made to names.</p>
 <p>Watch this for further details:</p>
 <p><a href="https://www.youtube.com/watch?v=-qt0POsiAF8">Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename</a></p>
@@ -193,12 +348,12 @@ When using visual studio this is all handled for you.<br /></p>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<br> 
-				<h4 id="goals-">Goals</h4>
+				<h4 id="goals">Goals</h4>
 <ul>
 <li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
 <li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
 </ul>
-<h4 id="how-to-do-itwhat-i-learnt-">How to do it/What I learnt</h4>
+<h4 id="how-to-do-itwhat-i-learnt">How to do it/What I learnt</h4>
 <p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
 <blockquote>
 <p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
@@ -214,7 +369,7 @@ The first steps about cloning are optional.<br/>
 The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
 <pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
 </code></pre>
-<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&quot;, and allocate the extra space.</p>
+<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
 <p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
 <ul>
 <li>Patch it to include SP1</li>
@@ -485,82 +640,34 @@ When you save the file, visual studio should automatically restore the packages 
             <div class="col-md-12">
                 <div class="text-center">
                     
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/4/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/5/">5</a></li>
-    
-    
-    <li class="page-item disabled">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/4/">4</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item disabled">
     <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

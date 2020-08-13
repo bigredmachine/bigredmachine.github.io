@@ -76,12 +76,12 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<h4 id="goals-">Goals</h4>
+			<h4 id="goals">Goals</h4>
 <ul>
 <li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
 <li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
 </ul>
-<h4 id="how-to-do-itwhat-i-learnt-">How to do it/What I learnt</h4>
+<h4 id="how-to-do-itwhat-i-learnt">How to do it/What I learnt</h4>
 <p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
 <blockquote>
 <p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
@@ -97,7 +97,7 @@ The first steps about cloning are optional.<br/>
 The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
 <pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
 </code></pre>
-<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&quot;, and allocate the extra space.</p>
+<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
 <p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
 <ul>
 <li>Patch it to include SP1</li>

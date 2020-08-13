@@ -79,14 +79,14 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<h2 id="sitecore-93---media-library-azure-blob-storage-">Sitecore 9.3 - Media Library Azure Blob Storage</h2>
+			<h2 id="sitecore-93---media-library-azure-blob-storage">Sitecore 9.3 - Media Library Azure Blob Storage</h2>
 <p>Pieter Brinkman put out this tweet after Sitecore Symposium, with some information about Sitecore 9.3, for those of us not able to attend Symposium and see his session.</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/SitecoreSYM?src=hash&amp;ref_src=twsrc%5Etfw">#SitecoreSYM</a> is a wrap, now time to fire-up that blog engine. A lot to share around the upcoming <a href="https://twitter.com/hashtag/Sitecore?src=hash&amp;ref_src=twsrc%5Etfw">#Sitecore</a> 9.3 release. As a gesture of good will -&gt; the deck is now available on <a href="https://t.co/B9DqZ9CLot">https://t.co/B9DqZ9CLot</a> <a href="https://t.co/B8Qy9kzLF0">pic.twitter.com/B8Qy9kzLF0</a></p>&mdash; Pieter Brinkman (@pieterbrink123) <a href="https://twitter.com/pieterbrink123/status/1194279592447660032?ref_src=twsrc%5Etfw">November 12, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>I also saw him present the at the London Sitecore User Group where he explained this slide deck in some more detail.</p>
 <p>Some highlights for me:</p>
-<h3 id="slide-12---top-5-core-platform-enhancements-">Slide 12 - Top 5 core platform enhancements</h3>
+<h3 id="slide-12---top-5-core-platform-enhancements">Slide 12 - Top 5 core platform enhancements</h3>
 <ul>
 <li>Removing obsolete functionality &ldquo;Lucene Search Provider&rdquo; &amp; &ldquo;Sitecore.Nvelocity&rdquo;</li>
 <li>Experience Editor Improvements</li>
@@ -94,7 +94,7 @@
 </ul>
 <p>I look forward to seeing some benchmarks about the performance improvements, and what areas this covers. When I first read this I had thought this might mean Sql calls, but he explained at the User Group was referring to personalisation/tracking.
 Still he only listed out his top 5, and hopefully the performance improvements extends to other areas.</p>
-<h3 id="slide-35---paas---media-library-in-azure-blob-storage-">Slide 35 - PaaS - Media Library in Azure Blob Storage</h3>
+<h3 id="slide-35---paas---media-library-in-azure-blob-storage">Slide 35 - PaaS - Media Library in Azure Blob Storage</h3>
 <p>There is a footnote on Slide 35 &amp; 36</p>
 <p>&ldquo;Media Library in Azure Blob Storage: Reduce the cost and increase the performance of storing media in Sitecore&rdquo;</p>
 <p>This is only listed for &ldquo;PaaS&rdquo; and the new &ldquo;Managed Cloud&rdquo;.</p>
@@ -102,9 +102,9 @@ Still he only listed out his top 5, and hopefully the performance improvements e
 Let&rsquo;s see if this is possible when Sitecore 9.3 comes out.</p>
 <p>I&rsquo;d also like to find out if the Azure Blob Storage implementation just replaces the backing storage.</p>
 <p>Or if it&rsquo;s possible to serve the files direct from Blob Storage, bypassing the Sitecore Media library handler/disk caching on the Content Delivery servers. (Possibly with some other technology/thin API layer to provider resizing functionality)</p>
-<h3 id="summary-">Summary</h3>
+<h3 id="summary">Summary</h3>
 <p>Using Azure Blob Storage for the Sitecore Media Library for me is the most exciting development of Sitecore 9.3 that I&rsquo;ve heard about so far, as could significantly reduce the size of the Sql databases.</p>
-<h3 id="notes-">Notes</h3>
+<h3 id="notes">Notes</h3>
 <p>Jammy Kam has customised Sitecore do use Azure Blob Storage for it&rsquo;s Media Library before
 <a href="https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/">https://jammykam.wordpress.com/2015/12/01/sitecore-media-library-in-azure-cloud-storage-part-1/</a>
 <a href="https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/">https://jammykam.wordpress.com/2015/12/03/sitecore-media-library-in-azure-cloud-storage-part-2/</a></p>

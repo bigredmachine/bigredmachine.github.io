@@ -82,7 +82,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<h1 id="oracle-to-start-charging-for-java-">Oracle to start charging for Java</h1>
+			<h1 id="oracle-to-start-charging-for-java">Oracle to start charging for Java</h1>
 <p>I&rsquo;ve been following this update for Java for many months since initally seeing the popup warning when updating Java on my local machine. And now finally getting around to blog about it, now the options have become clearer. And finding that some people still aren&rsquo;t aware about the pending update in January 2019 that will mean will require a commercial Java licence if you want any further security updates from the Oracle version of Java.</p>
 <p>I brought this topic up at the Sitecore Discussion Club<br>
 <a href="http://sitecore.events/">http://sitecore.events/</a></p>
@@ -119,7 +119,7 @@ Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&rsquo;t s
 <li><a href="https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event">https://blogs.oracle.com/java-platform-group/end-of-public-updates-is-a-process%2c-not-an-event</a></li>
 <li><a href="https://www.oracle.com/technetwork/java/java-se-support-roadmap.html">https://www.oracle.com/technetwork/java/java-se-support-roadmap.html</a></li>
 </ul>
-<h2 id="oracle-java---whats-the-cost-">Oracle Java - what&rsquo;s the cost?</h2>
+<h2 id="oracle-java---whats-the-cost">Oracle Java - what&rsquo;s the cost?</h2>
 <p>The cost has come down since I started following this.</p>
 <p>Originally the price was:</p>
 <p> </p>
@@ -157,7 +157,7 @@ Solr is up to supporting Java 10 (since 7.3.0), however sitecore doesn&rsquo;t s
 <li><a href="https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html">https://www.oracle.com/technetwork/java/javaseproducts/overview/javasesubscriptionfaq-4891443.html</a></li>
 <li><a href="https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/">https://www.theregister.co.uk/2018/06/22/oracle_java_se_subscriptions/</a></li>
 </ul>
-<h3 id="a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu-">A note on mapping an Oracle Processor Licence to an Azure vCPU:</h3>
+<h3 id="a-note-on-mapping-an-oracle-processor-licence-to-an-azure-vcpu">A note on mapping an Oracle Processor Licence to an Azure vCPU:</h3>
 <p><a href="https://www.oracle.com/assets/cloud-licensing-070579.pdf">https://www.oracle.com/assets/cloud-licensing-070579.pdf</a></p>
 <blockquote>
 <p>&ldquo;Microsoft Azure – count two vCPUs as equivalent to one Oracle Processor license if hyperthreading
@@ -165,11 +165,11 @@ is enabled, and one vCPU as equivalent to one Oracle Processor license if hypert
 is not enabled.&rdquo;</p>
 </blockquote>
 <p>If you&rsquo;ve got 2 solr servers, and 3 zookeeper servers, all running as Quad Cores, that&rsquo;s 5x4=20 CPU&rsquo;s, which might be up to 20x$25=$500 a month. Or if the hyperthreading detail applies above, might ve $250 a month. And even cheaper if have a load of servers to volume licence. Would require Java licencing to confirm actual price for your particular scenario.</p>
-<h2 id="open-jdk-">Open JDK</h2>
+<h2 id="open-jdk">Open JDK</h2>
 <p>What the alternative&rsquo;s to paying Oracle for commercial support?</p>
 <p>Open JDK is the alternative.</p>
 <p><a href="https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html">https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html</a></p>
-<h3 id="is-anyone-using-open-jdk-">Is anyone using Open JDK?</h3>
+<h3 id="is-anyone-using-open-jdk">Is anyone using Open JDK?</h3>
 <p>If you look at the docker community, most Docker images which use Java use an Open JDK variant.</p>
 <p>(was saying DEPRECATED - This image is officially deprecated in favor of the Open JDK image, and will receive no further updates after 2016-12-31 (Dec 31, 2016). Please adjust your usage accordingly.)<br>
 <a href="https://hub.docker.com/_/java/">https://hub.docker.com/_/java/</a></p>
@@ -183,7 +183,7 @@ is not enabled.&rdquo;</p>
 <a href="https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers">https://blogs.oracle.com/developers/official-docker-image-for-oracle-java-and-the-openjdk-roadmap-for-containers</a></p>
 <p>Official Java Docker images, but appears have to sign up to see them.<br>
 <a href="https://hub.docker.com/_/oracle-serverjre-8">https://hub.docker.com/_/oracle-serverjre-8</a></p>
-<h3 id="there-are-many-version-of-open-jdk-but-which-version-should-i-use-">There are many version of Open JDK, but which version should I use?</h3>
+<h3 id="there-are-many-version-of-open-jdk-but-which-version-should-i-use">There are many version of Open JDK, but which version should I use?</h3>
 <p>This posts lists out the different flavours of the Open JDK<br>
 <a href="https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html">https://blog.joda.org/2018/09/time-to-look-beyond-oracles-jdk.html</a></p>
 <p>Adopt Open JDK appears to be the main choice, with longer term updates, and actually free.<br>
@@ -203,7 +203,7 @@ is not enabled.&rdquo;</p>
 <li><a href="https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/">https://azure.microsoft.com/en-gb/blog/microsoft-and-azul-systems-bring-free-java-lts-support-to-azure/</a></li>
 <li><a href="https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/">https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack/</a></li>
 </ul>
-<h2 id="summary-">Summary</h2>
+<h2 id="summary">Summary</h2>
 <p>Ultimately you&rsquo;ve got to way up the pros/cons for your particular scenario, pay a monthly fee to stay on official Oracle Java with security updates. Or switch to the Open JDK, and pick the variant which fits you well the best - and ensure your Java software is compatible with the Open JDK you&rsquo;ve chosen.</p>
 <p>It would seem if looking to move to Docker &amp; Kubernetes eventually, then embracing the Open JDK seems to be the standard anyway.
 And even if Oracle engineers aren&rsquo;t going to be supporting the Open JDK anymore, got a choice of Red Hat/IBM, Amazon and Azul (free on Azure) to go for.</p>

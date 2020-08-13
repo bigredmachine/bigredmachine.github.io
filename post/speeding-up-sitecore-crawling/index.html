@@ -274,7 +274,7 @@ It&rsquo;s Reflection to the rescue.</p>
             <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield2&#34;</span>, value2, <span style="color:#e6db74">&#34;stringCollection&#34;</span>),
             <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield3&#34;</span>, value3, <span style="color:#e6db74">&#34;stringCollection&#34;</span>)
         };
-</code></pre></div><h2 id="end-result-">End Result</h2>
+</code></pre></div><h2 id="end-result">End Result</h2>
 <p>For my particular case with over 10+ calculated fields which could be combined,<br>
 I got index rebuild time down from <strong>1 hour &amp; 8 mins</strong> down to <strong>22 mins</strong> on my local dev machine.</p>
 <p>I then went on further to improve index rebuild times, by restricting which part of the tree the domain index crawls.</p>

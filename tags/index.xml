@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://bigredmachine.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Publishing</title>
+      <link>https://bigredmachine.github.io/tags/publishing/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/tags/publishing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sitecore</title>
+      <link>https://bigredmachine.github.io/tags/sitecore/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/tags/sitecore/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ASP.NET MVC</title>
@@ -35,15 +53,6 @@
       <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://bigredmachine.github.io/tags/razor/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sitecore</title>
-      <link>https://bigredmachine.github.io/tags/sitecore/</link>
-      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://bigredmachine.github.io/tags/sitecore/</guid>
       <description></description>
     </item>
     

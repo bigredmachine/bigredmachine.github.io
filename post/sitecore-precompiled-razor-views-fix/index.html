@@ -82,7 +82,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			<h2 id="precompiled-razor-views---sitecore-9---issue-192470-amp-119596-">Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp; 119596</h2>
+			<h2 id="precompiled-razor-views---sitecore-9---issue-192470-amp-119596">Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp; 119596</h2>
 <p>There are already some posts on this topic of using Precompiled Razor Views, so I won&rsquo;t duplicate that content.</p>
 <p>Kam&rsquo;s blog - <a href="https://kamsar.net/index.php/2016/09/Precompiled-Views-with-Sitecore-8-2/">Precompiled Views supported by Sitecore since Sitecore 8.2</a></p>
 <p>Jeremy&rsquo;s blog - <a href="https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/">possible side affect of Precompiled Views</a></p>
@@ -90,7 +90,7 @@
 <p>Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a></p>
 <p>And probably others, but these one&rsquo;s stood out to me, and relevant for this post.</p>
 <p>Read these articles first, I&rsquo;ll wait.</p>
-<h2 id="quick-summary-">Quick summary</h2>
+<h2 id="quick-summary">Quick summary</h2>
 <p>So you&rsquo;ve read the above articles,
 here&rsquo;s a quick recap:</p>
 <ul>
@@ -107,7 +107,7 @@ here&rsquo;s a quick recap:</p>
 <p>Ensure you are using unique MVC area/Helix folder names &amp; unique razor file paths across projects to avoid issues, just like you would if they were physical files in one project.</p>
 </li>
 </ul>
-<h2 id="ok---ive-read-the-above-articles-what-more-are-you-writing-about-">Ok - I&rsquo;ve read the above articles, what more are you writing about?</h2>
+<h2 id="ok---ive-read-the-above-articles-what-more-are-you-writing-about">Ok - I&rsquo;ve read the above articles, what more are you writing about?</h2>
 <p>Well first I want to draw attention to &ldquo;UsePhysicalViewsIfNewer&rdquo; setting.</p>
 <p>Check in your Sitecore setup what this value is set to.</p>
 <p>If for example you have received a Sitecore Support patch/hotfix with a new .cshtml file</p>
@@ -121,25 +121,25 @@ here&rsquo;s a quick recap:</p>
 </blockquote>
 <p>So possibly a Sitecore Support patch to a .cshtml file might undo some of the performance gains we are trying to achieve. As with everything measure.</p>
 <p>If you don&rsquo;t have &ldquo;UsePhysicalViewsIfNewer&rdquo; set to true, can skip this next section, and skip to the hotfix, otherwise read on.</p>
-<h2 id="i-want-a-support-fix-and-performance-settings-">I want a support fix and performance settings</h2>
+<h2 id="i-want-a-support-fix-and-performance-settings">I want a support fix and performance settings</h2>
 <blockquote>
 <p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
 </blockquote>
 <p>Maybe if you are only worried about the Sitecore MVC .cshtml hotfix for Content Authoring, and only want the compilation benefit on Content Delivery so could change this setting &ldquo;UsePhysicalViewsIfNewer&rdquo; to true just for Authoring?</p>
 <p>However, if you want to have the compilation benefit on Content Authoring as well as the MVC .cshtml fix. One possible way could be to create a new project named &ldquo;ZZZZZ&hellip;&rdquo; with Razor compilation enabled and place the fixed .cshtml file in that project with the matching path of the file you want to override from Sitecore.</p>
 <p>And add to the pre-compilation configuration a reference to this new assembly.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">f</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;sitecore</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;mvc</span><span style="color:#f92672">&gt;</span>
-            <span style="color:#f92672">&lt;precompilation</span><span style="color:#f92672">&gt;</span>
-                <span style="color:#f92672">&lt;assemblies</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#960050;background-color:#1e0010">xmlns:patch&#34;http://www.sitecore.net/xmlconfig/&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;sitecore&gt;</span>
+        <span style="color:#f92672">&lt;mvc&gt;</span>
+            <span style="color:#f92672">&lt;precompilation&gt;</span>
+                <span style="color:#f92672">&lt;assemblies&gt;</span>
                     <span style="color:#f92672">&lt;assemblyIdentity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ZZZZZ......AssemblyName&#34;</span> <span style="color:#f92672">/&gt;</span>
                 <span style="color:#f92672">&lt;/assemblies&gt;</span>
             <span style="color:#f92672">&lt;/precompilation&gt;</span>
         <span style="color:#f92672">&lt;/mvc&gt;</span>
     <span style="color:#f92672">&lt;/sitecore&gt;</span>
 <span style="color:#f92672">&lt;/configuration&gt;</span>
-</code></pre></div><h3 id="why-call-the-project-zzzzz-">Why call the project ZZZZZ&hellip;.</h3>
+</code></pre></div><h3 id="why-call-the-project-zzzzz">Why call the project ZZZZZ&hellip;.</h3>
 <p>We are going to turn the bug from Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a>
 into a solution.</p>
 <blockquote>
@@ -150,10 +150,10 @@ into a solution.</p>
 <p>Or actually Sitecore could re-issue the original .dll with the fixed Razor view, so don&rsquo;t need to overwrite it.</p>
 <p>And now with the new Hotfix only model, they probably would do this.</p>
 <p>Still this might be relevant for an existing patch you have, prior to the new Hotfix model.</p>
-<h3 id="best-of-both-">Best of both</h3>
+<h3 id="best-of-both">Best of both</h3>
 <p>With this technique, can leave &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, and override a Sitecore precompiled view.</p>
 <p>More testing required to verify this works without drawback.</p>
-<h2 id="great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix-">Great so I&rsquo;ve definitely got &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, what&rsquo;s this Hotfix</h2>
+<h2 id="great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix">Great so I&rsquo;ve definitely got &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, what&rsquo;s this Hotfix</h2>
 <blockquote>
 <p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
 </blockquote>
@@ -171,7 +171,7 @@ Please also notice that with the current architecture the only possible way to f
 <p>This would seem to explain the issue Jeremy was having.</p>
 <p>However I&rsquo;ve yet to benchmark this solution, to see if solves the disk IO issue, but got a logical explanation from Sitecore Support.</p>
 <p>I&rsquo;m not sure if this is still an issue or fixed in later version of Sitecore after Sitecore 9. But a quick scan through the recent version release notes I can&rsquo;t see either of the public reference numbers 192470 or 119596.</p>
-<h2 id="summary-">Summary</h2>
+<h2 id="summary">Summary</h2>
 <blockquote>
 <p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
 </blockquote>
