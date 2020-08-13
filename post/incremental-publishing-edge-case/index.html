@@ -157,14 +157,14 @@ This doesn&rsquo;t pick up the item which hasn&rsquo;t been created yet at 18:00
 <span style="color:#f92672">&lt;/sitecore&gt;</span>
 <span style="color:#f92672">&lt;/configuration&gt;</span>
 </code></pre></div><h2 id="worst-case">Worst Case</h2>
-<p>Item statistics get updated at 17:59.59.999ms in C#</p>
-<p>Item gets saved as 17:59.59.000ms but some latency before added to the database so doesn&rsquo;t get added until after 18:00:00.103ms
+<p>Item statistics get updated at 17:59:59.999ms in C#</p>
+<p>Item gets saved as 17:59:59.000ms but some latency before added to the database so doesn&rsquo;t get added until after 18:00:00.103ms
 Item gets added to the publish queue with value 17:59:59.000ms</p>
 <p>Publish Window by default queries for
 <code>18:00:00.103-19:00:00.103</code></p>
 <p>with the 1 second fix would query for
 <code>17:59:59.103-19:00:00.103</code></p>
-<p>Both of these would still miss the item at 17:59.000ms.</p>
+<p>Both of these would still miss the item at 17:59:59.000ms.</p>
 <h2 id="improved-work-around">Improved Work Around</h2>
 <p>To round the start time query down to 0 milliseconds, and 0 ticks, can add the following line <a href="https://stackoverflow.com/questions/1004698/how-to-truncate-milliseconds-off-of-a-net-datetime">Credit Stack Overflow</a>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> List&lt;PublishQueueEntry&gt;GetPublishQueueEntries(DateTime <span style="color:#66d9ef">from</span>, DateTime to, CallContext context)
