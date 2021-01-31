@@ -6,10 +6,24 @@
     <description>Recent content in Categories on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bigredmachine.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Development</title>
+      <link>https://bigredmachine.github.io/categories/development/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/categories/development/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://bigredmachine.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Sitecore</title>
+      <link>https://bigredmachine.github.io/categories/sitecore/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/categories/sitecore/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Publishing</title>
@@ -17,24 +31,6 @@
       <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://bigredmachine.github.io/categories/publishing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sitecore</title>
-      <link>https://bigredmachine.github.io/categories/sitecore/</link>
-      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://bigredmachine.github.io/categories/sitecore/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Development</title>
-      <link>https://bigredmachine.github.io/categories/development/</link>
-      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://bigredmachine.github.io/categories/development/</guid>
       <description></description>
     </item>
     

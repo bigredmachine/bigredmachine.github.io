@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Sitecore Log4Net Lockup - Hotfix">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Sitecore Log4Net Lockup - Hotfix &middot; Ian&#39;s Blog</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://bigredmachine.github.io/css/theme/journal.css">
+    
+
+    <link rel="stylesheet" href="https://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="https://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="https://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://bigredmachine.github.io">Home</a></li>
+					<li><a href="https://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="https://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Sitecore Log4Net Lockup - Hotfix</h3>
+				<span class="label label-primary">Sun, Jan 31, 2021</span> in 
+				
+					
+					<a href="/categories/development">Development</a>
+				
+					 , 
+					<a href="/categories/sitecore">Sitecore</a>
+				 using tags
+				
+					
+					<a href="/tags/log4net">Log4Net</a>
+				
+					 , 
+					<a href="/tags/sitecore">Sitecore</a>
+				
+					 , 
+					<a href="/tags/hotfix">Hotfix</a>
+				
+					 , 
+					<a href="/tags/hang">Hang</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<h2 id="sitecore-log4net-lockup---hotfix--dont-share-appenders">Sitecore Log4Net Lockup - Hotfix &amp; Don&rsquo;t Share Appenders</h2>
+<p>This post is about a very rare elusive bug that caused the affected Sitecore instance to freeze up, as well not log anything which gave a clue what the problem was.</p>
+<p>It was a combination of a bug in the Sitecore Log4Net code and additional Log4Net configuration that had been added (not OOTB) that caused Sitecore to lock up.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_650x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_300x0_resize_q100_box.jpg" 
+    alt="Lock">
+</picture>
+<p>If you haven&rsquo;t seen this issue, where a Sitecore instance locks up and you needed to restart IIS/Server, you probably won&rsquo;t need this hotfix, but hopefully will get this hotfix rolled into a future version of Sitecore, so you&rsquo;ll get the benefit then of hopefully never seeing this bug. <br />
+The Log4Net configuration recommendations are worth following though should you add any bespoke configuration.</p>
+<p>As I mentioned it was a rare bug, and could go months without seeing the issue surface.</p>
+<p>The affected Sitecore instance performed publishing and indexing operations, so was quite busy with lots of threads. <br />
+This issue has been seen in multiple Sitecore versions, up to at least Sitecore 9.3.</p>
+<p>To get to the bottom of this elusive bug required a memory dump of the affected server. Sometimes restoring service is more important so not always possible to get a memory dump.</p>
+<p>Even once that was done, required diagnostics to be added to work out what was causing the lock up/what was null, and more waiting for the issue to re-occur.</p>
+<h3 id="what-was-locking-upwhat-was-null">What was locking up/What was null?</h3>
+<p>Looking in the Sitecore.Logging.dll <br /></p>
+<p>And the &ldquo;PatternParser&rdquo; class, you can see if you pass in any of %C, %F, %L, %M, %l in your log4net conversionPattern configuration, it will call either the &ldquo;ClassNamePatternConverter&rdquo; or the &ldquo;LocationPatternConverter&rdquo;:</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_300x0_resize_q100_box_2.PNG" 
+    alt="Pattern Parser">
+</picture>
+<p>Both of these then make calls to get the Location information, which constructs a new &ldquo;LocationInfo&rdquo; instance.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_300x0_resize_q100_box_2.PNG" 
+    alt="Location Information">
+</picture>
+<p>The constructor of the &ldquo;LocationInfo&rdquo; loops through the stack trace.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_300x0_resize_q100_box_2.PNG" 
+    alt="Declaring Type">
+</picture>
+<p>This code assumes that the DeclaringType is always going to be available, however it is possible that the stackFrame.GetMethod().DeclaringType might be null for lambda, which it was in our cases.</p>
+<h3 id="possible-workaround">Possible workaround</h3>
+<p>One possible workaround before getting a hotfix would have been to not pass in these patterns which were causing the issues. However having the class name and location info of where an issue occurred is useful information.</p>
+<h3 id="dont-share-appenders">Don&rsquo;t share appenders</h3>
+<p>So Sitecore/Log4Net was failing to log when the stack trace had a Lambda which had a null DeclaringType. <br />
+Why was this causing Sitecore to hang? <br />
+Shouldn&rsquo;t logging fail safe?</p>
+<p>Well when a logger fails, it tries to log the issue to the root logger.</p>
+<p>Our root logger was setup to also log to the same appender instance, also with the same ConversionPattern.</p>
+<p>Due to the shared appender between loggers it was possible for deadlock to occur.</p>
+<p>Setup/Key Facts</p>
+<ol>
+<li>RootLogger and PublishingLogger use the same appender instance</li>
+<li>DoAppend locks the appender which invoked it</li>
+<li>CallAppenders locks the logger which invoked it.</li>
+</ol>
+<p>Scenario</p>
+<ol>
+<li>Publishing Logger call CallAppenders and DoAppend =&gt; gets the lock of Appender instance and PublishingLoggerObject</li>
+<li>RootLogger call CallAppeners and locks RootLoggerObject</li>
+<li>RootLogger calls DoAppender for Appender and tries to get the lock of the Appender Instance. But is already locked by PublshingLogger so has to wait until finishes.</li>
+<li>Whilst the PublishingLogger is trying to log, it gets an exception in LocationInfo, and so calls RootLogger to log the exception.</li>
+<li>RootLogger calls CallAppender and tries to get the lock of RootLoggerObject but is already locked</li>
+</ol>
+<p>Deadlock</p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_500x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_300x0_resize_q100_box.jpg" 
+    alt="Deadlock">
+</picture>
+<h3 id="azurefallbackappender">AzureFallbackAppender</h3>
+<p>Looking at
+App_Config\Sitecore\ExperienceContentManagement.Administration\Sitecore.ExperienceContentManagement.Administration.config</p>
+<p>The AzureFallbackAppender is setup the same, for all the loggers to share the same appender.</p>
+<p>&ldquo;AzureFallbackAppender was designed specifically for Sitcore Support Package generator and it allowed us to collect the log files while generating the package. It was decided that only one AzureFallbackAppender remains for all kinds of logs, because of performance reasons.&rdquo;</p>
+<p>So whilst this isn&rsquo;t recommended, the AzureFallbackAppender is a limited specific scenario, and issues haven&rsquo;t been encountered with this.</p>
+<h3 id="application-insights-paas-appender">Application Insights PAAS appender</h3>
+<p>Looking at the file in the Azure Websites project:
+App_Config\Sitecore\Azure\Sitecore.Cloud.ApplicationInsights.config</p>
+<p>can see has the patch swaps out the default appends for the ApplicationInsights Log4NetAppender, so can see has a separate appender per logger as recommended.</p>
+<p>So following the recommended practice.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>DeclaringType can be null for Lambdas</li>
+<li>Check for nulls</li>
+<li>Don&rsquo;t share Log4Net appenders between loggers</li>
+</ul>
+<h3 id="sitecore-hotfix-refence-number">Sitecore hotfix refence number</h3>
+<p>To monitor the progress of the related issue, please use reference number [437603]</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-2021 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

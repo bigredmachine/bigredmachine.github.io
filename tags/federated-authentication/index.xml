@@ -6,11 +6,7 @@
     <description>Recent content in Federated Authentication on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://bigredmachine.github.io/tags/federated-authentication/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 24 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://bigredmachine.github.io/tags/federated-authentication/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Federated Authentication Single Sign Out</title>
       <link>https://bigredmachine.github.io/post/federated-authentication-single-sign-out/</link>

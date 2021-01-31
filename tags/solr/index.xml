@@ -6,11 +6,7 @@
     <description>Recent content in Solr on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://bigredmachine.github.io/tags/solr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://bigredmachine.github.io/tags/solr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Improving the Siteore Solr Content Search Provider</title>
       <link>https://bigredmachine.github.io/post/improving-the-solr-content-search-provider/</link>

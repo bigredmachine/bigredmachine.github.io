@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.74.3" />
+	<meta name="generator" content="Hugo 0.80.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,245 @@
 
     <div class="container">
         
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/speeding-up-sitecore-crawling/">Speeding up sitecore crawling</a></h3>
+					<span class="label label-primary">Sat Feb 10, 2018</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/crawling">Crawling</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/solr">Solr</a>
+					
+						 , 
+						<a href="/tags/indexing">Indexing</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<p>Recently I was looking at building a sitecore search domain index (<a href="http://jockstothecore.com/indexing-patterns-in-sitecore/">See Domain vs God index</a>), which had quite a few calculated fields. 
+Lots of the calculated fields were based off similar information about the parent nodes of the current item.  And for each calculated field I was performing the same look ups again and again per field on the item.</p>
+<p>I thought there has got to be a way to improve this, and found a forum post back from 2015 of someone asking the same question, and with a response of someone else who had solved it for one of the projects they were working on.
+<a href="https://community.sitecore.net/developers/f/8/t/447">Indexing multiple fields at same time</a></p>
+<p>In the given answer it seems quite easy to override this method in the DocumentBuilder.<br>
+However using DotPeek it would appear somewhere since 2015 and Sitecore 8.2 update 6 the method which contains the logic I want to override has been made private, quite possibly when parallel indexing was introduced. As now the code forks in two, and both reference a private method which contains the logic I want to overwrite.<br>
+And that private method calls another private method. :/</p>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/speeding-up-sitecore-crawling/images/privatemethods_hu333a231650a89337d8b12118ae66727f_69435_300x0_resize_q100_box_2.PNG" 
+    alt="Private methods">
+</picture>
+<p> </p>
+<p>Until Sitecore add in (or add back in) the extensibility points I need,<br>
+It&rsquo;s Reflection to the rescue.</p>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_500x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/speeding-up-sitecore-crawling/images/reflectallthethings_hueb28d54a3034254c23bfbe334291da48_72632_300x0_resize_q100_box.jpg" 
+    alt="Reflect all the things">
+</picture>
+<p> </p>
+<p>But reflection is slow, so let&rsquo;s improve that performance by using Delegates (<a href="https://jeremybytes.blogspot.co.uk/2014/01/improving-reflection-performance-with.html">Improving Reflection Performance with Delegates</a>)</p>
+<p>Edit - it appears the SolrDocumentBuilder isn&rsquo;t a Singleton, so moved reflection from constructor into a static constructor.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">
+<span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> System.Collections.Concurrent;
+<span style="color:#66d9ef">using</span> System.Collections.Generic;
+<span style="color:#66d9ef">using</span> System.Reflection;
+<span style="color:#66d9ef">using</span> System.Threading.Tasks;
+<span style="color:#66d9ef">using</span> Sitecore.ContentSearch;
+<span style="color:#66d9ef">using</span> Sitecore.ContentSearch.ComputedFields;
+<span style="color:#66d9ef">using</span> Sitecore.ContentSearch.Diagnostics;
+<span style="color:#66d9ef">using</span> Sitecore.ContentSearch.SolrProvider;
+<span style="color:#66d9ef">using</span> Sitecore.Diagnostics;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SolrDocumentBuilderCustom</span> : SolrDocumentBuilder
+{
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> AddFieldDelegate(SolrDocumentBuilder documentBuilder, <span style="color:#66d9ef">string</span> fieldName, <span style="color:#66d9ef">object</span> fieldValue, <span style="color:#66d9ef">string</span> returnType);
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> AddFieldDelegate _addFieldDelegate;
+</code></pre></div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">	<span style="color:#66d9ef">static</span> SolrDocumentBuilderCustom()
+	{
+        <span style="color:#66d9ef">var</span> solrDocumentBuilderType = <span style="color:#66d9ef">typeof</span>(SolrDocumentBuilder);
+        <span style="color:#66d9ef">var</span> addFieldMethod = solrDocumentBuilderType.GetMethod(<span style="color:#e6db74">&#34;AddField&#34;</span>,
+            BindingFlags.Instance | BindingFlags.NonPublic,
+            <span style="color:#66d9ef">null</span>,
+            <span style="color:#66d9ef">new</span>[]
+            {
+                <span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">string</span>),
+                <span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">object</span>),
+                <span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">string</span>)
+            },
+            <span style="color:#66d9ef">null</span>);
+
+        _addFieldDelegate = (AddFieldDelegate)Delegate.CreateDelegate(<span style="color:#66d9ef">typeof</span>(AddFieldDelegate), addFieldMethod);
+	}
+</code></pre></div>
+
+    <span style="color:#66d9ef">public</span> SolrDocumentBuilderCustom(IIndexable indexable, IProviderUpdateContext context) : <span style="color:#66d9ef">base</span>(indexable, context)
+    {
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> AddComputedIndexFields()
+    {
+        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.IsParallelComputedFieldsProcessing)
+            <span style="color:#66d9ef">this</span>.AddComputedIndexFieldsInParallel();
+        <span style="color:#66d9ef">else</span>
+            <span style="color:#66d9ef">this</span>.AddComputedIndexFieldsInSequence();
+    }
+
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> AddComputedIndexFieldsInParallel()
+    {
+        ConcurrentQueue&lt;Exception&gt; exceptions = <span style="color:#66d9ef">new</span> ConcurrentQueue&lt;Exception&gt;();
+        <span style="color:#66d9ef">this</span>.ParallelForeachProxy.ForEach&lt;IComputedIndexField&gt;((IEnumerable&lt;IComputedIndexField&gt;)<span style="color:#66d9ef">this</span>.Options.ComputedIndexFields, <span style="color:#66d9ef">this</span>.ParallelOptions, (Action&lt;IComputedIndexField, ParallelLoopState&gt;)((field, parallelLoopState) =&gt; <span style="color:#66d9ef">this</span>.AddComputedIndexField(field, parallelLoopState, exceptions)));
+        <span style="color:#66d9ef">if</span> (!exceptions.IsEmpty)
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> AggregateException((IEnumerable&lt;Exception&gt;)exceptions);
+    }
+
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> AddComputedIndexFieldsInSequence()
+    {
+        <span style="color:#66d9ef">foreach</span> (IComputedIndexField computedIndexField <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">this</span>.Options.ComputedIndexFields)
+            <span style="color:#66d9ef">this</span>.AddComputedIndexField(computedIndexField, (ParallelLoopState)<span style="color:#66d9ef">null</span>, (ConcurrentQueue&lt;Exception&gt;)<span style="color:#66d9ef">null</span>);
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">void</span> AddComputedIndexField(IComputedIndexField computedIndexField, ParallelLoopState parallelLoopState = <span style="color:#66d9ef">null</span>, ConcurrentQueue&lt;Exception&gt; exceptions = <span style="color:#66d9ef">null</span>)
+    {
+        Assert.ArgumentNotNull((<span style="color:#66d9ef">object</span>)computedIndexField, nameof(computedIndexField));
+        <span style="color:#66d9ef">object</span> fieldValue;
+        <span style="color:#66d9ef">try</span>
+        {
+            fieldValue = computedIndexField.ComputeFieldValue(<span style="color:#66d9ef">this</span>.Indexable);
+        }
+        <span style="color:#66d9ef">catch</span> (Exception ex)
+        {
+            CrawlingLog.Log.Warn(<span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;Could not compute value for ComputedIndexField: {0} for indexable: {1}&#34;</span>, (<span style="color:#66d9ef">object</span>)computedIndexField.FieldName, (<span style="color:#66d9ef">object</span>)<span style="color:#66d9ef">this</span>.Indexable.UniqueId), ex);
+            <span style="color:#66d9ef">if</span> (!<span style="color:#66d9ef">this</span>.Settings.StopOnCrawlFieldError())
+                <span style="color:#66d9ef">return</span>;
+            <span style="color:#66d9ef">if</span> (parallelLoopState != <span style="color:#66d9ef">null</span>)
+            {
+                parallelLoopState.Stop();
+                exceptions.Enqueue(ex);
+                <span style="color:#66d9ef">return</span>;
+            }
+            <span style="color:#66d9ef">throw</span>;
+        }
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">        <span style="color:#66d9ef">if</span> (fieldValue <span style="color:#66d9ef">is</span> List&lt;Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;&gt;)
+        {
+            <span style="color:#66d9ef">var</span> fieldValues = fieldValue <span style="color:#66d9ef">as</span> List&lt;Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;&gt;;
+            <span style="color:#66d9ef">if</span> (fieldValues.Count &lt;= <span style="color:#ae81ff">0</span>)
+            {
+                <span style="color:#66d9ef">return</span>;
+            }
+
+            <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> field <span style="color:#66d9ef">in</span> fieldValues)
+            {
+                <span style="color:#66d9ef">if</span> (!<span style="color:#66d9ef">string</span>.IsNullOrEmpty(field.Item3) &amp;&amp; !Index.Schema.AllFieldNames.Contains(field.Item1))
+                {
+                    _addFieldDelegate(<span style="color:#66d9ef">this</span>, field.Item1, field.Item2, field.Item3);
+                }
+                <span style="color:#66d9ef">else</span>
+                {
+                    AddField(field.Item1, field.Item2, <span style="color:#66d9ef">true</span>);
+                }
+            }
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+</code></pre></div>
+            <span style="color:#66d9ef">if</span> (!<span style="color:#66d9ef">string</span>.IsNullOrEmpty(computedIndexField.ReturnType) &amp;&amp;
+                !<span style="color:#66d9ef">this</span>.Index.Schema.AllFieldNames.Contains(computedIndexField.FieldName))
+            {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">                _addFieldDelegate(<span style="color:#66d9ef">this</span>, computedIndexField.FieldName, fieldValue, computedIndexField.ReturnType);
+</code></pre></div>
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#66d9ef">this</span>.AddField(computedIndexField.FieldName, fieldValue, <span style="color:#66d9ef">true</span>);
+            }
+        }    
+    }
+}
+</code></pre></div><p>You can then (as per the forum post referenced) return a List of Tuple&rsquo;s from you computed index field, which all get added to the index in one go, without having to re-process shared logic for each field (assuming you have any).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">new</span> List&lt;Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;&gt;
+        {
+            <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield1&#34;</span>, value1, <span style="color:#e6db74">&#34;stringCollection&#34;</span>),
+            <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield2&#34;</span>, value2, <span style="color:#e6db74">&#34;stringCollection&#34;</span>),
+            <span style="color:#66d9ef">new</span> Tuple&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">object</span>, <span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;solrfield3&#34;</span>, value3, <span style="color:#e6db74">&#34;stringCollection&#34;</span>)
+        };
+</code></pre></div><h2 id="end-result">End Result</h2>
+<p>For my particular case with over 10+ calculated fields which could be combined,<br>
+I got index rebuild time down from <strong>1 hour &amp; 8 mins</strong> down to <strong>22 mins</strong> on my local dev machine.</p>
+<p>I then went on further to improve index rebuild times, by restricting which part of the tree the domain index crawls.</p>
+<p>Seems I&rsquo;m not the only one who&rsquo;s indexes can benefit from this, and hopefully either sitecore will add support for this, or make it easier to extend again in the future without nasty reflection.</p>
+<p>Happy Sitecoring!</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
         
             	
 		<div class="row">
@@ -323,317 +562,6 @@ When using visual studio this is all handled for you.<br /></p>
 		</div>
 	
         
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/">setting up Visual Studio 2015 CTP 6</a></h3>
-					<span class="label label-primary">Sun Mar 8, 2015</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/visual-studio">Visual Studio</a>
-					
-						 , 
-						<a href="/tags/dotnet">DotNet</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h4 id="goals">Goals</h4>
-<ul>
-<li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
-<li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
-</ul>
-<h4 id="how-to-do-itwhat-i-learnt">How to do it/What I learnt</h4>
-<p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
-<blockquote>
-<p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
-</blockquote>
-<p>So a VM should be used.
-So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&rsquo;t work on 64 bit PCs.
-So starting again, I downloaded <a href="https://www.virtualbox.org/">VirtualBox</a></p>
-<p>I then <a href="http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst">created a Windows 7 VM in VirtualBox</a>.<br/>
-Important Steps, create it with enough space, e.g. 50GB+. It&rsquo;s surprising how much space need for Windows &amp; Patching, as well as Visual Studio 2015.<br/>
-In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.</p>
-<p>Here is good article if need to <a href="http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html">change the space on the Virtual Box VM</a>, and update windows to use the extra space.<br/>
-The first steps about cloning are optional.<br/>
-The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
-<pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
-</code></pre>
-<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
-<p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
-<ul>
-<li>Patch it to include SP1</li>
-<li>Patch it to include IE10/IE11</li>
-<li>Just patch it up to the latest version &amp; reboot</li>
-</ul>
-<p>If you don&rsquo;t patch it to SP1, then won&rsquo;t be able to install Visual Studio.<br />
-And if you don&rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this <a href="http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop">forum thread</a><br />
-<strong>Summary just patch your VM to the latest version</strong></p>
-<p>Having got a Patched VM, with enough disk space.
-Then install Visual Studio 2015 CTP 6.
-I used the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Visual Studio 2015 Ultimate Web Installer</a> released on 23rd of February 2015.
-And just installed the default options.</p>
-<p>You&rsquo;ll also want to install the K runtime.<br />
-First install the K Version Manager(KVM) in Powershell as an administrator.</p>
-<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))&quot;
-</code></pre>
-<p>As detailed on the <a href="https://github.com/aspnet/home">Asp.net Github page</a></p>
-<p>Now KVM is installed, you&rsquo;ll want to get the K runtime.</p>
-<pre><code>kvm upgrade
-</code></pre>
-<p>Having done that you can see what is installed by calling</p>
-<pre><code>kvm list
-</code></pre>
-<p>And you should see something like:<br />
-
-<picture>
-
-
-
-
-
-
-	
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG" 
-    alt="KVM list">
-</picture></p>
-<p>Notice is used the \.k\ folder, earlier version where using \.kre\.
-You may read older documentation that refers to \.kre\.</p>
-<p>You may want to look at switching to use the coreclr runtime as the Active version.</p>
-<pre><code>kvm use 1.0.0-beta3 -x64 -r coreclr
-</code></pre>
-<p>followed by</p>
-<pre><code>kvm list
-</code></pre>
-<p>And you should see something like, notice the Active * has now updated:<br />
-
-<picture>
-
-
-
-
-
-
-	
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG" 
-    alt="KVM list">
-</picture></p>
-<p>Now you&rsquo;ve got a VM, K runtime setup.</p>
-<p>Open up visual studio and create a new project.<br />
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG" 
-    alt="Visual Studio Create Project">
-</picture></p>
-<p>Select a blank project<br />
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG" 
-    alt="Select blank project">
-</picture></p>
-<p>Now have that created, let&rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line</p>
-<pre><code>app.UseWelcomePage();
-</code></pre>
-
-<picture>
-
-
-
-
-
-
-	
-
-
-	
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG" 
-    alt="Modify startup.cs">
-</picture>
-<p>This won&rsquo;t compile at the moment as you don&rsquo;t have a reference to the extension method.</p>
-<p>To do that open project.json, and add a reference to &ldquo;Microsoft.AspNet.Diagnostics&rdquo;: &ldquo;1.0.0-beta3&rdquo;
-I&rsquo;ve also added some references to &ldquo;Microsoft.AspNet.Hosting&rdquo; &amp; &ldquo;Microsoft.AspNet.Server.WebListener&rdquo;, and added the command &ldquo;web&rdquo;, so can launch the site from the command prompt.
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG" 
-    alt="Modify project.json">
-</picture>
-<br/>
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;. 
-When you save the file, visual studio should automatically restore the packages from NuGet.</p>
-<p>In visual studio you can configure which version of K the application uses
-
-<picture>
-
-
-
-
-
-
-	
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG" 
-    alt="VS configure KRE version">
-</picture></p>
-<p>You should either now be able to launch the site from either Visual Studio or Command prompt.</p>
-<p>To start the site via command prompt, navigate to the website directory, and run</p>
-<pre><code>k web
-</code></pre>
-<p>Now you can navigate to the site as defined in the project.json configuration</p>
-
-<picture>
-
-
-
-
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG">
-	
-  <img 
-    src="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG" 
-    alt="Startup Page">
-</picture>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -662,11 +590,14 @@ When you save the file, visual studio should automatically restore the packages 
   <li class="page-item active">
     <a class="page-link" href="/page/5/">5</a>
   </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  <li class="page-item">
+    <a class="page-link" href="/page/6/">6</a>
   </li>
   <li class="page-item">
-    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/6/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/6/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
@@ -685,7 +616,7 @@ When you save the file, visual studio should automatically restore the packages 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-2020 Ian Jones.
+                        &copy; 2015-2021 Ian Jones.
                     </p>
                 </div>
 

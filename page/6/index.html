@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+	<meta name="generator" content="Hugo 0.80.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Ian&#39;s Blog">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Ian&#39;s Blog</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://bigredmachine.github.io/css/theme/journal.css">
+    
+
+    <link rel="stylesheet" href="https://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="https://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="https://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="https://bigredmachine.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://bigredmachine.github.io">Home</a></li>
+					<li><a href="https://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="https://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/">setting up Visual Studio 2015 CTP 6</a></h3>
+					<span class="label label-primary">Sun Mar 8, 2015</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/visual-studio">Visual Studio</a>
+					
+						 , 
+						<a href="/tags/dotnet">DotNet</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h4 id="goals">Goals</h4>
+<ul>
+<li>To setup Visual Studio 2015 to run an asp.net vNext website</li>
+<li>Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.</li>
+</ul>
+<h4 id="how-to-do-itwhat-i-learnt">How to do it/What I learnt</h4>
+<p>Reading the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Release Notes</a></p>
+<blockquote>
+<p>NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.</p>
+</blockquote>
+<p>So a VM should be used.
+So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&rsquo;t work on 64 bit PCs.
+So starting again, I downloaded <a href="https://www.virtualbox.org/">VirtualBox</a></p>
+<p>I then <a href="http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst">created a Windows 7 VM in VirtualBox</a>.<br/>
+Important Steps, create it with enough space, e.g. 50GB+. It&rsquo;s surprising how much space need for Windows &amp; Patching, as well as Visual Studio 2015.<br/>
+In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.</p>
+<p>Here is good article if need to <a href="http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html">change the space on the Virtual Box VM</a>, and update windows to use the extra space.<br/>
+The first steps about cloning are optional.<br/>
+The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:</p>
+<pre><code>VBoxManage modifyhd &quot;VMName.vdi&quot; --resize 50000
+</code></pre>
+<p>And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &ldquo;Extend Volume..&rdquo;, and allocate the extra space.</p>
+<p>Now you&rsquo;ve got a Windows 7 VM, few important things:</p>
+<ul>
+<li>Patch it to include SP1</li>
+<li>Patch it to include IE10/IE11</li>
+<li>Just patch it up to the latest version &amp; reboot</li>
+</ul>
+<p>If you don&rsquo;t patch it to SP1, then won&rsquo;t be able to install Visual Studio.<br />
+And if you don&rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this <a href="http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop">forum thread</a><br />
+<strong>Summary just patch your VM to the latest version</strong></p>
+<p>Having got a Patched VM, with enough disk space.
+Then install Visual Studio 2015 CTP 6.
+I used the <a href="https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs">Visual Studio 2015 Ultimate Web Installer</a> released on 23rd of February 2015.
+And just installed the default options.</p>
+<p>You&rsquo;ll also want to install the K runtime.<br />
+First install the K Version Manager(KVM) in Powershell as an administrator.</p>
+<pre><code>@powershell -NoProfile -ExecutionPolicy unrestricted -Command &quot;iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))&quot;
+</code></pre>
+<p>As detailed on the <a href="https://github.com/aspnet/home">Asp.net Github page</a></p>
+<p>Now KVM is installed, you&rsquo;ll want to get the K runtime.</p>
+<pre><code>kvm upgrade
+</code></pre>
+<p>Having done that you can see what is installed by calling</p>
+<pre><code>kvm list
+</code></pre>
+<p>And you should see something like:<br />
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG" 
+    alt="KVM list">
+</picture></p>
+<p>Notice is used the \.k\ folder, earlier version where using \.kre\.
+You may read older documentation that refers to \.kre\.</p>
+<p>You may want to look at switching to use the coreclr runtime as the Active version.</p>
+<pre><code>kvm use 1.0.0-beta3 -x64 -r coreclr
+</code></pre>
+<p>followed by</p>
+<pre><code>kvm list
+</code></pre>
+<p>And you should see something like, notice the Active * has now updated:<br />
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG" 
+    alt="KVM list">
+</picture></p>
+<p>Now you&rsquo;ve got a VM, K runtime setup.</p>
+<p>Open up visual studio and create a new project.<br />
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG" 
+    alt="Visual Studio Create Project">
+</picture></p>
+<p>Select a blank project<br />
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG" 
+    alt="Select blank project">
+</picture></p>
+<p>Now have that created, let&rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line</p>
+<pre><code>app.UseWelcomePage();
+</code></pre>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+	
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG" 
+    alt="Modify startup.cs">
+</picture>
+<p>This won&rsquo;t compile at the moment as you don&rsquo;t have a reference to the extension method.</p>
+<p>To do that open project.json, and add a reference to &ldquo;Microsoft.AspNet.Diagnostics&rdquo;: &ldquo;1.0.0-beta3&rdquo;
+I&rsquo;ve also added some references to &ldquo;Microsoft.AspNet.Hosting&rdquo; &amp; &ldquo;Microsoft.AspNet.Server.WebListener&rdquo;, and added the command &ldquo;web&rdquo;, so can launch the site from the command prompt.
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG" 
+    alt="Modify project.json">
+</picture>
+<br/>
+Make sure the version of k runtime in the project.json matches what you have installed, e.g. &ldquo;1.0.0-beta3&rdquo;. 
+When you save the file, visual studio should automatically restore the packages from NuGet.</p>
+<p>In visual studio you can configure which version of K the application uses
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG" 
+    alt="VS configure KRE version">
+</picture></p>
+<p>You should either now be able to launch the site from either Visual Studio or Command prompt.</p>
+<p>To start the site via command prompt, navigate to the website directory, and run</p>
+<pre><code>k web
+</code></pre>
+<p>Now you can navigate to the site as defined in the project.json configuration</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG" 
+    alt="Startup Page">
+</picture>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/6/">6</a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/6/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-2021 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                        <a href="https://bigredmachine.github.io/index.xml" target="_blank">
+                        <i class="fa fa-rss-square fa-2x"></i></a>
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

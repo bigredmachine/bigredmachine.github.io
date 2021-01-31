@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hotfix on Ian&#39;s Blog</title>
+    <link>https://bigredmachine.github.io/tags/hotfix/</link>
+    <description>Recent content in Hotfix on Ian&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bigredmachine.github.io/tags/hotfix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sitecore Log4Net Lockup - Hotfix</title>
+      <link>https://bigredmachine.github.io/post/sitecore-log4net-lock-up/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/post/sitecore-log4net-lock-up/</guid>
+      <description>Sitecore Log4Net Lockup - Hotfix &amp;amp; Don&amp;rsquo;t Share Appenders This post is about a very rare elusive bug that caused the affected Sitecore instance to freeze up, as well not log anything which gave a clue what the problem was.
+It was a combination of a bug in the Sitecore Log4Net code and additional Log4Net configuration that had been added (not OOTB) that caused Sitecore to lock up.
+ If you haven&amp;rsquo;t seen this issue, where a Sitecore instance locks up and you needed to restart IIS/Server, you probably won&amp;rsquo;t need this hotfix, but hopefully will get this hotfix rolled into a future version of Sitecore, so you&amp;rsquo;ll get the benefit then of hopefully never seeing this bug.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.74.3" />
+	<meta name="generator" content="Hugo 0.80.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,6 +54,228 @@
 
     <div class="container">
         
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/sitecore-log4net-lock-up/">Sitecore Log4Net Lockup - Hotfix</a></h3>
+					<span class="label label-primary">Sun Jan 31, 2021</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/log4net">Log4Net</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/hotfix">Hotfix</a>
+					
+						 , 
+						<a href="/tags/hang">Hang</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="sitecore-log4net-lockup---hotfix--dont-share-appenders">Sitecore Log4Net Lockup - Hotfix &amp; Don&rsquo;t Share Appenders</h2>
+<p>This post is about a very rare elusive bug that caused the affected Sitecore instance to freeze up, as well not log anything which gave a clue what the problem was.</p>
+<p>It was a combination of a bug in the Sitecore Log4Net code and additional Log4Net configuration that had been added (not OOTB) that caused Sitecore to lock up.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_650x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_300x0_resize_q100_box.jpg" 
+    alt="Lock">
+</picture>
+<p>If you haven&rsquo;t seen this issue, where a Sitecore instance locks up and you needed to restart IIS/Server, you probably won&rsquo;t need this hotfix, but hopefully will get this hotfix rolled into a future version of Sitecore, so you&rsquo;ll get the benefit then of hopefully never seeing this bug. <br />
+The Log4Net configuration recommendations are worth following though should you add any bespoke configuration.</p>
+<p>As I mentioned it was a rare bug, and could go months without seeing the issue surface.</p>
+<p>The affected Sitecore instance performed publishing and indexing operations, so was quite busy with lots of threads. <br />
+This issue has been seen in multiple Sitecore versions, up to at least Sitecore 9.3.</p>
+<p>To get to the bottom of this elusive bug required a memory dump of the affected server. Sometimes restoring service is more important so not always possible to get a memory dump.</p>
+<p>Even once that was done, required diagnostics to be added to work out what was causing the lock up/what was null, and more waiting for the issue to re-occur.</p>
+<h3 id="what-was-locking-upwhat-was-null">What was locking up/What was null?</h3>
+<p>Looking in the Sitecore.Logging.dll <br /></p>
+<p>And the &ldquo;PatternParser&rdquo; class, you can see if you pass in any of %C, %F, %L, %M, %l in your log4net conversionPattern configuration, it will call either the &ldquo;ClassNamePatternConverter&rdquo; or the &ldquo;LocationPatternConverter&rdquo;:</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_300x0_resize_q100_box_2.PNG" 
+    alt="Pattern Parser">
+</picture>
+<p>Both of these then make calls to get the Location information, which constructs a new &ldquo;LocationInfo&rdquo; instance.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_300x0_resize_q100_box_2.PNG" 
+    alt="Location Information">
+</picture>
+<p>The constructor of the &ldquo;LocationInfo&rdquo; loops through the stack trace.</p>
+
+<picture>
+
+
+
+
+
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_650x0_resize_q100_box_2.PNG">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_465x0_resize_q100_box_2.PNG">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_300x0_resize_q100_box_2.PNG" 
+    alt="Declaring Type">
+</picture>
+<p>This code assumes that the DeclaringType is always going to be available, however it is possible that the stackFrame.GetMethod().DeclaringType might be null for lambda, which it was in our cases.</p>
+<h3 id="possible-workaround">Possible workaround</h3>
+<p>One possible workaround before getting a hotfix would have been to not pass in these patterns which were causing the issues. However having the class name and location info of where an issue occurred is useful information.</p>
+<h3 id="dont-share-appenders">Don&rsquo;t share appenders</h3>
+<p>So Sitecore/Log4Net was failing to log when the stack trace had a Lambda which had a null DeclaringType. <br />
+Why was this causing Sitecore to hang? <br />
+Shouldn&rsquo;t logging fail safe?</p>
+<p>Well when a logger fails, it tries to log the issue to the root logger.</p>
+<p>Our root logger was setup to also log to the same appender instance, also with the same ConversionPattern.</p>
+<p>Due to the shared appender between loggers it was possible for deadlock to occur.</p>
+<p>Setup/Key Facts</p>
+<ol>
+<li>RootLogger and PublishingLogger use the same appender instance</li>
+<li>DoAppend locks the appender which invoked it</li>
+<li>CallAppenders locks the logger which invoked it.</li>
+</ol>
+<p>Scenario</p>
+<ol>
+<li>Publishing Logger call CallAppenders and DoAppend =&gt; gets the lock of Appender instance and PublishingLoggerObject</li>
+<li>RootLogger call CallAppeners and locks RootLoggerObject</li>
+<li>RootLogger calls DoAppender for Appender and tries to get the lock of the Appender Instance. But is already locked by PublshingLogger so has to wait until finishes.</li>
+<li>Whilst the PublishingLogger is trying to log, it gets an exception in LocationInfo, and so calls RootLogger to log the exception.</li>
+<li>RootLogger calls CallAppender and tries to get the lock of RootLoggerObject but is already locked</li>
+</ol>
+<p>Deadlock</p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_500x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_300x0_resize_q100_box.jpg" 
+    alt="Deadlock">
+</picture>
+<h3 id="azurefallbackappender">AzureFallbackAppender</h3>
+<p>Looking at
+App_Config\Sitecore\ExperienceContentManagement.Administration\Sitecore.ExperienceContentManagement.Administration.config</p>
+<p>The AzureFallbackAppender is setup the same, for all the loggers to share the same appender.</p>
+<p>&ldquo;AzureFallbackAppender was designed specifically for Sitcore Support Package generator and it allowed us to collect the log files while generating the package. It was decided that only one AzureFallbackAppender remains for all kinds of logs, because of performance reasons.&rdquo;</p>
+<p>So whilst this isn&rsquo;t recommended, the AzureFallbackAppender is a limited specific scenario, and issues haven&rsquo;t been encountered with this.</p>
+<h3 id="application-insights-paas-appender">Application Insights PAAS appender</h3>
+<p>Looking at the file in the Azure Websites project:
+App_Config\Sitecore\Azure\Sitecore.Cloud.ApplicationInsights.config</p>
+<p>can see has the patch swaps out the default appends for the ApplicationInsights Log4NetAppender, so can see has a separate appender per logger as recommended.</p>
+<p>So following the recommended practice.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>DeclaringType can be null for Lambdas</li>
+<li>Check for nulls</li>
+<li>Don&rsquo;t share Log4Net appenders between loggers</li>
+</ul>
+<h3 id="sitecore-hotfix-refence-number">Sitecore hotfix refence number</h3>
+<p>To monitor the progress of the related issue, please use reference number [437603]</p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
         
             	
 		<div class="row">
@@ -374,129 +596,6 @@ Please also notice that with the current architecture the only possible way to f
 		</div>
 	
         
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/mvp-2020/">Sitecore MVP 2020 - Technology</a></h3>
-					<span class="label label-primary">Sat Feb 1, 2020</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/mvp">MVP</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h2 id="sitecore-mvp-2020---technology">Sitecore MVP 2020 - Technology</h2>
-<p>I&rsquo;m thankful to receive my 1st Sitecore MVP award in the Technology category for 2020.</p>
-<a href="https://mvp.sitecore.com/">
-
-<picture>
-
-
-
-
-
-	
-		
-	
-	
-		
-	
-	
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg">
-	
-  <img 
-    src="/post/mvp-2020/images/Sitecore_MVP_logo_2020_hu639937a7b071c4c109d7139ebd34e829_75255_300x0_resize_q100_box.jpg" 
-    alt="MVP">
-</picture>
-</a>
-<a href="https://mvp.sitecore.com/">
-
-<picture>
-
-
-
-
-
-	
-		
-	
-	
-		
-	
-	
-
-
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg">
-	
-  <img 
-    src="/post/mvp-2020/images/Sitecore_MVP_Technology_2020_hu546c55212ec4b38f28e19b98886d9195_37580_300x0_resize_q100_box.jpg" 
-    alt="MVP">
-</picture>
-</a>
-<p>I&rsquo;ve been using Sitecore since Sitecore 6 in 2011.</p>
-<p>Keep sharing and trying if didn&rsquo;t make it this year, this is my first year I&rsquo;ve been fortunate enough to be selected for the MVP award after several years of applying. <br />
-Although it&rsquo;s not enough to just keep on applying, you can&rsquo;t get the award if you don&rsquo;t apply, and you might get some feedback what you need to improve upon.</p>
-<p>A lot of my activity with Sitecore might not be publicly visible, and probably explains why I&rsquo;ve not received this award previously.<br />
-Digging out dotpeek, finding the root cause of an issue, and possibly supplying a fix on occasion to Sitecore support for review (of course would always prefer to use an official hotfix, but to prove have found the problem &amp; working solution I might get there first). <br />
-Or again using dotpeek finding a way to add in support for a feature that isn&rsquo;t currently supported, and sharing the approach with Sitecore to make it easier to extend in future upgrades, or be integrated into the product in the future.<br />
-This might not be visible to the community straight away, but hopefully makes the product better in the long run.</p>
-<p>Now with the new single Hotfix model per version of Sitecore, these identified issues fixes are more likely to get into the product quicker, as well as making upgrades easier.</p>
-<p>I&rsquo;ve been trying to share what I&rsquo;m up to, either blogging, asking/answering questions on Stack Exchange, or presenting when I can.</p>
-<p>I&rsquo;ve also been on a train the trainer course on .net core, Docker, K8s and AKS, and delivered this training.</p>
-<p>As well as attended a course on improving my public speaking skills.</p>
-<p>All of which has helped me practice my public speaking.</p>
-<p>Special mentions to <a href="https://scug.co.uk/">Sitecore User Group UK</a> and <a href="http://sitecore.events/">Sitecore Discussion Club</a> for letting me present.<br />
-And <a href="https://twitter.com/steviemcgill">Steve McGill</a> and <a href="https://twitter.com/SitecoreMartin">Martin Miles</a> for running them.</p>
-<p>As well as to the Sitecore Support &amp; Product teams for collaborating on tickets, and working on getting the fixes/enhancements into the product.</p>
-<p>Plus of course the awesome Sitecore community, whether that&rsquo;s Twitter, Sitecore Slack, Blogs, <a href="https://sitecore.stackexchange.com/">Sitecore StackExchange</a>, <a href="https://scug.co.uk/">SCUG Meetups</a> &amp; <a href="http://sitecore.events/">Sitecore Discussion Club</a>, SUGCON, Symposium etc.</p>
-<p>As well as the awesome team I work with, but as this is my personal blog I&rsquo;ll leave it at that.</p>
-<p>Thanks for reading my blog, more to follow!</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
 	</div>
     <div class="container">
         <div class="row">
@@ -523,13 +622,13 @@ And <a href="https://twitter.com/steviemcgill">Steve McGill</a> and <a href="htt
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/5/">5</a>
+    <a class="page-link" href="/page/6/">6</a>
   </li>
   <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/6/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
@@ -548,7 +647,7 @@ And <a href="https://twitter.com/steviemcgill">Steve McGill</a> and <a href="htt
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2015-2020 Ian Jones.
+                        &copy; 2015-2021 Ian Jones.
                     </p>
                 </div>
 

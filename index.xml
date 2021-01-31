@@ -5,8 +5,202 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Sitecore Log4Net Lockup - Hotfix</title>
+            <link>https://bigredmachine.github.io/post/sitecore-log4net-lock-up/</link>
+            <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+            
+            <guid>https://bigredmachine.github.io/post/sitecore-log4net-lock-up/</guid>
+            <description>&lt;h2 id=&#34;sitecore-log4net-lockup---hotfix--dont-share-appenders&#34;&gt;Sitecore Log4Net Lockup - Hotfix &amp;amp; Don&amp;rsquo;t Share Appenders&lt;/h2&gt;
+&lt;p&gt;This post is about a very rare elusive bug that caused the affected Sitecore instance to freeze up, as well not log anything which gave a clue what the problem was.&lt;/p&gt;
+&lt;p&gt;It was a combination of a bug in the Sitecore Log4Net code and additional Log4Net configuration that had been added (not OOTB) that caused Sitecore to lock up.&lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_650x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_465x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/padlock_hud18f49ec515f36941c728dfeefc35a24_662916_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;Lock&#34;&gt;
+&lt;/picture&gt;
+&lt;p&gt;If you haven&amp;rsquo;t seen this issue, where a Sitecore instance locks up and you needed to restart IIS/Server, you probably won&amp;rsquo;t need this hotfix, but hopefully will get this hotfix rolled into a future version of Sitecore, so you&amp;rsquo;ll get the benefit then of hopefully never seeing this bug. &lt;br /&gt;
+The Log4Net configuration recommendations are worth following though should you add any bespoke configuration.&lt;/p&gt;
+&lt;p&gt;As I mentioned it was a rare bug, and could go months without seeing the issue surface.&lt;/p&gt;
+&lt;p&gt;The affected Sitecore instance performed publishing and indexing operations, so was quite busy with lots of threads. &lt;br /&gt;
+This issue has been seen in multiple Sitecore versions, up to at least Sitecore 9.3.&lt;/p&gt;
+&lt;p&gt;To get to the bottom of this elusive bug required a memory dump of the affected server. Sometimes restoring service is more important so not always possible to get a memory dump.&lt;/p&gt;
+&lt;p&gt;Even once that was done, required diagnostics to be added to work out what was causing the lock up/what was null, and more waiting for the issue to re-occur.&lt;/p&gt;
+&lt;h3 id=&#34;what-was-locking-upwhat-was-null&#34;&gt;What was locking up/What was null?&lt;/h3&gt;
+&lt;p&gt;Looking in the Sitecore.Logging.dll &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;And the &amp;ldquo;PatternParser&amp;rdquo; class, you can see if you pass in any of %C, %F, %L, %M, %l in your log4net conversionPattern configuration, it will call either the &amp;ldquo;ClassNamePatternConverter&amp;rdquo; or the &amp;ldquo;LocationPatternConverter&amp;rdquo;:&lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_650x0_resize_q100_box_2.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_465x0_resize_q100_box_2.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/PatternParser_hu8aac3e27f9f65af552070b966547a495_37309_300x0_resize_q100_box_2.PNG&#34; 
+    alt=&#34;Pattern Parser&#34;&gt;
+&lt;/picture&gt;
+&lt;p&gt;Both of these then make calls to get the Location information, which constructs a new &amp;ldquo;LocationInfo&amp;rdquo; instance.&lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_650x0_resize_q100_box_2.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_465x0_resize_q100_box_2.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/LocationInformation_huc911b9f510ab5985018c99d64b4502eb_14562_300x0_resize_q100_box_2.PNG&#34; 
+    alt=&#34;Location Information&#34;&gt;
+&lt;/picture&gt;
+&lt;p&gt;The constructor of the &amp;ldquo;LocationInfo&amp;rdquo; loops through the stack trace.&lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_650x0_resize_q100_box_2.PNG&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_465x0_resize_q100_box_2.PNG&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/DeclaringType_hu5629a8b18b739bf4b270958ed048c863_52098_300x0_resize_q100_box_2.PNG&#34; 
+    alt=&#34;Declaring Type&#34;&gt;
+&lt;/picture&gt;
+&lt;p&gt;This code assumes that the DeclaringType is always going to be available, however it is possible that the stackFrame.GetMethod().DeclaringType might be null for lambda, which it was in our cases.&lt;/p&gt;
+&lt;h3 id=&#34;possible-workaround&#34;&gt;Possible workaround&lt;/h3&gt;
+&lt;p&gt;One possible workaround before getting a hotfix would have been to not pass in these patterns which were causing the issues. However having the class name and location info of where an issue occurred is useful information.&lt;/p&gt;
+&lt;h3 id=&#34;dont-share-appenders&#34;&gt;Don&amp;rsquo;t share appenders&lt;/h3&gt;
+&lt;p&gt;So Sitecore/Log4Net was failing to log when the stack trace had a Lambda which had a null DeclaringType. &lt;br /&gt;
+Why was this causing Sitecore to hang? &lt;br /&gt;
+Shouldn&amp;rsquo;t logging fail safe?&lt;/p&gt;
+&lt;p&gt;Well when a logger fails, it tries to log the issue to the root logger.&lt;/p&gt;
+&lt;p&gt;Our root logger was setup to also log to the same appender instance, also with the same ConversionPattern.&lt;/p&gt;
+&lt;p&gt;Due to the shared appender between loggers it was possible for deadlock to occur.&lt;/p&gt;
+&lt;p&gt;Setup/Key Facts&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;RootLogger and PublishingLogger use the same appender instance&lt;/li&gt;
+&lt;li&gt;DoAppend locks the appender which invoked it&lt;/li&gt;
+&lt;li&gt;CallAppenders locks the logger which invoked it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Scenario&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Publishing Logger call CallAppenders and DoAppend =&amp;gt; gets the lock of Appender instance and PublishingLoggerObject&lt;/li&gt;
+&lt;li&gt;RootLogger call CallAppeners and locks RootLoggerObject&lt;/li&gt;
+&lt;li&gt;RootLogger calls DoAppender for Appender and tries to get the lock of the Appender Instance. But is already locked by PublshingLogger so has to wait until finishes.&lt;/li&gt;
+&lt;li&gt;Whilst the PublishingLogger is trying to log, it gets an exception in LocationInfo, and so calls RootLogger to log the exception.&lt;/li&gt;
+&lt;li&gt;RootLogger calls CallAppender and tries to get the lock of RootLoggerObject but is already locked&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Deadlock&lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+	
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_500x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_465x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/sitecore-log4net-lock-up/images/deadlock_hu45f59038fbd33db2bad2749093e160b8_104660_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;Deadlock&#34;&gt;
+&lt;/picture&gt;
+&lt;h3 id=&#34;azurefallbackappender&#34;&gt;AzureFallbackAppender&lt;/h3&gt;
+&lt;p&gt;Looking at
+App_Config\Sitecore\ExperienceContentManagement.Administration\Sitecore.ExperienceContentManagement.Administration.config&lt;/p&gt;
+&lt;p&gt;The AzureFallbackAppender is setup the same, for all the loggers to share the same appender.&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;AzureFallbackAppender was designed specifically for Sitcore Support Package generator and it allowed us to collect the log files while generating the package. It was decided that only one AzureFallbackAppender remains for all kinds of logs, because of performance reasons.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;So whilst this isn&amp;rsquo;t recommended, the AzureFallbackAppender is a limited specific scenario, and issues haven&amp;rsquo;t been encountered with this.&lt;/p&gt;
+&lt;h3 id=&#34;application-insights-paas-appender&#34;&gt;Application Insights PAAS appender&lt;/h3&gt;
+&lt;p&gt;Looking at the file in the Azure Websites project:
+App_Config\Sitecore\Azure\Sitecore.Cloud.ApplicationInsights.config&lt;/p&gt;
+&lt;p&gt;can see has the patch swaps out the default appends for the ApplicationInsights Log4NetAppender, so can see has a separate appender per logger as recommended.&lt;/p&gt;
+&lt;p&gt;So following the recommended practice.&lt;/p&gt;
+&lt;h3 id=&#34;summary&#34;&gt;Summary&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DeclaringType can be null for Lambdas&lt;/li&gt;
+&lt;li&gt;Check for nulls&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t share Log4Net appenders between loggers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sitecore-hotfix-refence-number&#34;&gt;Sitecore hotfix refence number&lt;/h3&gt;
+&lt;p&gt;To monitor the progress of the related issue, please use reference number [437603]&lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -865,7 +1059,7 @@ Version 2 has since been released, which would be worth testing to see how much 
 &lt;li&gt;228355 - Validation related objects spam session storage&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The JsnLog entries can be disabled by changing
-\App_Config\Include\Sitecore.JSNLog.config &amp;lt;jsnlog enabled=&amp;quot;false&amp;rdquo;&lt;/p&gt;
+\App_Config\Include\Sitecore.JSNLog.config &amp;lt;jsnlog enabled=&amp;ldquo;false&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;For validation though, there is no easy work around.
 You can disable the validation bar - so no new validation messages are loaded with each Content Editor refresh. But new objects will be added if Validation is triggered manually.&lt;/p&gt;
 &lt;h2 id=&#34;aspnet-webforms-legacy&#34;&gt;ASP.NET WebForms Legacy&lt;/h2&gt;
@@ -1603,295 +1797,6 @@ If you aren&amp;rsquo;t installing visual studio, and want to use the command li
 In order to get the server to restart after a code change something like this is needed.&lt;br /&gt;
 When using visual studio this is all handled for you.&lt;br /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;for(;;) { Write-Output \&amp;quot;Starting...\&amp;quot;; dnx --watch . web }&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>setting up Visual Studio 2015 CTP 6</title>
-            <link>https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</link>
-            <pubDate>Sun, 08 Mar 2015 11:28:58 +0000</pubDate>
-            
-            <guid>https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/</guid>
-            <description>&lt;h4 id=&#34;goals&#34;&gt;Goals&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;To setup Visual Studio 2015 to run an asp.net vNext website&lt;/li&gt;
-&lt;li&gt;Rather than using an Azure pre-configured VM, I wanted to setup Visual Studio on my own hardware.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;how-to-do-itwhat-i-learnt&#34;&gt;How to do it/What I learnt&lt;/h4&gt;
-&lt;p&gt;Reading the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Release Notes&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;NOTE: Visual Studio 2015 CTPs are for testing and feedback purposes only. This release is unsupported and are not intended for use on production computers, or to create production code. We strongly recommend only installing this release in a virtual machine, or on a computer that is available for reformatting.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;So a VM should be used.
-So I downloaded Microsoft Virtual PC, only to remember when the VM tried to boot up that it doesn&amp;rsquo;t work on 64 bit PCs.
-So starting again, I downloaded &lt;a href=&#34;https://www.virtualbox.org/&#34;&gt;VirtualBox&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I then &lt;a href=&#34;http://www.howtogeek.com/forum/topic/how-to-install-windows-7-in-virtualbox-guide-hatryst&#34;&gt;created a Windows 7 VM in VirtualBox&lt;/a&gt;.&lt;br/&gt;
-Important Steps, create it with enough space, e.g. 50GB+. It&amp;rsquo;s surprising how much space need for Windows &amp;amp; Patching, as well as Visual Studio 2015.&lt;br/&gt;
-In fact to start with I allocated too little space, and had to change the amount of space the VM had allocated, as run out of space while patching the VM.&lt;/p&gt;
-&lt;p&gt;Here is good article if need to &lt;a href=&#34;http://hajuria.blogspot.co.uk/2013/12/how-to-increase-virtualbox-disk-size-in.html&#34;&gt;change the space on the Virtual Box VM&lt;/a&gt;, and update windows to use the extra space.&lt;br/&gt;
-The first steps about cloning are optional.&lt;br/&gt;
-The important steps are, after having turned off the VM, to issue the following command to change the hard drive size:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;VBoxManage modifyhd &amp;quot;VMName.vdi&amp;quot; --resize 50000
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And then after boot it back up again, to go into Control Panel, Administrative Tools, Computer Management, Disk Management, select the active partition want to expand, right click and select &amp;ldquo;Extend Volume..&amp;rdquo;, and allocate the extra space.&lt;/p&gt;
-&lt;p&gt;Now you&amp;rsquo;ve got a Windows 7 VM, few important things:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Patch it to include SP1&lt;/li&gt;
-&lt;li&gt;Patch it to include IE10/IE11&lt;/li&gt;
-&lt;li&gt;Just patch it up to the latest version &amp;amp; reboot&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If you don&amp;rsquo;t patch it to SP1, then won&amp;rsquo;t be able to install Visual Studio.&lt;br /&gt;
-And if you don&amp;rsquo;t patch it to IE10/IE11, which you get a warning for which I ignored to begin with, I found Visual Studio wouldn&amp;rsquo;t load the K runtime/allow you to debug or browse an ASP.NET vNext website. I end up on this &lt;a href=&#34;http://forums.asp.net/t/2012309.aspx?Could+not+find+the+Microsoft+AspNet+Loader+Interop&#34;&gt;forum thread&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Summary just patch your VM to the latest version&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Having got a Patched VM, with enough disk space.
-Then install Visual Studio 2015 CTP 6.
-I used the &lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-ctp-vs&#34;&gt;Visual Studio 2015 Ultimate Web Installer&lt;/a&gt; released on 23rd of February 2015.
-And just installed the default options.&lt;/p&gt;
-&lt;p&gt;You&amp;rsquo;ll also want to install the K runtime.&lt;br /&gt;
-First install the K Version Manager(KVM) in Powershell as an administrator.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;iex ((new-object net.webclient).DownloadString(&#39;https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1&#39;))&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As detailed on the &lt;a href=&#34;https://github.com/aspnet/home&#34;&gt;Asp.net Github page&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Now KVM is installed, you&amp;rsquo;ll want to get the K runtime.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;kvm upgrade
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Having done that you can see what is installed by calling&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;kvm list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And you should see something like:&lt;br /&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-	
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_642x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/KVM_Versions_huaca018867a77d2548040c5eaf4f82f30_5214_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;KVM list&#34;&gt;
-&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;Notice is used the \.k\ folder, earlier version where using \.kre\.
-You may read older documentation that refers to \.kre\.&lt;/p&gt;
-&lt;p&gt;You may want to look at switching to use the coreclr runtime as the Active version.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;kvm use 1.0.0-beta3 -x64 -r coreclr
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;followed by&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;kvm list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And you should see something like, notice the Active * has now updated:&lt;br /&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-	
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_644x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/SwitchKActiveVersion_hub986e95702ace9166869ed9cda6cc41e_7789_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;KVM list&#34;&gt;
-&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;Now you&amp;rsquo;ve got a VM, K runtime setup.&lt;/p&gt;
-&lt;p&gt;Open up visual studio and create a new project.&lt;br /&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_650x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectCreate_hu5e52fb8690e9682e1d4365a1477e305b_13874_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Visual Studio Create Project&#34;&gt;
-&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;Select a blank project&lt;br /&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_650x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VsProjectTemplate_hu7b6ef11047c737de506b824ae8665e22_24043_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Select blank project&#34;&gt;
-&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;Now have that created, let&amp;rsquo;s setup the welcome page for ASP.net Vnext. Open startup.cs, and add the following line&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;app.UseWelcomePage();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-	
-
-
-	
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_457x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureWelcomePage_hu7c5b47c6a14c418effb700043faba1eb_8209_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Modify startup.cs&#34;&gt;
-&lt;/picture&gt;
-&lt;p&gt;This won&amp;rsquo;t compile at the moment as you don&amp;rsquo;t have a reference to the extension method.&lt;/p&gt;
-&lt;p&gt;To do that open project.json, and add a reference to &amp;ldquo;Microsoft.AspNet.Diagnostics&amp;rdquo;: &amp;ldquo;1.0.0-beta3&amp;rdquo;
-I&amp;rsquo;ve also added some references to &amp;ldquo;Microsoft.AspNet.Hosting&amp;rdquo; &amp;amp; &amp;ldquo;Microsoft.AspNet.Server.WebListener&amp;rdquo;, and added the command &amp;ldquo;web&amp;rdquo;, so can launch the site from the command prompt.
-
-&lt;picture&gt;
-
-
-
-
-
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_650x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/ConfigureDependancies_hucc4eafc377257bc3fa9187ff9e8dadcc_22658_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Modify project.json&#34;&gt;
-&lt;/picture&gt;
-&lt;br/&gt;
-Make sure the version of k runtime in the project.json matches what you have installed, e.g. &amp;ldquo;1.0.0-beta3&amp;rdquo;. 
-When you save the file, visual studio should automatically restore the packages from NuGet.&lt;/p&gt;
-&lt;p&gt;In visual studio you can configure which version of K the application uses
-
-&lt;picture&gt;
-
-
-
-
-
-
-	
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_631x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/VSConfigureKREversion_hu2f8e938c67e6060011faa8f030b9b7e8_12516_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;VS configure KRE version&#34;&gt;
-&lt;/picture&gt;&lt;/p&gt;
-&lt;p&gt;You should either now be able to launch the site from either Visual Studio or Command prompt.&lt;/p&gt;
-&lt;p&gt;To start the site via command prompt, navigate to the website directory, and run&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;k web
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now you can navigate to the site as defined in the project.json configuration&lt;/p&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_650x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/setting-up-visual-studio-2015-ctp-6/images/StartupPage_hu9ca5b64a4d40b23613bf0b7a4fe23973_65000_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Startup Page&#34;&gt;
-&lt;/picture&gt;
 </description>
           </item>
         
