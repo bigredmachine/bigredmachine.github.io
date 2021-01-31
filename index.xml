@@ -195,7 +195,7 @@ App_Config\Sitecore\Azure\Sitecore.Cloud.ApplicationInsights.config&lt;/p&gt;
 &lt;li&gt;Check for nulls&lt;/li&gt;
 &lt;li&gt;Don&amp;rsquo;t share Log4Net appenders between loggers&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;sitecore-hotfix-refence-number&#34;&gt;Sitecore hotfix refence number&lt;/h3&gt;
+&lt;h3 id=&#34;sitecore-hotfix-reference-number&#34;&gt;Sitecore hotfix reference number&lt;/h3&gt;
 &lt;p&gt;To monitor the progress of the related issue, please use reference number [437603]&lt;/p&gt;
 </description>
           </item>
