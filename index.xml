@@ -46,7 +46,7 @@
 &lt;/picture&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
-&lt;p&gt;So for quite sometime into order to be able to personalise a rendering on Content Delivery you&amp;rsquo;ve had to turn on Xdb tracking, even if you don&amp;rsquo;t want to use Xdb. &lt;br /&gt;
+&lt;p&gt;So for quite sometime in order to be able to personalise a rendering on Content Delivery you&amp;rsquo;ve had to turn on Xdb tracking, even if you don&amp;rsquo;t want to use Xdb. &lt;br /&gt;
 And by turning on Xdb Tracking, you have to turn on ASP.NET Session State, or it blows up.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&amp;ldquo;Xdb.Tracking.Enabled&amp;rdquo; = true&lt;/li&gt;
