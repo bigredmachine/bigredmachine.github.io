@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bigredmachine.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bigredmachine.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Session state and Xdb tracking no longer required for rendering personalisation</title>
+      <link>https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/</link>
+      <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/</guid>
+      <description>Happy Valentine&amp;rsquo;s day    Background So for quite sometime into order to be able to personalise a rendering on Content Delivery you&amp;rsquo;ve had to turn on Xdb tracking, even if you don&amp;rsquo;t want to use Xdb. And by turning on Xdb Tracking, you have to turn on ASP.NET Session State, or it blows up.
+ &amp;ldquo;Xdb.Tracking.Enabled&amp;rdquo; = true &amp;ldquo;Xdb.Endabled&amp;rdquo; = false ASP.NET Seession State - Enabled  Personalisation without Xdb?</description>
+    </item>
+    
     <item>
       <title>Sitecore Log4Net Lockup - Hotfix</title>
       <link>https://bigredmachine.github.io/post/sitecore-log4net-lock-up/</link>

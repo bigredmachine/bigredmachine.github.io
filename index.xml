@@ -5,8 +5,114 @@
     <description>Recent content in Ian&#39;s Blog on Ian&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Session state and Xdb tracking no longer required for rendering personalisation</title>
+            <link>https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/</link>
+            <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
+            
+            <guid>https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/</guid>
+            <description>&lt;h2 id=&#34;happy-valentines-day&#34;&gt;Happy Valentine&amp;rsquo;s day&lt;/h2&gt;
+&lt;p&gt; &lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+	
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_495x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_465x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;I heart Sitecore Support&#34;&gt;
+&lt;/picture&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+&lt;p&gt;So for quite sometime into order to be able to personalise a rendering on Content Delivery you&amp;rsquo;ve had to turn on Xdb tracking, even if you don&amp;rsquo;t want to use Xdb. &lt;br /&gt;
+And by turning on Xdb Tracking, you have to turn on ASP.NET Session State, or it blows up.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Xdb.Tracking.Enabled&amp;rdquo; = true&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Xdb.Endabled&amp;rdquo; = false&lt;/li&gt;
+&lt;li&gt;ASP.NET Seession State - Enabled&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;personalisation-without-xdb&#34;&gt;Personalisation without Xdb?&lt;/h3&gt;
+&lt;p&gt;What can you personalise with if you aren&amp;rsquo;t using Xdb?
+Well certainly you are going to be limited what you can personalise on, but you can still personalise on&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Request Url&lt;/li&gt;
+&lt;li&gt;Request Headers&lt;/li&gt;
+&lt;li&gt;Request Cookies&lt;/li&gt;
+&lt;li&gt;Geo Location of Request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Think anything in the current request, but not their History like you would if had an Xdb profile, or current browsing session for previous pages visited available with session state.&lt;/p&gt;
+&lt;h3 id=&#34;whats-the-problem-with-turning-on-session-state-and-xdb-tracking&#34;&gt;What&amp;rsquo;s the problem with turning on Session State and Xdb Tracking&lt;/h3&gt;
+&lt;p&gt;Well other than having to enable features that aren&amp;rsquo;t required, and it not being tidy.&lt;/p&gt;
+&lt;p&gt;Both of these two features cause cookies to be issued.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SC_ANALYTCS_GLOBAL_COOKIE&lt;/li&gt;
+&lt;li&gt;ASP.NET_SessionId&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you want to cache the response in a CDN then you can&amp;rsquo;t emit these request specific cookies at origin, the CDN won&amp;rsquo;t cache these responses. (Maybe with some custom logic to strip them?)&lt;/p&gt;
+&lt;p&gt;And trying to remove these cookies from being sent before the ASP.NET pipeline has flushed the response headers (after which can&amp;rsquo;t remove the headers as the client has already been sent the headers), can be quite tricky,
+especially for the ASP.NET Session State cookie which gets added to the response when the ASP.NET Session State object is accessed if it doesn&amp;rsquo;t already exist.&lt;/p&gt;
+&lt;p&gt;So trying to find the sweet spot in the ASP.NET pipeline when Sitecore has finished accessing the Session State object, and before ASP.NET has flushed the response headers, can be quite tricky.
+Or actually impossible to guarantee 100% of the time.&lt;/p&gt;
+&lt;h3 id=&#34;solution---hotfix-for-sitecore-93&#34;&gt;Solution - Hotfix for Sitecore 9.3&lt;/h3&gt;
+&lt;p&gt;Sitecore Hotfix 448700 for Sitecore 9.3 fixes this.&lt;/p&gt;
+&lt;p&gt;As I understand it this issue might have been fixed in Sitecore 10 possibly, and has been backported, based on conversations, but I&amp;rsquo;ve not tested if this is fixed in Sitecore 10.&lt;/p&gt;
+&lt;p&gt;With this hotfix, gone is the need for Session State on Content Delivery and Xdb.Tracking.Enabled. &lt;br /&gt;
+Gone is the need for the work arounds to remove these cookies from the response before they are sent. &lt;br /&gt;
+And can still have renderings personalised based on the current request.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+
+&lt;picture&gt;
+
+
+
+
+
+
+	
+
+
+
+
+
+  &lt;source 
+    media=&#34;(min-width: 650px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_642x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;source 
+    media=&#34;(min-width: 465px)&#34;
+    srcset=&#34;https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_465x0_resize_q100_box.jpg&#34;&gt;
+	
+  &lt;img 
+    src=&#34;https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_300x0_resize_q100_box.jpg&#34; 
+    alt=&#34;Can have cake and eat it&#34;&gt;
+&lt;/picture&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+          </item>
+        
+      
     
       
         
@@ -1706,97 +1812,6 @@ Then combining those messages together, into the format I want to email.&lt;/p&g
     src=&#34;https://bigredmachine.github.io/post/logic-app-azure-function-twitter/images/CombineEmail_hufd4d80ba59d84d0fa5059d14f0ccaf3d_69392_300x0_resize_q100_box_2.PNG&#34; 
     alt=&#34;Combined Email&#34;&gt;
 &lt;/picture&gt;&lt;/p&gt;
-</description>
-          </item>
-        
-      
-    
-      
-        
-          <item>
-            <title>updating to Visual Studio 2015 RC</title>
-            <link>https://bigredmachine.github.io/post/updating-to-vs-rc/</link>
-            <pubDate>Mon, 25 May 2015 16:18:02 +0000</pubDate>
-            
-            <guid>https://bigredmachine.github.io/post/updating-to-vs-rc/</guid>
-            <description>&lt;h4 id=&#34;updating-from-vs2015-ctp6-to-rc&#34;&gt;Updating from VS2015 CTP6 to RC&lt;/h4&gt;
-&lt;p&gt;A number of changes have been made to names.&lt;/p&gt;
-&lt;p&gt;Watch this for further details:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=-qt0POsiAF8&#34;&gt;Video: ASP.NET 5 Community Standup - Mar 10th, 2015 - The Big Rename&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Key slides:&lt;/p&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_650x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/CommandLineToolsRename_hu9f0f6a4f93f47a1a01ddea18d7fbdbeb_417069_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Renamed tools&#34;&gt;
-&lt;/picture&gt;
-
-&lt;picture&gt;
-
-
-
-
-
-
-
-
-
-
-  &lt;source 
-    media=&#34;(min-width: 650px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_650x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;source 
-    media=&#34;(min-width: 465px)&#34;
-    srcset=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_465x0_resize_q100_box_2.PNG&#34;&gt;
-	
-  &lt;img 
-    src=&#34;https://bigredmachine.github.io/post/updating-to-vs-rc/images/FolderAndPackageNameRename_hu37446918ceb0d4c1dbb954c4b4dafb5a_516859_300x0_resize_q100_box_2.PNG&#34; 
-    alt=&#34;Renamed folder and packages&#34;&gt;
-&lt;/picture&gt;
-&lt;p&gt;If you install visual studio, the DNVM and DNX will be setup for you.&lt;br /&gt;
-To install Visual Studio RC, first uninstall visual studio CTP 6.&lt;br /&gt;
-If you aren&amp;rsquo;t installing visual studio, and want to use the command line to install .NET Version Manager (DNVM) run the following command, you&amp;rsquo;ll need Powershell V3 for this.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;&amp;amp;{$Branch=&#39;dev&#39;;iex ((new-object net.webclient).DownloadString(&#39;https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1&#39;))}&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then to install .NET Execution Environment (DNX) run the following command&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dnvm upgrade
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I got some warnings, to remove the old environmental variable KRE_HOME&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;WARNING: Found a KRE_HOME environment variable. This variable has been deprecated and should be removed, or it may interfere with DNVM and the .NET Execution environment&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To see what is installed, and what is the default run.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dnvm list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To set the coreclr to be used run&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dnvm use 1.0.0-beta4 -x64 -r coreclr
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then to run the web server&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dnx . web
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When running &amp;ldquo;dnx &amp;ndash;watch . web&amp;rdquo; from the command line, when any code changes are made, the server will stop, but not restart.&lt;br /&gt;
-In order to get the server to restart after a code change something like this is needed.&lt;br /&gt;
-When using visual studio this is all handled for you.&lt;br /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command &amp;quot;for(;;) { Write-Output \&amp;quot;Starting...\&amp;quot;; dnx --watch . web }&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 </description>
           </item>
         

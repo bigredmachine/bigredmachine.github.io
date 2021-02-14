@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Session state and Xdb tracking no longer required for rendering personalisation">
+    <meta name="author" content="">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Session state and Xdb tracking no longer required for rendering personalisation &middot; Ian&#39;s Blog</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://bigredmachine.github.io/css/theme/journal.css">
+    
+
+    <link rel="stylesheet" href="https://bigredmachine.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://bigredmachine.github.io/css/style.css">
+
+
+    
+    <script src="https://bigredmachine.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="https://bigredmachine.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Ian&#39;s Blog" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://bigredmachine.github.io">Ian&#39;s Blog</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://bigredmachine.github.io">Home</a></li>
+					<li><a href="https://bigredmachine.github.io/page/about/">About</a></li>
+                    <li><a href="https://bigredmachine.github.io/post/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Session state and Xdb tracking no longer required for rendering personalisation</h3>
+				<span class="label label-primary">Sun, Feb 14, 2021</span> in 
+				
+					
+					<a href="/categories/development">Development</a>
+				
+					 , 
+					<a href="/categories/sitecore">Sitecore</a>
+				 using tags
+				
+					
+					<a href="/tags/sitecore">Sitecore</a>
+				
+					 , 
+					<a href="/tags/hotfix">Hotfix</a>
+				
+					 , 
+					<a href="/tags/sessionstate">SessionState</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<h2 id="happy-valentines-day">Happy Valentine&rsquo;s day</h2>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/session-state-andxdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_495x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/session-state-andxdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/session-state-andxdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_300x0_resize_q100_box.jpg" 
+    alt="I heart Sitecore Support">
+</picture>
+<p> </p>
+<h3 id="background">Background</h3>
+<p>So for quite sometime into order to be able to personalise a rendering on Content Delivery you&rsquo;ve had to turn on Xdb tracking, even if you don&rsquo;t want to use Xdb. <br />
+And by turning on Xdb Tracking, you have to turn on ASP.NET Session State, or it blows up.</p>
+<ul>
+<li>&ldquo;Xdb.Tracking.Enabled&rdquo; = true</li>
+<li>&ldquo;Xdb.Endabled&rdquo; = false</li>
+<li>ASP.NET Seession State - Enabled</li>
+</ul>
+<h3 id="personalisation-without-xdb">Personalisation without Xdb?</h3>
+<p>What can you personalise with if you aren&rsquo;t using Xdb?
+Well certainly you are going to be limited what you can personalise on, but you can still personalise on</p>
+<ul>
+<li>Request Url</li>
+<li>Request Headers</li>
+<li>Request Cookies</li>
+<li>Geo Location of Request</li>
+</ul>
+<p>Think anything in the current request, but not their History like you would if had an Xdb profile, or current browsing session for previous pages visited available with session state.</p>
+<h3 id="whats-the-problem-with-turning-on-session-state-and-xdb-tracking">What&rsquo;s the problem with turning on Session State and Xdb Tracking</h3>
+<p>Well other than having to enable features that aren&rsquo;t required, and it not being tidy.</p>
+<p>Both of these two features cause cookies to be issued.</p>
+<ul>
+<li>SC_ANALYTCS_GLOBAL_COOKIE</li>
+<li>ASP.NET_SessionId</li>
+</ul>
+<p>If you want to cache the response in a CDN then you can&rsquo;t emit these request specific cookies at origin, the CDN won&rsquo;t cache these responses. (Maybe with some custom logic to strip them?)</p>
+<p>And trying to remove these cookies from being sent before the ASP.NET pipeline has flushed the response headers (after which can&rsquo;t remove the headers as the client has already been sent the headers), can be quite tricky,
+especially for the ASP.NET Session State cookie which gets added to the response when the ASP.NET Session State object is accessed if it doesn&rsquo;t already exist.</p>
+<p>So trying to find the sweet spot in the ASP.NET pipeline when Sitecore has finished accessing the Session State object, and before ASP.NET has flushed the response headers, can be quite tricky.
+Or actually impossible to guarantee 100% of the time.</p>
+<h3 id="solution---hotfix-for-sitecore-93">Solution - Hotfix for Sitecore 9.3</h3>
+<p>Sitecore Hotfix 448700 for Sitecore 9.3 fixes this.</p>
+<p>As I understand it this issue might have been fixed in Sitecore 10 possibly, and has been backported, based on conversations, but I&rsquo;ve not tested if this is fixed in Sitecore 10.</p>
+<p>With this hotfix, gone is the need for Session State on Content Delivery and Xdb.Tracking.Enabled. <br />
+Gone is the need for the work arounds to remove these cookies from the response before they are sent. <br />
+And can still have renderings personalised based on the current request.</p>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/session-state-andxdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_642x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/session-state-andxdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/session-state-andxdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_300x0_resize_q100_box.jpg" 
+    alt="Can have cake and eat it">
+</picture>
+<p> </p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2015-2021 Ian Jones.
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/darkhorseian" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

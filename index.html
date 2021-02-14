@@ -58,6 +58,137 @@
             	
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<h3><a href="https://bigredmachine.github.io/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/">Session state and Xdb tracking no longer required for rendering personalisation</a></h3>
+					<span class="label label-primary">Sun Feb 14, 2021</span> in 
+					
+						
+						<a href="/tags/development">Development</a>
+					
+						 , 
+						<a href="/tags/sitecore">Sitecore</a>
+					 using tags 			 
+					
+						
+						<a href="/tags/sitecore">Sitecore</a>
+					
+						 , 
+						<a href="/tags/hotfix">Hotfix</a>
+					
+						 , 
+						<a href="/tags/sessionstate">SessionState</a>
+					
+				</small>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				<br> 
+				<h2 id="happy-valentines-day">Happy Valentine&rsquo;s day</h2>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_495x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/iheart_hua7cb347cab19114bde7edf1f069cf370_21611_300x0_resize_q100_box.jpg" 
+    alt="I heart Sitecore Support">
+</picture>
+<p> </p>
+<h3 id="background">Background</h3>
+<p>So for quite sometime into order to be able to personalise a rendering on Content Delivery you&rsquo;ve had to turn on Xdb tracking, even if you don&rsquo;t want to use Xdb. <br />
+And by turning on Xdb Tracking, you have to turn on ASP.NET Session State, or it blows up.</p>
+<ul>
+<li>&ldquo;Xdb.Tracking.Enabled&rdquo; = true</li>
+<li>&ldquo;Xdb.Endabled&rdquo; = false</li>
+<li>ASP.NET Seession State - Enabled</li>
+</ul>
+<h3 id="personalisation-without-xdb">Personalisation without Xdb?</h3>
+<p>What can you personalise with if you aren&rsquo;t using Xdb?
+Well certainly you are going to be limited what you can personalise on, but you can still personalise on</p>
+<ul>
+<li>Request Url</li>
+<li>Request Headers</li>
+<li>Request Cookies</li>
+<li>Geo Location of Request</li>
+</ul>
+<p>Think anything in the current request, but not their History like you would if had an Xdb profile, or current browsing session for previous pages visited available with session state.</p>
+<h3 id="whats-the-problem-with-turning-on-session-state-and-xdb-tracking">What&rsquo;s the problem with turning on Session State and Xdb Tracking</h3>
+<p>Well other than having to enable features that aren&rsquo;t required, and it not being tidy.</p>
+<p>Both of these two features cause cookies to be issued.</p>
+<ul>
+<li>SC_ANALYTCS_GLOBAL_COOKIE</li>
+<li>ASP.NET_SessionId</li>
+</ul>
+<p>If you want to cache the response in a CDN then you can&rsquo;t emit these request specific cookies at origin, the CDN won&rsquo;t cache these responses. (Maybe with some custom logic to strip them?)</p>
+<p>And trying to remove these cookies from being sent before the ASP.NET pipeline has flushed the response headers (after which can&rsquo;t remove the headers as the client has already been sent the headers), can be quite tricky,
+especially for the ASP.NET Session State cookie which gets added to the response when the ASP.NET Session State object is accessed if it doesn&rsquo;t already exist.</p>
+<p>So trying to find the sweet spot in the ASP.NET pipeline when Sitecore has finished accessing the Session State object, and before ASP.NET has flushed the response headers, can be quite tricky.
+Or actually impossible to guarantee 100% of the time.</p>
+<h3 id="solution---hotfix-for-sitecore-93">Solution - Hotfix for Sitecore 9.3</h3>
+<p>Sitecore Hotfix 448700 for Sitecore 9.3 fixes this.</p>
+<p>As I understand it this issue might have been fixed in Sitecore 10 possibly, and has been backported, based on conversations, but I&rsquo;ve not tested if this is fixed in Sitecore 10.</p>
+<p>With this hotfix, gone is the need for Session State on Content Delivery and Xdb.Tracking.Enabled. <br />
+Gone is the need for the work arounds to remove these cookies from the response before they are sent. <br />
+And can still have renderings personalised based on the current request.</p>
+<p> </p>
+
+<picture>
+
+
+
+
+
+
+	
+
+
+
+
+
+  <source 
+    media="(min-width: 650px)"
+    srcset="/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_642x0_resize_q100_box.jpg">
+	
+  <source 
+    media="(min-width: 465px)"
+    srcset="/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_465x0_resize_q100_box.jpg">
+	
+  <img 
+    src="/post/session-state-and-xdb-tracking-no-longer-required-for-rendering-personalisation/images/cake_hueaac250c617d8a711f7ccc022cea4f61_50947_300x0_resize_q100_box.jpg" 
+    alt="Can have cake and eat it">
+</picture>
+<p> </p>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+			</div>
+		</div>
+	
+        
+            	
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<h3><a href="https://bigredmachine.github.io/post/sitecore-log4net-lock-up/">Sitecore Log4Net Lockup - Hotfix</a></h3>
 					<span class="label label-primary">Sun Jan 31, 2021</span> in 
 					
@@ -423,169 +554,6 @@ However, this is quite a schema change for an edge case, so the work around will
 <p>Don&rsquo;t use this work around unless you are experiencing the issues described, and even then perform your own testing, no guarantees.</p>
 <p>These code samples haven&rsquo;t been tested, and just give the gist of the fix required.</p>
 <p>Work with Sitecore Support to confirm you are experiencing the issue described, as this customisation has a cost to it, and could have negative implications to your solution even if implemented correctly, and even more negative implication if incorrectly implemented.</p>
-
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
-			</div>
-		</div>
-	
-        
-            	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<h3><a href="https://bigredmachine.github.io/post/sitecore-precompiled-razor-views-fix/">Precompiled Razor Views</a></h3>
-					<span class="label label-primary">Sun Feb 2, 2020</span> in 
-					
-						
-						<a href="/tags/development">Development</a>
-					
-						 , 
-						<a href="/tags/sitecore">Sitecore</a>
-					 using tags 			 
-					
-						
-						<a href="/tags/sitecore">Sitecore</a>
-					
-						 , 
-						<a href="/tags/performance">Performance</a>
-					
-						 , 
-						<a href="/tags/asp.net-mvc">ASP.NET MVC</a>
-					
-						 , 
-						<a href="/tags/razor">Razor</a>
-					
-				</small>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<br> 
-				<h2 id="precompiled-razor-views---sitecore-9---issue-192470-amp-119596">Precompiled Razor Views - Sitecore 9 - Issue 192470 &amp; 119596</h2>
-<p>There are already some posts on this topic of using Precompiled Razor Views, so I won&rsquo;t duplicate that content.</p>
-<p>Kam&rsquo;s blog - <a href="https://kamsar.net/index.php/2016/09/Precompiled-Views-with-Sitecore-8-2/">Precompiled Views supported by Sitecore since Sitecore 8.2</a></p>
-<p>Jeremy&rsquo;s blog - <a href="https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/">possible side affect of Precompiled Views</a></p>
-<p>Chris&rsquo;s blog - <a href="https://chrisperks.co/2018/03/22/hundreds-of-renderings-your-first-page-load-could-be-sloooow/">Slow compilation when using MVC areas/Helix folder structure</a></p>
-<p>Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a></p>
-<p>And probably others, but these one&rsquo;s stood out to me, and relevant for this post.</p>
-<p>Read these articles first, I&rsquo;ll wait.</p>
-<h2 id="quick-summary">Quick summary</h2>
-<p>So you&rsquo;ve read the above articles,
-here&rsquo;s a quick recap:</p>
-<ul>
-<li>
-<p>we know Precompiled Razor Views are supported by Sitecore since Sitecore 8.2.</p>
-</li>
-<li>
-<p>We want to measure/benchmark before and after applying this performance fix, how else would you know it&rsquo;s had the desired effect. And watch out for this Disk IO calls, which seem to be occurring even if have the Sitecore setting disabled &ldquo;UsePhysicalViewsIfNewer&rdquo; which seems counterintuitive.</p>
-</li>
-<li>
-<p>If you are following a MVC areas/Helix style structure with multiple folders for your views, it looks like using precompiled razor view is going to be really beneficial in your case.</p>
-</li>
-<li>
-<p>Ensure you are using unique MVC area/Helix folder names &amp; unique razor file paths across projects to avoid issues, just like you would if they were physical files in one project.</p>
-</li>
-</ul>
-<h2 id="ok---ive-read-the-above-articles-what-more-are-you-writing-about">Ok - I&rsquo;ve read the above articles, what more are you writing about?</h2>
-<p>Well first I want to draw attention to &ldquo;UsePhysicalViewsIfNewer&rdquo; setting.</p>
-<p>Check in your Sitecore setup what this value is set to.</p>
-<p>If for example you have received a Sitecore Support patch/hotfix with a new .cshtml file</p>
-<blockquote>
-<p>E.g. Issue 214239 for &ldquo;\sitecore\shell\client\Business Components Library\version 2\Layouts\Renderings\ListsAndGrids\Grid.cshtml&rdquo;</p>
-</blockquote>
-<p>Which includes a config patch which changes &ldquo;UsePhysicalViewsIfNewer&rdquo; to true to load the .cshtml file with the fix, rather than the precompiled view in the assembly.</p>
-<p>Those disk IO calls which seem to occur either way (more on that later), are defiantly going to occur if you tell it to.</p>
-<blockquote>
-<p>This also explains the guidance you might see where the .cshtml file last modified data must be more recent than the .dll file, otherwise it wouldn&rsquo;t be loaded.</p>
-</blockquote>
-<p>So possibly a Sitecore Support patch to a .cshtml file might undo some of the performance gains we are trying to achieve. As with everything measure.</p>
-<p>If you don&rsquo;t have &ldquo;UsePhysicalViewsIfNewer&rdquo; set to true, can skip this next section, and skip to the hotfix, otherwise read on.</p>
-<h2 id="i-want-a-support-fix-and-performance-settings">I want a support fix and performance settings</h2>
-<blockquote>
-<p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
-</blockquote>
-<p>Maybe if you are only worried about the Sitecore MVC .cshtml hotfix for Content Authoring, and only want the compilation benefit on Content Delivery so could change this setting &ldquo;UsePhysicalViewsIfNewer&rdquo; to true just for Authoring?</p>
-<p>However, if you want to have the compilation benefit on Content Authoring as well as the MVC .cshtml fix. One possible way could be to create a new project named &ldquo;ZZZZZ&hellip;&rdquo; with Razor compilation enabled and place the fixed .cshtml file in that project with the matching path of the file you want to override from Sitecore.</p>
-<p>And add to the pre-compilation configuration a reference to this new assembly.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;configuration</span> <span style="color:#960050;background-color:#1e0010">xmlns:patch&#34;http://www.sitecore.net/xmlconfig/&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;sitecore&gt;</span>
-        <span style="color:#f92672">&lt;mvc&gt;</span>
-            <span style="color:#f92672">&lt;precompilation&gt;</span>
-                <span style="color:#f92672">&lt;assemblies&gt;</span>
-                    <span style="color:#f92672">&lt;assemblyIdentity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ZZZZZ......AssemblyName&#34;</span> <span style="color:#f92672">/&gt;</span>
-                <span style="color:#f92672">&lt;/assemblies&gt;</span>
-            <span style="color:#f92672">&lt;/precompilation&gt;</span>
-        <span style="color:#f92672">&lt;/mvc&gt;</span>
-    <span style="color:#f92672">&lt;/sitecore&gt;</span>
-<span style="color:#f92672">&lt;/configuration&gt;</span>
-</code></pre></div><h3 id="why-call-the-project-zzzzz">Why call the project ZZZZZ&hellip;.</h3>
-<p>We are going to turn the bug from Matt&rsquo;s blog - <a href="https://www.mattfletcher.co.uk/2019/01/20/beware-of-view-compilation-with-helix-features/">ensuring your razor view paths are unique</a>
-into a solution.</p>
-<blockquote>
-<p>&ldquo;The problem becomes apparent when two assemblies have the same generated virtual view path, <strong>the assembly that comes alphabetically last wins out</strong> and overwrites the value corresponding to the virtual path key string in the _views dictionary.&rdquo;</p>
-</blockquote>
-<p>We are going to deliberately overwrite the Sitecore Pre-compiled view, with the fixed Pre-compiled view, but naming the assembly with the fixed .cshtml file with a name Alphabetically after the original Sitecore Assembly.</p>
-<p>If this is a good solution without drawback, perhaps support could do this, to save us the time of doing it ourselves?</p>
-<p>Or actually Sitecore could re-issue the original .dll with the fixed Razor view, so don&rsquo;t need to overwrite it.</p>
-<p>And now with the new Hotfix only model, they probably would do this.</p>
-<p>Still this might be relevant for an existing patch you have, prior to the new Hotfix model.</p>
-<h3 id="best-of-both">Best of both</h3>
-<p>With this technique, can leave &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, and override a Sitecore precompiled view.</p>
-<p>More testing required to verify this works without drawback.</p>
-<h2 id="great-so-ive-definitely-got-usephysicalviewsifnewer-set-to-false-whats-this-hotfix">Great so I&rsquo;ve definitely got &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, what&rsquo;s this Hotfix</h2>
-<blockquote>
-<p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
-</blockquote>
-<p>Going back to Jeremy&rsquo;s blog <a href="https://jermdavis.wordpress.com/2018/04/02/an-interesting-side-effect-of-compiled-views/">possible side affect of Precompiled Views</a>. If look at the comments section, can see I enquired about if this was still an issue in Sitecore 9, and had a little more success from Sitecore Support who confirmed this was a bug in Sitecore and not the RazorGenerator project.</p>
-<p>Looking at the contents of Sitecore.Support.192470.dll, can see it removes the first MVC view engine from the list, I asked Sitecore Support why and got this answer:</p>
-<blockquote>
-<p>The setting UsePhysicalViewsIfNewer works as expected for all precompiled views except the ones that come from a couple of SPEAK dlls (Sitecore.Speak.Web.dll and Sitecore.Speak.Components.Web.dll).
-The UsePhysicalViewsIfNewer setting value is used to initialize PrecompiledViewAssembly objects which will be a part of the RazorGenerator.Mvc.CompositePrecompiledMvcEngine. Sitecore initializes an instance of Sitecore.Mvc.SitecoreRazorViewEngine derived from the CompositePrecompiledMvcEngine. And further the instantiated engine is encapsulated in the Sitecore.Mvc.InstrumentendViewEngine type.</p>
-</blockquote>
-<p>So far so good.</p>
-<blockquote>
-<p>The problem is that there is an extra PrecompiledMvcEngine instance that comes from SPEAK. This particular engine instance ignores the UsePhysicalViewsIfNewer setting. The engine instance gets placed at the very first position of the ViewEngines.Engines list. And the issue happens when this &ldquo;incorrect&rdquo; engine is taken via a FirstOrDefault LINQ func by Sitecore MVC.
-Please also notice that with the current architecture the only possible way to fix this is to remove the engine from the list.</p>
-</blockquote>
-<p>This would seem to explain the issue Jeremy was having.</p>
-<p>However I&rsquo;ve yet to benchmark this solution, to see if solves the disk IO issue, but got a logical explanation from Sitecore Support.</p>
-<p>I&rsquo;m not sure if this is still an issue or fixed in later version of Sitecore after Sitecore 9. But a quick scan through the recent version release notes I can&rsquo;t see either of the public reference numbers 192470 or 119596.</p>
-<h2 id="summary">Summary</h2>
-<blockquote>
-<p>Disclaimer, I&rsquo;ve only tried this on a dev machine. And not completed benchmarking/testing</p>
-</blockquote>
-<p>If you are experiencing issues with Compiled Razor views and disk activity even with &ldquo;UsePhysicalViewsIfNewer&rdquo; set to false, perhaps check if this fix is applicable for the version of Sitecore you are on, and measure if it has the desired impact.</p>
-
-<picture>
-
-
-
-
-
-
-	
-
-
-	
-
-
-
-
-  <source 
-    media="(min-width: 650px)"
-    srcset="/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_430x0_resize_q100_box.jpg">
-	
-  <source 
-    media="(min-width: 465px)"
-    srcset="/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_430x0_resize_q100_box.jpg">
-	
-  <img 
-    src="/post/sitecore-precompiled-razor-views-fix/images/measure_everything_hu69f3d958114e641daa238781f031e139_62737_300x0_resize_q100_box.jpg" 
-    alt="Measure Everything">
-</picture>
 
 			</div>
 		</div>
